@@ -2,16 +2,33 @@
 // Krystof Hruby
 // 2023
 
+#include <memory>
+
 #include "Gameloop.h"
+#include "Global.h"
+#include "Logging.h"
+#include "SceneManager.h"
+#include "Scene_Level1.h"
 
-void Gameloop::start() {
+double Time::delta_time; // Global value
 
+
+// Called on START button press
+void Gameloop::Start() {
+	LOG("Starting the game.");
+
+	SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level1>());
 }
 
-void Gameloop::update() {
-
+// Called every frame
+// frame_time comes from gamecode.cpp from the Shell
+void Gameloop::Update(double frame_time) {
+	Time::delta_time = frame_time;
+	
 }
 
-void Gameloop::end() {
+// Called on MAIN MENU button press
+void Gameloop::End() {
+	LOG("Ending the game.");
 
 }

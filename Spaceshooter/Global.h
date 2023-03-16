@@ -4,7 +4,10 @@
 
 #pragma once
 
-class Global {
+#define LOGGING true
 
+
+class Time {
+public:
+	static double delta_time;
 };
-

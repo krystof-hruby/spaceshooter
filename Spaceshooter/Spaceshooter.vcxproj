@@ -71,20 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\Assignment\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\Assignment\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\Assignment\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\Assignment\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\Assignment\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\Assignment\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\Assignment\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\Assignment\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -148,11 +148,15 @@
     <ClCompile Include="gamecode.cpp" />
     <ClCompile Include="Gameloop.cpp" />
     <ClCompile Include="gametimer.cpp" />
-    <ClCompile Include="Global.cpp" />
+    <ClCompile Include="Logging.cpp" />
     <ClCompile Include="mydrawengine.cpp" />
     <ClCompile Include="myinputs.cpp" />
     <ClCompile Include="mysoundengine.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Scene_Level1.cpp" />
     <ClCompile Include="Shapes.cpp" />
+    <ClCompile Include="UUID.cpp" />
     <ClCompile Include="vector2D.cpp" />
     <ClCompile Include="wincode.cpp" />
   </ItemGroup>
@@ -164,11 +168,16 @@
     <ClInclude Include="Gameloop.h" />
     <ClInclude Include="gametimer.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="Logging.h" />
     <ClInclude Include="mydrawengine.h" />
     <ClInclude Include="myinputs.h" />
     <ClInclude Include="mysoundengine.h" />
     <ClInclude Include="objecttypes.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Scene_Level1.h" />
     <ClInclude Include="Shapes.h" />
+    <ClInclude Include="UUID.h" />
     <ClInclude Include="vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

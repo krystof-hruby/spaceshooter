@@ -10,8 +10,9 @@
 #include <math.h>
 #include "shapes.h"
 
+// Engine includes
+#include "Global.h"
 #include "Gameloop.h"
-
 
 Game::Game()
 {
@@ -281,7 +282,7 @@ ErrorType Game::StartOfGame()
    // Code to set up your game *********************************************
    // **********************************************************************
 
-	Gameloop::start();
+	Gameloop::Start();
 
 	gt.mark();
 	gt.mark();
@@ -311,8 +312,7 @@ ErrorType Game::Update()
    // Your code goes here *************************************************
    // *********************************************************************
    
-	Gameloop::update();
-
+	Gameloop::Update(gt.mdFrameTime);
 	gt.mark();
 
    // *********************************************************************
@@ -331,7 +331,7 @@ ErrorType Game::EndOfGame()
    // Add code here to tidy up ********************************************
    // *********************************************************************
 
-	Gameloop::end();
+	Gameloop::End();
 
 	return SUCCESS;
 }

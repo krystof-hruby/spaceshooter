@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{f5db9498-5dda-4d36-8786-70489f501428}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Scenes">
+      <UniqueIdentifier>{13751846-cbf0-43f1-9ea7-0cc2ac5257ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Scenes">
+      <UniqueIdentifier>{45da5594-e191-4fb0-8e70-8554ba58d34c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -64,10 +70,22 @@
       <Filter>Source Files\Shell</Filter>
     </ClCompile>
     <ClCompile Include="Gameloop.cpp">
-      <Filter>Source Files\Game</Filter>
+      <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Global.cpp">
-      <Filter>Source Files\Game</Filter>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="UUID.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Level1.cpp">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Logging.cpp">
+      <Filter>Source Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,10 +123,25 @@
       <Filter>Header Files\Shell</Filter>
     </ClInclude>
     <ClInclude Include="Gameloop.h">
-      <Filter>Header Files\Game</Filter>
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
-      <Filter>Header Files\Game</Filter>
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Logging.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="UUID.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Level1.h">
+      <Filter>Header Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

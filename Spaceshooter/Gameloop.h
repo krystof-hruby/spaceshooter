@@ -4,10 +4,9 @@
 
 #pragma once
 
-static class Gameloop {
+class Gameloop {
 public:
-	static void start();
-	static void update();
-	static void end();
+	static void Start();
+	static void Update(double frame_time);
+	static void End();
 };
-

@@ -40,14 +40,8 @@
     <Filter Include="Source Files\Engine\Debug">
       <UniqueIdentifier>{c0862bc8-171d-41f8-9216-f9d2220b7f03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Misc">
-      <UniqueIdentifier>{97b14d70-5ac9-4857-bd15-e51e46d183b5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\Debug">
       <UniqueIdentifier>{ff7664e1-4089-40e1-800b-71b18a395962}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine\Misc">
-      <UniqueIdentifier>{539ce72a-e441-4d6e-b648-91a44d69ab35}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Engine\SceneManagement">
       <UniqueIdentifier>{1767ad5b-dc8f-4730-a148-652f7b5317ce}</UniqueIdentifier>
@@ -60,6 +54,12 @@
     </Filter>
     <Filter Include="Source Files\Engine\Components">
       <UniqueIdentifier>{797b461e-94e4-41dc-bab1-876b7936b886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Identifiers">
+      <UniqueIdentifier>{539ce72a-e441-4d6e-b648-91a44d69ab35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Identifiers">
+      <UniqueIdentifier>{97b14d70-5ac9-4857-bd15-e51e46d183b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,16 +109,10 @@
       <Filter>Source Files\Engine\SceneManagement</Filter>
     </ClCompile>
     <ClCompile Include="UUID.cpp">
-      <Filter>Source Files\Engine\Misc</Filter>
+      <Filter>Source Files\Engine\Identifiers</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files\Engine\Misc</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Source Files\Engine\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Engine\Components</Filter>
+    <ClCompile Include="Identifiable.cpp">
+      <Filter>Source Files\Engine\Identifiers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,16 +168,10 @@
       <Filter>Header Files\Engine\SceneManagement</Filter>
     </ClInclude>
     <ClInclude Include="UUID.h">
-      <Filter>Header Files\Engine\Misc</Filter>
+      <Filter>Header Files\Engine\Identifiers</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\Engine\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Header Files\Engine\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Engine\Components</Filter>
+    <ClInclude Include="Identifiable.h">
+      <Filter>Header Files\Engine\Identifiers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

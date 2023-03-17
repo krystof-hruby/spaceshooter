@@ -17,6 +17,7 @@ double Time::delta_time; // Global value
 void Gameloop::Start() {
 	LOG("Starting the game.");
 
+	// Load level 1
 	SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level1>());
 }
 
@@ -25,10 +26,12 @@ void Gameloop::Start() {
 void Gameloop::Update(double frame_time) {
 	Time::delta_time = frame_time;
 	
+	SceneManager::GetInstance().GetCurrentScene()->Update();
 }
 
 // Called on MAIN MENU button press
 void Gameloop::End() {
 	LOG("Ending the game.");
 
+	SceneManager::GetInstance().GetCurrentScene()->End();
 }

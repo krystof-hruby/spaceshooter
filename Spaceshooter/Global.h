@@ -4,8 +4,9 @@
 
 #pragma once
 
-#define LOGGING true
-
+#ifndef LOGGING
+	#define LOGGING true
+#endif
 
 class Time {
 public:

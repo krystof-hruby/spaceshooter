@@ -144,9 +144,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ErrorLogger.cpp" />
     <ClCompile Include="gamecode.cpp" />
     <ClCompile Include="Gameloop.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="gametimer.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="mydrawengine.cpp" />
@@ -162,10 +165,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="ErrorLogger.h" />
     <ClInclude Include="errortype.h" />
     <ClInclude Include="gamecode.h" />
     <ClInclude Include="Gameloop.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="gametimer.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Logging.h" />

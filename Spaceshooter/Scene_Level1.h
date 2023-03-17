@@ -8,8 +8,8 @@
 
 class Scene_Level1 : public Scene {
 public:
-	void Load();
+	void Start();
 	void Update();
-	void Unload();
+	void End();
 };
 

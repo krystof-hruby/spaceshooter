@@ -4,18 +4,11 @@
 
 #pragma once
 
-#include <string>
+#include "Identifiable.h"
 
-#include "UUID.h"
-
-class Scene {
-private:
-	UUID id;
-
+class Scene : public Identifiable {
 public:
-	virtual void Load() = 0;
+	virtual void Start() = 0;
 	virtual void Update() = 0;
-	virtual void Unload() = 0;
-
-	UUID GetID();
+	virtual void End() = 0;
 };

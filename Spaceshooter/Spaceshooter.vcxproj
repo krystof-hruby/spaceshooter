@@ -144,6 +144,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ComponentRegistry.cpp" />
+    <ClCompile Include="Component_Transform.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Identifiable.cpp" />
     <ClCompile Include="ErrorLogger.cpp" />
     <ClCompile Include="gamecode.cpp" />
@@ -156,13 +160,17 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Level1.cpp" />
+    <ClCompile Include="Scene_Level2.cpp" />
     <ClCompile Include="Shapes.cpp" />
-    <ClCompile Include="UUID.cpp" />
     <ClCompile Include="vector2D.cpp" />
     <ClCompile Include="wincode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentRegistry.h" />
+    <ClInclude Include="Component_Transform.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Identifiable.h" />
     <ClInclude Include="ErrorLogger.h" />
     <ClInclude Include="errortype.h" />
@@ -178,8 +186,8 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene_Level1.h" />
+    <ClInclude Include="Scene_Level2.h" />
     <ClInclude Include="Shapes.h" />
-    <ClInclude Include="UUID.h" />
     <ClInclude Include="vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

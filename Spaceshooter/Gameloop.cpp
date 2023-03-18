@@ -2,9 +2,10 @@
 // Krystof Hruby
 // 2023
 
+#include "Gameloop.h"
+
 #include <memory>
 
-#include "Gameloop.h"
 #include "Global.h"
 #include "Logging.h"
 #include "SceneManager.h"
@@ -15,7 +16,7 @@ double Time::delta_time; // Global value
 
 // Called on START button press
 void Gameloop::Start() {
-	LOG("Starting the game.");
+	LOG("GAMELOOP: Starting the game.");
 
 	// Load level 1
 	SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level1>());
@@ -31,7 +32,7 @@ void Gameloop::Update(double frame_time) {
 
 // Called on MAIN MENU button press
 void Gameloop::End() {
-	LOG("Ending the game.");
+	LOG("GAMELOOP: Ending the game.");
 
 	SceneManager::GetInstance().GetCurrentScene()->End();
 }

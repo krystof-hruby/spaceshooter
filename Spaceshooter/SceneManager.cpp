@@ -3,6 +3,9 @@
 // 2023
 
 #include "SceneManager.h"
+
+#include <string>
+
 #include "Logging.h"
 
 SceneManager& SceneManager::GetInstance() {
@@ -11,7 +14,7 @@ SceneManager& SceneManager::GetInstance() {
 }
 
 void SceneManager::ChangeScene(std::shared_ptr<Scene> scene) {
-	LOG(("Changing scene to (ID): " + scene->GetID().AsString()) + ".");
+	LOG("SCENE MANAGER: Changing scene to (UUID): " + std::to_string(scene->GetID()));
 
 	if (this->current_scene)
 		this->current_scene->End();

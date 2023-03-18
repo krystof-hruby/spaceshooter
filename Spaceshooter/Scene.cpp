@@ -3,3 +3,5 @@
 // 2023
 
 #include "Scene.h"
+
+Scene::Scene() { }

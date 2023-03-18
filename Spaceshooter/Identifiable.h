@@ -4,14 +4,22 @@
 
 #pragma once
 
-#include "UUID.h"
+#include <cstdint>
+#include <string>
+
+#ifndef UUID
+	#define UUID std::uint32_t
+#endif
 
 class Identifiable {
 private:
-	UUID id;
+	static UUID last_uuid;
+	UUID uuid;
+
+protected:
+	Identifiable();
 
 public:
 	UUID GetID();
-	bool IsID(UUID id);
 };
 

@@ -8,15 +8,13 @@
 #include <unordered_map>
 
 #include "Identifiable.h"
-
-#include "Component.h"
+// Components:
 #include "Component_Transform.h"
 
 // Holds data of all components in a scene.
 class ComponentRegistry : public Identifiable {
 private:
 	std::unordered_map<UUID, std::shared_ptr<Component_Transform>> components_transform;
-
 
 	template<typename ComponentType>
 	void Components_Start(std::unordered_map<UUID, std::shared_ptr<ComponentType>> components) {
@@ -33,7 +31,9 @@ private:
 	}
 
 public:
+	// Calls start on all currently registered components.
 	void AllComponents_Start();
+	// Calls update on all currently registered components.
 	void AllComponents_Update();
 	
 	// COMPONENTS:
@@ -47,7 +47,7 @@ public:
 	template<typename ComponentType>
 	void RemoveComponent(UUID game_object_id);
 
-	// Transform:
+	// Component_Transform:
 
 	template<>
 	std::shared_ptr<Component_Transform> GetComponent<Component_Transform>(UUID game_object_id) {

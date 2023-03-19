@@ -10,20 +10,20 @@
 #include "SceneManager.h"
 #include "Scene_Level2.h"
 
-void Scene_Level1::Start() {
+void Scene_Level1::Load() {
 	LOG("LEVEL 1: Loading level 1. Scene UUID: " + std::to_string(this->GetID()));
 
 	std::shared_ptr<GameObject> test = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Blank, this->component_registry);
 
 	LOG(test->GetID());
 
-	//SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level2>());
+	LOG(Time::delta_time);
 }
 
 void Scene_Level1::Update() {
 
 }
 
-void Scene_Level1::End() {
+void Scene_Level1::Unload() {
 	LOG("LEVEL 1: Unloading level 1. Scene UUID: " + std::to_string(this->GetID()));
 }

@@ -9,8 +9,8 @@
 // Scene for level 1 of the game.
 class Scene_Level1 : public Scene {
 public:
-	void Start();
+	void Load();
 	void Update();
-	void End();
+	void Unload();
 };
 

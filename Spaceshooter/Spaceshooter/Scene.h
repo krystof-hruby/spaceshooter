@@ -12,11 +12,11 @@
 // Holds and controls game objects.
 class Scene : public Identifiable {
 protected:
-	Scene();
+	Scene() { }
 	std::shared_ptr<ComponentRegistry> component_registry = std::make_shared<ComponentRegistry>();
 
 public:
-	virtual void Start() = 0;
+	virtual void Load() = 0;
 	virtual void Update() = 0;
-	virtual void End() = 0;
+	virtual void Unload() = 0;
 };

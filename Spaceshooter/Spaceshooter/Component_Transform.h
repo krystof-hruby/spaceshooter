@@ -11,8 +11,9 @@
 class Component_Transform : public Component {
 public:
 	Component_Transform(std::shared_ptr<GameObject>);
+	
 	Vector2D position;
-	float rotation;
+	float rotation = 0;
 	Vector2D scale;
 };
 

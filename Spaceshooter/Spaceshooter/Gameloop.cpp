@@ -15,7 +15,6 @@
 double Time::delta_time;
 
 
-// Called when starting the game.
 void Gameloop::Start() {
 	LOG("GAMELOOP: Starting the game.");
 
@@ -23,17 +22,14 @@ void Gameloop::Start() {
 	SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level1>());
 }
 
-// Called every frame.
-// frame_time comes from gamecode.cpp from the Shell
 void Gameloop::Update(double frame_time) {
 	Time::delta_time = frame_time;
 	
 	SceneManager::GetInstance().GetCurrentScene()->Update();
 }
 
-// Called when returning to main menu.
 void Gameloop::End() {
 	LOG("GAMELOOP: Ending the game.");
 
-	SceneManager::GetInstance().GetCurrentScene()->End();
+	SceneManager::GetInstance().GetCurrentScene()->Unload();
 }

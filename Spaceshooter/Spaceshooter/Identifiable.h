@@ -12,7 +12,7 @@
 	#define UUID std::uint32_t
 #endif
 
-// Provides identification by UUID.
+// Provides object identification by UUID.
 class Identifiable {
 private:
 	static UUID last_uuid;
@@ -22,6 +22,7 @@ protected:
 	Identifiable();
 
 public:
+	// Returns the id of this object.
 	UUID GetID();
 };
 

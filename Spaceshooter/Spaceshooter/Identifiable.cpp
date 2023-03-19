@@ -11,7 +11,6 @@ Identifiable::Identifiable() {
 	Identifiable::last_uuid++;
 }
 
-// Returns the id of this object.
 UUID Identifiable::GetID() {
 	return this->uuid;
 }

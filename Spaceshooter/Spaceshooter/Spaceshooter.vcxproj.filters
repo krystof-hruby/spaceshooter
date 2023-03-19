@@ -55,17 +55,17 @@
     <Filter Include="Source Files\Engine\Components">
       <UniqueIdentifier>{797b461e-94e4-41dc-bab1-876b7936b886}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\Identifiers">
-      <UniqueIdentifier>{539ce72a-e441-4d6e-b648-91a44d69ab35}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Identifiers">
-      <UniqueIdentifier>{97b14d70-5ac9-4857-bd15-e51e46d183b5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\ObjectManagement">
       <UniqueIdentifier>{5a756da9-e9ef-4543-82c2-8d5210e7fdec}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Engine\ObjectManagement">
       <UniqueIdentifier>{87ea20aa-58c4-4630-8d25-f40221d859a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Misc">
+      <UniqueIdentifier>{539ce72a-e441-4d6e-b648-91a44d69ab35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Misc">
+      <UniqueIdentifier>{97b14d70-5ac9-4857-bd15-e51e46d183b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,7 +115,7 @@
       <Filter>Source Files\Engine\SceneManagement</Filter>
     </ClCompile>
     <ClCompile Include="Identifiable.cpp">
-      <Filter>Source Files\Engine\Identifiers</Filter>
+      <Filter>Source Files\Engine\Misc</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\Engine\Components</Filter>
@@ -189,7 +189,7 @@
       <Filter>Header Files\Engine\SceneManagement</Filter>
     </ClInclude>
     <ClInclude Include="Identifiable.h">
-      <Filter>Header Files\Engine\Identifiers</Filter>
+      <Filter>Header Files\Engine\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>Header Files\Engine\Components</Filter>

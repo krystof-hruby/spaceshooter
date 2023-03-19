@@ -4,22 +4,12 @@
 
 #include "ComponentRegistry.h"
 
-void ComponentRegistry::Start(std::unordered_map<UUID, std::shared_ptr<Component>> components) {
-	for (auto component : components) {
-		component.second->Start();
-	}
+// Calls starts on all currently registered components.
+void ComponentRegistry::AllComponents_Start() {
+	this->Components_Start(this->components_transform);
 }
 
-void ComponentRegistry::Update(std::unordered_map<UUID, std::shared_ptr<Component>> components) {
-	for (auto component : components) {
-		component.second->Update();
-	}
-}
-
-void ComponentRegistry::StartAllComponents() {
-	this->Start(this->components_transform);
-}
-
-void ComponentRegistry::UpdateAllComponents() {
-
+// Calls update on all currently registered components.
+void ComponentRegistry::AllComponents_Update() {
+	this->Components_Update(this->components_transform);
 }

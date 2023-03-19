@@ -10,6 +10,7 @@
 
 class GameObject;
 
+// Base class for all components.
 class Component : public Identifiable {
 protected:
 	Component(std::shared_ptr<GameObject> game_object);

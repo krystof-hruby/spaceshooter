@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Engine\Identifiers">
       <UniqueIdentifier>{97b14d70-5ac9-4857-bd15-e51e46d183b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\ObjectManagement">
+      <UniqueIdentifier>{5a756da9-e9ef-4543-82c2-8d5210e7fdec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\ObjectManagement">
+      <UniqueIdentifier>{87ea20aa-58c4-4630-8d25-f40221d859a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -114,9 +120,6 @@
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Engine\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Component_Transform.cpp">
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
@@ -125,6 +128,12 @@
     </ClCompile>
     <ClCompile Include="Scene_Level2.cpp">
       <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Engine\ObjectManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectFactory.cpp">
+      <Filter>Source Files\Engine\ObjectManagement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,9 +194,6 @@
     <ClInclude Include="Component.h">
       <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Engine\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Component_Transform.h">
       <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
@@ -196,6 +202,12 @@
     </ClInclude>
     <ClInclude Include="Scene_Level2.h">
       <Filter>Header Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Engine\ObjectManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectFactory.h">
+      <Filter>Header Files\Engine\ObjectManagement</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

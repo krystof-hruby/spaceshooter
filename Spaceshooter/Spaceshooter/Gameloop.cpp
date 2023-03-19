@@ -11,10 +11,11 @@
 #include "SceneManager.h"
 #include "Scene_Level1.h"
 
-double Time::delta_time; // Global value
+// Provides delta time between last two frames.
+double Time::delta_time;
 
 
-// Called on START button press
+// Called when starting the game.
 void Gameloop::Start() {
 	LOG("GAMELOOP: Starting the game.");
 
@@ -22,7 +23,7 @@ void Gameloop::Start() {
 	SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level1>());
 }
 
-// Called every frame
+// Called every frame.
 // frame_time comes from gamecode.cpp from the Shell
 void Gameloop::Update(double frame_time) {
 	Time::delta_time = frame_time;
@@ -30,7 +31,7 @@ void Gameloop::Update(double frame_time) {
 	SceneManager::GetInstance().GetCurrentScene()->Update();
 }
 
-// Called on MAIN MENU button press
+// Called when returning to main menu.
 void Gameloop::End() {
 	LOG("GAMELOOP: Ending the game.");
 

@@ -6,6 +6,7 @@
 
 #include "Scene.h"
 
+// Scene for level 2 of the game.
 class Scene_Level2 : public Scene {
 public:
 	void Start();

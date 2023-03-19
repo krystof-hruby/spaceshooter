@@ -148,6 +148,7 @@
     <ClCompile Include="ComponentRegistry.cpp" />
     <ClCompile Include="Component_Transform.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="Identifiable.cpp" />
     <ClCompile Include="ErrorLogger.cpp" />
     <ClCompile Include="gamecode.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="ComponentRegistry.h" />
     <ClInclude Include="Component_Transform.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="Identifiable.h" />
     <ClInclude Include="ErrorLogger.h" />
     <ClInclude Include="errortype.h" />

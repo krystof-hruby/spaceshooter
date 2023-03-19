@@ -9,6 +9,7 @@
 #include "Identifiable.h"
 #include "ComponentRegistry.h"
 
+// Holds and controls game objects.
 class Scene : public Identifiable {
 protected:
 	Scene();

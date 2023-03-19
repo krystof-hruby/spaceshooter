@@ -8,11 +8,13 @@
 
 #include "Scene.h"
 
+// Manages scenes.
 class SceneManager {
 private:
 	SceneManager() { }
 	SceneManager(SceneManager const& copy) = delete;
 	SceneManager operator = (SceneManager const& copy) = delete;
+	
 	std::shared_ptr<Scene> current_scene;
 
 public:

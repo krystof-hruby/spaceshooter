@@ -9,6 +9,7 @@
 #include "Identifiable.h"
 #include "ComponentRegistry.h"
 
+// Provides easier interaction between components.
 class GameObject : public Identifiable {
 private:
 	std::shared_ptr<ComponentRegistry> component_registry;

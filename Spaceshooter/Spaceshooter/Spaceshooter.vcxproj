@@ -146,9 +146,14 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentRegistry.cpp" />
+    <ClCompile Include="Component_RectangleCollider.cpp" />
+    <ClCompile Include="Component_InputReader.cpp" />
+    <ClCompile Include="Component_SoundEmitter.cpp" />
+    <ClCompile Include="Component_SpriteRenderer.cpp" />
     <ClCompile Include="Component_Transform.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
+    <ClCompile Include="Global.cpp" />
     <ClCompile Include="Identifiable.cpp" />
     <ClCompile Include="ErrorLogger.cpp" />
     <ClCompile Include="gamecode.cpp" />
@@ -170,6 +175,10 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentRegistry.h" />
+    <ClInclude Include="Component_RectangleCollider.h" />
+    <ClInclude Include="Component_InputReader.h" />
+    <ClInclude Include="Component_SoundEmitter.h" />
+    <ClInclude Include="Component_SpriteRenderer.h" />
     <ClInclude Include="Component_Transform.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectFactory.h" />

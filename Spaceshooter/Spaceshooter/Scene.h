@@ -16,6 +16,9 @@ protected:
 	std::shared_ptr<ComponentRegistry> component_registry = std::make_shared<ComponentRegistry>();
 
 public:
+	// Stops any currently playing sounds.
+	void StopAllSounds();
+
 	virtual void Load() = 0;
 	virtual void Update() = 0;
 	virtual void Unload() = 0;

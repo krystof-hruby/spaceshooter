@@ -11,10 +11,6 @@
 #include "SceneManager.h"
 #include "Scene_Level1.h"
 
-// Provides delta time between last two frames.
-double Time::delta_time;
-
-
 void Gameloop::Start() {
 	LOG("GAMELOOP: Starting the game.");
 

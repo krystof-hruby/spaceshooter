@@ -4,13 +4,13 @@
 
 #include "Identifiable.h"
 
-UUID Identifiable::last_uuid = 0;
+ObjectUUID Identifiable::last_uuid = 0;
 
 Identifiable::Identifiable() {
 	this->uuid = Identifiable::last_uuid;
 	Identifiable::last_uuid++;
 }
 
-UUID Identifiable::GetID() {
+ObjectUUID Identifiable::GetID() {
 	return this->uuid;
 }

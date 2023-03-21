@@ -6,7 +6,7 @@
 
 #include "Global.h"
 
-#if LOGGING
+#if LOGGING_ENABLED
 	#include <fstream>
 	#include <memory>
 	

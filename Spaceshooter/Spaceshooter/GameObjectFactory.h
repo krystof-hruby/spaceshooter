@@ -13,6 +13,8 @@
 
 // Type of game object based on which GameObjectFactory creates game objects.
 enum class GameObjectType {
+	Test,
+	
 	Blank,
 };
 
@@ -25,12 +27,16 @@ private:
 	GameObjectFactory operator = (GameObjectFactory const& copy) = delete;
 	
 	std::unordered_map<GameObjectType, std::function<std::shared_ptr<GameObject>(std::shared_ptr<ComponentRegistry>)>> object_creation_jump_table = {
+		{ GameObjectType::Test, CreateGameObject_Test },
+
 		{ GameObjectType::Blank, CreateGameObject_Blank },
 	};
 
 	// GAME OBJECT CREATION FUNCTIONS:
 
-	// Creates a game object only with Component_Transform.
+	static std::shared_ptr<GameObject> CreateGameObject_Test(std::shared_ptr<ComponentRegistry> component_registry);
+	
+	// Creates a game object with Component_Transform only.
 	static std::shared_ptr<GameObject> CreateGameObject_Blank(std::shared_ptr<ComponentRegistry> component_registry);
 public:
 	// Returns singleton instance.

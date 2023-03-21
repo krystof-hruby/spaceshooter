@@ -16,9 +16,6 @@
     <Filter Include="Header Files\Shell">
       <UniqueIdentifier>{35de9cea-9c9f-4cc6-b761-91157557bed4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Shell">
-      <UniqueIdentifier>{060424b9-7f4f-4489-966b-36b899b55080}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Engine">
       <UniqueIdentifier>{291f9177-b5b1-4f53-a312-e6cf3b7aff48}</UniqueIdentifier>
     </Filter>
@@ -66,6 +63,15 @@
     </Filter>
     <Filter Include="Source Files\Engine\Misc">
       <UniqueIdentifier>{97b14d70-5ac9-4857-bd15-e51e46d183b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Components\IndividualComponents">
+      <UniqueIdentifier>{cc97dbb4-78dc-429e-a664-219feae48b7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Components\IndividualComponents">
+      <UniqueIdentifier>{35d8a7b9-1926-4059-9bd5-3de304605e42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shell">
+      <UniqueIdentifier>{060424b9-7f4f-4489-966b-36b899b55080}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -120,9 +126,6 @@
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Component_Transform.cpp">
-      <Filter>Source Files\Engine\Components</Filter>
-    </ClCompile>
     <ClCompile Include="ComponentRegistry.cpp">
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
@@ -134,6 +137,24 @@
     </ClCompile>
     <ClCompile Include="GameObjectFactory.cpp">
       <Filter>Source Files\Engine\ObjectManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Transform.cpp">
+      <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_SpriteRenderer.cpp">
+      <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_InputReader.cpp">
+      <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_RectangleCollider.cpp">
+      <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_SoundEmitter.cpp">
+      <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Source Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,9 +215,6 @@
     <ClInclude Include="Component.h">
       <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Component_Transform.h">
-      <Filter>Header Files\Engine\Components</Filter>
-    </ClInclude>
     <ClInclude Include="ComponentRegistry.h">
       <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
@@ -208,6 +226,21 @@
     </ClInclude>
     <ClInclude Include="GameObjectFactory.h">
       <Filter>Header Files\Engine\ObjectManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Transform.h">
+      <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_SpriteRenderer.h">
+      <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_InputReader.h">
+      <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_RectangleCollider.h">
+      <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_SoundEmitter.h">
+      <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

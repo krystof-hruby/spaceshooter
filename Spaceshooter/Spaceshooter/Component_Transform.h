@@ -14,6 +14,6 @@ public:
 	
 	Vector2D position;
 	float rotation = 0;
-	Vector2D scale;
+	float scale = 1;
 };
 

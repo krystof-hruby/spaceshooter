@@ -4,6 +4,6 @@
 
 #include "Logging.h"
 
-#if LOGGING
+#if LOGGING_ENABLED
 	std::shared_ptr<std::ofstream> log_file = std::make_shared<std::ofstream>("debug.log");
 #endif

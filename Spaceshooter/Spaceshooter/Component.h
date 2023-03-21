@@ -13,10 +13,13 @@ class GameObject;
 // Base class for all components.
 class Component : public Identifiable {
 protected:
-	Component(std::shared_ptr<GameObject> game_object);
+	// Game object which has this component.
 	std::shared_ptr<GameObject> game_object;
 
 public:
+	// ALWAYS call this constructor only from derived classes.
+	Component(std::shared_ptr<GameObject> game_object);
+
 	// Returns the game object which has this component.
 	std::shared_ptr<GameObject> GetGameObject();
 

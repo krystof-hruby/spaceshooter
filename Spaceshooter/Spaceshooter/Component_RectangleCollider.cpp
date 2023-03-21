@@ -4,10 +4,6 @@
 
 #include "Component_RectangleCollider.h"
 
-Component_RectangleCollider::Component_RectangleCollider(std::shared_ptr<GameObject> game_object) : Component(game_object) {
-
-}
-
 void Component_RectangleCollider::Start() {
 
 }

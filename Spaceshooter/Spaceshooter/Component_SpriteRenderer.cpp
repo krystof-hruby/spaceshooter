@@ -6,17 +6,16 @@
 
 #include "GameObject.h"
 
-Component_SpriteRenderer::Component_SpriteRenderer(std::shared_ptr<GameObject> game_object) : Component(game_object) { }
-
-Component_SpriteRenderer::Component_SpriteRenderer(std::shared_ptr<GameObject> game_object, Sprite sprite) : Component(game_object) {
-	this->ChangeSprite(sprite);
-}
-
-void Component_SpriteRenderer::ChangeSprite(Sprite sprite) {
+void Component_SpriteRenderer::SetSprite(Sprite sprite) {
 	this->image = MyDrawEngine::GetInstance()->LoadPicture(sprite);
 }
 
-void Component_SpriteRenderer::Start() { }
+void Component_SpriteRenderer::UnsetSprite() {
+	if (!this->image) // No image
+		return;
+
+	MyDrawEngine::GetInstance()->ReleasePicture(this->image);
+}
 
 void Component_SpriteRenderer::Update() {
 	if (!this->image) // No image

@@ -32,7 +32,7 @@ private:
 		{ GameObjectType::Blank, CreateGameObject_Blank },
 	};
 
-	// GAME OBJECT CREATION FUNCTIONS:
+	// Specific CreateGameObject functions:
 
 	static std::shared_ptr<GameObject> CreateGameObject_Test(std::shared_ptr<ComponentRegistry> component_registry);
 	

@@ -12,12 +12,12 @@
 // Holds and controls game objects.
 class Scene : public Identifiable {
 protected:
-	Scene() { }
+	Scene();
 	std::shared_ptr<ComponentRegistry> component_registry = std::make_shared<ComponentRegistry>();
 
+	void StopAllSounds();
 public:
 	// Stops any currently playing sounds.
-	void StopAllSounds();
 
 	virtual void Load() = 0;
 	virtual void Update() = 0;

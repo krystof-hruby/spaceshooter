@@ -148,7 +148,7 @@
     <ClCompile Include="ComponentRegistry.cpp" />
     <ClCompile Include="Component_RectangleCollider.cpp" />
     <ClCompile Include="Component_InputReader.cpp" />
-    <ClCompile Include="Component_SoundEmitter.cpp" />
+    <ClCompile Include="Component_AudioEmitter.cpp" />
     <ClCompile Include="Component_SpriteRenderer.cpp" />
     <ClCompile Include="Component_Transform.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -177,7 +177,7 @@
     <ClInclude Include="ComponentRegistry.h" />
     <ClInclude Include="Component_RectangleCollider.h" />
     <ClInclude Include="Component_InputReader.h" />
-    <ClInclude Include="Component_SoundEmitter.h" />
+    <ClInclude Include="Component_AudioEmitter.h" />
     <ClInclude Include="Component_SpriteRenderer.h" />
     <ClInclude Include="Component_Transform.h" />
     <ClInclude Include="GameObject.h" />

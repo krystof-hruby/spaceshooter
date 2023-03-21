@@ -13,10 +13,8 @@ typedef unsigned char KEY;
 // Enables reading keyboard input.
 class Component_InputReader : public Component {
 public:
-	Component_InputReader(std::shared_ptr<GameObject> game_object);
+	using Component::Component;
 
 	bool KeyPressed(KEY key);
-	void Start();
-	void Update();
 };
 

@@ -150,7 +150,7 @@
     <ClCompile Include="Component_RectangleCollider.cpp">
       <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
     </ClCompile>
-    <ClCompile Include="Component_SoundEmitter.cpp">
+    <ClCompile Include="Component_AudioEmitter.cpp">
       <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
     </ClCompile>
     <ClCompile Include="Global.cpp">
@@ -239,7 +239,7 @@
     <ClInclude Include="Component_RectangleCollider.h">
       <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
     </ClInclude>
-    <ClInclude Include="Component_SoundEmitter.h">
+    <ClInclude Include="Component_AudioEmitter.h">
       <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
     </ClInclude>
   </ItemGroup>

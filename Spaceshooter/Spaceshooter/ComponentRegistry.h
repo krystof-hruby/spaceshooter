@@ -4,107 +4,90 @@
 
 #pragma once
 
+#include <exception>
 #include <memory>
+#include <typeinfo>
 #include <unordered_map>
 
 #include "Identifiable.h"
 // Components:
+#include "Component.h"
 #include "Component_Transform.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_InputReader.h"
-#include "Component_SoundEmitter.h"
+#include "Component_AudioEmitter.h"
+
+// Type of Component subclass from typeid().
+typedef const char* ComponentTypeID;
+
+#ifndef GET_COMPONENT_TYPE_ID
+	// Returns ComponentTypeID from a Component subclass.
+	#define GET_COMPONENT_TYPE_ID(component_type) typeid(component_type).name()
+#endif
 
 // Holds data of all components in a scene.
 class ComponentRegistry : public Identifiable {
 private:
-	std::unordered_map<ObjectUUID, std::shared_ptr<Component_Transform>> components_transform;
-	std::unordered_map<ObjectUUID, std::shared_ptr<Component_SpriteRenderer>> components_sprite_renderer;
-	std::unordered_map<ObjectUUID, std::shared_ptr<Component_InputReader>> components_input_reader;
-	std::unordered_map<ObjectUUID, std::shared_ptr<Component_SoundEmitter>> components_sound_emitter;
+	std::unordered_map<ComponentTypeID, std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>> component_registry = {
+		{ GET_COMPONENT_TYPE_ID(Component_Transform), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
+		{ GET_COMPONENT_TYPE_ID(Component_SpriteRenderer), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
+		{ GET_COMPONENT_TYPE_ID(Component_InputReader), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
+		{ GET_COMPONENT_TYPE_ID(Component_AudioEmitter), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
+	};
 
+	// Calls Start on all provided components.
 	template<typename ComponentType>
-	void Components_Start(std::unordered_map<ObjectUUID, std::shared_ptr<ComponentType>> components) {
-		for (auto component : components) {
+	void Components_Start(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<ComponentType>>> components) {
+		for (auto component : *components) {
 			component.second->Start();
 		}
 	}
-	
+
+	// Calls Update on all provided components.
 	template<typename ComponentType>
-	void Components_Update(std::unordered_map<ObjectUUID, std::shared_ptr<ComponentType>> components) {
-		for (auto component : components) {
+	void Components_Update(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<ComponentType>>> components) {
+		for (auto component : *components) {
 			component.second->Update();
 		}
 	}
 
 public:
-	// Calls start on all currently registered components.
+	// Calls Start on all currently registered components.
 	void AllComponents_Start();
-	// Calls update on all currently registered components.
+	// Calls Update on all currently registered components.
 	void AllComponents_Update();
-	
-	// COMPONENTS:
 
+	// Returns component of ComponentType associated with provided ObjectUUID.
 	template<typename ComponentType>
-	std::shared_ptr<ComponentType> GetComponent(ObjectUUID game_object_id);
+	std::shared_ptr<ComponentType> GetComponent(ObjectUUID game_object_id) {
+		auto components = (this->component_registry[GET_COMPONENT_TYPE_ID(ComponentType)]);
+
+		if (components->find(game_object_id) == components->end())
+			throw std::exception();
+
+		return std::static_pointer_cast<ComponentType>((*components)[game_object_id]);
+	}
+
+	// Registers component of ComponentType to provided ObjectUUID.
 	template<typename ComponentType>
-	void AddComponent(ObjectUUID game_object_id, std::shared_ptr<ComponentType> component);
+	void RegisterComponent(ObjectUUID game_object_id, std::shared_ptr<ComponentType> component) {
+		auto components = (this->component_registry[GET_COMPONENT_TYPE_ID(ComponentType)]);
+		
+		if (components->find(game_object_id) != components->end())
+			throw std::exception();
+		
+		(*components)[game_object_id] = component;
+	}
+
+	// Unregisters component of ComponentType from provided ObjectUUID.
 	template<typename ComponentType>
-	void RemoveComponent(ObjectUUID game_object_id);
-
-	// Component_Transform:
-	template<>
-	std::shared_ptr<Component_Transform> GetComponent<Component_Transform>(ObjectUUID game_object_id) {
-		return this->components_transform[game_object_id];
-	}
-	template<>
-	void AddComponent<Component_Transform>(ObjectUUID game_object_id, std::shared_ptr<Component_Transform> component) {
-		this->components_transform.insert({ game_object_id, component });
-	}
-	template<>
-	void RemoveComponent<Component_Transform>(ObjectUUID game_object_id) {
-		this->components_transform.erase(game_object_id);
-	}
-
-	// Component_SpriteRenderer:
-	template<>
-	std::shared_ptr<Component_SpriteRenderer> GetComponent<Component_SpriteRenderer>(ObjectUUID game_object_id) {
-		return this->components_sprite_renderer[game_object_id];
-	}
-	template<>
-	void AddComponent<Component_SpriteRenderer>(ObjectUUID game_object_id, std::shared_ptr<Component_SpriteRenderer> component) {
-		this->components_sprite_renderer.insert({ game_object_id, component });
-	}
-	template<>
-	void RemoveComponent<Component_SpriteRenderer>(ObjectUUID game_object_id) {
-		this->components_sprite_renderer.erase(game_object_id);
-	}
-
-	// Component_InputReader:
-	template<>
-	std::shared_ptr<Component_InputReader> GetComponent<Component_InputReader>(ObjectUUID game_object_id) {
-		return this->components_input_reader[game_object_id];
-	}
-	template<>
-	void AddComponent<Component_InputReader>(ObjectUUID game_object_id, std::shared_ptr<Component_InputReader> component) {
-		this->components_input_reader.insert({ game_object_id, component });
-	}
-	template<>
-	void RemoveComponent<Component_InputReader>(ObjectUUID game_object_id) {
-		this->components_input_reader.erase(game_object_id);
-	}
-
-	// Component_SoundEmitter:
-	template<>
-	std::shared_ptr<Component_SoundEmitter> GetComponent<Component_SoundEmitter>(ObjectUUID game_object_id) {
-		return this->components_sound_emitter[game_object_id];
-	}
-	template<>
-	void AddComponent<Component_SoundEmitter>(ObjectUUID game_object_id, std::shared_ptr<Component_SoundEmitter> component) {
-		this->components_sound_emitter.insert({ game_object_id, component });
-	}
-	template<>
-	void RemoveComponent<Component_SoundEmitter>(ObjectUUID game_object_id) {
-		this->components_sound_emitter.erase(game_object_id);
+	void UnregisterComponent(ObjectUUID game_object_id) {
+		auto components = (this->component_registry[GET_COMPONENT_TYPE_ID(ComponentType)]);
+		
+		if (components->find(game_object_id) == components->end())
+			throw std::exception();
+		
+		components->erase(game_object_id);
 	}
 };
 

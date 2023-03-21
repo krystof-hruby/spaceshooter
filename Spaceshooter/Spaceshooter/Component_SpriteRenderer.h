@@ -16,13 +16,13 @@ private:
 	PictureIndex image = 0;
 
 public:
-	Component_SpriteRenderer(std::shared_ptr<GameObject> game_object);
-	Component_SpriteRenderer(std::shared_ptr<GameObject> game_object, Sprite sprite);
+	using Component::Component;
 
 	float transparency = 0;
 	
-	void ChangeSprite(Sprite sprite);
-	void Start();
+	void SetSprite(Sprite sprite);
+	void UnsetSprite();
+
 	void Update();
 };
 

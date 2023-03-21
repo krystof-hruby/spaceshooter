@@ -9,7 +9,7 @@
 class Component_RectangleCollider : public Component {
 
 public:
-	Component_RectangleCollider(std::shared_ptr<GameObject> game_object);
+	using Component::Component;
 
 	void Start();
 	void Update();

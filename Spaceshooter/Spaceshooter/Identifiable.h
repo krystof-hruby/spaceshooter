@@ -7,10 +7,8 @@
 #include <cstdint>
 #include <string>
 
-#ifndef ObjectUUID
-	// Object Universally Unique Identifier
-	#define ObjectUUID std::uint32_t
-#endif
+// Object Universally Unique Identifier
+typedef std::uint32_t ObjectUUID;
 
 // Provides object identification by UUID.
 class Identifiable {

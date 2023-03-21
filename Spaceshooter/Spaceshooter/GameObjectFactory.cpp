@@ -6,7 +6,7 @@
 
 #include "Component_Transform.h"
 #include "Component_SpriteRenderer.h"
-#include "Component_SoundEmitter.h"
+#include "Component_AudioEmitter.h"
 
 GameObjectFactory& GameObjectFactory::GetInstance() {
 	static GameObjectFactory instance;
@@ -17,20 +17,22 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject(GameObjectType t
 	return object_creation_jump_table[type](component_registry);
 }
 
-// GAME OBJECT CREATION FUNCTIONS:
+// Specific CreateGameObject functions:
 
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Test(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = GameObjectFactory::CreateGameObject_Blank(component_registry);
-	game_object->AddComponent<Component_SpriteRenderer>(std::make_shared<Component_SpriteRenderer>(game_object, L"assets/test.bmp"));
-	game_object->AddComponent<Component_InputReader>(std::make_shared<Component_InputReader>(game_object));
-	std::vector<Sound> sounds = { L"assets/test.wav" };
-	game_object->AddComponent<Component_SoundEmitter>(std::make_shared<Component_SoundEmitter>(game_object, sounds));
+	game_object->AddComponent<Component_SpriteRenderer>();
+	game_object->GetComponent<Component_SpriteRenderer>();
+	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/test.bmp");
+	game_object->AddComponent<Component_InputReader>();
+	game_object->AddComponent<Component_AudioEmitter>();
+	game_object->GetComponent<Component_AudioEmitter>()->Load(L"assets/test.wav");
 	return game_object;
 }
 
 
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Blank(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	game_object->AddComponent<Component_Transform>(std::make_shared<Component_Transform>(game_object));
+	game_object->AddComponent<Component_Transform>();
 	return game_object;
 }

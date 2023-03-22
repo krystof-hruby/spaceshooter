@@ -6,6 +6,7 @@
 
 #include <exception>
 #include <memory>
+#include <typeindex>
 #include <typeinfo>
 #include <unordered_map>
 
@@ -17,17 +18,18 @@
 #include "Component_InputReader.h"
 #include "Component_AudioEmitter.h"
 
-// Type of Component subclass from typeid().
-typedef const char* ComponentTypeID;
+// Type of Component subclass for component registry.
+typedef std::type_index ComponentTypeID;
 
 #ifndef GET_COMPONENT_TYPE_ID
 	// Returns ComponentTypeID from a Component subclass.
-	#define GET_COMPONENT_TYPE_ID(component_type) typeid(component_type).name()
+	#define GET_COMPONENT_TYPE_ID(component_type) std::type_index(typeid(component_type))
 #endif
 
 // Holds data of all components in a scene.
 class ComponentRegistry : public Identifiable {
 private:
+	// Must hold all components. Otherwise will break very badly.
 	std::unordered_map<ComponentTypeID, std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>> component_registry = {
 		{ GET_COMPONENT_TYPE_ID(Component_Transform), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
 		{ GET_COMPONENT_TYPE_ID(Component_SpriteRenderer), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
@@ -35,20 +37,20 @@ private:
 		{ GET_COMPONENT_TYPE_ID(Component_AudioEmitter), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
 	};
 
-	// Calls Start on all provided components.
+	// Calls Start on all provided active components.
 	template<typename ComponentType>
 	void Components_Start(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<ComponentType>>> components) {
-		for (auto component : *components) {
-			component.second->Start();
-		}
+		for (auto component : *components)
+			if (component.second->is_active)
+				component.second->Start();
 	}
 
-	// Calls Update on all provided components.
+	// Calls Update on all provided active components.
 	template<typename ComponentType>
 	void Components_Update(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<ComponentType>>> components) {
-		for (auto component : *components) {
-			component.second->Update();
-		}
+		for (auto component : *components)
+			if (component.second->is_active)
+				component.second->Update();
 	}
 
 public:

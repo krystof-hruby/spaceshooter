@@ -24,7 +24,6 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Test(std::shared
 	game_object->AddComponent<Component_SpriteRenderer>();
 	game_object->GetComponent<Component_SpriteRenderer>();
 	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/test.bmp");
-	game_object->AddComponent<Component_InputReader>();
 	game_object->AddComponent<Component_AudioEmitter>();
 	game_object->GetComponent<Component_AudioEmitter>()->Load(L"assets/test.wav");
 	return game_object;

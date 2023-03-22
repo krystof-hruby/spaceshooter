@@ -18,7 +18,6 @@
 #include "Component.h"
 #include "Component_Transform.h"
 #include "Component_SpriteRenderer.h"
-#include "Component_InputReader.h"
 #include "Component_AudioEmitter.h"
 
 // Type of Component subclass for component registry.
@@ -36,7 +35,6 @@ private:
 	std::unordered_map<ComponentTypeID, std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>> component_registry = {
 		{ GET_COMPONENT_TYPE_ID(Component_Transform), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
 		{ GET_COMPONENT_TYPE_ID(Component_SpriteRenderer), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
-		{ GET_COMPONENT_TYPE_ID(Component_InputReader), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
 		{ GET_COMPONENT_TYPE_ID(Component_AudioEmitter), std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>() },
 	};
 

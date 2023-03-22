@@ -73,6 +73,12 @@
     <Filter Include="Source Files\Shell">
       <UniqueIdentifier>{060424b9-7f4f-4489-966b-36b899b55080}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\InputManagement">
+      <UniqueIdentifier>{fe1f6e36-0dbc-4051-9d30-6fccb08080d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\InputManagment">
+      <UniqueIdentifier>{6d32e02b-9934-4175-a6e7-fc166d272da8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -144,9 +150,6 @@
     <ClCompile Include="Component_SpriteRenderer.cpp">
       <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
     </ClCompile>
-    <ClCompile Include="Component_InputReader.cpp">
-      <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
-    </ClCompile>
     <ClCompile Include="Component_RectangleCollider.cpp">
       <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
     </ClCompile>
@@ -155,6 +158,12 @@
     </ClCompile>
     <ClCompile Include="Global.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Engine\InputManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Collider.cpp">
+      <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,13 +242,16 @@
     <ClInclude Include="Component_SpriteRenderer.h">
       <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
     </ClInclude>
-    <ClInclude Include="Component_InputReader.h">
-      <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
-    </ClInclude>
     <ClInclude Include="Component_RectangleCollider.h">
       <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
     </ClInclude>
     <ClInclude Include="Component_AudioEmitter.h">
+      <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Engine\InputManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Collider.h">
       <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
     </ClInclude>
   </ItemGroup>

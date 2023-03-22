@@ -7,6 +7,7 @@
 #include <memory>
 
 #include "Global.h"
+#include "InputManager.h"
 #include "Logging.h"
 #include "SceneManager.h"
 #include "Scene_Level1.h"
@@ -21,6 +22,8 @@ void Gameloop::Start() {
 void Gameloop::Update(double frame_time) {
 	Time::delta_time = frame_time;
 	
+	InputManager::GetInstance().Update();
+
 	SceneManager::GetInstance().GetCurrentScene()->Update();
 }
 

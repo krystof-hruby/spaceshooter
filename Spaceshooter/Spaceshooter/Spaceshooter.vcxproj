@@ -146,8 +146,8 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentRegistry.cpp" />
+    <ClCompile Include="Component_Collider.cpp" />
     <ClCompile Include="Component_RectangleCollider.cpp" />
-    <ClCompile Include="Component_InputReader.cpp" />
     <ClCompile Include="Component_AudioEmitter.cpp" />
     <ClCompile Include="Component_SpriteRenderer.cpp" />
     <ClCompile Include="Component_Transform.cpp" />
@@ -159,6 +159,7 @@
     <ClCompile Include="gamecode.cpp" />
     <ClCompile Include="Gameloop.cpp" />
     <ClCompile Include="gametimer.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="mydrawengine.cpp" />
     <ClCompile Include="myinputs.cpp" />
@@ -175,8 +176,8 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentRegistry.h" />
+    <ClInclude Include="Component_Collider.h" />
     <ClInclude Include="Component_RectangleCollider.h" />
-    <ClInclude Include="Component_InputReader.h" />
     <ClInclude Include="Component_AudioEmitter.h" />
     <ClInclude Include="Component_SpriteRenderer.h" />
     <ClInclude Include="Component_Transform.h" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Gameloop.h" />
     <ClInclude Include="gametimer.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Logging.h" />
     <ClInclude Include="mydrawengine.h" />
     <ClInclude Include="myinputs.h" />

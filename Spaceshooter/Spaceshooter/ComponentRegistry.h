@@ -4,8 +4,11 @@
 
 #pragma once
 
+#include "Logging.h"
+
 #include <exception>
 #include <memory>
+#include <string>
 #include <typeindex>
 #include <typeinfo>
 #include <unordered_map>
@@ -65,7 +68,7 @@ public:
 		auto components = (this->component_registry[GET_COMPONENT_TYPE_ID(ComponentType)]);
 
 		if (components->find(game_object_id) == components->end())
-			throw std::exception();
+			throw std::exception("Could not get component.");
 
 		return std::static_pointer_cast<ComponentType>((*components)[game_object_id]);
 	}
@@ -76,7 +79,7 @@ public:
 		auto components = (this->component_registry[GET_COMPONENT_TYPE_ID(ComponentType)]);
 		
 		if (components->find(game_object_id) != components->end())
-			throw std::exception();
+			throw std::exception("Component already registered.");
 		
 		(*components)[game_object_id] = component;
 	}
@@ -87,7 +90,7 @@ public:
 		auto components = (this->component_registry[GET_COMPONENT_TYPE_ID(ComponentType)]);
 		
 		if (components->find(game_object_id) == components->end())
-			throw std::exception();
+			throw std::exception("No component registered.");
 		
 		components->erase(game_object_id);
 	}

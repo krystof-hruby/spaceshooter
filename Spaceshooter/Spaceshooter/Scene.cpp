@@ -13,3 +13,17 @@ void Scene::StopAllSounds() {
 	LOG("SCENE: Stopping all sounds.");
 	MySoundEngine::GetInstance()->StopAllSounds();
 }
+
+void Scene::Components_Start() {
+	this->component_registry->AllComponents_Start();
+}
+
+void Scene::Components_Update() {
+	this->component_registry->AllComponents_Update();
+}
+
+void Scene::Load() { }
+
+void Scene::Update() { }
+
+void Scene::Unload() { }

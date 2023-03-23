@@ -15,11 +15,18 @@ protected:
 	Scene();
 	std::shared_ptr<ComponentRegistry> component_registry = std::make_shared<ComponentRegistry>();
 
+	// Stops any currently playing sounds.
 	void StopAllSounds();
 public:
-	// Stops any currently playing sounds.
+	// Called after Load().
+	void Components_Start();
+	// Called after Update().
+	void Components_Update();
 
-	virtual void Load() = 0;
-	virtual void Update() = 0;
-	virtual void Unload() = 0;
+	// Called when changed to this scene.
+	virtual void Load();
+	// Called every frame while being current scene.
+	virtual void Update();
+	// Called when changed from this scene to other scene.
+	virtual void Unload();
 };

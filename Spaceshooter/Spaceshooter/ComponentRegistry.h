@@ -70,7 +70,7 @@ public:
 	std::shared_ptr<ComponentType> GetComponent(ObjectUUID game_object_id) {
 		auto components = this->GetComponents(GET_COMPONENT_TYPE_ID(ComponentType));
 
-		if (components->find(game_object_id) == components->end())
+		if (!(*components)[game_object_id])
 			throw std::exception("Could not get component.");
 
 		// Cast to the specific ComponentType.
@@ -82,7 +82,7 @@ public:
 	void RegisterComponent(ObjectUUID game_object_id, std::shared_ptr<ComponentType> component) {
 		auto components = this->GetComponents(GET_COMPONENT_TYPE_ID(ComponentType));
 
-		if (components->find(game_object_id) != components->end())
+		if ((*components)[game_object_id])
 			throw std::exception("Component already registered.");
 		
 		(*components)[game_object_id] = component;
@@ -96,7 +96,7 @@ public:
 	void UnregisterComponent(ObjectUUID game_object_id) {
 		auto components = this->GetComponents(GET_COMPONENT_TYPE_ID(ComponentType));
 
-		if (components->find(game_object_id) == components->end())
+		if (!(*components)[game_object_id])
 			throw std::exception("No component registered.");
 
 		if (auto component_collider = std::dynamic_pointer_cast<Component_Collider>((*components)[game_object_id]))

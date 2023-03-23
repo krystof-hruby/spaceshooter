@@ -7,6 +7,7 @@
 #include "Component_Transform.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_AudioEmitter.h"
+#include "Component_RectangleCollider.h"
 
 GameObjectFactory& GameObjectFactory::GetInstance() {
 	static GameObjectFactory instance;
@@ -26,6 +27,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Test(std::shared
 	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/test.bmp");
 	game_object->AddComponent<Component_AudioEmitter>();
 	game_object->GetComponent<Component_AudioEmitter>()->Load(L"assets/test.wav");
+	game_object->AddComponent<Component_RectangleCollider>();
 	return game_object;
 }
 

@@ -144,8 +144,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentRegistry.cpp" />
+    <ClCompile Include="Component_CircleCollider.cpp" />
     <ClCompile Include="Component_Collider.cpp" />
     <ClCompile Include="Component_RectangleCollider.cpp" />
     <ClCompile Include="Component_AudioEmitter.cpp" />
@@ -174,8 +176,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentRegistry.h" />
+    <ClInclude Include="Component_CircleCollider.h" />
     <ClInclude Include="Component_Collider.h" />
     <ClInclude Include="Component_RectangleCollider.h" />
     <ClInclude Include="Component_AudioEmitter.h" />

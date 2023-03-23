@@ -9,7 +9,7 @@
 #include "Scene.h"
 
 // Manages scenes.
-class SceneManager {
+class SceneManager final {
 private:
 	// Singleton
 	SceneManager() { }

@@ -1,4 +1,4 @@
-// Component_RectangleCollider.h
+// Component_CircleCollider.h
 // Krystof Hruby
 // 2023
 
@@ -6,9 +6,9 @@
 
 #include "Component_Collider.h"
 
-class Component_RectangleCollider final : public Component_Collider {
+class Component_CircleCollider final : public Component_Collider {
 private:
-	std::shared_ptr<Rectangle2D> shape = std::make_shared<Rectangle2D>();
+	std::shared_ptr<Circle2D> shape = std::make_shared<Circle2D>();
 
 protected:
 	std::shared_ptr<IShape2D> GetShape();
@@ -18,7 +18,6 @@ protected:
 public:
 	using Component_Collider::Component_Collider;
 
-	float width = 1;
-	float height = 1;
+	float radius = 1;
 };
 

@@ -10,15 +10,18 @@
 #include "Component.h"
 #include "mysoundengine.h"
 
+// String with L prefix. Path to audio clip location.
 typedef const wchar_t* AudioClip;
 
 // Enables playing audio. All audio clips should be loaded before played for the first time.
-class Component_AudioEmitter : public Component {
+class Component_AudioEmitter final : public Component {
 private:
 	std::unordered_map<AudioClip, SoundIndex> audio_clips;
 
 public:
 	using Component::Component;
+
+	inline bool Updatable() override { return false; }
 
 	// Audio clip should be loaded before played for the first time.
 	void Load(AudioClip audio_clip);

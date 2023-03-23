@@ -10,7 +10,7 @@
 #include "ComponentRegistry.h"
 
 // Provides easier interaction between components.
-class GameObject : public Identifiable, public std::enable_shared_from_this<GameObject> {
+class GameObject final : public Identifiable, public std::enable_shared_from_this<GameObject> {
 private:
 	std::shared_ptr<ComponentRegistry> component_registry;
 

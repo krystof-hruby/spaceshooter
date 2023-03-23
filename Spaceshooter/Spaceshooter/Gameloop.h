@@ -5,7 +5,7 @@
 #pragma once
 
 // Controls and updates the game.
-class Gameloop {
+class Gameloop final {
 public:
 	// Called when starting the game.
 	static void Start();

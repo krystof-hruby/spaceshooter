@@ -12,4 +12,6 @@ void ComponentRegistry::AllComponents_Start() {
 void ComponentRegistry::AllComponents_Update() {
 	for (auto components : this->component_registry)
 		this->Components_Update(components.second);
+
+	this->collision_manager.HandleCollisions();
 }

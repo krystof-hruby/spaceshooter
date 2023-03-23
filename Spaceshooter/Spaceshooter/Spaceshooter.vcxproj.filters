@@ -79,6 +79,12 @@
     <Filter Include="Source Files\Engine\InputManagment">
       <UniqueIdentifier>{6d32e02b-9934-4175-a6e7-fc166d272da8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\CollisionManagement">
+      <UniqueIdentifier>{01de2da0-c74e-4263-9e48-8dbbebe055db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\CollisionManagement">
+      <UniqueIdentifier>{bc15455f-60f8-43a0-8738-bc0c12778f3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -164,6 +170,12 @@
     </ClCompile>
     <ClCompile Include="Component_Collider.cpp">
       <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_CircleCollider.cpp">
+      <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Source Files\Engine\CollisionManagement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="Component_Collider.h">
       <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_CircleCollider.h">
+      <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Header Files\Engine\CollisionManagement</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

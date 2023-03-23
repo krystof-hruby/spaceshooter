@@ -10,7 +10,7 @@
 typedef unsigned char KEYBOARD_KEY;
 
 // Samples keyboard and gets input from it when requested.
-class InputManager {
+class InputManager final {
 private:
 	// Singleton
 	InputManager() { }

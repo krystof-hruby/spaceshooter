@@ -19,7 +19,7 @@ enum class GameObjectType {
 };
 
 // Creates specific game objects by combining components.
-class GameObjectFactory {
+class GameObjectFactory final {
 private:
 	// Singleton
 	GameObjectFactory() { }

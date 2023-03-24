@@ -14,7 +14,7 @@
 // Holds information about animation.
 class Animation : public Identifiable {
 private:
-	std::shared_ptr<std::vector<PictureIndex>> frames;
+	std::shared_ptr<std::vector<PictureIndex>> frames = std::make_shared<std::vector<PictureIndex>>();
 	int current_frame = 0;
 	float animation_time = 0;
 
@@ -38,7 +38,7 @@ public:
 };
 
 // Enables animation.
-class Component_Animator : public Component {
+class Component_Animator final : public Component {
 private:
 	// All animations stored in this component.
 	std::unordered_map<std::string, std::shared_ptr<Animation>> animations;
@@ -58,6 +58,6 @@ public:
 	// Modify values of animation registered with this name. May produce unpredictable results if modified wile playing.
 	void ModifyAnimation(std::string animation_name, bool loop, float speed);
 
-	void Update() override final;
+	void Update() override;
 };
 

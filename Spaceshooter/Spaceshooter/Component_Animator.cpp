@@ -26,20 +26,20 @@ Animation::Animation(std::string name, std::vector<Sprite> sprites, bool loop, f
 }
 
 bool Animation::Play(Vector2D position, float scale, float rotation) {
+	if (this->animation_time >= (1 / this->speed))
+		this->current_frame++;
+
 	if (this->current_frame >= this->frames->size()) { // End of the animation.
 		if (!this->loop)
 			return true; // No loop.
 		
 		this->Reset(); // Loop.
 	}
-
-	if (this->animation_time >= (1 / this->speed))
-		this->current_frame++;
 	
-	// Called every frame. Increase by delta time.
-	this->animation_time += Time::delta_time;
-
 	MyDrawEngine::GetInstance()->DrawAt(position, (*this->frames)[this->current_frame], scale, rotation);
+
+	// Called every frame. Increase by delta time.
+	this->animation_time += (float)Time::delta_time;
 }
 
 void Animation::Reset() {

@@ -4,14 +4,15 @@
 
 #pragma once
 
-#include <exception>
 #include <memory>
+#include <string>
 #include <typeindex>
 #include <typeinfo>
 #include <unordered_map>
 
 #include "CollisionManager.h"
 #include "Component.h"
+#include "EngineException.h"
 #include "Identifiable.h"
 
 // Type of Component subclass for component registry.
@@ -29,13 +30,7 @@ private:
 	std::unordered_map<ComponentTypeID, std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>> component_registry;
 
 	// Returns the hashmap of components of given type. Dynamically adds them if the specific type was not yet registered.
-	std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>GetComponents(ComponentTypeID component_type) {
-		// If no components of that type registered, dynamically add storage for them first.
-		if (!this->component_registry[component_type])
-			this->component_registry[component_type] = std::make_shared<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>>();
-
-		return this->component_registry[component_type];
-	}
+	std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>> GetComponents(ComponentTypeID component_type);
 
 	CollisionManager collision_manager;
 
@@ -71,7 +66,7 @@ public:
 		auto components = this->GetComponents(GET_COMPONENT_TYPE_ID(ComponentType));
 
 		if (!(*components)[game_object_id])
-			throw std::exception("Could not get component.");
+			throw EngineException((std::string)"Cannot get component. No component of type: " + typeid(ComponentType).name() + (std::string)" registered for game object (ID): " + std::to_string(game_object_id));
 
 		// Cast to the specific ComponentType.
 		return std::static_pointer_cast<ComponentType>((*components)[game_object_id]);
@@ -83,7 +78,7 @@ public:
 		auto components = this->GetComponents(GET_COMPONENT_TYPE_ID(ComponentType));
 
 		if ((*components)[game_object_id])
-			throw std::exception("Component already registered.");
+			throw EngineException((std::string)"Cannot register component. Component of type: " + typeid(ComponentType).name() + (std::string)" already registered for game object (ID): " + std::to_string(game_object_id));
 		
 		(*components)[game_object_id] = component;
 
@@ -97,7 +92,7 @@ public:
 		auto components = this->GetComponents(GET_COMPONENT_TYPE_ID(ComponentType));
 
 		if (!(*components)[game_object_id])
-			throw std::exception("No component registered.");
+			throw EngineException((std::string)"Cannot unregister component. No component of type: " + typeid(ComponentType).name() + (std::string)" registered for game object (ID): " + std::to_string(game_object_id));
 
 		if (auto component_collider = std::dynamic_pointer_cast<Component_Collider>((*components)[game_object_id]))
 			this->collision_manager.UnregisterCollider(component_collider);

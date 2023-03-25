@@ -91,6 +91,12 @@
     <Filter Include="Source Files\Game\Components">
       <UniqueIdentifier>{2fe27e2a-4535-4c15-b136-39c180000078}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\ErrorHandling">
+      <UniqueIdentifier>{ae4c01d1-5aa2-4fde-9483-931673e22f44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\ErrorHandling">
+      <UniqueIdentifier>{4a4cdecd-bc2d-460a-aaab-f1dca10e6bea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -188,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="Component_Animator.cpp">
       <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineException.cpp">
+      <Filter>Source Files\Engine\ErrorHandling</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +297,12 @@
       <Filter>Header Files\Game\Components</Filter>
     </ClInclude>
     <ClInclude Include="Component_Animator.h">
+      <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineException.h">
+      <Filter>Header Files\Engine\ErrorHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_InputReader.h">
       <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
     </ClInclude>
   </ItemGroup>

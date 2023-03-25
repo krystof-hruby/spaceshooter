@@ -9,6 +9,7 @@
 #include "Component_Animator.h"
 #include "Component_AudioEmitter.h"
 #include "Component_CircleCollider.h"
+#include "Component_InputReader.h"
 #include "Component_RectangleCollider.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
@@ -37,6 +38,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Test(std::shared
 	game_object->AddComponent<Component_AudioEmitter>();
 	game_object->GetComponent<Component_AudioEmitter>()->Load(L"assets/test.wav");
 	game_object->AddComponent<Component_RectangleCollider>();
+	game_object->AddComponent<Component_InputReader>();
 
 	game_object->AddComponent<Component_Test>();
 	return game_object;

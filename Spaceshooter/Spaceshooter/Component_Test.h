@@ -10,5 +10,8 @@
 class Component_Test : public Component {
 public:
 	using Component::Component;
+
+	void Start();
+	void Update();
 };
 

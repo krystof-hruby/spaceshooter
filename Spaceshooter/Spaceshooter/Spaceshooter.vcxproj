@@ -155,6 +155,7 @@
     <ClCompile Include="Component_SpriteRenderer.cpp" />
     <ClCompile Include="Component_Test.cpp" />
     <ClCompile Include="Component_Transform.cpp" />
+    <ClCompile Include="EngineException.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="Global.cpp" />
@@ -184,11 +185,13 @@
     <ClInclude Include="Component_Animator.h" />
     <ClInclude Include="Component_CircleCollider.h" />
     <ClInclude Include="Component_Collider.h" />
+    <ClInclude Include="Component_InputReader.h" />
     <ClInclude Include="Component_RectangleCollider.h" />
     <ClInclude Include="Component_AudioEmitter.h" />
     <ClInclude Include="Component_SpriteRenderer.h" />
     <ClInclude Include="Component_Test.h" />
     <ClInclude Include="Component_Transform.h" />
+    <ClInclude Include="EngineException.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="Identifiable.h" />

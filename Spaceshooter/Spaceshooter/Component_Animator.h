@@ -12,14 +12,22 @@
 #include "mydrawengine.h"
 
 // Holds information about animation.
-class Animation : public Identifiable {
+class Animation final : public Identifiable {
 private:
-	std::shared_ptr<std::vector<PictureIndex>> frames = std::make_shared<std::vector<PictureIndex>>();
+	// Sprites in the order to be played.
+	std::shared_ptr<std::vector<PictureIndex>> animation_frames = std::make_shared<std::vector<PictureIndex>>();
+	
+	// Currently shown animation frame.
 	int current_frame = 0;
-	float animation_time = 0;
+	
+	// Elapsed time of currently shown frame.
+	double frame_time = 0;
+
+	// Elapsed time of the animation.
+	double elapsed_time = 0;
 
 public:
-	Animation(std::string name, std::vector<Sprite> sprites, bool loop = false, float speed = 1);
+	Animation(std::string name, std::vector<Sprite> sprites, bool loop = false, double speed = 1);
 
 	// Name of the animation.
 	std::string name;
@@ -28,7 +36,10 @@ public:
 	bool loop = false;
 
 	// Animation frames per second.
-	float speed = 1;
+	double speed = 1;
+
+	// Returns time elapsed from the start of the animation.
+	double GetElapsedTime();
 
 	// Plays the animation. Returns true when finished (never true if loopable).
 	bool Play(Vector2D position, float scale, float rotation);
@@ -55,8 +66,17 @@ public:
 	// Play animation registered with this name.
 	void PlayAnimation(std::string animation_name);
 
+	// Stops any currently played animation.
+	void StopAnimation();
+
 	// Modify values of animation registered with this name. May produce unpredictable results if modified wile playing.
-	void ModifyAnimation(std::string animation_name, bool loop, float speed);
+	void ModifyAnimation(std::string animation_name, bool loop, double speed);
+
+	// Modify values of animation registered with this name. May produce unpredictable results if modified wile playing.
+	void ModifyAnimation(std::string animation_name, bool loop);
+
+	// Modify values of animation registered with this name. May produce unpredictable results if modified wile playing.
+	void ModifyAnimation(std::string animation_name, double speed);
 
 	void Update() override;
 };

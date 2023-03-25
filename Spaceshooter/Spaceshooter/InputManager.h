@@ -22,9 +22,9 @@ public:
 	static InputManager& GetInstance();
 
 	// Was key pressed.
-	bool KeyPressed(KEYBOARD_KEY key);
+	bool KeyPressed(KEYBOARD_KEY key) const;
 
 	// Samples the keyboard. Called every frame in gameloop; other calls are unnecessary, but do not break.
-	void Update();
+	void Update() const;
 };
 

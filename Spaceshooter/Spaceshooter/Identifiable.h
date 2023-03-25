@@ -21,6 +21,6 @@ protected:
 
 public:
 	// Returns the id of this object.
-	ObjectUUID GetID();
+	ObjectUUID GetID() const;
 };
 

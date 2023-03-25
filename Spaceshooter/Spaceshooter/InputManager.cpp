@@ -9,11 +9,11 @@ InputManager& InputManager::GetInstance() {
 	return instance;
 }
 
-bool InputManager::KeyPressed(KEYBOARD_KEY key) {
+bool InputManager::KeyPressed(KEYBOARD_KEY key) const {
 	return MyInputs::GetInstance()->KeyPressed(key);
 }
 
-void InputManager::Update() {
+void InputManager::Update() const {
 	// Updates keyboard state.
 	MyInputs::GetInstance()->SampleKeyboard();
 }

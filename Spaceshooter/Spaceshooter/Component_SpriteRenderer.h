@@ -18,6 +18,8 @@ private:
 public:
 	using Component::Component;
 
+	inline bool Startable() const override { return false; }
+
 	// Value from 0 to 1 (not transparent to fully transparent).
 	float transparency = 0;
 	

@@ -11,6 +11,6 @@ Identifiable::Identifiable() {
 	Identifiable::last_uuid++;
 }
 
-ObjectUUID Identifiable::GetID() {
+ObjectUUID Identifiable::GetID() const {
 	return this->uuid;
 }

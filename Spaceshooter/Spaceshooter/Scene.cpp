@@ -9,16 +9,16 @@
 
 Scene::Scene() { }
 
-void Scene::StopAllSounds() {
+void Scene::StopAllSounds() const {
 	LOG("SCENE: Stopping all sounds.");
 	MySoundEngine::GetInstance()->StopAllSounds();
 }
 
-void Scene::Components_Start() {
+void Scene::Components_Start() const {
 	this->component_registry->AllComponents_Start();
 }
 
-void Scene::Components_Update() {
+void Scene::Components_Update() const {
 	this->component_registry->AllComponents_Update();
 }
 

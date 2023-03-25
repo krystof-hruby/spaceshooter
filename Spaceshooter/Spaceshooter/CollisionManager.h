@@ -18,7 +18,7 @@ private:
 
 public:
 	// Checks whether any colliders collide with any other colliders. O((n^2 - n) / 2).
-	void HandleCollisions();
+	void HandleCollisions() const;
 
 	// Register collider to collide.
 	void RegisterCollider(std::shared_ptr<Component_Collider> component_collider);

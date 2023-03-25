@@ -52,12 +52,6 @@
     <Filter Include="Source Files\Engine\Components">
       <UniqueIdentifier>{797b461e-94e4-41dc-bab1-876b7936b886}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\ObjectManagement">
-      <UniqueIdentifier>{5a756da9-e9ef-4543-82c2-8d5210e7fdec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\ObjectManagement">
-      <UniqueIdentifier>{87ea20aa-58c4-4630-8d25-f40221d859a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\Misc">
       <UniqueIdentifier>{539ce72a-e441-4d6e-b648-91a44d69ab35}</UniqueIdentifier>
     </Filter>
@@ -96,6 +90,18 @@
     </Filter>
     <Filter Include="Header Files\Engine\ErrorHandling">
       <UniqueIdentifier>{4a4cdecd-bc2d-460a-aaab-f1dca10e6bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\ObjectManagement">
+      <UniqueIdentifier>{15f80b4b-887d-457e-bd79-a9eb2ef9d74a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\ObjectManagement">
+      <UniqueIdentifier>{8e3c9e95-f09d-413c-9e9e-2c003f813122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Camera">
+      <UniqueIdentifier>{c8479228-189a-4712-8f1d-96aca3a60ef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Camera">
+      <UniqueIdentifier>{7588f44e-102b-4bb7-b553-97595784267c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -156,12 +162,6 @@
     <ClCompile Include="Scene_Level2.cpp">
       <Filter>Source Files\Game\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Engine\ObjectManagement</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectFactory.cpp">
-      <Filter>Source Files\Engine\ObjectManagement</Filter>
-    </ClCompile>
     <ClCompile Include="Component_Transform.cpp">
       <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
     </ClCompile>
@@ -197,6 +197,15 @@
     </ClCompile>
     <ClCompile Include="EngineException.cpp">
       <Filter>Source Files\Engine\ErrorHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectFactory.cpp">
+      <Filter>Source Files\Game\ObjectManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCamera.cpp">
+      <Filter>Source Files\Engine\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,12 +272,6 @@
     <ClInclude Include="Scene_Level2.h">
       <Filter>Header Files\Game\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Engine\ObjectManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectFactory.h">
-      <Filter>Header Files\Engine\ObjectManagement</Filter>
-    </ClInclude>
     <ClInclude Include="Component_Transform.h">
       <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
     </ClInclude>
@@ -304,6 +307,15 @@
     </ClInclude>
     <ClInclude Include="Component_InputReader.h">
       <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectFactory.h">
+      <Filter>Header Files\Game\ObjectManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MainCamera.h">
+      <Filter>Header Files\Engine\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

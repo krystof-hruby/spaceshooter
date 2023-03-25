@@ -6,22 +6,24 @@
 
 #include <memory>
 
-#include "Identifiable.h"
 #include "ComponentRegistry.h"
+#include "Identifiable.h"
+#include "MainCamera.h"
 
 // Holds and controls game objects.
 class Scene : public Identifiable {
 protected:
 	Scene();
 	std::shared_ptr<ComponentRegistry> component_registry = std::make_shared<ComponentRegistry>();
+	MainCamera camera;
 
 	// Stops any currently playing sounds.
-	void StopAllSounds();
+	void StopAllSounds() const;
 public:
 	// Called after Load().
-	void Components_Start();
+	void Components_Start() const;
 	// Called after Update().
-	void Components_Update();
+	void Components_Update() const;
 
 	// Called when changed to this scene.
 	virtual void Load();

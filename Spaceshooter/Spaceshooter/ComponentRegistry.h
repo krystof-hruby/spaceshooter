@@ -36,7 +36,11 @@ private:
 
 	// Calls Start on all provided active components.
 	template<typename ComponentType>
-	void Components_Start(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<ComponentType>>> components) {
+	void Components_Start(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<ComponentType>>> components) const  {
+		// If this component type never starts, save performance by not starting.
+		if (!components->begin()->second->Startable())
+			return;
+
 		for (auto component : *components)
 			if (component.second->is_active)
 				component.second->Start();
@@ -44,7 +48,7 @@ private:
 
 	// Calls Update on all provided active components.
 	template<typename ComponentType>
-	void Components_Update(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<ComponentType>>> components) {
+	void Components_Update(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<ComponentType>>> components) const {
 		// If this component type never updates, save performance by not updating.
 		if (!components->begin()->second->Updatable())
 			return;
@@ -56,9 +60,9 @@ private:
 
 public:
 	// Calls Start on all currently registered components.
-	void AllComponents_Start();
+	void AllComponents_Start() const;
 	// Calls Update on all currently registered components.
-	void AllComponents_Update();
+	void AllComponents_Update() const;
 
 	// Returns component of ComponentType associated with provided ObjectUUID.
 	template<typename ComponentType>

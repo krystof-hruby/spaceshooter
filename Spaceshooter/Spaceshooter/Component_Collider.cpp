@@ -55,7 +55,7 @@ void Component_Collider::SetOnCollisionLeave(std::function<void(std::shared_ptr<
 
 }
 
-Vector2D Component_Collider::GetWorldPosition() {
+Vector2D Component_Collider::GetWorldPosition() const {
 	return this->game_object->GetComponent<Component_Transform>()->position + this->position_offset;
 }
 

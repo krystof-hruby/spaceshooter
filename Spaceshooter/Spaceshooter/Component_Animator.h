@@ -39,7 +39,7 @@ public:
 	double speed = 1;
 
 	// Returns time elapsed from the start of the animation.
-	double GetElapsedTime();
+	double GetElapsedTime() const;
 
 	// Plays the animation. Returns true when finished (never true if loopable).
 	bool Play(Vector2D position, float scale, float rotation);
@@ -78,6 +78,7 @@ public:
 	// Modify values of animation registered with this name. May produce unpredictable results if modified wile playing.
 	void ModifyAnimation(std::string animation_name, double speed);
 
+	inline bool Startable() const override { return false; }
 	void Update() override;
 };
 

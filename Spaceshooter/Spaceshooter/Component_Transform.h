@@ -12,7 +12,8 @@ class Component_Transform final : public Component {
 public:
 	using Component::Component;
 	
-	inline bool Updatable() override { return false; }
+	inline bool Startable() const override { return false; }
+	inline bool Updatable() const override { return false; }
 
 	Vector2D position;
 	float rotation = 0;

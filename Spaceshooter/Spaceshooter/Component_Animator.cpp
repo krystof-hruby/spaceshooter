@@ -55,7 +55,7 @@ void Animation::Reset() {
 	this->elapsed_time = 0;
 }
 
-double Animation::GetElapsedTime() {
+double Animation::GetElapsedTime() const {
 	return this->elapsed_time;
 }
 
@@ -113,5 +113,5 @@ void Component_Animator::Update() {
 	float rotation = this->game_object->GetComponent<Component_Transform>()->rotation;
 
 	if (this->current_animation->Play(position, scale, rotation))
-		this->current_animation = nullptr; // Do not recalculate anything for finished animations.
+		this->StopAnimation(); // Do not recalculate anything for finished animations.
 }

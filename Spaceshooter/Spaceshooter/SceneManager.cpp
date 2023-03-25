@@ -24,6 +24,6 @@ void SceneManager::ChangeScene(std::shared_ptr<Scene> scene) {
 	this->current_scene->Components_Start();
 }
 
-std::shared_ptr<Scene> SceneManager::GetCurrentScene() {
+std::shared_ptr<Scene> SceneManager::GetCurrentScene() const {
 	return this->current_scene;
 }

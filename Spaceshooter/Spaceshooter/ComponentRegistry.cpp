@@ -4,12 +4,12 @@
 
 #include "ComponentRegistry.h"
 
-void ComponentRegistry::AllComponents_Start() {
+void ComponentRegistry::AllComponents_Start() const {
 	for (auto components : this->component_registry)
 		this->Components_Start(components.second);
 }
 
-void ComponentRegistry::AllComponents_Update() {
+void ComponentRegistry::AllComponents_Update() const {
 	for (auto components : this->component_registry)
 		this->Components_Update(components.second);
 

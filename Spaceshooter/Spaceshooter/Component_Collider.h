@@ -31,7 +31,7 @@ protected:
 	virtual std::shared_ptr<IShape2D> GetShape() = 0;
 
 	// Returns the world coordinates of this collider.
-	Vector2D GetWorldPosition();
+	Vector2D GetWorldPosition() const;
 
 	// Updates position of Shape with PlaceAt functions from the Shell.
 	// Override for each collider shape.
@@ -40,8 +40,11 @@ protected:
 public:
 	using Component::Component;
 
+	// Override and set to true if this component starts. Currently: saves performance by ignoring Start function of this component type.
+	inline virtual bool Startable() const override { return false; }
+
 	// Do not override in derived classes.
-	inline bool Updatable() override final { return true; }
+	inline bool Updatable() const override final { return true; }
 
 	// Relative position to game object's transform.
 	Vector2D position_offset;

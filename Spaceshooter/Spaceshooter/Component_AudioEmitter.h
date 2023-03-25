@@ -21,7 +21,8 @@ private:
 public:
 	using Component::Component;
 
-	inline bool Updatable() override { return false; }
+	inline bool Startable() const override { return false; }
+	inline bool Updatable() const override { return false; }
 
 	// Audio clip should be loaded before played for the first time.
 	void Load(AudioClip audio_clip);

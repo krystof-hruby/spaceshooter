@@ -26,6 +26,6 @@ public:
 	void ChangeScene(std::shared_ptr<Scene> scene);
 
 	// Returns the currently played game scene.
-	std::shared_ptr<Scene> GetCurrentScene();
+	std::shared_ptr<Scene> GetCurrentScene() const;
 };
 

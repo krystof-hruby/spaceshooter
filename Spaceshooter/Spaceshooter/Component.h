@@ -23,8 +23,11 @@ public:
 	// Whether to start and update the component.
 	bool is_active = true;
 
+	// Override and set to false if this component never starts. Saves performance by ignoring Start function of this component type.
+	inline virtual bool Startable() const { return true; }
+	
 	// Override and set to false if this component never updates. Saves performance by ignoring Update function of this component type.
-	inline virtual bool Updatable() { return true; }
+	inline virtual bool Updatable() const { return true; }
 
 	// Returns the game object which has this component.
 	std::shared_ptr<GameObject> GetGameObject();

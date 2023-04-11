@@ -11,7 +11,7 @@ class Component_PlayerBulletController final : public Component {
 public:
 	using Component::Component;
 	
-	float speed = 5;
+	float speed = 200;
 	Vector2D direction;
 
 	inline bool Startable() const override { return false; }

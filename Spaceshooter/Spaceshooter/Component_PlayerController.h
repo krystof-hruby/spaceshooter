@@ -14,11 +14,12 @@ private:
 public:
 	using Component::Component;
 
-	float movement_speed = 10;
+	float movement_speed = 500;
 	float rotation_speed = 5;
-	float reload_speed = 5;
+	float reload_speed = 1;
 
 	void Start() override;
 	void Update() override;
+	void ShootBullet(Vector2D position, float rotation, Vector2D direction);
 };
 

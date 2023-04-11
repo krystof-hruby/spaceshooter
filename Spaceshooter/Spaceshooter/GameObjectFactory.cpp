@@ -15,6 +15,7 @@
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
 #include "Component_PlayerBulletController.h"
+#include "Component_PlayerController.h"
 
 GameObjectFactory& GameObjectFactory::GetInstance() {
 	static GameObjectFactory instance;
@@ -52,8 +53,10 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 	game_object->AddComponent<Component_CircleCollider>();
 	game_object->AddComponent<Component_SpriteRenderer>();
 	game_object->AddComponent<Component_AudioEmitter>();
+	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/test.bmp");
 
 	game_object->AddComponent<Component_PlayerInput>();
+	game_object->AddComponent<Component_PlayerController>();
 
 	return game_object;
 }
@@ -63,6 +66,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_PlayerBullet(std
 	game_object->AddComponent<Component_Transform>();
 	game_object->AddComponent<Component_RectangleCollider>();
 	game_object->AddComponent<Component_SpriteRenderer>();
+	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/test.bmp");
 
 	game_object->AddComponent<Component_PlayerBulletController>(); 
 

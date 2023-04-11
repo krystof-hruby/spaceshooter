@@ -30,17 +30,19 @@ void Component_PlayerController::Update() {
 	transform->position += this->movement_speed * player_input->GetInput_Movement() * direction_vector * Time::delta_time;
 
 	// Firing enabled if reloaded.
-	if (this->reload_time > this->reload_speed) {
-		if (player_input->GetInput_Shooting()) {
-			// Create bullet.
-			std::shared_ptr<GameObject> bullet = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::PlayerBullet, this->game_object->GetComponentRegistry());
-			// Set bullet direction.
-			bullet->GetComponent<Component_PlayerBulletController>()->direction = direction_vector;
-		}
+	if (player_input->GetInput_Shooting() && (this->reload_time > this->reload_speed)) {
+		this->ShootBullet(transform->position, transform->rotation, direction_vector);
 
 		// Reset reload time.
 		this->reload_time = 0;
 	}
 
 	this->reload_time += Time::delta_time;
+}
+
+void Component_PlayerController::ShootBullet(Vector2D position, float rotation, Vector2D direction) {
+	std::shared_ptr<GameObject> bullet = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::PlayerBullet, this->game_object->GetComponentRegistry());
+	bullet->GetComponent<Component_Transform>()->position = position;
+	bullet->GetComponent<Component_Transform>()->rotation = rotation;
+	bullet->GetComponent<Component_PlayerBulletController>()->direction = direction;
 }

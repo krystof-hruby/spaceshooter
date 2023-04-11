@@ -15,8 +15,7 @@
 void Scene_Level1::Load() {
 	LOG("LEVEL 1: Loading level 1. Scene UUID: " + std::to_string(this->GetID()));
 
-	player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry);
-
+	this->player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry);
 }
 
 void Scene_Level1::Update() {

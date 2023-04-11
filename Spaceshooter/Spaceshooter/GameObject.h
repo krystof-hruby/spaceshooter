@@ -17,6 +17,8 @@ private:
 public:
 	GameObject(std::shared_ptr<ComponentRegistry> component_registry);
 
+	std::shared_ptr<ComponentRegistry> GetComponentRegistry();
+
 	// Returns this object's component of type ComponentType.
 	template<typename ComponentType>
 	std::shared_ptr<ComponentType> GetComponent() {

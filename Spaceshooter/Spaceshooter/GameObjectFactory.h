@@ -14,6 +14,9 @@
 // Type of game object based on which GameObjectFactory creates game objects.
 enum class GameObjectType {
 	Test,
+	Player,
+
+	PlayerBullet,
 };
 
 // Creates specific game objects by combining components.
@@ -28,12 +31,20 @@ private:
 	std::unordered_map<GameObjectType, std::function<std::shared_ptr<GameObject>(std::shared_ptr<ComponentRegistry>)>> object_creation_jump_table = {
 		{ GameObjectType::Test, CreateGameObject_Test },
 
+		{ GameObjectType::Player, CreateGameObject_Player },
+		{ GameObjectType::PlayerBullet, CreateGameObject_PlayerBullet },
 	};
 
 	// Specific CreateGameObject functions:
 
 	static std::shared_ptr<GameObject> CreateGameObject_Test(std::shared_ptr<ComponentRegistry> component_registry);
 	
+	// Creates player spaceship.
+	static std::shared_ptr<GameObject> CreateGameObject_Player(std::shared_ptr<ComponentRegistry> component_registry);
+	
+	// Creates a player bullet.
+	static std::shared_ptr<GameObject> CreateGameObject_PlayerBullet(std::shared_ptr<ComponentRegistry> component_registry);
+
 public:
 	// Returns singleton instance.
 	static GameObjectFactory& GetInstance();

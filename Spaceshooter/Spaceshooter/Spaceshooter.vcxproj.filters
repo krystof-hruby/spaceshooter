@@ -207,6 +207,15 @@
     <ClCompile Include="MainCamera.cpp">
       <Filter>Source Files\Engine\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="Component_PlayerInput.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_PlayerController.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_PlayerBulletController.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
@@ -316,6 +325,15 @@
     </ClInclude>
     <ClInclude Include="MainCamera.h">
       <Filter>Header Files\Engine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_PlayerInput.h">
+      <Filter>Header Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_PlayerController.h">
+      <Filter>Header Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_PlayerBulletController.h">
+      <Filter>Header Files\Game\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

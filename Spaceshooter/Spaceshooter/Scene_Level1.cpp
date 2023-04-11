@@ -12,14 +12,10 @@
 #include "Component_RectangleCollider.h"
 #include "Component_Transform.h"
 
-std::shared_ptr<GameObject> test;
-std::shared_ptr<GameObject> test1;
-
-
 void Scene_Level1::Load() {
 	LOG("LEVEL 1: Loading level 1. Scene UUID: " + std::to_string(this->GetID()));
 
-	test = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Test, this->component_registry);
+	player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry);
 
 }
 

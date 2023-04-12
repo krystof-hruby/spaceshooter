@@ -33,12 +33,6 @@ public:
 		return component;
 	}
 
-	// Removes a component of type ComponentType from this object.
-	template<typename ComponentType>
-	void RemoveComponent() {
-		return this->component_registry->UnregisterComponent<ComponentType>(this->GetID());
-	}
-
 	// Unregisters all components associated with this game object.
 	void Destroy();
 };

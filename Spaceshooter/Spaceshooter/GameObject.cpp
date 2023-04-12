@@ -13,5 +13,5 @@ std::shared_ptr<ComponentRegistry> GameObject::GetComponentRegistry() {
 }
 
 void GameObject::Destroy() {
-	this->component_registry->UnregisterAllComponents(this->GetID());
+	this->component_registry->UnregisterComponents(this->GetID());
 }

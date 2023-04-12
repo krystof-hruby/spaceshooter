@@ -25,8 +25,9 @@ public:
 	// Called after Update().
 	void Components_Update() const;
 
-	// Unregister all components.
-	void ClearComponentRegistry() const;
+	// Updates component registry (unregisters all components marked to be unregistered).
+	// Must be called between frames (after update) to avoid iteration errors.
+	void UpdateComponentRegistry() const;
 
 	// Called when changed to this scene.
 	virtual void Load();

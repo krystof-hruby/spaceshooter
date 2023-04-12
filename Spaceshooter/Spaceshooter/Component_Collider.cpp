@@ -12,29 +12,29 @@ void Component_Collider::HandleCollision(std::shared_ptr<Component_Collider> oth
 		this->in_collision = true;
 		
 		if (this->OnCollisionEnter)
-			this->OnCollisionEnter(other->game_object);
+			this->OnCollisionEnter(other->GetGameObject());
 		
 		// Must trigger both, collisions are not checked twice.
 		if (other->OnCollisionEnter)
-			other->OnCollisionEnter(this->game_object);
+			other->OnCollisionEnter(this->GetGameObject());
 	}
 	else if (this->in_collision && this->CollidesWith(other)) {
 		if (this->OnCollisionStay)
-			this->OnCollisionStay(other->game_object);
+			this->OnCollisionStay(other->GetGameObject());
 		
 		// Must trigger both, collisions are not checked twice.
 		if (other->OnCollisionStay)
-			other->OnCollisionStay(this->game_object);
+			other->OnCollisionStay(this->GetGameObject());
 	}
 	else if (this->in_collision && !this->CollidesWith(other)) {
 		this->in_collision = false;
 		
 		if (this->OnCollisionLeave)
-			this->OnCollisionLeave(other->game_object);
+			this->OnCollisionLeave(other->GetGameObject());
 
 		// Must trigger both, collisions are not checked twice.
 		if (other->OnCollisionLeave)
-			other->OnCollisionLeave(this->game_object);
+			other->OnCollisionLeave(this->GetGameObject());
 	}
 }
 
@@ -52,11 +52,10 @@ void Component_Collider::SetOnCollisionStay(std::function<void(std::shared_ptr<G
 
 void Component_Collider::SetOnCollisionLeave(std::function<void(std::shared_ptr<GameObject>)> on_collision_leave) {
 	this->OnCollisionLeave = on_collision_leave;
-
 }
 
-Vector2D Component_Collider::GetWorldPosition() const {
-	return this->game_object->GetComponent<Component_Transform>()->position + this->position_offset;
+Vector2D Component_Collider::GetWorldPosition() {
+	return this->GetGameObject()->GetComponent<Component_Transform>()->position + this->position_offset;
 }
 
 void Component_Collider::Update() {

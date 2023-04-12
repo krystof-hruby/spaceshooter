@@ -10,6 +10,6 @@ std::shared_ptr<IShape2D> Component_CircleCollider::GetShape() {
 
 void Component_CircleCollider::UpdatePosition() {
 	Vector2D collider_position = this->GetWorldPosition();
-	
+
 	this->shape->PlaceAt(collider_position, this->radius);
 }

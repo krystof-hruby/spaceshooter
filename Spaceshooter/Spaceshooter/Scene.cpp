@@ -22,6 +22,10 @@ void Scene::Components_Update() const {
 	this->component_registry->AllComponents_Update();
 }
 
+void Scene::ClearComponentRegistry() const {
+	this->component_registry->ClearRegistry();
+}
+
 void Scene::Load() { }
 
 void Scene::Update() { }

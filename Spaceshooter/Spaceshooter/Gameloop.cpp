@@ -25,6 +25,7 @@ void Gameloop::Update(double frame_time) {
 
 	SceneManager::GetInstance().GetCurrentScene()->Update();
 	SceneManager::GetInstance().GetCurrentScene()->Components_Update();
+	SceneManager::GetInstance().GetCurrentScene()->ClearComponentRegistry();
 }
 
 void Gameloop::End() {

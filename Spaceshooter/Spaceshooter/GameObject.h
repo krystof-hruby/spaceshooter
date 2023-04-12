@@ -38,5 +38,8 @@ public:
 	void RemoveComponent() {
 		return this->component_registry->UnregisterComponent<ComponentType>(this->GetID());
 	}
+
+	// Unregisters all components associated with this game object.
+	void Destroy();
 };
 

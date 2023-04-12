@@ -31,7 +31,7 @@ protected:
 	virtual std::shared_ptr<IShape2D> GetShape() = 0;
 
 	// Returns the world coordinates of this collider.
-	Vector2D GetWorldPosition() const;
+	Vector2D GetWorldPosition();
 
 	// Updates position of Shape with PlaceAt functions from the Shell.
 	// Override for each collider shape.

@@ -8,6 +8,9 @@
 #include "vector2D.h"
 
 class Component_PlayerBulletController final : public Component {
+private:
+	bool IsInBounds();
+
 public:
 	using Component::Component;
 	

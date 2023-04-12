@@ -11,6 +11,8 @@ class Component_PlayerController final : public Component {
 private:
 	float reload_time = 0;
 
+	void ShootBullet(Vector2D position, float rotation, Vector2D direction);
+
 public:
 	using Component::Component;
 
@@ -20,6 +22,5 @@ public:
 
 	void Start() override;
 	void Update() override;
-	void ShootBullet(Vector2D position, float rotation, Vector2D direction);
 };
 

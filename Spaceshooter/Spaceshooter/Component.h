@@ -12,9 +12,10 @@ class GameObject; // Forward class declaration to avoid circular includes. Must 
 
 // Base class for all components.
 class Component : public Identifiable {
-protected:
-	// Game object which has this component.
-	std::shared_ptr<GameObject> game_object;
+private:
+	// Game object that owns this component.
+	// Weak pointer to avoid circular references.
+	std::weak_ptr<GameObject> game_object;
 
 public:
 	// ALWAYS call this constructor ONLY from derived classes. Will break very badly otherwise.

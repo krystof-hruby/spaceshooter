@@ -25,6 +25,9 @@ public:
 	// Called after Update().
 	void Components_Update() const;
 
+	// Unregister all components.
+	void ClearComponentRegistry() const;
+
 	// Called when changed to this scene.
 	virtual void Load();
 	// Called every frame while being current scene.

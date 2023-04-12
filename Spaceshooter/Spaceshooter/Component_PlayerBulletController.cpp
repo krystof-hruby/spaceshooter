@@ -5,9 +5,19 @@
 #include "Component_PlayerBulletController.h"
 
 #include "Component_Transform.h"
+#include "Component_SpriteRenderer.h"
 #include "GameObject.h"
 #include "Global.h"
 
 void Component_PlayerBulletController::Update() {
-	this->game_object->GetComponent<Component_Transform>()->position += this->direction * this->speed * Time::delta_time;
+	this->GetGameObject()->GetComponent<Component_Transform>()->position += this->direction * this->speed * Time::delta_time;
+
+	// Despawn bullet if out of bounds.
+	if (!this->IsInBounds()) {
+		this->GetGameObject()->Destroy();
+	}
+}
+
+bool Component_PlayerBulletController::IsInBounds() {
+	return ActiveBounds::IsInBounds(this->GetGameObject()->GetComponent<Component_Transform>()->position);
 }

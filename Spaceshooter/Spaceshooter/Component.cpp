@@ -9,7 +9,7 @@ Component::Component(std::shared_ptr<GameObject> game_object) {
 }
 
 std::shared_ptr<GameObject> Component::GetGameObject() {
-	return this->game_object;
+	return this->game_object.lock();
 }
 
 void Component::Start() { }

@@ -108,9 +108,9 @@ void Component_Animator::Update() {
 		return;
 
 	// Get animation position, scale and rotation.
-	Vector2D position = this->game_object->GetComponent<Component_Transform>()->position;
-	float scale = this->game_object->GetComponent<Component_Transform>()->scale;
-	float rotation = this->game_object->GetComponent<Component_Transform>()->rotation;
+	Vector2D position = this->GetGameObject()->GetComponent<Component_Transform>()->position;
+	float scale = this->GetGameObject()->GetComponent<Component_Transform>()->scale;
+	float rotation = this->GetGameObject()->GetComponent<Component_Transform>()->rotation;
 
 	if (this->current_animation->Play(position, scale, rotation))
 		this->StopAnimation(); // Do not recalculate anything for finished animations.

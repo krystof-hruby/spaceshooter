@@ -60,5 +60,9 @@ Vector2D Component_Collider::GetWorldPosition() {
 
 void Component_Collider::Update() {
 	this->UpdatePosition();
+
+	#if VISUALIZE_HITBOXES
+		this->VisualizeHitbox();
+	#endif
 }
 

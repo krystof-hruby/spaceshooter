@@ -19,5 +19,9 @@ public:
 	using Component_Collider::Component_Collider;
 
 	float radius = 1;
+
+#if VISUALIZE_HITBOXES
+	void VisualizeHitbox();
+#endif
 };
 

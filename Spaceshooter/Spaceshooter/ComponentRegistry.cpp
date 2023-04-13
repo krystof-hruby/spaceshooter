@@ -5,6 +5,9 @@
 #include "ComponentRegistry.h"
 
 void ComponentRegistry::Components_Start(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>> components) const {
+	if (components->size() < 1)
+		return;
+	
 	// If this component type never starts, save performance by not starting.
 	if (!components->begin()->second->Startable())
 		return;
@@ -15,6 +18,9 @@ void ComponentRegistry::Components_Start(std::shared_ptr<std::unordered_map<Obje
 }
 
 void ComponentRegistry::Components_Update(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>> components) const {
+	if (components->size() < 1)
+		return;
+
 	// If this component type never updates, save performance by not updating.
 	if (!components->begin()->second->Updatable())
 		return;
@@ -65,7 +71,7 @@ void ComponentRegistry::UpdateRegistry() {
 			// Remove component from registry.
 			components.second->erase(game_object_id);
 		}
-
+	
 		this->component_unregistry.pop();
 	}
 }

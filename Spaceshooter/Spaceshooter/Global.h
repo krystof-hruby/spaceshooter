@@ -12,6 +12,10 @@
 	#define LOGGING_ENABLED true
 #endif
 
+#ifndef VISUALIZE_HITBOXES
+	#define VISUALIZE_HITBOXES true
+#endif
+
 // GLOBAL VALUES:
 const float SECOND = 1;
 

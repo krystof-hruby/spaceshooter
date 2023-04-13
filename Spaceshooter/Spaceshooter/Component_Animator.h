@@ -4,9 +4,9 @@
 
 #pragma once
 
+#include <string>
 #include <unordered_map>
 #include <vector>
-#include <string>
 
 #include "Component_SpriteRenderer.h" // For Sprite (besides Component).
 #include "mydrawengine.h"

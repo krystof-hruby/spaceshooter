@@ -20,5 +20,9 @@ public:
 
 	float width = 1;
 	float height = 1;
+
+#if VISUALIZE_HITBOXES
+	void VisualizeHitbox();
+#endif
 };
 

@@ -7,6 +7,7 @@
 #include <functional>
 
 #include "Component.h"
+#include "Global.h"
 #include "Shapes.h"
 #include "vector2D.h"
 
@@ -67,5 +68,10 @@ public:
 
 	// Updates position of the collider. Do not override in subclasses.
 	void Update() override final;
+
+#if VISUALIZE_HITBOXES
+	// Displays the hitbox of this collider. Override for each collider type.
+	virtual void VisualizeHitbox() = 0;
+#endif
 };
 

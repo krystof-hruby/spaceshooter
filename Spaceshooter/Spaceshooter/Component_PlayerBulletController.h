@@ -14,8 +14,8 @@ private:
 public:
 	using Component::Component;
 	
-	float speed = 200;
-	Vector2D direction;
+	float movement_speed = 1;
+	Vector2D movement_direction;
 
 	inline bool Startable() const override { return false; }
 

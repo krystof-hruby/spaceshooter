@@ -3,10 +3,12 @@
 // 2023
 
 #include "Component_RectangleCollider.h"
+#include "Component_Transform.h"
+#include "GameObject.h"
+
+#include "Logging.h"
 
 #if VISUALIZE_HITBOXES
-	#include "Component_Transform.h"
-	#include "GameObject.h"
 	#include "mydrawengine.h"
 #endif
 
@@ -15,21 +17,21 @@ std::shared_ptr<IShape2D> Component_RectangleCollider::GetShape() {
 }
 
 void Component_RectangleCollider::UpdatePosition() {
-	Vector2D collider_position = this->GetWorldPosition();
-	
-	// Y goes positive towards top.
-	float top = collider_position.YValue + (this->height / 2);
-	float bottom = collider_position.YValue - (this->height / 2);
-	
-	// X goes positive towards right.
-	float left = collider_position.XValue - (this->width / 2);
-	float right = collider_position.XValue + (this->width / 2);
-
-	this->shape->PlaceAt(top, left, bottom, right);
+	this->shape->SetCentre(this->GetWorldPosition());
+	this->shape->SetDimensions(this->height, this->width);
+	this->shape->SetAngle(this->GetGameObject()->GetComponent<Component_Transform>()->rotation);
 }
 
 #if VISUALIZE_HITBOXES
 void Component_RectangleCollider::VisualizeHitbox() {
-	MyDrawEngine::GetInstance()->FillRect(*this->shape, MyDrawEngine::GREEN);
+	// Calculate rectangle corners.
+	Vector2D collider_position = this->GetWorldPosition();
+	Vector2D left_bottom(collider_position.XValue - (this->width / 2), collider_position.YValue - (this->height / 2));
+	Vector2D right_top(collider_position.XValue + (this->width / 2), collider_position.YValue + (this->height / 2));
+
+	Rectangle2D rectangle;
+	rectangle.PlaceAt(left_bottom, right_top);
+
+	MyDrawEngine::GetInstance()->FillRect(rectangle, MyDrawEngine::GREEN);
 }
 #endif

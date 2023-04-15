@@ -1561,3 +1561,7 @@ bool AngledRectangle2D::Intersects(const AngledRectangle2D& other) const
       return false;
    }
 }
+
+Rectangle2D AngledRectangle2D::GetRectangle() {
+	return this->mLocalRectangle;
+}

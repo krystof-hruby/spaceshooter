@@ -16,9 +16,9 @@ private:
 public:
 	using Component::Component;
 
-	float movement_speed = 500;
-	float rotation_speed = 5;
-	float reload_speed = 1;
+	float movement_speed = 1;
+	float rotation_speed = 1;
+	float reload_period = 1;
 
 	void Start() override;
 	void Update() override;

@@ -32,7 +32,7 @@ void Component_PlayerController::Update() {
 	transform->position += this->movement_speed * player_input->GetInput_Movement() * direction_vector * (float)Time::delta_time;
 
 	// Firing enabled if reloaded.
-	if (player_input->GetInput_Shooting() && (this->reload_time > this->reload_speed)) {
+	if (player_input->GetInput_Shooting() && (this->reload_time > this->reload_period)) {
 		this->ShootBullet(transform->position, transform->rotation, direction_vector);
 
 		// Reset reload time.
@@ -50,7 +50,7 @@ void Component_PlayerController::ShootBullet(Vector2D position, float rotation, 
 	std::shared_ptr<GameObject> bullet = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::PlayerBullet, this->GetGameObject()->GetComponentRegistry());
 	bullet->GetComponent<Component_Transform>()->position = position;
 	bullet->GetComponent<Component_Transform>()->rotation = rotation;
-	bullet->GetComponent<Component_PlayerBulletController>()->direction = direction;
+	bullet->GetComponent<Component_PlayerBulletController>()->movement_direction = direction;
 
 	// Hold reference to bullet, otherwise loses pointer and gets deallocated.
 	bullets.push_back(bullet);

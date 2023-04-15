@@ -15,6 +15,8 @@
 enum class GameObjectType {
 	Player,
 	PlayerBullet,
+
+	Asteroid,
 };
 
 // Creates specific game objects by combining components.
@@ -29,6 +31,7 @@ private:
 	std::unordered_map<GameObjectType, std::function<std::shared_ptr<GameObject>(std::shared_ptr<ComponentRegistry>)>> object_creation_jump_table = {
 		{ GameObjectType::Player, CreateGameObject_Player },
 		{ GameObjectType::PlayerBullet, CreateGameObject_PlayerBullet },
+		{ GameObjectType::Asteroid, CreateGameObject_Asteroid },
 	};
 
 	// Specific CreateGameObject functions:
@@ -38,6 +41,9 @@ private:
 	
 	// Creates a player bullet.
 	static std::shared_ptr<GameObject> CreateGameObject_PlayerBullet(std::shared_ptr<ComponentRegistry> component_registry);
+
+	// Creates an asteroid.
+	static std::shared_ptr<GameObject> CreateGameObject_Asteroid(std::shared_ptr<ComponentRegistry> component_registry);
 
 public:
 	// Returns singleton instance.

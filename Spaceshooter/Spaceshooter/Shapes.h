@@ -579,4 +579,5 @@ public:
    bool Intersects(const Rectangle2D& other) const;
    bool Intersects(const AngledRectangle2D& other) const;
 
+   Rectangle2D GetRectangle();
 };

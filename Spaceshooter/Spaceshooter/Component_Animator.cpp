@@ -59,6 +59,10 @@ double Animation::GetElapsedTime() const {
 	return this->elapsed_time;
 }
 
+bool Animation::IsFinished() const {
+	return !this->loop && (this->current_frame == this->animation_frames->size());
+}
+
 
 // Component_Animator:
 
@@ -101,6 +105,13 @@ void Component_Animator::ModifyAnimation(std::string animation_name, double spee
 		throw EngineException("Cannot modify animation. Animation under the name: " + animation_name + " not found.");
 
 	this->animations[animation_name]->speed = speed;
+}
+
+bool Component_Animator::AnimationFinished(std::string animation_name) {
+	if (!this->animations[animation_name])
+		throw EngineException("Cannot modify animation. Animation under the name: " + animation_name + " not found.");
+
+	return this->animations[animation_name]->IsFinished();
 }
 
 void Component_Animator::Update() {

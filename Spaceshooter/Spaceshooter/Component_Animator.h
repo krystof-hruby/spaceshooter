@@ -41,6 +41,8 @@ public:
 	// Returns time elapsed from the start of the animation.
 	double GetElapsedTime() const;
 
+	bool IsFinished() const;
+
 	// Plays the animation. Returns true when finished (never true if loopable).
 	bool Play(Vector2D position, float scale, float rotation);
 
@@ -77,6 +79,9 @@ public:
 
 	// Modify values of animation registered with this name. May produce unpredictable results if modified wile playing.
 	void ModifyAnimation(std::string animation_name, double speed);
+
+	// Whether the animation has finished.
+	bool AnimationFinished(std::string animation_name);
 
 	inline bool Startable() const override { return false; }
 	void Update() override;

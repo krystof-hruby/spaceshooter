@@ -17,6 +17,9 @@ private:
 	float asteroid_spawn_period = 1;
 	float asteroid_spawn_time = 0;
 
+	float grace_period = 1;
+	float grace_period_time = 0;
+
 	// Spawns asteroid with randomized values.
 	void SpawnAsteroid();
 

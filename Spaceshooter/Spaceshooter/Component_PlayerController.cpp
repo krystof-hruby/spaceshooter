@@ -2,6 +2,8 @@
 // Krystof Hruby
 // 2023
 
+#include "Logging.h" // TODO: remove
+
 #include "Component_PlayerController.h"
 
 #include <vector>
@@ -32,7 +34,7 @@ void Component_PlayerController::Update() {
 	transform->position += this->movement_speed * player_input->GetInput_Movement() * direction_vector * (float)Time::delta_time;
 
 	// Firing enabled if reloaded.
-	if (player_input->GetInput_Shooting() && (this->reload_time > this->reload_period)) {
+	if (player_input->GetInput_Shooting() && this->Reloaded()) {
 		this->ShootBullet(transform->position, transform->rotation, direction_vector);
 
 		// Reset reload time.
@@ -42,6 +44,10 @@ void Component_PlayerController::Update() {
 	this->reload_time += (float)Time::delta_time;
 }
 
+
+inline bool Component_PlayerController::Reloaded() const {
+	return this->reload_time > this->reload_period;
+}
 
 // References to bullets.
 std::vector<std::shared_ptr<GameObject>> bullets;

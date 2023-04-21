@@ -6,7 +6,7 @@
 
 #include "Component_Collider.h"
 
-class Component_RectangleCollider final : public Component_Collider {
+class Component_RectangleCollider : public Component_Collider {
 private:
 	std::shared_ptr<AngledRectangle2D> shape = std::make_shared<AngledRectangle2D>();
 

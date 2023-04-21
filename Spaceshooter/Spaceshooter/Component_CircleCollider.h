@@ -6,7 +6,7 @@
 
 #include "Component_Collider.h"
 
-class Component_CircleCollider final : public Component_Collider {
+class Component_CircleCollider : public Component_Collider {
 private:
 	std::shared_ptr<Circle2D> shape = std::make_shared<Circle2D>();
 

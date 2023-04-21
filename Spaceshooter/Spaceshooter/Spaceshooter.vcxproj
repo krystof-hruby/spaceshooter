@@ -148,6 +148,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentRegistry.cpp" />
     <ClCompile Include="Component_Animator.cpp" />
+    <ClCompile Include="Component_AsteroidCollider.cpp" />
     <ClCompile Include="Component_AsteroidController.cpp" />
     <ClCompile Include="Component_CircleCollider.cpp" />
     <ClCompile Include="Component_Collider.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentRegistry.h" />
     <ClInclude Include="Component_Animator.h" />
+    <ClInclude Include="Component_AsteroidCollider.h" />
     <ClInclude Include="Component_AsteroidController.h" />
     <ClInclude Include="Component_CircleCollider.h" />
     <ClInclude Include="Component_Collider.h" />

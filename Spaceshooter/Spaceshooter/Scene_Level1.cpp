@@ -11,6 +11,7 @@
 #include "Logging.h"
 #include "SceneManager.h"
 #include "Scene_Level2.h"
+#include "Component_AsteroidCollider.h"
 #include "Component_AsteroidController.h"
 #include "Component_CircleCollider.h"
 #include "Component_RectangleCollider.h"
@@ -58,7 +59,7 @@ void Scene_Level1::SpawnAsteroid() {
 	asteroid->GetComponent<Component_Transform>()->position = Vector2D(spawn_position_x, spawn_position_y);
 	asteroid->GetComponent<Component_Transform>()->scale = (float)((rand() % 80 + 50)) / 300;
 
-	asteroid->GetComponent<Component_CircleCollider>()->radius = asteroid->GetComponent<Component_Transform>()->scale * 200;
+	asteroid->GetComponent<Component_AsteroidCollider>()->radius = asteroid->GetComponent<Component_Transform>()->scale * 200;
 
 	// Randomize sprite.
 	switch (rand() % 5) {

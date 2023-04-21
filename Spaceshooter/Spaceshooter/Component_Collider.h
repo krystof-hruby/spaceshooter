@@ -19,14 +19,6 @@ private:
 	// Checks whether the collider collides with other.
 	bool CollidesWith(std::shared_ptr<Component_Collider> other);
 
-	// Activates first frame of collision.
-	std::function<void(std::shared_ptr<GameObject>)> OnCollisionEnter;
-
-	// Activates every frame of collision.
-	std::function<void(std::shared_ptr<GameObject>)> OnCollisionStay;
-	
-	// Activates one frame after collision.
-	std::function<void(std::shared_ptr<GameObject>)> OnCollisionLeave;
 protected:
 	// Returns shape of the collider. Override for each different collider type.
 	virtual std::shared_ptr<IShape2D> GetShape() = 0;
@@ -37,6 +29,15 @@ protected:
 	// Updates position of Shape with PlaceAt functions from the Shell.
 	// Override for each collider shape.
 	virtual void UpdatePosition() = 0;
+
+	// Activates first frame of collision.
+	virtual void OnCollisionEnter(std::shared_ptr<GameObject> other);
+
+	// Activates every frame of collision.
+	virtual void OnCollisionStay(std::shared_ptr<GameObject> other);
+	
+	// Activates one frame after collision.
+	virtual void OnCollisionLeave(std::shared_ptr<GameObject> other);
 
 public:
 	using Component::Component;
@@ -49,18 +50,6 @@ public:
 
 	// Relative position to game object's transform.
 	Vector2D position_offset;
-
-	// Provide OnCollisionEnter function if required.
-	// Activates first frame of collision.
-	void SetOnCollisionEnter(std::function<void(std::shared_ptr<GameObject>)> on_collision_enter);
-
-	// Provide OnCollisionStay function if required.
-	// Activates every frame of collision.
-	void SetOnCollisionStay(std::function<void(std::shared_ptr<GameObject>)> on_collision_stay);
-	
-	// Provide OnCollisionLeave function if required.
-	// Activates one frame after collision.
-	void SetOnCollisionLeave(std::function<void(std::shared_ptr<GameObject>)> on_collision_leave);
 
 	// Handles collision. Does nothing if not colliding with other (besides OnCollisionLeave which activates one frame after collision).
 	// Called every frame by component registry, alongside Update.

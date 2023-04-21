@@ -11,6 +11,9 @@
 #define COUNTERCLOCKWISE -1
 
 class Component_AsteroidController final : public Component {
+private:
+	bool IsInBounds();
+
 public:
 	using Component::Component;
 
@@ -19,7 +22,6 @@ public:
 	float rotation_speed = 1;
 	int rotation_direction = CLOCKWISE;
 
-	bool IsInBounds();
 	void Explode();
 	void Update() override;
 };

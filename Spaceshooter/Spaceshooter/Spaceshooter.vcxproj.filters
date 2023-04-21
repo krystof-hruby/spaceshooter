@@ -219,6 +219,9 @@
     <ClCompile Include="Component_AsteroidController.cpp">
       <Filter>Source Files\Game\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Component_AsteroidCollider.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
@@ -339,6 +342,9 @@
       <Filter>Header Files\Game\Components</Filter>
     </ClInclude>
     <ClInclude Include="Component_AsteroidController.h">
+      <Filter>Header Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_AsteroidCollider.h">
       <Filter>Header Files\Game\Components</Filter>
     </ClInclude>
   </ItemGroup>

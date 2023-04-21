@@ -9,13 +9,6 @@
 #include "GameObject.h"
 #include "Global.h"
 
-void Component_AsteroidController::Explode() {
-	// Hide sprite.
-	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
-
-	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("asteroid explosion");
-}
-
 void Component_AsteroidController::Update() {
 	this->GetGameObject()->GetComponent<Component_Transform>()->position += this->movement_direction * this->movement_speed * Time::delta_time;
 	this->GetGameObject()->GetComponent<Component_Transform>()->rotation += rotation_speed * rotation_direction * (float)Time::delta_time;
@@ -26,6 +19,14 @@ void Component_AsteroidController::Update() {
 	}
 }
 
+void Component_AsteroidController::Explode() {
+	// Hide sprite.
+	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
+
+	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("asteroid explosion");
+}
+
 bool Component_AsteroidController::IsInBounds() {
 	return ActiveBounds::IsInBounds(this->GetGameObject()->GetComponent<Component_Transform>()->position);
 }
+

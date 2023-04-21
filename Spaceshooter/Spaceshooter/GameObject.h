@@ -5,6 +5,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
 #include "Identifiable.h"
 #include "ComponentRegistry.h"
@@ -18,6 +19,8 @@ public:
 	GameObject(std::shared_ptr<ComponentRegistry> component_registry);
 
 	std::shared_ptr<ComponentRegistry> GetComponentRegistry();
+
+	std::string tag = "Game Object";
 
 	// Returns this object's component of type ComponentType.
 	template<typename ComponentType>

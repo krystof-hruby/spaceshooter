@@ -7,6 +7,7 @@
 #include "Component_Test.h"
 
 #include "Component_Animator.h"
+#include "Component_AsteroidCollider.h"
 #include "Component_AsteroidController.h"
 #include "Component_AudioEmitter.h"
 #include "Component_CircleCollider.h"
@@ -32,7 +33,8 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject(GameObjectType t
 
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	
+	game_object->tag = "Player";
+
 	game_object->AddComponent<Component_Transform>();
 	game_object->GetComponent<Component_Transform>()->scale = 0.15f;
 	
@@ -57,7 +59,8 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_PlayerBullet(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	
+	game_object->tag = "Player Bullet";
+
 	game_object->AddComponent<Component_Transform>();
 	game_object->GetComponent<Component_Transform>()->scale = 0.1f;
 	
@@ -76,10 +79,11 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_PlayerBullet(std
 
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Asteroid(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	
+	game_object->tag = "Asteroid";
+
 	game_object->AddComponent<Component_Transform>();
 	
-	game_object->AddComponent<Component_CircleCollider>();
+	game_object->AddComponent<Component_AsteroidCollider>();
 	
 	game_object->AddComponent<Component_SpriteRenderer>();
 	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/asteroids/asteroid1.bmp");

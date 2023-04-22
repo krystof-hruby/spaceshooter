@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "Scene.h"
+#include "ScoreManager.h"
 
 // Scene for level 1 of the game.
 class Scene_Level1 final : public Scene {
@@ -19,6 +20,8 @@ private:
 
 	float grace_period = 1;
 	float grace_period_time = 0;
+
+	std::shared_ptr<ScoreManager> score_manager = std::make_shared<ScoreManager>();
 
 	// Spawns asteroid with randomized values.
 	void SpawnAsteroid();

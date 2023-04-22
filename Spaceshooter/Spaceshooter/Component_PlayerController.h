@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Component.h"
+#include "ScoreManager.h"
 #include "vector2D.h"
 
 class Component_PlayerController final : public Component {
@@ -17,6 +18,7 @@ private:
 public:
 	using Component::Component;
 
+	std::shared_ptr<ScoreManager> score_manager;
 	Vector2D canon_offset;
 	float movement_speed = 1;
 	float rotation_speed = 1;

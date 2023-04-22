@@ -13,7 +13,7 @@
 #endif
 
 #ifndef VISUALIZE_HITBOXES
-	#define VISUALIZE_HITBOXES true
+	#define VISUALIZE_HITBOXES false
 #endif
 
 // GLOBAL VALUES:

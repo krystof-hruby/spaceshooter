@@ -14,6 +14,7 @@
 #include "Component_AsteroidCollider.h"
 #include "Component_AsteroidController.h"
 #include "Component_CircleCollider.h"
+#include "Component_PlayerController.h"
 #include "Component_RectangleCollider.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
@@ -22,10 +23,12 @@ void Scene_Level1::Load() {
 	LOG("LEVEL 1: Loading level 1. Scene UUID: " + std::to_string(this->GetID()));
 
 	this->player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry);
+	this->player->GetComponent<Component_PlayerController>()->score_manager = this->score_manager;
 	this->grace_period = 7;
 }
 
 void Scene_Level1::Update() {
+	// Spawn asteroids after grace period.
 	if ((this->grace_period_time > this->grace_period) && (this->asteroid_spawn_time > this->asteroid_spawn_period)) {
 		SpawnAsteroid();
 		this->asteroid_spawn_time = 0;
@@ -34,10 +37,15 @@ void Scene_Level1::Update() {
 
 	this->grace_period_time += (float)Time::delta_time;
 	this->asteroid_spawn_time += (float)Time::delta_time;
+
+	if (this->score_manager->score > 50)
+		SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level2>());
 }
 
 void Scene_Level1::Unload() {
 	LOG("LEVEL 1: Unloading level 1. Scene UUID: " + std::to_string(this->GetID()));
+
+	LOG(this->score_manager->score);
 
 	this->StopAllSounds();
 }

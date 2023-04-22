@@ -8,7 +8,8 @@ void CollisionManager::HandleCollisions() const {
 	// Iterate throught all of the colliders and check whether they collide with any other collider.
 	for (auto i = this->collider_components.begin(); i < this->collider_components.end(); i++)
 		for (auto j = (i + 1); j < this->collider_components.end(); j++)
-			(*i)->HandleCollision(*j);
+			if ((*i)->is_active && (*j)->is_active)
+				(*i)->HandleCollision(*j);
 }
 
 void CollisionManager::RegisterCollider(std::shared_ptr<Component_Collider> component_collider) {

@@ -57,6 +57,7 @@ void Component_PlayerController::ShootBullet(Vector2D position, float rotation, 
 	bullet->GetComponent<Component_Transform>()->position = position;
 	bullet->GetComponent<Component_Transform>()->rotation = rotation;
 	bullet->GetComponent<Component_PlayerBulletController>()->movement_direction = direction;
+	bullet->GetComponent<Component_PlayerBulletController>()->score_manager = this->score_manager;
 
 	// Hold reference to bullet, otherwise loses pointer and gets deallocated.
 	bullets.push_back(bullet);

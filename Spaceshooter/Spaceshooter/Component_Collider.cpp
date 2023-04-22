@@ -7,31 +7,35 @@
 #include "GameObject.h"
 #include "Component_Transform.h"
 
-#include "Logging.h" // TODO: remove
-
 void Component_Collider::HandleCollision(std::shared_ptr<Component_Collider> other) {
-	if (!this->in_collision && this->CollidesWith(other)) {
-		this->in_collision = true;
+	ObjectUUID other_id = other->GetGameObject()->GetID();
+	
+	if (!this->IsInCollisionWith(other_id) && this->CollidesWith(other)) {
+		this->in_collision_with.insert(other_id);
 		this->OnCollisionEnter(other->GetGameObject());
 		
 		// Must trigger both, collisions are not checked twice.
-		other->in_collision = true;
+		other->in_collision_with.insert(other_id);
 		other->OnCollisionEnter(this->GetGameObject());
 	}
-	else if (this->in_collision && this->CollidesWith(other)) {
+	else if (this->IsInCollisionWith(other_id) && this->CollidesWith(other)) {
 		this->OnCollisionStay(other->GetGameObject());
 		
 		// Must trigger both, collisions are not checked twice.
 		other->OnCollisionStay(this->GetGameObject());
 	}
-	else if (this->in_collision && !this->CollidesWith(other)) {
-		this->in_collision = false;
+	else if (this->IsInCollisionWith(other_id) && !this->CollidesWith(other)) {
+		this->in_collision_with.erase(other_id);
 		this->OnCollisionLeave(other->GetGameObject());
 
 		// Must trigger both, collisions are not checked twice.
-		other->in_collision = false;
+		other->in_collision_with.erase(other_id);
 		other->OnCollisionLeave(this->GetGameObject());
 	}
+}
+
+bool Component_Collider::IsInCollisionWith(ObjectUUID other_id) {
+	return this->in_collision_with.find(other_id) != this->in_collision_with.end();
 }
 
 bool Component_Collider::CollidesWith(std::shared_ptr<Component_Collider> other) {

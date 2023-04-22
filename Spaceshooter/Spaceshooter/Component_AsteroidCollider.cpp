@@ -3,23 +3,12 @@
 // 2023
 
 #include "Component_AsteroidCollider.h"
+#include "Component_AsteroidController.h"
 #include "GameObject.h"
-#include "Logging.h" // TODO: remove
 
 void Component_AsteroidCollider::OnCollisionEnter(std::shared_ptr<GameObject> other) {
-	if (other->tag != "Player")
-		return;
-
-}
-
-void Component_AsteroidCollider::OnCollisionStay(std::shared_ptr<GameObject> other) {
-	if (other->tag != "Player")
-		return;
-	
-}
-
-void Component_AsteroidCollider::OnCollisionLeave(std::shared_ptr<GameObject> other) {
-	if (other->tag != "Player")
-		return;
-	
+	if (other->tag == "Player" || other->tag == "Player Bullet") {
+		this->GetGameObject()->GetComponent<Component_AsteroidController>()->Explode();
+		this->is_active = false; // Disable further collision.
+	}
 }

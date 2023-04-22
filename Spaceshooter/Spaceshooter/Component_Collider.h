@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include <functional>
+#include <unordered_set>
 
 #include "Component.h"
 #include "Global.h"
@@ -14,7 +14,8 @@
 // Enables collision with other collidable objects.
 class Component_Collider : public Component {
 private:
-	bool in_collision = false;
+	std::unordered_set<ObjectUUID> in_collision_with;
+	bool IsInCollisionWith(ObjectUUID other_id);
 
 	// Checks whether the collider collides with other.
 	bool CollidesWith(std::shared_ptr<Component_Collider> other);

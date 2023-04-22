@@ -152,7 +152,9 @@
     <ClCompile Include="Component_AsteroidController.cpp" />
     <ClCompile Include="Component_CircleCollider.cpp" />
     <ClCompile Include="Component_Collider.cpp" />
+    <ClCompile Include="Component_PlayerBulletCollider.cpp" />
     <ClCompile Include="Component_PlayerBulletController.cpp" />
+    <ClCompile Include="Component_PlayerCollider.cpp" />
     <ClCompile Include="Component_PlayerController.cpp" />
     <ClCompile Include="Component_PlayerInput.cpp" />
     <ClCompile Include="Component_RectangleCollider.cpp" />
@@ -179,6 +181,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Level1.cpp" />
     <ClCompile Include="Scene_Level2.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="vector2D.cpp" />
     <ClCompile Include="wincode.cpp" />
@@ -194,7 +197,9 @@
     <ClInclude Include="Component_CircleCollider.h" />
     <ClInclude Include="Component_Collider.h" />
     <ClInclude Include="Component_InputReader.h" />
+    <ClInclude Include="Component_PlayerBulletCollider.h" />
     <ClInclude Include="Component_PlayerBulletController.h" />
+    <ClInclude Include="Component_PlayerCollider.h" />
     <ClInclude Include="Component_PlayerController.h" />
     <ClInclude Include="Component_PlayerInput.h" />
     <ClInclude Include="Component_RectangleCollider.h" />
@@ -223,6 +228,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene_Level1.h" />
     <ClInclude Include="Scene_Level2.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="vector2D.h" />
   </ItemGroup>

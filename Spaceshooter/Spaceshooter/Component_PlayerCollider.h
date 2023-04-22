@@ -1,4 +1,4 @@
-// Component_AsteroidCollider.h
+// Component_PlayerCollider.h
 // Krystof Hruby
 // 2023
 
@@ -6,7 +6,7 @@
 
 #include "Component_CircleCollider.h"
 
-class Component_AsteroidCollider final : public Component_CircleCollider {
+class Component_PlayerCollider final : public Component_CircleCollider {
 protected:
 	void OnCollisionEnter(std::shared_ptr<GameObject> other) override;
 

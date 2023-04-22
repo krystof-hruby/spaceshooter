@@ -12,7 +12,9 @@
 #include "Component_AudioEmitter.h"
 #include "Component_CircleCollider.h"
 #include "Component_InputReader.h"
+#include "Component_PlayerBulletCollider.h"
 #include "Component_PlayerBulletController.h"
+#include "Component_PlayerCollider.h"
 #include "Component_PlayerController.h"
 #include "Component_PlayerInput.h"
 #include "Component_RectangleCollider.h"
@@ -38,8 +40,8 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 	game_object->AddComponent<Component_Transform>();
 	game_object->GetComponent<Component_Transform>()->scale = 0.15f;
 	
-	game_object->AddComponent<Component_CircleCollider>();
-	game_object->GetComponent<Component_CircleCollider>()->radius = 30;
+	game_object->AddComponent<Component_PlayerCollider>();
+	game_object->GetComponent<Component_PlayerCollider>()->radius = 35;
 	
 	game_object->AddComponent<Component_SpriteRenderer>();
 	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/player/player_spaceship.bmp");
@@ -64,9 +66,9 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_PlayerBullet(std
 	game_object->AddComponent<Component_Transform>();
 	game_object->GetComponent<Component_Transform>()->scale = 0.1f;
 	
-	game_object->AddComponent<Component_RectangleCollider>();
-	game_object->GetComponent<Component_RectangleCollider>()->width = 15;
-	game_object->GetComponent<Component_RectangleCollider>()->height = 55;
+	game_object->AddComponent<Component_PlayerBulletCollider>();
+	game_object->GetComponent<Component_PlayerBulletCollider>()->width = 15;
+	game_object->GetComponent<Component_PlayerBulletCollider>()->height = 55;
 	
 	game_object->AddComponent<Component_SpriteRenderer>();
 	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/player/player_bullet.bmp");

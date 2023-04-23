@@ -46,6 +46,16 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 	game_object->AddComponent<Component_SpriteRenderer>();
 	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/player/player_spaceship.bmp");
 	
+	game_object->AddComponent<Component_Animator>();
+	std::vector<Sprite> sprites = { L"assets/asteroids/asteroid1.bmp"/*TODO: add frames*/ };
+	std::shared_ptr<Animation> animation = std::make_shared<Animation>("player thrusters off", sprites);
+	sprites = { L"assets/asteroids/asteroid1.bmp"/*TODO: add frames*/ };
+	animation = std::make_shared<Animation>("player thrusters on", sprites);
+	sprites = { L"assets/asteroids/asteroid1.bmp"/*TODO: add frames*/ };
+	game_object->GetComponent<Component_Animator>()->RegisterAnimation(animation);
+	animation = std::make_shared<Animation>("player explode", sprites);
+	game_object->GetComponent<Component_Animator>()->RegisterAnimation(animation);
+
 	game_object->AddComponent<Component_AudioEmitter>();
 	
 	game_object->AddComponent<Component_PlayerInput>();

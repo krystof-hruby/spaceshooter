@@ -2,8 +2,6 @@
 // Krystof Hruby
 // 2023
 
-#include "Logging.h" // TODO: remove
-
 #include "Scene_Level1.h"
 
 #include "GameObject.h"
@@ -32,20 +30,24 @@ void Scene_Level1::Update() {
 	if ((this->grace_period_time > this->grace_period) && (this->asteroid_spawn_time > this->asteroid_spawn_period)) {
 		SpawnAsteroid();
 		this->asteroid_spawn_time = 0;
-		this->asteroid_spawn_period = (float)(rand() % 10 / 9); // Randomize spawn period.
+		this->asteroid_spawn_period = (float)(rand() % 10 / 8); // Randomize spawn period.
 	}
 
 	this->grace_period_time += (float)Time::delta_time;
 	this->asteroid_spawn_time += (float)Time::delta_time;
 
-	if (this->score_manager->score > 50)
-		SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level2>());
+	if (this->score_manager->score > 50) {
+		for (auto asteroid : this->asteroids)
+			asteroid->Destroy();
+
+		// TODO: play some fancy animations or something before changing
+
+		// SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level2>());
+	}
 }
 
 void Scene_Level1::Unload() {
 	LOG("LEVEL 1: Unloading level 1. Scene UUID: " + std::to_string(this->GetID()));
-
-	LOG(this->score_manager->score);
 
 	this->StopAllSounds();
 }
@@ -65,8 +67,9 @@ void Scene_Level1::SpawnAsteroid() {
 		spawn_position_y = (float)(rand() % 500 + 2000) * (rand() % 2 == 1 ? 1 : -1);
 	}
 	asteroid->GetComponent<Component_Transform>()->position = Vector2D(spawn_position_x, spawn_position_y);
-	asteroid->GetComponent<Component_Transform>()->scale = (float)((rand() % 80 + 50)) / 300;
 
+	// Randomize scale.
+	asteroid->GetComponent<Component_Transform>()->scale = (float)((rand() % 80 + 50)) / 300;
 	asteroid->GetComponent<Component_AsteroidCollider>()->radius = asteroid->GetComponent<Component_Transform>()->scale * 200;
 
 	// Randomize sprite.
@@ -84,8 +87,19 @@ void Scene_Level1::SpawnAsteroid() {
 	}
 
 	// Randomize values.
-	asteroid->GetComponent<Component_AsteroidController>()->movement_direction = Vector2D((float)(rand() % 10 - 5), (float)(rand() % 10 - 5));
-	asteroid->GetComponent<Component_AsteroidController>()->movement_speed = (float)(rand() % 200);
+	Vector2D movement_direction;
+	if (spawn_position_x < 0)
+		movement_direction.XValue = (float)(rand() % 10);
+	else if (spawn_position_x > 0)
+		movement_direction.XValue = (float)(rand() % 10) * -1;
+	
+	if (spawn_position_y < 0)
+		movement_direction.YValue = (float)(rand() % 10);
+	else if (spawn_position_y > 0)
+		movement_direction.YValue = (float)(rand() % 10) * -1;
+
+	asteroid->GetComponent<Component_AsteroidController>()->movement_direction = movement_direction;
+	asteroid->GetComponent<Component_AsteroidController>()->movement_speed = (float)(rand() % 100);
 	asteroid->GetComponent<Component_AsteroidController>()->rotation_speed = (float)(rand() % 5 + 1);
 	if (rand() % 2 == 1)
 		asteroid->GetComponent<Component_AsteroidController>()->rotation_direction = CLOCKWISE;

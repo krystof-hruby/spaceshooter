@@ -2,12 +2,9 @@
 // Krystof Hruby
 // 2023
 
-#include "Logging.h" // TODO: remove
-
 #include "Component_PlayerController.h"
 
-#include <vector>
-
+#include "Component_Animator.h"
 #include "Component_PlayerBulletController.h"
 #include "Component_PlayerInput.h"
 #include "Component_Transform.h"
@@ -16,7 +13,7 @@
 #include "Global.h"
 
 void Component_PlayerController::Start() {
-
+	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player thrusters on");
 }
 
 void Component_PlayerController::Update() {
@@ -42,15 +39,20 @@ void Component_PlayerController::Update() {
 	}
 
 	this->reload_time += (float)Time::delta_time;
+
+	if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("player explode"))
+		this->GetGameObject()->Destroy();
 }
 
+
+void Component_PlayerController::Explode() {
+	this->GetGameObject()->GetComponent<Component_Animator>()->StopAnimation();
+	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player explode");
+}
 
 inline bool Component_PlayerController::Reloaded() const {
 	return this->reload_time > this->reload_period;
 }
-
-// References to bullets.
-std::vector<std::shared_ptr<GameObject>> bullets;
 
 void Component_PlayerController::ShootBullet(Vector2D position, float rotation, Vector2D direction) {
 	std::shared_ptr<GameObject> bullet = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::PlayerBullet, this->GetGameObject()->GetComponentRegistry());
@@ -60,5 +62,5 @@ void Component_PlayerController::ShootBullet(Vector2D position, float rotation, 
 	bullet->GetComponent<Component_PlayerBulletController>()->score_manager = this->score_manager;
 
 	// Hold reference to bullet, otherwise loses pointer and gets deallocated.
-	bullets.push_back(bullet);
+	this->bullets.push_back(bullet);
 }

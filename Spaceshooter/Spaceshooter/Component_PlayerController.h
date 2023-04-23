@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <vector>
+
 #include "Component.h"
 #include "ScoreManager.h"
 #include "vector2D.h"
@@ -15,6 +17,8 @@ private:
 	inline bool Reloaded() const;
 	void ShootBullet(Vector2D position, float rotation, Vector2D direction);
 
+	std::vector<std::shared_ptr<GameObject>> bullets;
+
 public:
 	using Component::Component;
 
@@ -23,6 +27,8 @@ public:
 	float movement_speed = 1;
 	float rotation_speed = 1;
 	float reload_period = 1;
+
+	void Explode();
 
 	void Start() override;
 	void Update() override;

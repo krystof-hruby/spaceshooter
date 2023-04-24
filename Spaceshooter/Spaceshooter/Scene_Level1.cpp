@@ -20,9 +20,13 @@
 void Scene_Level1::Load() {
 	LOG("LEVEL 1: Loading level 1. Scene UUID: " + std::to_string(this->GetID()));
 
+	this->grace_period = 7;
+	
+	this->background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry);
+	this->background->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_black.bmp");
+
 	this->player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry);
 	this->player->GetComponent<Component_PlayerController>()->score_manager = this->score_manager;
-	this->grace_period = 7;
 }
 
 void Scene_Level1::Update() {
@@ -30,7 +34,7 @@ void Scene_Level1::Update() {
 	if ((this->grace_period_time > this->grace_period) && (this->asteroid_spawn_time > this->asteroid_spawn_period)) {
 		SpawnAsteroid();
 		this->asteroid_spawn_time = 0;
-		this->asteroid_spawn_period = (float)(rand() % 10 / 8); // Randomize spawn period.
+		this->asteroid_spawn_period = (float)(rand() % 10 / 9); // Randomize spawn period.
 	}
 
 	this->grace_period_time += (float)Time::delta_time;
@@ -68,43 +72,23 @@ void Scene_Level1::SpawnAsteroid() {
 	}
 	asteroid->GetComponent<Component_Transform>()->position = Vector2D(spawn_position_x, spawn_position_y);
 
-	// Randomize scale.
-	asteroid->GetComponent<Component_Transform>()->scale = (float)((rand() % 80 + 50)) / 300;
-	asteroid->GetComponent<Component_AsteroidCollider>()->radius = asteroid->GetComponent<Component_Transform>()->scale * 200;
-
 	// Randomize sprite.
-	switch (rand() % 5) {
-	case 0:
-		asteroid->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/asteroids/asteroid1.bmp");
-	case 1:
-		asteroid->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/asteroids/asteroid2.bmp");
-	case 2:
-		asteroid->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/asteroids/asteroid3.bmp");
-	case 3:
-		asteroid->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/asteroids/asteroid4.bmp");
-	case 4:
-		asteroid->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/asteroids/asteroid5.bmp");
-	}
+	Sprite sprite = rand() % 2 == 1 ? L"assets/asteroids/asteroid_large.bmp" : L"assets/asteroids/asteroid_small.bmp";
+	asteroid->GetComponent<Component_SpriteRenderer>()->SetSprite(sprite);
+
+	// Randomize scale.
+	asteroid->GetComponent<Component_Transform>()->scale = ((float)((rand() % 3) + 2) / 10);
+	int scale_multiplier = sprite == L"assets/asteroids/asteroid_large.bmp" ? 190 : 250;
+	asteroid->GetComponent<Component_AsteroidCollider>()->radius = asteroid->GetComponent<Component_Transform>()->scale * scale_multiplier;
 
 	// Randomize values.
 	Vector2D movement_direction;
-	if (spawn_position_x < 0)
-		movement_direction.XValue = (float)(rand() % 10);
-	else if (spawn_position_x > 0)
-		movement_direction.XValue = (float)(rand() % 10) * -1;
-	
-	if (spawn_position_y < 0)
-		movement_direction.YValue = (float)(rand() % 10);
-	else if (spawn_position_y > 0)
-		movement_direction.YValue = (float)(rand() % 10) * -1;
-
+	movement_direction.XValue = spawn_position_x < 0 ? (float)(rand() % 10) : -(float)(rand() % 10);
+	movement_direction.YValue = spawn_position_y < 0 ? (float)(rand() % 10) : -(float)(rand() % 10);
 	asteroid->GetComponent<Component_AsteroidController>()->movement_direction = movement_direction;
 	asteroid->GetComponent<Component_AsteroidController>()->movement_speed = (float)(rand() % 100);
 	asteroid->GetComponent<Component_AsteroidController>()->rotation_speed = (float)(rand() % 5 + 1);
-	if (rand() % 2 == 1)
-		asteroid->GetComponent<Component_AsteroidController>()->rotation_direction = CLOCKWISE;
-	else
-		asteroid->GetComponent<Component_AsteroidController>()->rotation_direction = COUNTERCLOCKWISE;
+	asteroid->GetComponent<Component_AsteroidController>()->rotation_direction = rand() % 2 == 1 ? CLOCKWISE: COUNTERCLOCKWISE;
 
 	this->asteroids.push_back(asteroid);
 }

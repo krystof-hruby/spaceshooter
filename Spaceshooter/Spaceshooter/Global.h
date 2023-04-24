@@ -17,7 +17,8 @@
 #endif
 
 // GLOBAL VALUES:
-const float SECOND = 1;
+const float SECOND = 1.0f;
+const float PI = 3.14f;
 
 // Provides delta time.
 class Time final {

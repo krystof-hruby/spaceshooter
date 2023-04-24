@@ -20,6 +20,7 @@
 #include "Component_RectangleCollider.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
+#include "Global.h"
 
 GameObjectFactory& GameObjectFactory::GetInstance() {
 	static GameObjectFactory instance;
@@ -33,27 +34,40 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject(GameObjectType t
 
 // Specific CreateGameObject functions:
 
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Background(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Background";
+
+	game_object->AddComponent<Component_Transform>();
+	game_object->GetComponent<Component_Transform>()->rotation = PI / 2;
+
+	game_object->AddComponent<Component_SpriteRenderer>();
+	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_black.bmp");
+
+	return game_object;
+}
+
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Player";
 
 	game_object->AddComponent<Component_Transform>();
-	game_object->GetComponent<Component_Transform>()->scale = 0.15f;
+	game_object->GetComponent<Component_Transform>()->scale = 0.2f;
 	
 	game_object->AddComponent<Component_PlayerCollider>();
-	game_object->GetComponent<Component_PlayerCollider>()->radius = 35;
+	game_object->GetComponent<Component_PlayerCollider>()->radius = 45;
 	
 	game_object->AddComponent<Component_SpriteRenderer>();
-	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/player/player_spaceship.bmp");
+	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/spaceships/spaceship_green.bmp");
 	
 	game_object->AddComponent<Component_Animator>();
-	std::vector<Sprite> sprites = { L"assets/asteroids/asteroid1.bmp"/*TODO: add frames*/ };
-	std::shared_ptr<Animation> animation = std::make_shared<Animation>("player thrusters off", sprites);
-	sprites = { L"assets/asteroids/asteroid1.bmp"/*TODO: add frames*/ };
-	animation = std::make_shared<Animation>("player thrusters on", sprites);
-	sprites = { L"assets/asteroids/asteroid1.bmp"/*TODO: add frames*/ };
-	game_object->GetComponent<Component_Animator>()->RegisterAnimation(animation);
-	animation = std::make_shared<Animation>("player explode", sprites);
+	std::vector<Sprite> sprites = {
+		L"assets/spaceships/blue_ship_explosion_1.bmp",
+		L"assets/spaceships/blue_ship_explosion_2.bmp",
+		L"assets/spaceships/blue_ship_explosion_3.bmp",
+		L"assets/spaceships/blue_ship_explosion_4.bmp",
+	};
+	std::shared_ptr<Animation> animation = std::make_shared<Animation>("player explode", sprites, false, 15);
 	game_object->GetComponent<Component_Animator>()->RegisterAnimation(animation);
 
 	game_object->AddComponent<Component_AudioEmitter>();
@@ -74,17 +88,17 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_PlayerBullet(std
 	game_object->tag = "Player Bullet";
 
 	game_object->AddComponent<Component_Transform>();
-	game_object->GetComponent<Component_Transform>()->scale = 0.1f;
+	game_object->GetComponent<Component_Transform>()->scale = 0.2f;
 	
 	game_object->AddComponent<Component_PlayerBulletCollider>();
-	game_object->GetComponent<Component_PlayerBulletCollider>()->width = 15;
-	game_object->GetComponent<Component_PlayerBulletCollider>()->height = 55;
+	game_object->GetComponent<Component_PlayerBulletCollider>()->width = 80;
+	game_object->GetComponent<Component_PlayerBulletCollider>()->height = 40;
 	
 	game_object->AddComponent<Component_SpriteRenderer>();
-	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/player/player_bullet.bmp");
+	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/projectiles/projectile_pink.bmp");
 	
 	game_object->AddComponent<Component_PlayerBulletController>();
-	game_object->GetComponent<Component_PlayerBulletController>()->movement_speed = 800;
+	game_object->GetComponent<Component_PlayerBulletController>()->movement_speed = 1500;
 	
 	return game_object;
 }
@@ -98,14 +112,38 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Asteroid(std::sh
 	game_object->AddComponent<Component_AsteroidCollider>();
 	
 	game_object->AddComponent<Component_SpriteRenderer>();
-	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/asteroids/asteroid1.bmp");
+	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/asteroids/asteroid_large.bmp");
 	
 	game_object->AddComponent<Component_Animator>();
-	std::vector<Sprite> sprites = {L"assets/asteroids/asteroid1.bmp"/*TODO: add frames*/};
-	std::shared_ptr<Animation> animation = std::make_shared<Animation>("asteroid explosion", sprites);
+	std::vector<Sprite> sprites = {
+		L"assets/asteroids/asteroid_explosion_1.bmp",
+		L"assets/asteroids/asteroid_explosion_2.bmp",
+		L"assets/asteroids/asteroid_explosion_3.bmp",
+		L"assets/asteroids/asteroid_explosion_4.bmp",
+	};
+	std::shared_ptr<Animation> animation = std::make_shared<Animation>("asteroid explosion", sprites, false, 15);
 	game_object->GetComponent<Component_Animator>()->RegisterAnimation(animation);
 
 	game_object->AddComponent<Component_AsteroidController>();
+
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShip(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Enemy Ship";
+
+	game_object->AddComponent<Component_Transform>();
+
+	// TODO: collider
+
+	game_object->AddComponent<Component_SpriteRenderer>();
+	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L""); // TODO: sprites
+
+	game_object->AddComponent<Component_Animator>();
+	// TODO: add animation
+
+	game_object->AddComponent<Component_AsteroidCollider>();
 
 	return game_object;
 }

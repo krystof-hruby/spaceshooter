@@ -22,7 +22,7 @@ void Component_AsteroidController::Update() {
 void Component_AsteroidController::Explode() {
 	// Hide sprite.
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
-
+	
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("asteroid explosion");
 }
 

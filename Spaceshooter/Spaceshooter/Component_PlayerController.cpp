@@ -6,17 +6,28 @@
 
 #include "Component_Animator.h"
 #include "Component_PlayerBulletController.h"
+#include "Component_PlayerCollider.h"
 #include "Component_PlayerInput.h"
+#include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
 #include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "Global.h"
 
 void Component_PlayerController::Start() {
-	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player thrusters on");
+	
 }
 
 void Component_PlayerController::Update() {
+	if (this->exploded) {
+		if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("player explode"))
+			this->GetGameObject()->Destroy();
+
+		// TODO: display end screen
+
+		return;
+	}
+
 	std::shared_ptr<Component_Transform> transform = this->GetGameObject()->GetComponent<Component_Transform>();
 	std::shared_ptr<Component_PlayerInput> player_input = this->GetGameObject()->GetComponent<Component_PlayerInput>();
 
@@ -40,12 +51,24 @@ void Component_PlayerController::Update() {
 
 	this->reload_time += (float)Time::delta_time;
 
-	if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("player explode"))
-		this->GetGameObject()->Destroy();
+	// Update sprite.
+	if (player_input->GetInput_Rotation() > 0)
+		this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/spaceships/spaceship_green_right.bmp");
+	else if (player_input->GetInput_Rotation() < 0)
+		this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/spaceships/spaceship_green_left.bmp");
+	else // No rotation.
+		this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/spaceships/spaceship_green.bmp");
 }
 
 
 void Component_PlayerController::Explode() {
+	this->exploded = true;
+	
+	// Hide sprite.
+	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
+	// Disable collision.
+	this->GetGameObject()->GetComponent<Component_PlayerCollider>()->is_active = false;
+
 	this->GetGameObject()->GetComponent<Component_Animator>()->StopAnimation();
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player explode");
 }

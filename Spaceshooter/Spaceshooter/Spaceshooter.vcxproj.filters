@@ -234,6 +234,9 @@
     <ClCompile Include="Component_EnemyShipController.cpp">
       <Filter>Source Files\Game\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Component_EnemyShipCollider.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
@@ -369,6 +372,9 @@
       <Filter>Header Files\Game\Components</Filter>
     </ClInclude>
     <ClInclude Include="Component_EnemyShipController.h">
+      <Filter>Header Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_EnemyShipCollider.h">
       <Filter>Header Files\Game\Components</Filter>
     </ClInclude>
   </ItemGroup>

@@ -16,6 +16,25 @@
 	#define VISUALIZE_HITBOXES false
 #endif
 
+#ifndef PLAYER_INVINCIBILITY
+	#define PLAYER_INVINCIBILITY false
+#endif
+
+#ifndef LOWER_GOAL
+	#define LOWER_GOAL true
+#endif
+#if LOWER_GOAL
+	#define GOAL 5
+#endif
+
+#ifndef START_LEVEL_2
+	#define START_LEVEL_2 true
+#endif
+
+#ifndef START_LEVEL_3
+	#define START_LEVEL_3 false
+#endif
+
 // GLOBAL VALUES:
 const float SECOND = 1.0f;
 const float PI = 3.14f;

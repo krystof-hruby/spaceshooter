@@ -14,7 +14,6 @@ class Component_PlayerController final : public Component {
 private:
 	float reload_time = 0;
 	bool exploded = false;
-	std::vector<std::shared_ptr<GameObject>> bullets;
 
 	inline bool Reloaded() const;
 	void ShootBullet(Vector2D position, float rotation, Vector2D direction);
@@ -23,6 +22,8 @@ public:
 	using Component::Component;
 
 	std::shared_ptr<ScoreManager> score_manager;
+	// Weak pointer to avoid circular references.
+	std::weak_ptr<std::vector<std::shared_ptr<GameObject>>> bullets;
 	Vector2D canon_offset;
 	float movement_speed = 1;
 	float rotation_speed = 1;

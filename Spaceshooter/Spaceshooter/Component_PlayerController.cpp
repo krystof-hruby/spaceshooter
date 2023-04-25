@@ -19,9 +19,8 @@ void Component_PlayerController::Start() {
 }
 
 void Component_PlayerController::Update() {
-	if (this->exploded) {
-		if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("player explode"))
-			this->GetGameObject()->Destroy();
+	if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("player explode")) {
+		this->GetGameObject()->Destroy();
 
 		// TODO: display end screen
 
@@ -62,14 +61,11 @@ void Component_PlayerController::Update() {
 
 
 void Component_PlayerController::Explode() {
-	this->exploded = true;
-	
 	// Hide sprite.
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
 	// Disable collision.
 	this->GetGameObject()->GetComponent<Component_PlayerCollider>()->is_active = false;
 
-	this->GetGameObject()->GetComponent<Component_Animator>()->StopAnimation();
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player explode");
 }
 
@@ -85,5 +81,5 @@ void Component_PlayerController::ShootBullet(Vector2D position, float rotation, 
 	bullet->GetComponent<Component_PlayerBulletController>()->score_manager = this->score_manager;
 
 	// Hold reference to bullet, otherwise loses pointer and gets deallocated.
-	this->bullets.push_back(bullet);
+	this->bullets.lock()->push_back(bullet);
 }

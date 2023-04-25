@@ -62,6 +62,13 @@ public:
 		return std::static_pointer_cast<ComponentType>((*components)[game_object_id]);
 	}
 
+	// Returns true if there is a component of ComponentType associated with provided ObjectUUID.
+	template<typename ComponentType>
+	bool HasComponent(ObjectUUID game_object_id) {
+		auto components = this->GetComponents(GET_COMPONENT_TYPE_ID(ComponentType));
+		return components->find(game_object_id) != components->end();
+	}
+
 	// Registers component of ComponentType to provided ObjectUUID.
 	template<typename ComponentType>
 	void RegisterComponent(ObjectUUID game_object_id, std::shared_ptr<ComponentType> component) {

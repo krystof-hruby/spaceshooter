@@ -7,10 +7,10 @@
 #include "Logging.h"
 
 EngineException::EngineException(std::string message) {
+	LOG(this->message);
 	this->message = message;
 }
 
 const char* EngineException::what() const throw() {
-	LOG(this->message);
 	return this->message.c_str();
 }

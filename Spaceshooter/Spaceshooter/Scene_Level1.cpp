@@ -24,29 +24,38 @@ void Scene_Level1::Load() {
 	
 	this->background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry);
 	this->background->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_black.bmp");
-
+	#if VISUALIZE_HITBOXES
+		this->background->GetComponent<Component_SpriteRenderer>()->is_active = false;
+	#endif
 	this->player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry);
 	this->player->GetComponent<Component_PlayerController>()->score_manager = this->score_manager;
+	this->player->GetComponent<Component_PlayerController>()->bullets = this->bullets;
 }
 
 void Scene_Level1::Update() {
+	if (this->reached_goal)
+		return;
+
 	// Spawn asteroids after grace period.
 	if ((this->grace_period_time > this->grace_period) && (this->asteroid_spawn_time > this->asteroid_spawn_period)) {
-		SpawnAsteroid();
+		this->SpawnAsteroid();
 		this->asteroid_spawn_time = 0;
-		this->asteroid_spawn_period = (float)(rand() % 10 / 9); // Randomize spawn period.
+		this->asteroid_spawn_period = (float)((rand() % 10) + 1) / 9; // Randomize spawn period.
 	}
 
 	this->grace_period_time += (float)Time::delta_time;
 	this->asteroid_spawn_time += (float)Time::delta_time;
 
-	if (this->score_manager->score > 50) {
+	// End game if reached goal.
+	if (this->score_manager->score > this->goal) {
 		for (auto asteroid : this->asteroids)
-			asteroid->Destroy();
+			if (asteroid->HasComponent<Component_AsteroidController>())
+				asteroid->GetComponent<Component_AsteroidController>()->Explode();
 
 		// TODO: play some fancy animations or something before changing
 
 		// SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level2>());
+		this->reached_goal = true;
 	}
 }
 

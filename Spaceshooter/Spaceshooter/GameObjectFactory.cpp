@@ -11,6 +11,8 @@
 #include "Component_AsteroidController.h"
 #include "Component_AudioEmitter.h"
 #include "Component_CircleCollider.h"
+#include "Component_EnemyShipCollider.h"
+#include "Component_EnemyShipController.h"
 #include "Component_InputReader.h"
 #include "Component_PlayerBulletCollider.h"
 #include "Component_PlayerBulletController.h"
@@ -134,16 +136,26 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShip(std::s
 	game_object->tag = "Enemy Ship";
 
 	game_object->AddComponent<Component_Transform>();
+	game_object->GetComponent<Component_Transform>()->scale = 0.2f;
 
-	// TODO: collider
+	game_object->AddComponent<Component_EnemyShipCollider>();
+	game_object->GetComponent<Component_EnemyShipCollider>()->radius = 50;
 
 	game_object->AddComponent<Component_SpriteRenderer>();
-	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L""); // TODO: sprites
+	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/spaceships/spaceship_purple.bmp");
 
 	game_object->AddComponent<Component_Animator>();
-	// TODO: add animation
+	std::vector<Sprite> sprites = {
+		L"assets/spaceships/purple_ship_explosion_1.bmp",
+		L"assets/spaceships/purple_ship_explosion_2.bmp",
+		L"assets/spaceships/purple_ship_explosion_3.bmp",
+		L"assets/spaceships/purple_ship_explosion_4.bmp",
+	};
+	std::shared_ptr<Animation> animation = std::make_shared<Animation>("enemy ship explosion", sprites, false, 15);
+	game_object->GetComponent<Component_Animator>()->RegisterAnimation(animation);
 
-	game_object->AddComponent<Component_AsteroidCollider>();
+	game_object->AddComponent<Component_EnemyShipController>();
+	game_object->GetComponent<Component_EnemyShipController>()->movement_speed = 0.8f;
 
 	return game_object;
 }

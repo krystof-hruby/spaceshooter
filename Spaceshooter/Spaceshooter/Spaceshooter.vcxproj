@@ -152,6 +152,7 @@
     <ClCompile Include="Component_AsteroidController.cpp" />
     <ClCompile Include="Component_CircleCollider.cpp" />
     <ClCompile Include="Component_Collider.cpp" />
+    <ClCompile Include="Component_EnemyShipCollider.cpp" />
     <ClCompile Include="Component_EnemyShipController.cpp" />
     <ClCompile Include="Component_PlayerBulletCollider.cpp" />
     <ClCompile Include="Component_PlayerBulletController.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Component_AsteroidController.h" />
     <ClInclude Include="Component_CircleCollider.h" />
     <ClInclude Include="Component_Collider.h" />
+    <ClInclude Include="Component_EnemyShipCollider.h" />
     <ClInclude Include="Component_EnemyShipController.h" />
     <ClInclude Include="Component_InputReader.h" />
     <ClInclude Include="Component_PlayerBulletCollider.h" />

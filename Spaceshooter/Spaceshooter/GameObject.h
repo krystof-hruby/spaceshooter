@@ -28,6 +28,12 @@ public:
 		return this->component_registry->GetComponent<ComponentType>(this->GetID());
 	}
 
+	// Returns true if this object has component of type ComponentType.
+	template<typename ComponentType>
+	bool HasComponent() {
+		return this->component_registry->HasComponent<ComponentType>(this->GetID());
+	}
+
 	// Adds a component of type ComponentType to this object.
 	template<typename ComponentType>
 	std::shared_ptr<ComponentType> AddComponent() {

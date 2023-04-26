@@ -12,8 +12,6 @@ void Component_PlayerCollider::OnCollisionEnter(std::shared_ptr<GameObject> othe
 		return;
 	#endif
 	
-	if (other->tag == "Asteroid" || other->tag == "Enemy Ship") {
+	if (other->tag == "Asteroid" || other->tag == "Enemy Ship")
 		this->GetGameObject()->GetComponent<Component_PlayerController>()->Explode();
-		this->is_active = false; // Disable further collision.
-	}
 }

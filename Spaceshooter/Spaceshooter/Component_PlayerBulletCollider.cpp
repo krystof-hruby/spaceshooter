@@ -8,8 +8,7 @@
 
 void Component_PlayerBulletCollider::OnCollisionEnter(std::shared_ptr<GameObject> other) {
 	if (other->tag == "Asteroid" || other->tag == "Enemy Ship") {
-		this->GetGameObject()->GetComponent<Component_PlayerBulletController>()->score_manager->score += 1;
+		this->GetGameObject()->GetComponent<Component_PlayerBulletController>()->score_manager.lock()->score += 1;
 		this->GetGameObject()->Destroy();
-		this->is_active = false; // Disable further collision.
 	}
 }

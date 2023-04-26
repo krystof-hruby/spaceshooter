@@ -6,19 +6,18 @@
 
 #include "ActiveBounds.h"
 #include "Component_Transform.h"
-#include "Component_SpriteRenderer.h"
 #include "GameObject.h"
 #include "Time.h"
 
+#include "Logging.h"
+
 void Component_PlayerBulletController::Update() {
-	this->GetGameObject()->GetComponent<Component_Transform>()->position += this->movement_direction * this->movement_speed * Time::delta_time;
+	auto transform = this->GetGameObject()->GetComponent<Component_Transform>();
+
+	transform->position += this->movement_direction * this->movement_speed * Time::delta_time;
 
 	// Despawn bullet if out of bounds.
-	if (!this->IsInBounds()) {
+	if (!ActiveBounds::IsInBounds(transform->position)) {
 		this->GetGameObject()->Destroy();
 	}
-}
-
-bool Component_PlayerBulletController::IsInBounds() {
-	return ActiveBounds::IsInBounds(this->GetGameObject()->GetComponent<Component_Transform>()->position);
 }

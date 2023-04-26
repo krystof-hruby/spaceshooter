@@ -6,6 +6,7 @@
 
 #include "Logging.h"
 #include "mysoundengine.h"
+#include "SceneManager.h"
 
 Scene::Scene() { }
 
@@ -31,3 +32,7 @@ void Scene::Load() { }
 void Scene::Update() { }
 
 void Scene::Unload() { }
+
+void Scene::Instantiate(std::shared_ptr<GameObject> game_object) {
+	SceneManager::GetInstance().GetCurrentScene()->scene_objects.push_back(game_object);
+}

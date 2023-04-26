@@ -5,19 +5,17 @@
 #pragma once
 
 #include "Component.h"
+#include "Component_Transform.h"
 
 class Component_EnemyShipController final : public Component {
-private:
-	bool IsInBounds();
-
 public:
 	using Component::Component;
 
 	float movement_speed = 1;
-	// Weak pointer to avoid cyclical references.
-	std::weak_ptr<GameObject> player;
+	std::weak_ptr<Component_Transform> player_transform;
 
 	void Explode();
+	inline bool Startable() const override { return false; }
 	void Update() override;
 };
 

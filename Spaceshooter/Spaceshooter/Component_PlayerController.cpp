@@ -4,6 +4,7 @@
 
 #include "Component_PlayerController.h"
 
+#include "ActiveBounds.h"
 #include "Component_Animator.h"
 #include "Component_PlayerBulletController.h"
 #include "Component_PlayerCollider.h"
@@ -12,6 +13,7 @@
 #include "Component_Transform.h"
 #include "GameObject.h"
 #include "GameObjectFactory.h"
+#include "Scene.h"
 #include "Time.h"
 
 void Component_PlayerController::Start() {
@@ -21,7 +23,12 @@ void Component_PlayerController::Start() {
 }
 
 void Component_PlayerController::Update() {
-	if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("player explode")) {
+	auto transform = this->GetGameObject()->GetComponent<Component_Transform>();
+	auto sprite_renderer = this->GetGameObject()->GetComponent<Component_SpriteRenderer>();
+	auto player_input = this->GetGameObject()->GetComponent<Component_PlayerInput>();
+	auto animator = this->GetGameObject()->GetComponent<Component_Animator>();
+
+	if (animator->AnimationFinished("player explode") || !ActiveBounds::IsInBounds(transform->position)) {
 		// Was eliminated.
 		this->GetGameObject()->Destroy();
 
@@ -30,17 +37,14 @@ void Component_PlayerController::Update() {
 		return;
 	}
 	
-	if (!this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("player spawn")) {
-		// Did not finish spawning.
+	if (!animator->AnimationFinished("player spawn")) {
+		// Did not finish spawning. Do not allow to move.
 		return;
 	} else {
-		this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = true;
-		this->GetGameObject()->GetComponent<Component_Transform>()->scale = 0.2f;
+		sprite_renderer->is_active = true;
+		transform->scale = 0.2f;
 	}
-
-	std::shared_ptr<Component_Transform> transform = this->GetGameObject()->GetComponent<Component_Transform>();
-	std::shared_ptr<Component_PlayerInput> player_input = this->GetGameObject()->GetComponent<Component_PlayerInput>();
-
+	
 	// Update rotation.
 	transform->rotation += this->rotation_speed * player_input->GetInput_Rotation() * (float)Time::delta_time;
 
@@ -58,39 +62,30 @@ void Component_PlayerController::Update() {
 		// Reset reload time.
 		this->reload_time = 0;
 	}
-
 	this->reload_time += (float)Time::delta_time;
 
 	// Update sprite.
 	if (player_input->GetInput_Rotation() > 0)
-		this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/spaceships/spaceship_green_right.bmp");
+		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green_right.bmp");
 	else if (player_input->GetInput_Rotation() < 0)
-		this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/spaceships/spaceship_green_left.bmp");
+		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green_left.bmp");
 	else // No rotation.
-		this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/spaceships/spaceship_green.bmp");
+		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green.bmp");
 }
 
 
 void Component_PlayerController::Explode() {
-	// Hide sprite.
-	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
-	// Disable collision.
-	this->GetGameObject()->GetComponent<Component_PlayerCollider>()->is_active = false;
-
+	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false; // Hide sprite.
+	this->GetGameObject()->GetComponent<Component_PlayerCollider>()->is_active = false; // Disable collision.
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player explode");
 }
 
-inline bool Component_PlayerController::Reloaded() const {
-	return this->reload_time > this->reload_period;
-}
-
 void Component_PlayerController::ShootBullet(Vector2D position, float rotation, Vector2D direction) {
-	std::shared_ptr<GameObject> bullet = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::PlayerBullet, this->GetGameObject()->GetComponentRegistry());
+	std::shared_ptr<GameObject> bullet = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::PlayerBullet, this->GetGameObject()->GetComponentRegistry(), true);
 	bullet->GetComponent<Component_Transform>()->position = position;
 	bullet->GetComponent<Component_Transform>()->rotation = rotation;
 	bullet->GetComponent<Component_PlayerBulletController>()->movement_direction = direction;
 	bullet->GetComponent<Component_PlayerBulletController>()->score_manager = this->score_manager;
 
-	// Hold reference to bullet, otherwise loses pointer and gets deallocated.
-	this->bullets.lock()->push_back(bullet);
+	Scene::Instantiate(bullet);
 }

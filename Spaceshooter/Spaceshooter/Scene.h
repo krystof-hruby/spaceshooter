@@ -5,6 +5,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include "ComponentRegistry.h"
 #include "Identifiable.h"
@@ -14,7 +15,9 @@
 class Scene : public Identifiable {
 protected:
 	Scene();
+	
 	std::shared_ptr<ComponentRegistry> component_registry = std::make_shared<ComponentRegistry>();
+	std::vector<std::shared_ptr<GameObject>> scene_objects;
 	MainCamera camera;
 
 	// Stops any currently playing sounds.
@@ -35,4 +38,7 @@ public:
 	virtual void Update();
 	// Called when changed from this scene to other scene.
 	virtual void Unload();
+
+	// Instantiates this object in the current scene.
+	static void Instantiate(std::shared_ptr<GameObject> game_object);
 };

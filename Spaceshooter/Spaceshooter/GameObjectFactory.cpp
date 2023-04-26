@@ -22,7 +22,8 @@
 #include "Component_RectangleCollider.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
-#include "Global.h"
+#include "Constants.h"
+#include "Debugging.h"
 
 GameObjectFactory& GameObjectFactory::GetInstance() {
 	static GameObjectFactory instance;
@@ -71,6 +72,15 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 	};
 	std::shared_ptr<Animation> animation = std::make_shared<Animation>("player explode", sprites, false, 15);
 	game_object->GetComponent<Component_Animator>()->RegisterAnimation(animation);
+	sprites = {
+		L"assets/spaceships/blue_ship_spawn_1.bmp",
+		L"assets/spaceships/blue_ship_spawn_2.bmp",
+		L"assets/spaceships/blue_ship_spawn_3.bmp",
+		L"assets/spaceships/blue_ship_spawn_4.bmp",
+	};
+	animation = std::make_shared<Animation>("player spawn", sprites, false, 11);
+	game_object->GetComponent<Component_Animator>()->RegisterAnimation(animation);
+
 
 	game_object->AddComponent<Component_AudioEmitter>();
 	

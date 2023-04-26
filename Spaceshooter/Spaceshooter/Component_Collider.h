@@ -7,7 +7,7 @@
 #include <unordered_set>
 
 #include "Component.h"
-#include "Global.h"
+#include "Debugging.h"
 #include "Shapes.h"
 #include "vector2D.h"
 

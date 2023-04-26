@@ -12,19 +12,30 @@
 #include "Component_Transform.h"
 #include "GameObject.h"
 #include "GameObjectFactory.h"
-#include "Global.h"
+#include "Time.h"
 
 void Component_PlayerController::Start() {
-	
+	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player spawn");
+	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
+	this->GetGameObject()->GetComponent<Component_Transform>()->scale = 0.3f;
 }
 
 void Component_PlayerController::Update() {
 	if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("player explode")) {
+		// Was eliminated.
 		this->GetGameObject()->Destroy();
 
 		// TODO: display end screen
 
 		return;
+	}
+	
+	if (!this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("player spawn")) {
+		// Did not finish spawning.
+		return;
+	} else {
+		this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = true;
+		this->GetGameObject()->GetComponent<Component_Transform>()->scale = 0.2f;
 	}
 
 	std::shared_ptr<Component_Transform> transform = this->GetGameObject()->GetComponent<Component_Transform>();

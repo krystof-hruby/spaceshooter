@@ -34,12 +34,6 @@
     <Filter Include="Source Files\Game\Scenes">
       <UniqueIdentifier>{45da5594-e191-4fb0-8e70-8554ba58d34c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Debug">
-      <UniqueIdentifier>{c0862bc8-171d-41f8-9216-f9d2220b7f03}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine\Debug">
-      <UniqueIdentifier>{ff7664e1-4089-40e1-800b-71b18a395962}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\SceneManagement">
       <UniqueIdentifier>{1767ad5b-dc8f-4730-a148-652f7b5317ce}</UniqueIdentifier>
     </Filter>
@@ -135,14 +129,8 @@
     <ClCompile Include="wincode.cpp">
       <Filter>Source Files\Shell</Filter>
     </ClCompile>
-    <ClCompile Include="Gameloop.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Scene_Level1.cpp">
       <Filter>Source Files\Game\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Logging.cpp">
-      <Filter>Source Files\Engine\Debug</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Source Files\Engine\SceneManagement</Filter>
@@ -173,9 +161,6 @@
     </ClCompile>
     <ClCompile Include="Component_AudioEmitter.cpp">
       <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Global.cpp">
-      <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\Engine\InputManagment</Filter>
@@ -237,6 +222,30 @@
     <ClCompile Include="Component_EnemyShipCollider.cpp">
       <Filter>Source Files\Game\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files\Engine\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameloop.cpp">
+      <Filter>Source Files\Engine\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="ActiveBounds.cpp">
+      <Filter>Source Files\Game\ObjectManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Level3.cpp">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_LevelBase.cpp">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Logging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AsteroidsManager.cpp">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyShipsManager.cpp">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
@@ -272,17 +281,8 @@
     <ClInclude Include="vector2D.h">
       <Filter>Header Files\Shell</Filter>
     </ClInclude>
-    <ClInclude Include="Gameloop.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Global.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Scene_Level1.h">
       <Filter>Header Files\Game\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Logging.h">
-      <Filter>Header Files\Engine\Debug</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files\Engine\SceneManagement</Filter>
@@ -376,6 +376,36 @@
     </ClInclude>
     <ClInclude Include="Component_EnemyShipCollider.h">
       <Filter>Header Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files\Engine\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameloop.h">
+      <Filter>Header Files\Engine\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="ActiveBounds.h">
+      <Filter>Header Files\Game\ObjectManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files\Engine\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Level3.h">
+      <Filter>Header Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_LevelBase.h">
+      <Filter>Header Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="AsteroidsManager.h">
+      <Filter>Header Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Logging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyShipsManager.h">
+      <Filter>Header Files\Game\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

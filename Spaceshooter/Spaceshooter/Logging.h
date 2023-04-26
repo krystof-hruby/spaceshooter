@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Global.h"
+#include "Debugging.h"
 
 #if LOGGING_ENABLED
 	#include <fstream>

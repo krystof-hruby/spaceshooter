@@ -7,9 +7,10 @@
 #include <exception>
 
 #include "Component_Transform.h"
+#include "Constants.h"
 #include "EngineException.h"
 #include "GameObject.h"
-#include "Global.h"
+#include "Time.h"
 
 // Animation:
 

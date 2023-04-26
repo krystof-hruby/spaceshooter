@@ -1,4 +1,4 @@
-// Scene_Level2.h
+// Scene_Level3.h
 // Krystof Hruby
 // 2023
 
@@ -10,8 +10,8 @@
 #include "Scene_LevelBase.h"
 #include "ScoreManager.h"
 
-// Scene for level 2 of the game.
-class Scene_Level2 final : public Scene_LevelBase, public AsteroidsManager, public EnemyShipsManager {
+// Scene for level 3 of the game.
+class Scene_Level3 final : public Scene_LevelBase, public AsteroidsManager, public EnemyShipsManager {
 public:
 	void Load() override;
 	void Update() override;

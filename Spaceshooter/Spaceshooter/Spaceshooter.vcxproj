@@ -143,6 +143,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActiveBounds.cpp" />
+    <ClCompile Include="AsteroidsManager.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -164,10 +166,10 @@
     <ClCompile Include="Component_SpriteRenderer.cpp" />
     <ClCompile Include="Component_Test.cpp" />
     <ClCompile Include="Component_Transform.cpp" />
+    <ClCompile Include="EnemyShipsManager.cpp" />
     <ClCompile Include="EngineException.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
-    <ClCompile Include="Global.cpp" />
     <ClCompile Include="Identifiable.cpp" />
     <ClCompile Include="ErrorLogger.cpp" />
     <ClCompile Include="gamecode.cpp" />
@@ -183,12 +185,17 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Level1.cpp" />
     <ClCompile Include="Scene_Level2.cpp" />
+    <ClCompile Include="Scene_Level3.cpp" />
+    <ClCompile Include="Scene_LevelBase.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="Shapes.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="vector2D.cpp" />
     <ClCompile Include="wincode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActiveBounds.h" />
+    <ClInclude Include="AsteroidsManager.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Component.h" />
@@ -211,6 +218,8 @@
     <ClInclude Include="Component_SpriteRenderer.h" />
     <ClInclude Include="Component_Test.h" />
     <ClInclude Include="Component_Transform.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="EnemyShipsManager.h" />
     <ClInclude Include="EngineException.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectFactory.h" />
@@ -220,7 +229,7 @@
     <ClInclude Include="gamecode.h" />
     <ClInclude Include="Gameloop.h" />
     <ClInclude Include="gametimer.h" />
-    <ClInclude Include="Global.h" />
+    <ClInclude Include="Debugging.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Logging.h" />
     <ClInclude Include="MainCamera.h" />
@@ -232,8 +241,11 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene_Level1.h" />
     <ClInclude Include="Scene_Level2.h" />
+    <ClInclude Include="Scene_Level3.h" />
+    <ClInclude Include="Scene_LevelBase.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Shapes.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

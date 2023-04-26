@@ -5,7 +5,7 @@
 #include "Component_PlayerCollider.h"
 #include "Component_PlayerController.h"
 #include "GameObject.h"
-#include "Global.h"
+#include "Debugging.h"
 
 void Component_PlayerCollider::OnCollisionEnter(std::shared_ptr<GameObject> other) {
 	#if PLAYER_INVINCIBILITY

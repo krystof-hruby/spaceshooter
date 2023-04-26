@@ -4,10 +4,11 @@
 
 #include "Component_AsteroidController.h"
 
+#include "ActiveBounds.h"
 #include "Component_Animator.h"
 #include "Component_Transform.h"
 #include "GameObject.h"
-#include "Global.h"
+#include "Time.h"
 
 void Component_AsteroidController::Update() {
 	this->GetGameObject()->GetComponent<Component_Transform>()->position += this->movement_direction * this->movement_speed * Time::delta_time;

@@ -4,11 +4,12 @@
 
 #include "Component_EnemyShipController.h"
 
+#include "ActiveBounds.h"
 #include "Component_Animator.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
 #include "GameObject.h"
-#include "Global.h"
+#include "Time.h"
 
 void Component_EnemyShipController::Update() {
 	// Despawn asteroid if out of bounds or exploded.

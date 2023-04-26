@@ -4,10 +4,11 @@
 
 #include "Component_PlayerBulletController.h"
 
+#include "ActiveBounds.h"
 #include "Component_Transform.h"
 #include "Component_SpriteRenderer.h"
 #include "GameObject.h"
-#include "Global.h"
+#include "Time.h"
 
 void Component_PlayerBulletController::Update() {
 	this->GetGameObject()->GetComponent<Component_Transform>()->position += this->movement_direction * this->movement_speed * Time::delta_time;

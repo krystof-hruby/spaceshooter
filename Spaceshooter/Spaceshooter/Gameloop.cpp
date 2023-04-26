@@ -6,23 +6,24 @@
 
 #include <memory>
 
-#include "Global.h"
 #include "InputManager.h"
 #include "Logging.h"
 #include "SceneManager.h"
 #include "Scene_Level1.h"
 #include "Scene_Level2.h"
+#include "Scene_Level3.h"
+#include "Time.h"
 
 void Gameloop::Start() {
 	LOG("GAMELOOP: Starting the game.");
 
-	// Load level 1
-	#if START_LEVEL_2
+	#if START_LEVEL == 1
+		SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level1>());
+	#elif START_LEVEL == 2
 		SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level2>());
-	#elif START_LEVEL3
+	#elif START_LEVEL == 3
 		SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level3>());
 	#else
-		SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level1>());
 	#endif
 }
 

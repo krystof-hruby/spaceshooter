@@ -11,7 +11,6 @@
 #include "shapes.h"
 
 // Engine includes
-#include "Global.h"
 #include "Gameloop.h"
 
 Game::Game()

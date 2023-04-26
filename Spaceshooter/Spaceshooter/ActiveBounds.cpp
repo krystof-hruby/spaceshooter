@@ -1,10 +1,8 @@
-// Global.cpp
+// ActiveBounds.cpp
 // Krystof Hruby
 // 2023
 
-#include "Global.h"
-
-double Time::delta_time;
+#include "ActiveBounds.h"
 
 const float ActiveBounds::RIGHT = 5000;
 const float ActiveBounds::LEFT = -5000;

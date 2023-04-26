@@ -19,9 +19,8 @@ void Component_AsteroidController::Update() {
 	transform->rotation += rotation_speed * rotation_direction * (float)Time::delta_time;
 
 	// Despawn asteroid if out of bounds or exploded.
-	if (animator->AnimationFinished("asteroid explosion") || !ActiveBounds::IsInBounds(transform->position)) {
+	if (animator->AnimationFinished("asteroid explosion") || !ActiveBounds::IsInBounds(transform->position))
 		this->GetGameObject()->Destroy();
-	}
 }
 
 void Component_AsteroidController::Explode() {

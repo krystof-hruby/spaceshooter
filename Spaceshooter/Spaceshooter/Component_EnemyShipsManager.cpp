@@ -22,7 +22,7 @@ void Component_EnemyShipsManager::Update() {
 }
 
 void Component_EnemyShipsManager::SpawnEnemyShip() {
-	std::shared_ptr<GameObject> enemy_ship = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::EnemyShip, this->GetGameObject()->GetComponentRegistry());
+	std::shared_ptr<GameObject> enemy_ship = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::EnemyShip, this->GetGameObject()->GetComponentRegistry(), true);
 	enemy_ship->GetComponent<Component_EnemyShipController>()->player_transform = this->player_transform;
 
 	// Add to scene.
@@ -31,7 +31,7 @@ void Component_EnemyShipsManager::SpawnEnemyShip() {
 
 	// Reset spawning.
 	this->enemy_ship_spawn_time = 0;
-	this->enemy_ship_spawn_period = (float)((rand() % 10) + 1) / 5;
+	this->enemy_ship_spawn_period = (float)((rand() % 10) + 1) / 7;
 }
 
 void Component_EnemyShipsManager::DespawnEnemyShips() {

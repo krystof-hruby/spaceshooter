@@ -40,6 +40,7 @@ void Scene_Level2::Load() {
 	// Enemy ships manager.
 	std::shared_ptr<GameObject> enemy_ships_manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::EnemyShipsManager, this->component_registry);
 	enemy_ships_manager->GetComponent<Component_EnemyShipsManager>()->score_manager = score_manager->GetComponent<Component_ScoreManager>();
+	enemy_ships_manager->GetComponent<Component_EnemyShipsManager>()->player_transform = player->GetComponent<Component_Transform>();
 	Scene::Instantiate(enemy_ships_manager);
 }
 

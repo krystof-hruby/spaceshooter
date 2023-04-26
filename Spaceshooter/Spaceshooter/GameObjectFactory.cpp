@@ -213,10 +213,8 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Asteroid(std::shared_
 	collider->radius = transform->scale * scale_multiplier;
 
 	// Randomize values.
-	Vector2D movement_direction;
-	movement_direction.XValue = transform->position.XValue < 0 ? (float)(rand() % 10) : -(float)(rand() % 10);
-	movement_direction.YValue = transform->position.YValue < 0 ? (float)(rand() % 10) : -(float)(rand() % 10);
-	asteroid_controller->movement_direction = movement_direction;
+	asteroid_controller->movement_direction.XValue = transform->position.XValue < 0 ? (float)(rand() % 10) : -(float)(rand() % 10);
+	asteroid_controller->movement_direction.YValue = transform->position.YValue < 0 ? (float)(rand() % 10) : -(float)(rand() % 10);
 	asteroid_controller->movement_speed = (float)(rand() % 100);
 	asteroid_controller->rotation_speed = (float)(rand() % 5 + 1);
 	asteroid_controller->rotation_direction = rand() % 2 == 1 ? CLOCKWISE : COUNTERCLOCKWISE;
@@ -253,6 +251,7 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_EnemyShip(std::shared
 	};
 	std::shared_ptr<Animation> animation = std::make_shared<Animation>("enemy ship explosion", sprites, false, 15);
 	animator->RegisterAnimation(animation);
+
 	enemy_ship_controller->movement_speed = 0.8f;
 
 	return game_object;

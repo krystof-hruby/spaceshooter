@@ -156,9 +156,6 @@
     <ClCompile Include="Scene_Level2.cpp">
       <Filter>Source Files\Game\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Component_Transform.cpp">
-      <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
-    </ClCompile>
     <ClCompile Include="Component_SpriteRenderer.cpp">
       <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
     </ClCompile>
@@ -244,6 +241,15 @@
       <Filter>Source Files\Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="Component_EnemyShipsManager.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_BossController.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_HomingMissileController.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_BossCollider.cpp">
       <Filter>Source Files\Game\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -399,6 +405,15 @@
       <Filter>Header Files\Game\Components</Filter>
     </ClInclude>
     <ClInclude Include="Component_EnemyShipsManager.h">
+      <Filter>Header Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_BossController.h">
+      <Filter>Header Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_HomingMissileController.h">
+      <Filter>Header Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_BossCollider.h">
       <Filter>Header Files\Game\Components</Filter>
     </ClInclude>
   </ItemGroup>

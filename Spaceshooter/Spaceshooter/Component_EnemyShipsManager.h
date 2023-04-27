@@ -16,13 +16,14 @@ private:
 	float grace_period_time = 0;
 	float enemy_ship_spawn_time = 0;
 	float enemy_ship_spawn_period = 1; // Is randomized.
+	bool enemy_ships_despawned = false;
+	std::vector<std::weak_ptr<GameObject>> enemy_ships;
 
 public:
 	using Component::Component;
 
 	std::weak_ptr<Component_ScoreManager> score_manager;
 	std::weak_ptr<Component_Transform> player_transform;
-	std::vector<std::weak_ptr<GameObject>> enemy_ships;
 	float grace_period = 1;
 
 	// Spawns asteroid with randomized values.

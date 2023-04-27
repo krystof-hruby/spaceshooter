@@ -24,7 +24,7 @@ void Component_EnemyShipController::Update() {
 	if (this->player_transform.expired())
 		return; // Player was destroyed.
 	
-	std::shared_ptr<Component_Transform> player_transform = this->player_transform.lock();
+	auto player_transform = this->player_transform.lock();
 
 	// Interpolate between this position and player position.
 	float time_step = (float)Time::delta_time * this->movement_speed;

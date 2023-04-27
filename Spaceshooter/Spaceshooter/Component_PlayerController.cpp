@@ -16,6 +16,8 @@
 #include "Scene.h"
 #include "Time.h"
 
+#include "Logging.h" // TODO
+
 void Component_PlayerController::Start() {
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player spawn");
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
@@ -36,6 +38,9 @@ void Component_PlayerController::Update() {
 
 		return;
 	}
+
+	if (this->dead)
+		return;
 	
 	if (!animator->AnimationFinished("player spawn")) {
 		// Did not finish spawning. Do not allow to move.
@@ -66,11 +71,11 @@ void Component_PlayerController::Update() {
 
 	// Update sprite.
 	if (player_input->GetInput_Rotation() > 0)
-		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green_right.bmp");
+		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green_right.png");
 	else if (player_input->GetInput_Rotation() < 0)
-		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green_left.bmp");
+		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green_left.png");
 	else // No rotation.
-		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green.bmp");
+		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green.png");
 }
 
 
@@ -78,6 +83,7 @@ void Component_PlayerController::Explode() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false; // Hide sprite.
 	this->GetGameObject()->GetComponent<Component_PlayerCollider>()->is_active = false; // Disable collision.
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player explode");
+	this->dead = true;
 }
 
 void Component_PlayerController::ShootBullet(Vector2D position, float rotation, Vector2D direction) {

@@ -17,7 +17,7 @@ void Component_EnemyShipsManager::Update() {
 	this->grace_period_time += (float)Time::delta_time;
 	this->enemy_ship_spawn_time += (float)Time::delta_time;
 
-	if (this->grace_period_time > this->grace_period && this->enemy_ship_spawn_time > this->enemy_ship_spawn_period)
+	if (!this->enemy_ships_despawned && this->grace_period_time > this->grace_period && this->enemy_ship_spawn_time > this->enemy_ship_spawn_period)
 		this->SpawnEnemyShip();
 }
 
@@ -31,11 +31,16 @@ void Component_EnemyShipsManager::SpawnEnemyShip() {
 
 	// Reset spawning.
 	this->enemy_ship_spawn_time = 0;
-	this->enemy_ship_spawn_period = (float)((rand() % 10) + 1) / 7;
+	this->enemy_ship_spawn_period = (float)((rand() % 10) + 1) / 5;
 }
 
 void Component_EnemyShipsManager::DespawnEnemyShips() {
+	if (this->enemy_ships_despawned)
+		return;
+	
 	for (auto enemy_ship : this->enemy_ships)
 		if (!enemy_ship.expired() && enemy_ship.lock()->HasComponent<Component_EnemyShipController>())
 			enemy_ship.lock()->GetComponent<Component_EnemyShipController>()->Explode();
+
+	this->enemy_ships_despawned = true;
 }

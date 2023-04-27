@@ -16,12 +16,13 @@ private:
 	float grace_period_time = 0;
 	float asteroid_spawn_time = 0;
 	float asteroid_spawn_period = 1; // Is randomized.
+	bool asteroids_despawned = false;
+	std::vector<std::weak_ptr<GameObject>> asteroids;
 
 public:
 	using Component::Component;
 
 	std::weak_ptr<Component_ScoreManager> score_manager;
-	std::vector<std::weak_ptr<GameObject>> asteroids;
 	float grace_period = 1;
 
 	// Spawns asteroid with randomized values.

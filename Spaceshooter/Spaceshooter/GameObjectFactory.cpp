@@ -9,10 +9,13 @@
 #include "Component_AsteroidController.h"
 #include "Component_AsteroidsManager.h"
 #include "Component_AudioEmitter.h"
+#include "Component_BossCollider.h"
+#include "Component_BossController.h"
 #include "Component_CircleCollider.h"
 #include "Component_EnemyShipCollider.h"
 #include "Component_EnemyShipController.h"
 #include "Component_EnemyShipsManager.h"
+#include "Component_HomingMissileController.h"
 #include "Component_InputReader.h"
 #include "Component_PlayerBulletCollider.h"
 #include "Component_PlayerBulletController.h"
@@ -25,6 +28,7 @@
 #include "Component_Transform.h"
 #include "Constants.h"
 #include "Debugging.h"
+#include "Logging.h" // TODO: remove
 
 GameObjectFactory& GameObjectFactory::GetInstance() {
 	static GameObjectFactory instance;
@@ -119,6 +123,27 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShipsManage
 	return game_object;
 }
 
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Boss";
+	game_object->AddComponent<Component_Transform>();
+	game_object->AddComponent<Component_SpriteRenderer>();
+	game_object->AddComponent<Component_Animator>();
+	game_object->AddComponent<Component_BossCollider>();
+	game_object->AddComponent<Component_BossController>();
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_HomingMissile(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Homing Missile";
+	game_object->AddComponent<Component_Transform>();
+	game_object->AddComponent<Component_SpriteRenderer>();
+	game_object->AddComponent<Component_Animator>();
+	game_object->AddComponent<Component_HomingMissileController>();
+	return game_object;
+}
+
 
 // Specific ApplyPrefab methods:
 
@@ -141,21 +166,21 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Player(std::shared_pt
 
 	transform->scale = 0.2f;
 	collider->radius = 45;
-	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green.bmp");
+	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green.png");
 	
 	std::vector<Sprite> sprites = {
-		L"assets/spaceships/blue_ship_explosion_1.bmp",
-		L"assets/spaceships/blue_ship_explosion_2.bmp",
-		L"assets/spaceships/blue_ship_explosion_3.bmp",
-		L"assets/spaceships/blue_ship_explosion_4.bmp",
+		L"assets/spaceships/blue_ship_explosion_1.png",
+		L"assets/spaceships/blue_ship_explosion_2.png",
+		L"assets/spaceships/blue_ship_explosion_3.png",
+		L"assets/spaceships/blue_ship_explosion_4.png",
 	};
 	std::shared_ptr<Animation> animation = std::make_shared<Animation>("player explode", sprites, false, 15);
 	animator->RegisterAnimation(animation);
 	sprites = {
-		L"assets/spaceships/blue_ship_spawn_1.bmp",
-		L"assets/spaceships/blue_ship_spawn_2.bmp",
-		L"assets/spaceships/blue_ship_spawn_3.bmp",
-		L"assets/spaceships/blue_ship_spawn_4.bmp",
+		L"assets/spaceships/blue_ship_spawn_1.png",
+		L"assets/spaceships/blue_ship_spawn_2.png",
+		L"assets/spaceships/blue_ship_spawn_3.png",
+		L"assets/spaceships/blue_ship_spawn_4.png",
 	};
 	animation = std::make_shared<Animation>("player spawn", sprites, false, 11);
 	animator->RegisterAnimation(animation);
@@ -172,7 +197,7 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_PlayerBullet(std::sha
 	game_object->GetComponent<Component_Transform>()->scale = 0.2f;
 	game_object->GetComponent<Component_PlayerBulletCollider>()->width = 80;
 	game_object->GetComponent<Component_PlayerBulletCollider>()->height = 40;
-	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/projectiles/projectile_pink.bmp");
+	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/projectiles/projectile_pink.png");
 	game_object->GetComponent<Component_PlayerBulletController>()->movement_speed = 1500;
 
 	return game_object;
@@ -195,21 +220,21 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Asteroid(std::shared_
 
 	// Add animation.
 	std::vector<Sprite> sprites = {
-		L"assets/asteroids/asteroid_explosion_1.bmp",
-		L"assets/asteroids/asteroid_explosion_2.bmp",
-		L"assets/asteroids/asteroid_explosion_3.bmp",
-		L"assets/asteroids/asteroid_explosion_4.bmp",
+		L"assets/asteroids/asteroid_explosion_1.png",
+		L"assets/asteroids/asteroid_explosion_2.png",
+		L"assets/asteroids/asteroid_explosion_3.png",
+		L"assets/asteroids/asteroid_explosion_4.png",
 	};
 	std::shared_ptr<Animation> animation = std::make_shared<Animation>("asteroid explosion", sprites, false, 15);
 	game_object->GetComponent<Component_Animator>()->RegisterAnimation(animation);
 
 	// Randomize sprite.
-	Sprite sprite = rand() % 2 == 1 ? L"assets/asteroids/asteroid_large.bmp" : L"assets/asteroids/asteroid_small.bmp";
+	Sprite sprite = rand() % 2 == 1 ? L"assets/asteroids/asteroid_large.png" : L"assets/asteroids/asteroid_small.png";
 	sprite_renderer->SetSprite(sprite);
 
 	// Randomize scale.
 	transform->scale = ((float)((rand() % 3) + 2) / 10);
-	int scale_multiplier = sprite == L"assets/asteroids/asteroid_large.bmp" ? 190 : 250; // Sprites have different sizes.
+	int scale_multiplier = sprite == L"assets/asteroids/asteroid_large.png" ? 190 : 250; // Sprites have different sizes.
 	collider->radius = transform->scale * scale_multiplier;
 
 	// Randomize values.
@@ -218,6 +243,9 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Asteroid(std::shared_
 	asteroid_controller->movement_speed = (float)(rand() % 100);
 	asteroid_controller->rotation_speed = (float)(rand() % 5 + 1);
 	asteroid_controller->rotation_direction = rand() % 2 == 1 ? CLOCKWISE : COUNTERCLOCKWISE;
+
+	LOG("asteroid");
+	LOG(game_object->GetID());
 
 	return game_object;
 }
@@ -231,7 +259,7 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_EnemyShip(std::shared
 	
 	transform->scale = 0.2f;
 	collider->radius = 50;
-	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_purple.bmp");
+	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_purple.png");
 
 	// Randomize spawn position.
 	if (rand() % 2 == 1) {
@@ -244,15 +272,51 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_EnemyShip(std::shared
 	}
 
 	std::vector<Sprite> sprites = {
-		L"assets/spaceships/purple_ship_explosion_1.bmp",
-		L"assets/spaceships/purple_ship_explosion_2.bmp",
-		L"assets/spaceships/purple_ship_explosion_3.bmp",
-		L"assets/spaceships/purple_ship_explosion_4.bmp",
+		L"assets/spaceships/purple_ship_explosion_1.png",
+		L"assets/spaceships/purple_ship_explosion_2.png",
+		L"assets/spaceships/purple_ship_explosion_3.png",
+		L"assets/spaceships/purple_ship_explosion_4.png",
 	};
 	std::shared_ptr<Animation> animation = std::make_shared<Animation>("enemy ship explosion", sprites, false, 15);
 	animator->RegisterAnimation(animation);
 
 	enemy_ship_controller->movement_speed = 0.8f;
+
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Boss(std::shared_ptr<GameObject> game_object) {
+	auto transform = game_object->GetComponent<Component_Transform>();
+	auto sprite_renderer = game_object->GetComponent<Component_SpriteRenderer>();
+	auto boss_controller = game_object->GetComponent<Component_BossController>();
+	auto animator = game_object->GetComponent<Component_Animator>();
+	auto collider = game_object->GetComponent<Component_BossCollider>();
+
+	std::vector<Sprite> sprites = {
+		L"assets/spaceships/purple_ship_explosion_1.png",
+		L"assets/spaceships/purple_ship_explosion_2.png",
+		L"assets/spaceships/purple_ship_explosion_3.png",
+		L"assets/spaceships/purple_ship_explosion_4.png",
+	};
+	std::shared_ptr<Animation> animation = std::make_shared<Animation>("boss explosion", sprites, false, 15);
+	animator->RegisterAnimation(animation);
+	
+	transform->scale = 0.5f;
+	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_boss.png");
+	collider->width = 200;
+	collider->height = 200;
+
+	boss_controller->movement_speed = 1;
+	boss_controller->spawn_position = Vector2D(0, 700);
+	boss_controller->spawn_target = Vector2D(0, 400);
+	boss_controller->lasers_shoot_period = 5;
+	boss_controller->homing_missile_shoot_period = 5;
+	boss_controller->homing_missile_spawn_offset = Vector2D(0, -30);
+	#if LOWER_BOSS_HEALTH
+		boss_controller->health = BOSS_HEALTH;
+	#else
+		boss_controller->health = 20;
+	#endif
 
 	return game_object;
 }

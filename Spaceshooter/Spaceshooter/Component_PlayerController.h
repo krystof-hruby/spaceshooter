@@ -13,6 +13,7 @@
 class Component_PlayerController final : public Component {
 private:
 	float reload_time = 0;
+	bool dead = false;
 
 	inline bool Reloaded() const { return this->reload_time > this->reload_period; }
 	void ShootBullet(Vector2D position, float rotation, Vector2D direction);

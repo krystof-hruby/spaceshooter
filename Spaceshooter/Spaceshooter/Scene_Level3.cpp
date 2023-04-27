@@ -5,6 +5,7 @@
 #include "Scene_Level3.h"
 
 #include "Component_AsteroidsManager.h"
+#include "Component_BossController.h"
 #include "Component_EnemyShipsManager.h"
 #include "Component_PlayerController.h"
 #include "Component_ScoreManager.h"
@@ -24,7 +25,7 @@ void Scene_Level3::Load() {
 
 	// Background.
 	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry, true);
-	background->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_brown.bmp");
+	background->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_black.png");
 	Scene::Instantiate(background);
 
 	// Player.
@@ -32,15 +33,11 @@ void Scene_Level3::Load() {
 	player->GetComponent<Component_PlayerController>()->score_manager = score_manager->GetComponent<Component_ScoreManager>();
 	Scene::Instantiate(player);
 
-	// Asteroids manager.
-	std::shared_ptr<GameObject> asteroids_manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::AsteroidsManager, this->component_registry);
-	asteroids_manager->GetComponent<Component_AsteroidsManager>()->score_manager = score_manager->GetComponent<Component_ScoreManager>();
-	Scene::Instantiate(asteroids_manager);
-
-	// Enemy ships manager.
-	std::shared_ptr<GameObject> enemy_ships_manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::EnemyShipsManager, this->component_registry);
-	enemy_ships_manager->GetComponent<Component_EnemyShipsManager>()->score_manager = score_manager->GetComponent<Component_ScoreManager>();
-	Scene::Instantiate(enemy_ships_manager);
+	// Boss.
+	std::shared_ptr<GameObject> boss = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Boss, this->component_registry, true);
+	boss->GetComponent<Component_BossController>()->player_transform = player->GetComponent<Component_Transform>();
+	boss->GetComponent<Component_BossController>()->grace_period = 7;
+	Scene::Instantiate(boss);
 }
 
 void Scene_Level3::Update() {

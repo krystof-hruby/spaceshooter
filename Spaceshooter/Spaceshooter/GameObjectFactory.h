@@ -21,6 +21,9 @@ enum class GameObjectType {
 	AsteroidsManager,
 	EnemyShip,
 	EnemyShipsManager,
+	Boss,
+	HomingMissile,
+	Laser,
 };
 
 // Creates specific game objects by combining components.
@@ -41,6 +44,8 @@ private:
 		{ GameObjectType::AsteroidsManager, CreateGameObject_AsteroidsManager },
 		{ GameObjectType::EnemyShip, CreateGameObject_EnemyShip },
 		{ GameObjectType::EnemyShipsManager, CreateGameObject_EnemyShipsManager },
+		{ GameObjectType::Boss, CreateGameObject_Boss },
+		{ GameObjectType::HomingMissile, CreateGameObject_HomingMissile },
 	};
 
 	// Specific CreateGameObject methods:
@@ -52,6 +57,8 @@ private:
 	static std::shared_ptr<GameObject> CreateGameObject_AsteroidsManager(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_EnemyShip(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_EnemyShipsManager(std::shared_ptr<ComponentRegistry> component_registry);
+	static std::shared_ptr<GameObject> CreateGameObject_Boss(std::shared_ptr<ComponentRegistry> component_registry);
+	static std::shared_ptr<GameObject> CreateGameObject_HomingMissile(std::shared_ptr<ComponentRegistry> component_registry);
 
 	// Applies prefab for this game object.
 	std::shared_ptr<GameObject> ApplyPrefab(GameObjectType type, std::shared_ptr<GameObject> game_object);
@@ -62,6 +69,7 @@ private:
 		{ GameObjectType::PlayerBullet, ApplyPrefab_PlayerBullet },
 		{ GameObjectType::Asteroid, ApplyPrefab_Asteroid },
 		{ GameObjectType::EnemyShip, ApplyPrefab_EnemyShip },
+		{ GameObjectType::Boss, ApplyPrefab_Boss },
 	};
 
 	// Specific ApplyPrefab methods:
@@ -70,6 +78,7 @@ private:
 	static std::shared_ptr<GameObject> ApplyPrefab_PlayerBullet(std::shared_ptr<GameObject> game_object);
 	static std::shared_ptr<GameObject> ApplyPrefab_Asteroid(std::shared_ptr<GameObject> game_object);
 	static std::shared_ptr<GameObject> ApplyPrefab_EnemyShip(std::shared_ptr<GameObject> game_object);
+	static std::shared_ptr<GameObject> ApplyPrefab_Boss(std::shared_ptr<GameObject> game_object);
 
 public:
 	// Returns singleton instance.

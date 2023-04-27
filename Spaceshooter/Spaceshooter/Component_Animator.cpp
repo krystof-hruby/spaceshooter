@@ -28,8 +28,7 @@ Animation::Animation(std::string name, std::vector<Sprite> sprites, bool loop, d
 }
 
 bool Animation::Play(Vector2D position, float scale, float rotation) {
-	if (this->frame_time >= (SECOND / this->speed))
-	{
+	if (this->frame_time >= (SECOND / this->speed)) {
 		this->current_frame++;
 		this->frame_time = 0; // Reset frame time.
 	}

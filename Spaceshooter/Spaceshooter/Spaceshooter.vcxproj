@@ -152,11 +152,14 @@
     <ClCompile Include="Component_AsteroidCollider.cpp" />
     <ClCompile Include="Component_AsteroidController.cpp" />
     <ClCompile Include="Component_AsteroidsManager.cpp" />
+    <ClCompile Include="Component_BossCollider.cpp" />
+    <ClCompile Include="Component_BossController.cpp" />
     <ClCompile Include="Component_CircleCollider.cpp" />
     <ClCompile Include="Component_Collider.cpp" />
     <ClCompile Include="Component_EnemyShipCollider.cpp" />
     <ClCompile Include="Component_EnemyShipController.cpp" />
     <ClCompile Include="Component_EnemyShipsManager.cpp" />
+    <ClCompile Include="Component_HomingMissileController.cpp" />
     <ClCompile Include="Component_PlayerBulletCollider.cpp" />
     <ClCompile Include="Component_PlayerBulletController.cpp" />
     <ClCompile Include="Component_PlayerCollider.cpp" />
@@ -166,7 +169,6 @@
     <ClCompile Include="Component_AudioEmitter.cpp" />
     <ClCompile Include="Component_ScoreManager.cpp" />
     <ClCompile Include="Component_SpriteRenderer.cpp" />
-    <ClCompile Include="Component_Transform.cpp" />
     <ClCompile Include="EngineException.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
@@ -201,11 +203,14 @@
     <ClInclude Include="Component_AsteroidCollider.h" />
     <ClInclude Include="Component_AsteroidController.h" />
     <ClInclude Include="Component_AsteroidsManager.h" />
+    <ClInclude Include="Component_BossCollider.h" />
+    <ClInclude Include="Component_BossController.h" />
     <ClInclude Include="Component_CircleCollider.h" />
     <ClInclude Include="Component_Collider.h" />
     <ClInclude Include="Component_EnemyShipCollider.h" />
     <ClInclude Include="Component_EnemyShipController.h" />
     <ClInclude Include="Component_EnemyShipsManager.h" />
+    <ClInclude Include="Component_HomingMissileController.h" />
     <ClInclude Include="Component_InputReader.h" />
     <ClInclude Include="Component_PlayerBulletCollider.h" />
     <ClInclude Include="Component_PlayerBulletController.h" />

@@ -905,7 +905,7 @@ ErrorType MyDrawEngine::DrawAt(Vector2D position, PictureIndex pic, float scale,
 	{
 		position = theCamera.Transform(position);
 		scale = theCamera.Transform(scale);
-      angle = -angle;
+        angle = -angle;
 	}
 
 	// If not found

@@ -23,9 +23,9 @@ void Scene_Level1::Load() {
 
 	// Background.
 	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry, true);
-	background->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_black.bmp");
+	background->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_black.png");
 	Scene::Instantiate(background);
-
+	
 	// Player.
 	std::shared_ptr<GameObject> player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry, true);
 	player->GetComponent<Component_PlayerController>()->score_manager = score_manager->GetComponent<Component_ScoreManager>();
@@ -34,6 +34,7 @@ void Scene_Level1::Load() {
 	// Asteroids manager.
 	std::shared_ptr<GameObject> asteroids_manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::AsteroidsManager, this->component_registry);
 	asteroids_manager->GetComponent<Component_AsteroidsManager>()->score_manager = score_manager->GetComponent<Component_ScoreManager>();
+	asteroids_manager->GetComponent<Component_AsteroidsManager>()->grace_period = 7;
 	Scene::Instantiate(asteroids_manager);
 }
 

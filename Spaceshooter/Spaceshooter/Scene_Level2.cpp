@@ -24,7 +24,7 @@ void Scene_Level2::Load() {
 
 	// Background.
 	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry, true);
-	background->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_brown.bmp");
+	background->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_brown.png");
 	Scene::Instantiate(background);
 
 	// Player.
@@ -35,12 +35,14 @@ void Scene_Level2::Load() {
 	// Asteroids manager.
 	std::shared_ptr<GameObject> asteroids_manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::AsteroidsManager, this->component_registry);
 	asteroids_manager->GetComponent<Component_AsteroidsManager>()->score_manager = score_manager->GetComponent<Component_ScoreManager>();
+	asteroids_manager->GetComponent<Component_AsteroidsManager>()->grace_period = 7;
 	Scene::Instantiate(asteroids_manager);
 
 	// Enemy ships manager.
 	std::shared_ptr<GameObject> enemy_ships_manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::EnemyShipsManager, this->component_registry);
 	enemy_ships_manager->GetComponent<Component_EnemyShipsManager>()->score_manager = score_manager->GetComponent<Component_ScoreManager>();
 	enemy_ships_manager->GetComponent<Component_EnemyShipsManager>()->player_transform = player->GetComponent<Component_Transform>();
+	enemy_ships_manager->GetComponent<Component_EnemyShipsManager>()->grace_period = 7;
 	Scene::Instantiate(enemy_ships_manager);
 }
 

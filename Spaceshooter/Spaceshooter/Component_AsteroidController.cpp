@@ -15,7 +15,7 @@ void Component_AsteroidController::Update() {
 	auto transform = this->GetGameObject()->GetComponent<Component_Transform>();
 	auto animator = this->GetGameObject()->GetComponent<Component_Animator>();
 
-	transform->position += this->movement_direction * this->movement_speed * Time::delta_time;
+	transform->position += this->movement_direction * this->movement_speed * (float)Time::delta_time;
 	transform->rotation += rotation_speed * rotation_direction * (float)Time::delta_time;
 
 	// Despawn asteroid if out of bounds or exploded.

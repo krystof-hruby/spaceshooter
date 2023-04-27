@@ -20,7 +20,7 @@ void Component_AsteroidsManager::Update() {
 	this->grace_period_time += (float)Time::delta_time;
 	this->asteroid_spawn_time += (float)Time::delta_time;
 
-	if (this->grace_period_time > this->grace_period && this->asteroid_spawn_time > this->asteroid_spawn_period)
+	if (!this->asteroids_despawned && this->grace_period_time > this->grace_period && this->asteroid_spawn_time > this->asteroid_spawn_period)
 		this->SpawnAsteroid();
 }
 
@@ -33,11 +33,16 @@ void Component_AsteroidsManager::SpawnAsteroid() {
 
 	// Reset spawning.
 	this->asteroid_spawn_time = 0;
-	this->asteroid_spawn_period = (float)((rand() % 10) + 1) / 10; // Randomize spawn period.
+	this->asteroid_spawn_period = (float)((rand() % 10) + 1) / 50; // Randomize spawn period.
 }
 
 void Component_AsteroidsManager::DespawnAsteroids() {
+	if (this->asteroids_despawned)
+		return;
+
 	for (auto asteroid : this->asteroids)
 		if (!asteroid.expired() && asteroid.lock()->HasComponent<Component_AsteroidController>())
 			asteroid.lock()->GetComponent<Component_AsteroidController>()->Explode();
+
+	this->asteroids_despawned = true;
 }

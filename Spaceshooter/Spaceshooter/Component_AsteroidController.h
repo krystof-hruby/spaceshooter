@@ -13,6 +13,8 @@
 class Component_AsteroidController final : public Component {
 public:
 	using Component::Component;
+	inline bool Startable() const override { return false; }
+	void Update() override;
 
 	float movement_speed = 1;
 	Vector2D movement_direction;
@@ -20,7 +22,5 @@ public:
 	int rotation_direction = CLOCKWISE;
 
 	void Explode();
-	inline bool Startable() const override { return false; }
-	void Update() override;
 };
 

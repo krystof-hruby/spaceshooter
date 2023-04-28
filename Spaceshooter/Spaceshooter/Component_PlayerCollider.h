@@ -7,10 +7,10 @@
 #include "Component_CircleCollider.h"
 
 class Component_PlayerCollider final : public Component_CircleCollider {
-protected:
-	void OnCollisionEnter(std::shared_ptr<GameObject> other) override;
-
 public:
 	using Component_CircleCollider::Component_CircleCollider;
+
+protected:
+	void OnCollisionEnter(std::shared_ptr<GameObject> other) override;
 };
 

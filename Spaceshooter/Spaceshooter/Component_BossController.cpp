@@ -17,7 +17,6 @@
 
 void Component_BossController::Start() {
 	this->GetGameObject()->GetComponent<Component_Transform>()->position = this->spawn_position;
-	this->GetGameObject()->GetComponent<Component_BossCollider>()->is_active = false;
 }
 
 void Component_BossController::Update() {
@@ -52,7 +51,17 @@ void Component_BossController::Update() {
 			this->ShootHomingMissile();
 	}
 
-	// TODO: move
+	// Floating movement.
+	this->floating_time += (float)Time::delta_time;
+	transform->position.XValue = this->spawn_target.XValue + (sin(this->floating_time * 2) * this->floating_movement_speed);
+	transform->position.YValue = this->spawn_target.YValue + (sin(this->floating_time * 1) * this->floating_movement_speed);
+}
+
+void Component_BossController::GetDamaged(int damage) {
+	this->health -= damage;
+
+	if (this->health <= 0)
+		this->Explode();
 }
 
 void Component_BossController::Spawn() {
@@ -65,27 +74,20 @@ void Component_BossController::Spawn() {
 
 	// Check if it is near spawn target to avoid weird sprite rendering effects.
 	if ((transform->position.XValue >= this->spawn_target.XValue - 30 && transform->position.XValue <= this->spawn_target.XValue + 30) && (transform->position.YValue >= this->spawn_target.YValue - 30 && transform->position.YValue <= this->spawn_target.YValue + 30)) {
+		this->spawn_target = transform->position; // Update spawn target to current position (is slightly different).
 		this->spawning = false;
-		this->GetGameObject()->GetComponent<Component_BossCollider>()->is_active = true;
 	}
 }
 
-void Component_BossController::GetDamaged(int damage) {
-	this->health -= damage;
-
-	if (this->health <= 0)
-		this->Explode();
-}
-
 void Component_BossController::ShootLasers() {
-
+	// TODO:
 	this->laser_shoot_time = 0;
 }
 
 void Component_BossController::ShootHomingMissile() {
-	return;
+	return; // TODO:
 
-	std::shared_ptr<GameObject> homing_missile = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::HomingMissile, this->GetGameObject()->GetComponentRegistry(), true);
+	std::shared_ptr<GameObject> homing_missile = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::HomingMissile, this->GetGameObject()->GetComponentRegistry());
 	homing_missile->GetComponent<Component_HomingMissileController>()->player_transform = this->player_transform;
 	homing_missile->GetComponent<Component_Transform>()->position = this->GetGameObject()->GetComponent<Component_Transform>()->position - this->homing_missile_spawn_offset;
 

@@ -30,10 +30,10 @@ public:
 	
 	// Creates a game object based on the provided type by combining components.
 	// Set apply_prefab to true to apply saved prefab for that game_object.
-	std::shared_ptr<GameObject> CreateGameObject(GameObjectType type, std::shared_ptr<ComponentRegistry> component_registry, bool apply_prefab = false);
+	std::shared_ptr<GameObject> CreateGameObject(GameObjectType type, std::shared_ptr<ComponentRegistry> component_registry);
 
 private:
-	// Singleton
+	// Singleton.
 	GameObjectFactory() { }
 	GameObjectFactory(GameObjectFactory const& copy) = delete;
 	GameObjectFactory operator = (GameObjectFactory const& copy) = delete;
@@ -63,25 +63,5 @@ private:
 	static std::shared_ptr<GameObject> CreateGameObject_EnemyShipsManager(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Boss(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_HomingMissile(std::shared_ptr<ComponentRegistry> component_registry);
-
-	// Applies prefab for this game object.
-	std::shared_ptr<GameObject> ApplyPrefab(GameObjectType type, std::shared_ptr<GameObject> game_object);
-
-	std::unordered_map<GameObjectType, std::function<std::shared_ptr<GameObject>(std::shared_ptr<GameObject>)>> prefabs_jump_table = {
-		{ GameObjectType::Background, ApplyPrefab_Background },
-		{ GameObjectType::Player, ApplyPrefab_Player },
-		{ GameObjectType::PlayerBullet, ApplyPrefab_PlayerBullet },
-		{ GameObjectType::Asteroid, ApplyPrefab_Asteroid },
-		{ GameObjectType::EnemyShip, ApplyPrefab_EnemyShip },
-		{ GameObjectType::Boss, ApplyPrefab_Boss },
-	};
-
-	// Specific ApplyPrefab methods:
-	static std::shared_ptr<GameObject> ApplyPrefab_Background(std::shared_ptr<GameObject> game_object);
-	static std::shared_ptr<GameObject> ApplyPrefab_Player(std::shared_ptr<GameObject> game_object);
-	static std::shared_ptr<GameObject> ApplyPrefab_PlayerBullet(std::shared_ptr<GameObject> game_object);
-	static std::shared_ptr<GameObject> ApplyPrefab_Asteroid(std::shared_ptr<GameObject> game_object);
-	static std::shared_ptr<GameObject> ApplyPrefab_EnemyShip(std::shared_ptr<GameObject> game_object);
-	static std::shared_ptr<GameObject> ApplyPrefab_Boss(std::shared_ptr<GameObject> game_object);
 };
 

@@ -24,17 +24,17 @@ void Scene_Level3::Load() {
 	Scene::Instantiate(score_manager);
 
 	// Background.
-	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry, true);
+	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry);
 	background->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_black.png");
 	Scene::Instantiate(background);
 
 	// Player.
-	std::shared_ptr<GameObject> player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry, true);
+	std::shared_ptr<GameObject> player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry);
 	player->GetComponent<Component_PlayerController>()->score_manager = score_manager->GetComponent<Component_ScoreManager>();
 	Scene::Instantiate(player);
 
 	// Boss.
-	std::shared_ptr<GameObject> boss = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Boss, this->component_registry, true);
+	std::shared_ptr<GameObject> boss = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Boss, this->component_registry);
 	boss->GetComponent<Component_BossController>()->player_transform = player->GetComponent<Component_Transform>();
 	boss->GetComponent<Component_BossController>()->grace_period = 7;
 	Scene::Instantiate(boss);

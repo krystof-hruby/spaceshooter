@@ -85,7 +85,7 @@ void Component_PlayerController::Explode() {
 }
 
 void Component_PlayerController::ShootBullet(Vector2D position, float rotation, Vector2D direction) {
-	std::shared_ptr<GameObject> bullet = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::PlayerBullet, this->GetGameObject()->GetComponentRegistry(), true);
+	std::shared_ptr<GameObject> bullet = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::PlayerBullet, this->GetGameObject()->GetComponentRegistry());
 	bullet->GetComponent<Component_Transform>()->position = position;
 	bullet->GetComponent<Component_Transform>()->rotation = rotation;
 	bullet->GetComponent<Component_PlayerBulletController>()->movement_direction = direction;

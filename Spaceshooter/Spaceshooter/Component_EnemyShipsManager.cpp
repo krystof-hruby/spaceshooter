@@ -22,7 +22,7 @@ void Component_EnemyShipsManager::Update() {
 }
 
 void Component_EnemyShipsManager::SpawnEnemyShip() {
-	std::shared_ptr<GameObject> enemy_ship = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::EnemyShip, this->GetGameObject()->GetComponentRegistry(), true);
+	std::shared_ptr<GameObject> enemy_ship = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::EnemyShip, this->GetGameObject()->GetComponentRegistry());
 	enemy_ship->GetComponent<Component_EnemyShipController>()->player_transform = this->player_transform;
 
 	// Add to scene.

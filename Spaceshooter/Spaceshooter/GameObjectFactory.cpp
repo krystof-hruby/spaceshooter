@@ -35,157 +35,70 @@ GameObjectFactory& GameObjectFactory::GetInstance() {
 	return instance;
 }
 
-std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject(GameObjectType type, std::shared_ptr<ComponentRegistry> component_registry, bool apply_prefab) {
-	if (apply_prefab)
-		return this->ApplyPrefab(type, object_creation_jump_table[type](component_registry));
-	else
-		return object_creation_jump_table[type](component_registry);
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject(GameObjectType type, std::shared_ptr<ComponentRegistry> component_registry) {
+	return object_creation_jump_table[type](component_registry);
 }
-
-std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab(GameObjectType type, std::shared_ptr<GameObject> game_object) {
-	return this->prefabs_jump_table[type](game_object);
-}
-
 
 // Specific CreateGameObject methods:
 
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Background(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Background";
-	game_object->AddComponent<Component_Transform>();
-	game_object->AddComponent<Component_SpriteRenderer>();
+
+	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->rotation = PI / 2;
+	
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	#if VISUALIZE_HITBOXES
+		sprite_renderer->is_active = false;
+	#endif
+
 	return game_object;
 }
 
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_ScoreManager(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Score Manager";
-	game_object->AddComponent<Component_ScoreManager>();
+	
+	auto score_manager = game_object->AddComponent<Component_ScoreManager>();
+	
 	return game_object;
 }
 
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Player";
-	game_object->AddComponent<Component_Transform>();
-	game_object->AddComponent<Component_PlayerCollider>();
-	game_object->AddComponent<Component_SpriteRenderer>();
-	game_object->AddComponent<Component_Animator>();
-	game_object->AddComponent<Component_AudioEmitter>();
-	game_object->AddComponent<Component_PlayerInput>();
-	game_object->AddComponent<Component_PlayerController>();	
-	return game_object;
-}
-
-std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_PlayerBullet(std::shared_ptr<ComponentRegistry> component_registry) {
-	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	game_object->tag = "Player Bullet";
-	game_object->AddComponent<Component_Transform>();
-	game_object->AddComponent<Component_PlayerBulletCollider>();
-	game_object->AddComponent<Component_SpriteRenderer>();
-	game_object->AddComponent<Component_PlayerBulletController>();
-	return game_object;
-}
-
-std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Asteroid(std::shared_ptr<ComponentRegistry> component_registry) {
-	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	game_object->tag = "Asteroid";
-	game_object->AddComponent<Component_Transform>();
-	game_object->AddComponent<Component_AsteroidCollider>();
-	game_object->AddComponent<Component_SpriteRenderer>();
-	game_object->AddComponent<Component_Animator>();
-	game_object->AddComponent<Component_AsteroidController>();
-	return game_object;
-}
-
-std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_AsteroidsManager(std::shared_ptr<ComponentRegistry> component_registry) {
-	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	game_object->tag = "Asteroids Manager";
-	game_object->AddComponent<Component_AsteroidsManager>();
-	return game_object;
-}
-
-std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShip(std::shared_ptr<ComponentRegistry> component_registry) {
-	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	game_object->tag = "Enemy Ship";
-	game_object->AddComponent<Component_Transform>();
-	game_object->AddComponent<Component_EnemyShipCollider>();
-	game_object->AddComponent<Component_SpriteRenderer>();
-	game_object->AddComponent<Component_Animator>();
-	game_object->AddComponent<Component_EnemyShipController>();
-	return game_object;
-}
-
-std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShipsManager(std::shared_ptr<ComponentRegistry> component_registry) {
-	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	game_object->tag = "Enemy Ships Manager";
-	game_object->AddComponent<Component_EnemyShipsManager>();
-	return game_object;
-}
-
-std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared_ptr<ComponentRegistry> component_registry) {
-	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	game_object->tag = "Boss";
-	game_object->AddComponent<Component_Transform>();
-	game_object->AddComponent<Component_SpriteRenderer>();
-	game_object->AddComponent<Component_Animator>();
-	game_object->AddComponent<Component_BossCollider>();
-	game_object->AddComponent<Component_BossController>();
-	return game_object;
-}
-
-std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_HomingMissile(std::shared_ptr<ComponentRegistry> component_registry) {
-	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	game_object->tag = "Homing Missile";
-	game_object->AddComponent<Component_Transform>();
-	game_object->AddComponent<Component_SpriteRenderer>();
-	game_object->AddComponent<Component_Animator>();
-	game_object->AddComponent<Component_HomingMissileController>();
-	return game_object;
-}
-
-
-// Specific ApplyPrefab methods:
-
-std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Background(std::shared_ptr<GameObject> game_object) {
-	game_object->GetComponent<Component_Transform>()->rotation = PI / 2;
-
-	#if VISUALIZE_HITBOXES
-		game_object->GetComponent<Component_SpriteRenderer>()->is_active = false;
-	#endif
-
-	return game_object;
-}
-
-std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Player(std::shared_ptr<GameObject> game_object) {
-	auto transform = game_object->GetComponent<Component_Transform>();
-	auto sprite_renderer = game_object->GetComponent<Component_SpriteRenderer>();
-	auto animator = game_object->GetComponent<Component_Animator>();
-	auto collider = game_object->GetComponent<Component_PlayerCollider>();
-	auto player_controller = game_object->GetComponent<Component_PlayerController>();
-
-	transform->scale = 0.2f;
-	collider->radius = 45;
-	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green.png");
 	
+	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->scale = 0.2f;
+
+	auto collider = game_object->AddComponent<Component_PlayerCollider>();
+	collider->radius = 45;
+
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green.png");
+
+	auto animator = game_object->AddComponent<Component_Animator>();
 	std::vector<Sprite> sprites = {
 		L"assets/spaceships/blue_ship_explosion_1.png",
 		L"assets/spaceships/blue_ship_explosion_2.png",
 		L"assets/spaceships/blue_ship_explosion_3.png",
 		L"assets/spaceships/blue_ship_explosion_4.png",
 	};
-	std::shared_ptr<Animation> animation = std::make_shared<Animation>("player explode", sprites, false, 15);
-	animator->RegisterAnimation(animation);
+	animator->RegisterAnimation(std::make_shared<Animation>("player explode", sprites, false, 15));
 	sprites = {
 		L"assets/spaceships/blue_ship_spawn_1.png",
 		L"assets/spaceships/blue_ship_spawn_2.png",
 		L"assets/spaceships/blue_ship_spawn_3.png",
 		L"assets/spaceships/blue_ship_spawn_4.png",
 	};
-	animation = std::make_shared<Animation>("player spawn", sprites, false, 11);
-	animator->RegisterAnimation(animation);
-	
-	player_controller->canon_offset = Vector2D(0, 100);
+	animator->RegisterAnimation(std::make_shared<Animation>("player spawn", sprites, false, 11));
+
+	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
+
+	auto player_input = game_object->AddComponent<Component_PlayerInput>();
+
+	auto player_controller = game_object->AddComponent<Component_PlayerController>();
 	player_controller->movement_speed = 500;
 	player_controller->rotation_speed = 5;
 	player_controller->reload_period = 0.25f;
@@ -193,50 +106,62 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Player(std::shared_pt
 	return game_object;
 }
 
-std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_PlayerBullet(std::shared_ptr<GameObject> game_object) {
-	game_object->GetComponent<Component_Transform>()->scale = 0.2f;
-	game_object->GetComponent<Component_PlayerBulletCollider>()->width = 80;
-	game_object->GetComponent<Component_PlayerBulletCollider>()->height = 40;
-	game_object->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/projectiles/projectile_pink.png");
-	game_object->GetComponent<Component_PlayerBulletController>()->movement_speed = 1500;
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_PlayerBullet(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Player Bullet";
+
+	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->scale = 0.2f;
+
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	sprite_renderer->SetSprite(L"assets/projectiles/projectile_pink.png");
+
+	auto collider = game_object->AddComponent<Component_PlayerBulletCollider>();
+	collider->width = 80;
+	collider->height = 40;
+
+	auto player_bullet_controller = game_object->AddComponent<Component_PlayerBulletController>();
+	player_bullet_controller->movement_speed = 1500;
 
 	return game_object;
 }
 
-std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Asteroid(std::shared_ptr<GameObject> game_object) {
-	auto transform = game_object->GetComponent<Component_Transform>();
-	auto sprite_renderer = game_object->GetComponent<Component_SpriteRenderer>();
-	auto collider = game_object->GetComponent<Component_AsteroidCollider>();
-	auto asteroid_controller = game_object->GetComponent<Component_AsteroidController>();
-
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Asteroid(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Asteroid";
+	
+	auto transform = game_object->AddComponent<Component_Transform>();
 	// Randomize spawn position.
 	if (rand() % 2 == 1) {
 		transform->position.XValue = (float)(rand() % 500 + 2000) * (rand() % 2 == 1 ? 1 : -1);
 		transform->position.YValue = (float)(rand() % 2000 - 1000);
-	} else {
+	}
+	else {
 		transform->position.XValue = (float)(rand() % 2000 - 1000);
 		transform->position.YValue = (float)(rand() % 500 + 2000) * (rand() % 2 == 1 ? 1 : -1);
 	}
+	// Randomize scale.
+	transform->scale = ((float)((rand() % 3) + 2) / 10);
 
-	// Add animation.
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	// Randomize sprite.
+	Sprite sprite = rand() % 2 == 1 ? L"assets/asteroids/asteroid_large.png" : L"assets/asteroids/asteroid_small.png";
+	sprite_renderer->SetSprite(sprite);
+
+	auto animator = game_object->AddComponent<Component_Animator>();
 	std::vector<Sprite> sprites = {
 		L"assets/asteroids/asteroid_explosion_1.png",
 		L"assets/asteroids/asteroid_explosion_2.png",
 		L"assets/asteroids/asteroid_explosion_3.png",
 		L"assets/asteroids/asteroid_explosion_4.png",
 	};
-	std::shared_ptr<Animation> animation = std::make_shared<Animation>("asteroid explosion", sprites, false, 15);
-	game_object->GetComponent<Component_Animator>()->RegisterAnimation(animation);
+	game_object->GetComponent<Component_Animator>()->RegisterAnimation(std::make_shared<Animation>("asteroid explosion", sprites, false, 15));
 
-	// Randomize sprite.
-	Sprite sprite = rand() % 2 == 1 ? L"assets/asteroids/asteroid_large.png" : L"assets/asteroids/asteroid_small.png";
-	sprite_renderer->SetSprite(sprite);
-
-	// Randomize scale.
-	transform->scale = ((float)((rand() % 3) + 2) / 10);
+	auto collider = game_object->AddComponent<Component_AsteroidCollider>();
 	int scale_multiplier = sprite == L"assets/asteroids/asteroid_large.png" ? 190 : 250; // Sprites have different sizes.
 	collider->radius = transform->scale * scale_multiplier;
 
+	auto asteroid_controller = game_object->AddComponent<Component_AsteroidController>();
 	// Randomize values.
 	asteroid_controller->movement_direction.XValue = transform->position.XValue < 0 ? (float)(rand() % 10) : -(float)(rand() % 10);
 	asteroid_controller->movement_direction.YValue = transform->position.YValue < 0 ? (float)(rand() % 10) : -(float)(rand() % 10);
@@ -247,17 +172,21 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Asteroid(std::shared_
 	return game_object;
 }
 
-std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_EnemyShip(std::shared_ptr<GameObject> game_object) {
-	auto transform = game_object->GetComponent<Component_Transform>();
-	auto collider = game_object->GetComponent<Component_EnemyShipCollider>();
-	auto sprite_renderer = game_object->GetComponent<Component_SpriteRenderer>();
-	auto animator = game_object->GetComponent<Component_Animator>();
-	auto enemy_ship_controller = game_object->GetComponent<Component_EnemyShipController>();
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_AsteroidsManager(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Asteroids Manager";
 	
-	transform->scale = 0.2f;
-	collider->radius = 50;
-	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_purple.png");
+	auto asteroids_manager = game_object->AddComponent<Component_AsteroidsManager>();
 
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShip(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Enemy Ship";
+	
+	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->scale = 0.2f;
 	// Randomize spawn position.
 	if (rand() % 2 == 1) {
 		transform->position.XValue = (float)(rand() % 500 + 2000) * (rand() % 2 == 1 ? 1 : -1);
@@ -268,42 +197,62 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_EnemyShip(std::shared
 		transform->position.YValue = (float)(rand() % 500 + 2000) * (rand() % 2 == 1 ? 1 : -1);
 	}
 
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_purple.png");
+
+	auto animator = game_object->AddComponent<Component_Animator>();
 	std::vector<Sprite> sprites = {
 		L"assets/spaceships/purple_ship_explosion_1.png",
 		L"assets/spaceships/purple_ship_explosion_2.png",
 		L"assets/spaceships/purple_ship_explosion_3.png",
 		L"assets/spaceships/purple_ship_explosion_4.png",
 	};
-	std::shared_ptr<Animation> animation = std::make_shared<Animation>("enemy ship explosion", sprites, false, 15);
-	animator->RegisterAnimation(animation);
+	animator->RegisterAnimation(std::make_shared<Animation>("enemy ship explosion", sprites, false, 15));
 
+	auto collider = game_object->AddComponent<Component_EnemyShipCollider>();
+	collider->radius = 50;
+
+	auto enemy_ship_controller = game_object->AddComponent<Component_EnemyShipController>();
 	enemy_ship_controller->movement_speed = 0.8f;
 
 	return game_object;
 }
 
-std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Boss(std::shared_ptr<GameObject> game_object) {
-	auto transform = game_object->GetComponent<Component_Transform>();
-	auto sprite_renderer = game_object->GetComponent<Component_SpriteRenderer>();
-	auto boss_controller = game_object->GetComponent<Component_BossController>();
-	auto animator = game_object->GetComponent<Component_Animator>();
-	auto collider = game_object->GetComponent<Component_BossCollider>();
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShipsManager(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Enemy Ships Manager";
 
+	auto enemy_ships_manager = game_object->AddComponent<Component_EnemyShipsManager>();
+	
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Boss";
+
+	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->scale = 0.5f;
+
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_boss.png");
+
+	auto animator = game_object->AddComponent<Component_Animator>();
 	std::vector<Sprite> sprites = {
 		L"assets/spaceships/purple_ship_explosion_1.png",
 		L"assets/spaceships/purple_ship_explosion_2.png",
 		L"assets/spaceships/purple_ship_explosion_3.png",
 		L"assets/spaceships/purple_ship_explosion_4.png",
 	};
-	std::shared_ptr<Animation> animation = std::make_shared<Animation>("boss explosion", sprites, false, 15);
-	animator->RegisterAnimation(animation);
-	
-	transform->scale = 0.5f;
-	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_boss.png");
+	animator->RegisterAnimation(std::make_shared<Animation>("boss explosion", sprites, false, 15));
+
+	auto collider = game_object->AddComponent<Component_BossCollider>();
 	collider->width = 200;
 	collider->height = 200;
 
+	auto boss_controller = game_object->AddComponent<Component_BossController>();
 	boss_controller->movement_speed = 1;
+	boss_controller->floating_movement_speed = 60;
 	boss_controller->spawn_position = Vector2D(0, 1500);
 	boss_controller->spawn_target = Vector2D(0, 400);
 	boss_controller->lasers_shoot_period = 5;
@@ -317,3 +266,11 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Boss(std::shared_ptr<
 
 	return game_object;
 }
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_HomingMissile(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Homing Missile";
+
+	return game_object;
+}
+

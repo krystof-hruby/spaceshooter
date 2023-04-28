@@ -9,12 +9,12 @@
 class Component_EnemyShipController final : public Component {
 public:
 	using Component::Component;
+	inline bool Startable() const override { return false; }
+	void Update() override;
 
 	float movement_speed = 1;
 	std::weak_ptr<Component_Transform> player_transform;
 
 	void Explode();
-	inline bool Startable() const override { return false; }
-	void Update() override;
 };
 

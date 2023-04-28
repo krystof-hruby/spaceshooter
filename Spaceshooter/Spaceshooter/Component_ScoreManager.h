@@ -9,6 +9,8 @@
 class Component_ScoreManager final : public Component {
 public:
 	using Component::Component;
+	inline bool Startable() const override { return false; }
+	inline bool Updatable() const override { return false; }
 
 	int score = 0;
 
@@ -20,8 +22,5 @@ public:
 	
 	// Returns true if goal was reached.
 	bool ReachedGoal() const;
-
-	inline bool Startable() const override { return false; }
-	inline bool Updatable() const override { return false; }
 };
 

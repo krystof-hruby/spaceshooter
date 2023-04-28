@@ -9,15 +9,10 @@
 #include "Component_Transform.h"
 
 class Component_EnemyShipsManager final : public Component {
-private:
-	float grace_period_time = 0;
-	float enemy_ship_spawn_time = 0;
-	float enemy_ship_spawn_period = 1; // Is randomized.
-	bool enemy_ships_despawned = false;
-	std::vector<std::weak_ptr<GameObject>> enemy_ships;
-
 public:
 	using Component::Component;
+	inline bool Startable() const override { return false; }
+	void Update() override;
 
 	std::weak_ptr<Component_ScoreManager> score_manager;
 	std::weak_ptr<Component_Transform> player_transform;
@@ -29,7 +24,11 @@ public:
 	// Explodes all asteroids in the scene.
 	void DespawnEnemyShips();
 
-	inline bool Startable() const override { return false; }
-	void Update() override;
+private:
+	float grace_period_time = 0;
+	float enemy_ship_spawn_time = 0;
+	float enemy_ship_spawn_period = 1; // Is randomized.
+	bool enemy_ships_despawned = false;
+	std::vector<std::weak_ptr<GameObject>> enemy_ships;
 };
 

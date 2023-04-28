@@ -25,7 +25,7 @@ void Component_AsteroidsManager::Update() {
 }
 
 void Component_AsteroidsManager::SpawnAsteroid() {
-	std::shared_ptr<GameObject> asteroid = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Asteroid, this->GetGameObject()->GetComponentRegistry(), true);
+	std::shared_ptr<GameObject> asteroid = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Asteroid, this->GetGameObject()->GetComponentRegistry());
 
 	// Add to scene.
 	Scene::Instantiate(asteroid);

@@ -244,9 +244,6 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Asteroid(std::shared_
 	asteroid_controller->rotation_speed = (float)(rand() % 5 + 1);
 	asteroid_controller->rotation_direction = rand() % 2 == 1 ? CLOCKWISE : COUNTERCLOCKWISE;
 
-	LOG("asteroid");
-	LOG(game_object->GetID());
-
 	return game_object;
 }
 
@@ -307,7 +304,7 @@ std::shared_ptr<GameObject> GameObjectFactory::ApplyPrefab_Boss(std::shared_ptr<
 	collider->height = 200;
 
 	boss_controller->movement_speed = 1;
-	boss_controller->spawn_position = Vector2D(0, 700);
+	boss_controller->spawn_position = Vector2D(0, 1500);
 	boss_controller->spawn_target = Vector2D(0, 400);
 	boss_controller->lasers_shoot_period = 5;
 	boss_controller->homing_missile_shoot_period = 5;

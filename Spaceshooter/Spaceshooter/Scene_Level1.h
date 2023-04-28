@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "Debugging.h"
 #include "Scene.h"
 
 // Scene for level 1 of the game.

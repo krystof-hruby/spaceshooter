@@ -5,7 +5,6 @@
 #pragma once
 
 #include "Component.h"
-#include "Debugging.h"
 
 class Component_ScoreManager final : public Component {
 public:
@@ -21,5 +20,8 @@ public:
 	
 	// Returns true if goal was reached.
 	bool ReachedGoal() const;
+
+	inline bool Startable() const override { return false; }
+	inline bool Updatable() const override { return false; }
 };
 

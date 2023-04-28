@@ -6,18 +6,12 @@
 #include "Component_Transform.h"
 #include "GameObject.h"
 
-#include "Logging.h"
-
-#if VISUALIZE_HITBOXES
-	#include "mydrawengine.h"
-#endif
-
 std::shared_ptr<IShape2D> Component_RectangleCollider::GetShape() {
 	return this->shape;
 }
 
 void Component_RectangleCollider::UpdatePosition() {
-	this->shape->SetCentre(this->GetWorldPosition() + this->position_offset);
+	this->shape->SetCentre(this->GetWorldPosition());
 	this->shape->SetDimensions(this->height, this->width);
 	this->shape->SetAngle(this->GetGameObject()->GetComponent<Component_Transform>()->rotation);
 }

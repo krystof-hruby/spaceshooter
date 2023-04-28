@@ -9,9 +9,9 @@ GameObject::GameObject(std::shared_ptr<ComponentRegistry> component_registry) {
 }
 
 std::shared_ptr<ComponentRegistry> GameObject::GetComponentRegistry() {
-	return this->component_registry;
+	return this->component_registry.lock();
 }
 
 void GameObject::Destroy() {
-	this->component_registry->UnregisterComponents(this->GetID());
+	this->component_registry.lock()->UnregisterComponents(this->GetID());
 }

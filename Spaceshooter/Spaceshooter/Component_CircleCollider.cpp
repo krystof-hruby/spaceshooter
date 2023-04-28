@@ -4,18 +4,12 @@
 
 #include "Component_CircleCollider.h"
 
-#if VISUALIZE_HITBOXES
-	#include "Component_Transform.h"
-	#include "GameObject.h"
-	#include "mydrawengine.h"
-#endif
-
 std::shared_ptr<IShape2D> Component_CircleCollider::GetShape() {
 	return this->shape;
 }
 
 void Component_CircleCollider::UpdatePosition() {
-	Vector2D collider_position = this->GetWorldPosition() + this->position_offset;
+	Vector2D collider_position = this->GetWorldPosition();
 
 	this->shape->PlaceAt(collider_position, this->radius);
 }

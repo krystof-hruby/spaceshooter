@@ -4,9 +4,6 @@
 
 #pragma once
 
-#include <vector>
-
-#include "Component.h"
 #include "Component_ScoreManager.h"
 #include "vector2D.h"
 

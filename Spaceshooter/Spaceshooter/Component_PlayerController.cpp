@@ -16,8 +16,6 @@
 #include "Scene.h"
 #include "Time.h"
 
-#include "Logging.h" // TODO
-
 void Component_PlayerController::Start() {
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player spawn");
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;

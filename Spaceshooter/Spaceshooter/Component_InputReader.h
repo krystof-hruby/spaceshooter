@@ -12,11 +12,11 @@
 class Component_InputReader : public Component {
 public:
 	using Component::Component;
-	
-	// Override and set to true if this component starts. Currently: saves performance by ignoring Start function of this component type.
+
+	// Override and set to true if this component starts. Currently: saves performance by ignoring Start method of this component type.
 	inline virtual bool Startable() const override { return false; }
 
-	// Override and set to true if this component updates. Currently: saves performance by ignoring Update function of this component type.
+	// Override and set to true if this component updates. Currently: saves performance by ignoring Update method of this component type.
 	inline virtual bool Updatable() const override { return false; }
 
 	// Checks if key was pressed.

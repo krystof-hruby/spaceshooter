@@ -189,6 +189,7 @@
     <ClCompile Include="Scene_Level2.cpp" />
     <ClCompile Include="Scene_Level3.cpp" />
     <ClCompile Include="Shapes.cpp" />
+    <ClCompile Include="StartScheduler.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="vector2D.cpp" />
     <ClCompile Include="wincode.cpp" />
@@ -246,6 +247,7 @@
     <ClInclude Include="Scene_Level2.h" />
     <ClInclude Include="Scene_Level3.h" />
     <ClInclude Include="Shapes.h" />
+    <ClInclude Include="StartScheduler.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="vector2D.h" />
   </ItemGroup>

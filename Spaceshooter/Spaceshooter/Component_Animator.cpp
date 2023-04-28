@@ -4,8 +4,6 @@
 
 #include "Component_Animator.h"
 
-#include <exception>
-
 #include "Component_Transform.h"
 #include "Constants.h"
 #include "EngineException.h"

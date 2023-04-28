@@ -5,8 +5,6 @@
 #pragma once
 
 #include <unordered_map>
-#include <vector>
-
 #include "Component.h"
 #include "mysoundengine.h"
 
@@ -15,12 +13,8 @@ typedef const wchar_t* AudioClip;
 
 // Enables playing audio. All audio clips should be loaded before played for the first time.
 class Component_AudioEmitter final : public Component {
-private:
-	std::unordered_map<AudioClip, SoundIndex> audio_clips;
-
 public:
 	using Component::Component;
-
 	inline bool Startable() const override { return false; }
 	inline bool Updatable() const override { return false; }
 
@@ -53,5 +47,8 @@ public:
 	void SetPan(AudioClip audio_clip, float pan);
 	// Sets pan to all audio clips. Pan is a value from -100 to 100 (left to right).
 	void SetPan(float pan);
+
+private:
+	std::unordered_map<AudioClip, SoundIndex> audio_clips;
 };
 

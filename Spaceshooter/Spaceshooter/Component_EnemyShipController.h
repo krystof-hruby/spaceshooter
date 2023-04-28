@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "Component.h"
 #include "Component_Transform.h"
 
 class Component_EnemyShipController final : public Component {

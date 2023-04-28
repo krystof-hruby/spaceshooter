@@ -5,9 +5,6 @@
 #pragma once
 
 #include <vector>
-
-#include "Component.h"
-#include "Component_ScoreManager.h"
 #include "Component_Transform.h"
 
 class Component_BossController final : public Component {

@@ -5,10 +5,7 @@
 #pragma once
 
 #include <vector>
-
-#include "Component.h"
 #include "Component_ScoreManager.h"
-#include "vector2D.h"
 
 // Provides field and method for spawning and managing asteroids.
 class Component_AsteroidsManager final : public Component {

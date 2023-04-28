@@ -4,10 +4,7 @@
 
 #include "EngineException.h"
 
-#include "Logging.h"
-
 EngineException::EngineException(std::string message) {
-	LOG(this->message);
 	this->message = message;
 }
 

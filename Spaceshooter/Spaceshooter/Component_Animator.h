@@ -4,28 +4,11 @@
 
 #pragma once
 
-#include <string>
 #include <unordered_map>
-#include <vector>
-
 #include "Component_SpriteRenderer.h" // For Sprite (besides Component).
-#include "mydrawengine.h"
 
 // Holds information about animation.
 class Animation final : public Identifiable {
-private:
-	// Sprites in the order to be played.
-	std::shared_ptr<std::vector<PictureIndex>> animation_frames = std::make_shared<std::vector<PictureIndex>>();
-	
-	// Currently shown animation frame.
-	int current_frame = 0;
-	
-	// Elapsed time of currently shown frame.
-	double frame_time = 0;
-
-	// Elapsed time of the animation.
-	double elapsed_time = 0;
-
 public:
 	Animation(std::string name, std::vector<Sprite> sprites, bool loop = false, double speed = 1);
 
@@ -48,19 +31,28 @@ public:
 
 	// Reset animation to begin from the start again.
 	void Reset();
+
+private:
+	// Sprites in the order to be played.
+	std::shared_ptr<std::vector<PictureIndex>> animation_frames = std::make_shared<std::vector<PictureIndex>>();
+
+	// Currently shown animation frame.
+	int current_frame = 0;
+
+	// Elapsed time of currently shown frame.
+	double frame_time = 0;
+
+	// Elapsed time of the animation.
+	double elapsed_time = 0;
+
 };
 
 // Enables animation.
 class Component_Animator final : public Component {
-private:
-	// All animations stored in this component.
-	std::unordered_map<std::string, std::shared_ptr<Animation>> animations;
-
-	// Currently played animation.
-	std::shared_ptr<Animation> current_animation;
-
 public:
 	using Component::Component;
+	inline bool Startable() const override { return false; }
+	void Update() override;
 
 	// Registered animation can be played by their name.
 	void RegisterAnimation(std::shared_ptr<Animation> animation);
@@ -83,7 +75,11 @@ public:
 	// Whether the animation has finished.
 	bool AnimationFinished(std::string animation_name);
 
-	inline bool Startable() const override { return false; }
-	void Update() override;
+private:
+	// All animations stored in this component.
+	std::unordered_map<std::string, std::shared_ptr<Animation>> animations;
+
+	// Currently played animation.
+	std::shared_ptr<Animation> current_animation;
 };
 

@@ -5,22 +5,21 @@
 #pragma once
 
 #include <cstdint>
-#include <string>
 
 // Object Universally Unique Identifier
 typedef std::uint32_t ObjectUUID;
 
 // Provides object identification by UUID.
 class Identifiable {
-private:
-	static ObjectUUID last_uuid;
-	ObjectUUID uuid;
+public:
+	// Returns the id of this object.
+	ObjectUUID GetID() const;
 
 protected:
 	Identifiable();
 
-public:
-	// Returns the id of this object.
-	ObjectUUID GetID() const;
+private:
+	static ObjectUUID last_uuid;
+	ObjectUUID uuid;
 };
 

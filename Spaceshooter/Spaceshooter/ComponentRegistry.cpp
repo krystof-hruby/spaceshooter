@@ -4,19 +4,6 @@
 
 #include "ComponentRegistry.h"
 
-void ComponentRegistry::Components_Start(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>> components) const {
-	if (components->size() < 1)
-		return;
-	
-	// If this component type never starts, save performance by not starting.
-	if (!components->begin()->second->Startable())
-		return;
-
-	for (auto component : *components)
-		if (component.second->is_active)
-			component.second->Start();
-}
-
 void ComponentRegistry::Components_Update(std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>> components) const {
 	if (components->size() < 1)
 		return;
@@ -26,20 +13,19 @@ void ComponentRegistry::Components_Update(std::shared_ptr<std::unordered_map<Obj
 		return;
 
 	for (auto component : *components)
-		if (component.second->is_active)
+		if (component.second->is_active && component.second->started)
 			component.second->Update();
 }
 
-void ComponentRegistry::AllComponents_Start() const {
-	for (auto components : this->component_registry)
-		this->Components_Start(components.second);
-}
+void ComponentRegistry::AllComponents_Update() {
+	this->start_scheduler.StartScheduledComponents();
 
-void ComponentRegistry::AllComponents_Update() const {
 	for (auto components : this->component_registry)
 		this->Components_Update(components.second);
 
 	this->collision_manager.HandleCollisions();
+
+	this->UpdateRegistry();
 }
 
 std::shared_ptr<std::unordered_map<ObjectUUID, std::shared_ptr<Component>>> ComponentRegistry::GetComponents(ComponentTypeID component_type) {

@@ -52,7 +52,7 @@ void Component_Collider::OnCollisionStay(std::shared_ptr<GameObject> game_object
 
 void Component_Collider::OnCollisionLeave(std::shared_ptr<GameObject> game_object) { }
 
-void Component_Collider::Update() {
+void Component_Collider::Start() {
 	this->UpdatePosition();
 
 	#if VISUALIZE_HITBOXES
@@ -60,3 +60,10 @@ void Component_Collider::Update() {
 	#endif
 }
 
+void Component_Collider::Update() {
+	this->UpdatePosition();
+
+	#if VISUALIZE_HITBOXES
+		this->VisualizeHitbox();
+	#endif
+}

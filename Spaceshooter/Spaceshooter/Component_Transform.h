@@ -11,7 +11,6 @@
 class Component_Transform final : public Component {
 public:
 	using Component::Component;
-	
 	inline bool Startable() const override { return false; }
 	inline bool Updatable() const override { return false; }
 

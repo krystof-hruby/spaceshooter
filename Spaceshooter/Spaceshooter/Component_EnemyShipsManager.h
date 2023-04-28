@@ -5,11 +5,8 @@
 #pragma once
 
 #include <vector>
-
-#include "Component.h"
 #include "Component_ScoreManager.h"
 #include "Component_Transform.h"
-#include "vector2D.h"
 
 class Component_EnemyShipsManager final : public Component {
 private:

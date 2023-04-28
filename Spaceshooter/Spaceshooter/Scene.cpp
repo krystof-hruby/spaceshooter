@@ -10,28 +10,20 @@
 
 Scene::Scene() { }
 
-void Scene::StopAllSounds() const {
-	LOG("SCENE: Stopping all sounds.");
-	MySoundEngine::GetInstance()->StopAllSounds();
-}
-
-void Scene::Components_Start() const {
-	this->component_registry->AllComponents_Start();
-}
-
-void Scene::Components_Update() const {
-	this->component_registry->AllComponents_Update();
-}
-
-void Scene::UpdateComponentRegistry() const {
-	this->component_registry->UpdateRegistry();
-}
-
 void Scene::Load() { }
 
 void Scene::Update() { }
 
 void Scene::Unload() { }
+
+void Scene::StopAllSounds() const {
+	LOG("SCENE: Stopping all sounds.");
+	MySoundEngine::GetInstance()->StopAllSounds();
+}
+
+void Scene::Components_Update() const {
+	this->component_registry->AllComponents_Update();
+}
 
 void Scene::Instantiate(std::shared_ptr<GameObject> game_object) {
 	SceneManager::GetInstance().GetCurrentScene()->scene_objects.push_back(game_object);

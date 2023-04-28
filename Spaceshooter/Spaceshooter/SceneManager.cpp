@@ -4,8 +4,6 @@
 
 #include "SceneManager.h"
 
-#include <string>
-
 #include "Logging.h"
 
 SceneManager& SceneManager::GetInstance() {
@@ -21,7 +19,6 @@ void SceneManager::ChangeScene(std::shared_ptr<Scene> scene) {
 	
 	this->current_scene = scene;
 	this->current_scene->Load();
-	this->current_scene->Components_Start();
 }
 
 std::shared_ptr<Scene> SceneManager::GetCurrentScene() const {

@@ -15,6 +15,7 @@
 #include "Component_EnemyShipCollider.h"
 #include "Component_EnemyShipController.h"
 #include "Component_EnemyShipsManager.h"
+#include "Component_HomingMissileCollider.h"
 #include "Component_HomingMissileController.h"
 #include "Component_InputReader.h"
 #include "Component_PlayerBulletCollider.h"
@@ -251,17 +252,22 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 	collider->height = 200;
 
 	auto boss_controller = game_object->AddComponent<Component_BossController>();
-	boss_controller->movement_speed = 1;
+	boss_controller->movement_speed = 0.8f;
 	boss_controller->floating_movement_speed = 60;
 	boss_controller->spawn_position = Vector2D(0, 1500);
-	boss_controller->spawn_target = Vector2D(0, 400);
+	boss_controller->floating_spots.push_back(Vector2D(0, 400));
+	boss_controller->floating_spots.push_back(Vector2D(-800, 600));
+	boss_controller->floating_spots.push_back(Vector2D(-800, -600));
+	boss_controller->floating_spots.push_back(Vector2D(800, -600));
+	boss_controller->floating_spots.push_back(Vector2D(800, 600));
+	boss_controller->moving_to_floating_spot_period = 10;
 	boss_controller->lasers_shoot_period = 5;
 	boss_controller->homing_missile_shoot_period = 5;
 	boss_controller->homing_missile_spawn_offset = Vector2D(0, -30);
 	#if LOWER_BOSS_HEALTH
 		boss_controller->health = BOSS_HEALTH;
 	#else
-		boss_controller->health = 20;
+		boss_controller->health = 100;
 	#endif
 
 	return game_object;
@@ -270,6 +276,24 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_HomingMissile(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Homing Missile";
+
+	auto transform = game_object->AddComponent<Component_Transform>();
+
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+
+	auto animator = game_object->AddComponent<Component_Animator>();
+	std::vector<Sprite> sprites = {
+		L"assets/spaceships/purple_ship_explosion_1.png", //TODO: change sprites
+		L"assets/spaceships/purple_ship_explosion_2.png",
+		L"assets/spaceships/purple_ship_explosion_3.png",
+		L"assets/spaceships/purple_ship_explosion_4.png",
+	};
+	animator->RegisterAnimation(std::make_shared<Animation>("homing missile explosion", sprites, false, 15));
+
+	auto collider = game_object->AddComponent<Component_HomingMissileCollider>();
+	collider->radius = 50;
+
+	auto homing_missile_controller = game_object->AddComponent<Component_HomingMissileController>();
 
 	return game_object;
 }

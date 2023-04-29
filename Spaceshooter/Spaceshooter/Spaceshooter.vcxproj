@@ -144,6 +144,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActiveBounds.cpp" />
+    <ClCompile Include="BossState_Exploding.cpp" />
+    <ClCompile Include="BossState_Floating.cpp" />
+    <ClCompile Include="BossState_GracePeriod.cpp" />
+    <ClCompile Include="BossState_MovingToFloatingSpot.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -159,6 +163,7 @@
     <ClCompile Include="Component_EnemyShipCollider.cpp" />
     <ClCompile Include="Component_EnemyShipController.cpp" />
     <ClCompile Include="Component_EnemyShipsManager.cpp" />
+    <ClCompile Include="Component_HomingMissileCollider.cpp" />
     <ClCompile Include="Component_HomingMissileController.cpp" />
     <ClCompile Include="Component_PlayerBulletCollider.cpp" />
     <ClCompile Include="Component_PlayerBulletController.cpp" />
@@ -196,6 +201,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActiveBounds.h" />
+    <ClInclude Include="BossState.h" />
+    <ClInclude Include="BossState_Exploding.h" />
+    <ClInclude Include="BossState_Floating.h" />
+    <ClInclude Include="BossState_GracePeriod.h" />
+    <ClInclude Include="BossState_MovingToFloatingSpot.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Component.h" />
@@ -211,6 +221,7 @@
     <ClInclude Include="Component_EnemyShipCollider.h" />
     <ClInclude Include="Component_EnemyShipController.h" />
     <ClInclude Include="Component_EnemyShipsManager.h" />
+    <ClInclude Include="Component_HomingMissileCollider.h" />
     <ClInclude Include="Component_HomingMissileController.h" />
     <ClInclude Include="Component_InputReader.h" />
     <ClInclude Include="Component_PlayerBulletCollider.h" />

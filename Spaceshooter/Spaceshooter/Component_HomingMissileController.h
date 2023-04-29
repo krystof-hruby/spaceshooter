@@ -16,5 +16,8 @@ public:
 	float movement_speed = 1;
 
 	void Explode();
+
+private:
+	Vector2D initial_position;
 };
 

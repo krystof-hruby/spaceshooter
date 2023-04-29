@@ -36,7 +36,7 @@ void Scene_Level3::Load() {
 	// Boss.
 	std::shared_ptr<GameObject> boss = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Boss, this->component_registry);
 	boss->GetComponent<Component_BossController>()->player_transform = player->GetComponent<Component_Transform>();
-	boss->GetComponent<Component_BossController>()->grace_period = 7;
+	boss->GetComponent<Component_BossController>()->grace_period = 3;
 	Scene::Instantiate(boss);
 }
 

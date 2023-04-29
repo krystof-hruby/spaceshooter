@@ -103,6 +103,48 @@
     <Filter Include="Source Files\Debugging">
       <UniqueIdentifier>{88bab8ea-1035-4961-9fb1-c15e9cdd5c54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Components\Asteroids">
+      <UniqueIdentifier>{e7b4aada-c924-47e3-b385-84ccee6aef86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\Boss">
+      <UniqueIdentifier>{84ca0b3e-0d01-4dd3-a7a7-c77da2397f3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\EnemyShips">
+      <UniqueIdentifier>{72b73d5f-cbbf-4d52-b88f-a94bf9259490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\Player">
+      <UniqueIdentifier>{303a70e3-8810-4482-91cf-bca15551cbf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\PlayerBullet">
+      <UniqueIdentifier>{171286f2-df97-45b6-9e69-6408bd9583df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\Asteroids">
+      <UniqueIdentifier>{82deb7dd-9778-45eb-9e06-79cea555c6af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\Boss">
+      <UniqueIdentifier>{3d71662d-9f84-4b17-9189-3dd72a7bb0d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\EnemyShips">
+      <UniqueIdentifier>{04c8cd26-9fb9-4176-b31b-7a9e4104e901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\PlayerBullet">
+      <UniqueIdentifier>{6bec9396-bd2e-4f53-bf6d-784667b361dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\Player">
+      <UniqueIdentifier>{e4af1e7e-7d32-4836-95c7-59e9a56add5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\Boss\States">
+      <UniqueIdentifier>{f2b608ff-c4af-4c63-a694-ab978b5d0ab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\Boss\HomingMissile">
+      <UniqueIdentifier>{eda79270-d25c-4a86-a989-f9392b6085b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\Boss\States">
+      <UniqueIdentifier>{ad528bf1-3ada-4939-8c41-b6b89a4c5111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\Boss\HomingMissile">
+      <UniqueIdentifier>{605a45d2-8757-4047-b6b6-49e659f3d1b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -192,33 +234,6 @@
     <ClCompile Include="MainCamera.cpp">
       <Filter>Source Files\Engine\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Component_PlayerInput.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_PlayerController.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_PlayerBulletController.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_AsteroidController.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_AsteroidCollider.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_PlayerBulletCollider.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_PlayerCollider.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_EnemyShipController.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_EnemyShipCollider.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Time.cpp">
       <Filter>Source Files\Engine\Misc</Filter>
     </ClCompile>
@@ -237,23 +252,65 @@
     <ClCompile Include="Component_ScoreManager.cpp">
       <Filter>Source Files\Game\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Component_AsteroidsManager.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_EnemyShipsManager.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_BossController.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_HomingMissileController.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_BossCollider.cpp">
-      <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
     <ClCompile Include="StartScheduler.cpp">
       <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_AsteroidCollider.cpp">
+      <Filter>Source Files\Game\Components\Asteroids</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_AsteroidController.cpp">
+      <Filter>Source Files\Game\Components\Asteroids</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_AsteroidsManager.cpp">
+      <Filter>Source Files\Game\Components\Asteroids</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_BossCollider.cpp">
+      <Filter>Source Files\Game\Components\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_BossController.cpp">
+      <Filter>Source Files\Game\Components\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_EnemyShipCollider.cpp">
+      <Filter>Source Files\Game\Components\EnemyShips</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_EnemyShipController.cpp">
+      <Filter>Source Files\Game\Components\EnemyShips</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_EnemyShipsManager.cpp">
+      <Filter>Source Files\Game\Components\EnemyShips</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_PlayerCollider.cpp">
+      <Filter>Source Files\Game\Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_PlayerController.cpp">
+      <Filter>Source Files\Game\Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_PlayerInput.cpp">
+      <Filter>Source Files\Game\Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_PlayerBulletCollider.cpp">
+      <Filter>Source Files\Game\Components\PlayerBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_PlayerBulletController.cpp">
+      <Filter>Source Files\Game\Components\PlayerBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BossState_Exploding.cpp">
+      <Filter>Source Files\Game\Components\Boss\States</Filter>
+    </ClCompile>
+    <ClCompile Include="BossState_Floating.cpp">
+      <Filter>Source Files\Game\Components\Boss\States</Filter>
+    </ClCompile>
+    <ClCompile Include="BossState_GracePeriod.cpp">
+      <Filter>Source Files\Game\Components\Boss\States</Filter>
+    </ClCompile>
+    <ClCompile Include="BossState_MovingToFloatingSpot.cpp">
+      <Filter>Source Files\Game\Components\Boss\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_HomingMissileController.cpp">
+      <Filter>Source Files\Game\Components\Boss\HomingMissile</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_HomingMissileCollider.cpp">
+      <Filter>Source Files\Game\Components\Boss\HomingMissile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -353,33 +410,6 @@
     <ClInclude Include="MainCamera.h">
       <Filter>Header Files\Engine\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Component_PlayerInput.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_PlayerController.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_PlayerBulletController.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_AsteroidController.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_AsteroidCollider.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_PlayerBulletCollider.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_PlayerCollider.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_EnemyShipController.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_EnemyShipCollider.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Time.h">
       <Filter>Header Files\Engine\Misc</Filter>
     </ClInclude>
@@ -404,23 +434,68 @@
     <ClInclude Include="Component_ScoreManager.h">
       <Filter>Header Files\Game\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Component_AsteroidsManager.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_EnemyShipsManager.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_BossController.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_HomingMissileController.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_BossCollider.h">
-      <Filter>Header Files\Game\Components</Filter>
-    </ClInclude>
     <ClInclude Include="StartScheduler.h">
       <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_AsteroidCollider.h">
+      <Filter>Header Files\Game\Components\Asteroids</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_AsteroidController.h">
+      <Filter>Header Files\Game\Components\Asteroids</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_AsteroidsManager.h">
+      <Filter>Header Files\Game\Components\Asteroids</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_BossCollider.h">
+      <Filter>Header Files\Game\Components\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_BossController.h">
+      <Filter>Header Files\Game\Components\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_EnemyShipCollider.h">
+      <Filter>Header Files\Game\Components\EnemyShips</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_EnemyShipController.h">
+      <Filter>Header Files\Game\Components\EnemyShips</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_EnemyShipsManager.h">
+      <Filter>Header Files\Game\Components\EnemyShips</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_PlayerBulletCollider.h">
+      <Filter>Header Files\Game\Components\PlayerBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_PlayerBulletController.h">
+      <Filter>Header Files\Game\Components\PlayerBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_PlayerCollider.h">
+      <Filter>Header Files\Game\Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_PlayerController.h">
+      <Filter>Header Files\Game\Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_PlayerInput.h">
+      <Filter>Header Files\Game\Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="BossState.h">
+      <Filter>Header Files\Game\Components\Boss\States</Filter>
+    </ClInclude>
+    <ClInclude Include="BossState_Exploding.h">
+      <Filter>Header Files\Game\Components\Boss\States</Filter>
+    </ClInclude>
+    <ClInclude Include="BossState_Floating.h">
+      <Filter>Header Files\Game\Components\Boss\States</Filter>
+    </ClInclude>
+    <ClInclude Include="BossState_GracePeriod.h">
+      <Filter>Header Files\Game\Components\Boss\States</Filter>
+    </ClInclude>
+    <ClInclude Include="BossState_MovingToFloatingSpot.h">
+      <Filter>Header Files\Game\Components\Boss\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_HomingMissileCollider.h">
+      <Filter>Header Files\Game\Components\Boss\HomingMissile</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_HomingMissileController.h">
+      <Filter>Header Files\Game\Components\Boss\HomingMissile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

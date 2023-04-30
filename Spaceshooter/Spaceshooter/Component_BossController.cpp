@@ -8,12 +8,12 @@
 #include "Component_Animator.h"
 #include "Component_BossCollider.h"
 #include "Component_HomingMissileController.h"
+#include "Component_MineController.h"
 #include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "Scene.h"
 #include "Time.h"
-
-#include "Logging.h" // TODO: remove
+#include "Logging.h" // TODO
 
 void Component_BossController::Start() {
 	this->GetGameObject()->GetComponent<Component_Transform>()->position = this->spawn_position;
@@ -22,14 +22,12 @@ void Component_BossController::Start() {
 
 void Component_BossController::Update() {
 	this->current_state->Play(this->shared_from_this());
-}
 
-void Component_BossController::ShootLasers() {
-	// TODO:
+	if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("boss hurt"))
+		this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = true;
 }
 
 void Component_BossController::ShootHomingMissile() {
-	LOG("spawning missile");
 	std::shared_ptr<GameObject> homing_missile = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::HomingMissile, this->GetGameObject()->GetComponentRegistry());
 	homing_missile->GetComponent<Component_HomingMissileController>()->player_transform = this->player_transform;
 	homing_missile->GetComponent<Component_Transform>()->position = this->GetGameObject()->GetComponent<Component_Transform>()->position + this->homing_missile_spawn_offset;
@@ -38,12 +36,40 @@ void Component_BossController::ShootHomingMissile() {
 	this->homing_missiles.push_back(homing_missile);
 }
 
+void Component_BossController::SpawnMines() {
+	for (int i = 0; i < this->number_of_mines; i++) {
+		std::shared_ptr<GameObject> mine = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Mine, this->GetGameObject()->GetComponentRegistry());
+
+		// Randomize spawn position.
+		// TODO: spawning outside of player and boss
+		mine->GetComponent<Component_MineController>()->spawn_position.XValue = (float)(rand() % 2000 - 1000);
+		mine->GetComponent<Component_MineController>()->spawn_position.YValue = (float)(rand() % 2000 - 1000);
+
+		Scene::Instantiate(mine);
+		this->mines.push_back(mine);
+	}
+}
+
+void Component_BossController::ShootLasers() {
+	for (auto position : this->laser_positions) {
+		std::shared_ptr<GameObject> laser = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Laser, this->GetGameObject()->GetComponentRegistry());
+		laser->GetComponent<Component_Transform>()->position = this->GetGameObject()->GetComponent<Component_Transform>()->position + position.second;
+		laser->GetComponent<Component_Transform>()->rotation = position.first;
+
+		Scene::Instantiate(laser);
+		this->lasers.push_back(laser);
+	}
+}
+
 void Component_BossController::ChangeState(std::shared_ptr<BossState> state) {
 	this->current_state = state;
 }
 
 void Component_BossController::GetDamaged(int damage) {
 	this->health -= damage;
+
+	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("boss hurt");
+	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
 
 	if (this->health <= 0)
 		this->Explode();
@@ -54,6 +80,7 @@ void Component_BossController::Explode() {
 	this->GetGameObject()->GetComponent<Component_BossCollider>()->is_active = false; // Disable collision.
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("boss explosion");
 	this->DespawnHomingMissiles();
+	this->DespawnMines();
 
 	this->ChangeState(this->state_exploding);
 }
@@ -62,4 +89,10 @@ void Component_BossController::DespawnHomingMissiles() {
 	for (auto homing_missile : this->homing_missiles)
 		if (!homing_missile.expired() && homing_missile.lock()->HasComponent<Component_HomingMissileController>())
 			homing_missile.lock()->GetComponent<Component_HomingMissileController>()->Explode();
+}
+
+void Component_BossController::DespawnMines() {
+	for (auto mine : this->mines)
+		if (!mine.expired() && mine.lock()->HasComponent<Component_MineController>())
+			mine.lock()->GetComponent<Component_MineController>()->Explode();
 }

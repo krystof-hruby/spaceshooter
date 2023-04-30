@@ -148,6 +148,18 @@
     <Filter Include="Header Files\Game\Assets">
       <UniqueIdentifier>{edbfc724-2b66-4ea8-bc6e-7b0e73e2f86a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Components\Boss\Laser">
+      <UniqueIdentifier>{d174174e-3949-45e4-aed1-1ef276e7942a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\Boss\Laser">
+      <UniqueIdentifier>{79ede36f-0421-4bae-aaf8-c6bc6ddd4191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\Boss\Mines">
+      <UniqueIdentifier>{5fcccbf1-ec1a-47e1-98f7-e67a15fc5b14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\Boss\Mines">
+      <UniqueIdentifier>{5eac4d6f-c0dd-47ec-81ff-0afd5c0505a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -314,6 +326,15 @@
     </ClCompile>
     <ClCompile Include="Component_HomingMissileCollider.cpp">
       <Filter>Source Files\Game\Components\Boss\HomingMissile</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_LaserController.cpp">
+      <Filter>Source Files\Game\Components\Boss\Laser</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_MineController.cpp">
+      <Filter>Source Files\Game\Components\Boss\Mines</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_MineCollider.cpp">
+      <Filter>Source Files\Game\Components\Boss\Mines</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -502,6 +523,15 @@
     </ClInclude>
     <ClInclude Include="Sprites.h">
       <Filter>Header Files\Game\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_LaserController.h">
+      <Filter>Header Files\Game\Components\Boss\Laser</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_MineController.h">
+      <Filter>Header Files\Game\Components\Boss\Mines</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_MineCollider.h">
+      <Filter>Header Files\Game\Components\Boss\Mines</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -22,11 +22,6 @@ void Component_SpriteRenderer::Update() {
 	if (!this->image) // No image
 		return;
 
-	// Update sprite position, scale and rotation.
-	Vector2D position = this->GetGameObject()->GetComponent<Component_Transform>()->position;
-	float scale = this->GetGameObject()->GetComponent<Component_Transform>()->scale;
-	float rotation = this->GetGameObject()->GetComponent<Component_Transform>()->rotation;
-
-	// Draw sprite on the screen.
-	MyDrawEngine::GetInstance()->DrawAt(position, this->image, scale, rotation, this->transparency);
+	auto transform = this->GetGameObject()->GetComponent<Component_Transform>();
+	MyDrawEngine::GetInstance()->DrawAt(transform->position, this->image, transform->scale, transform->rotation, this->transparency);
 }

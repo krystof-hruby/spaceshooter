@@ -21,13 +21,16 @@ public:
 	// Animation frames per second.
 	double speed = 1;
 
+	// 0 = not transparent. 1 = fully transparent.
+	float transparency = 0;
+
 	// Returns time elapsed from the start of the animation.
 	double GetElapsedTime() const;
 
 	bool IsFinished() const;
 
 	// Plays the animation. Returns true when finished (never true if loopable).
-	bool Play(Vector2D position, float scale, float rotation);
+	void Play(Vector2D position, float scale = 1, float rotation = 0);
 
 	// Reset animation to begin from the start again.
 	void Reset();

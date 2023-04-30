@@ -165,6 +165,9 @@
     <ClCompile Include="Component_EnemyShipsManager.cpp" />
     <ClCompile Include="Component_HomingMissileCollider.cpp" />
     <ClCompile Include="Component_HomingMissileController.cpp" />
+    <ClCompile Include="Component_LaserController.cpp" />
+    <ClCompile Include="Component_MineCollider.cpp" />
+    <ClCompile Include="Component_MineController.cpp" />
     <ClCompile Include="Component_PlayerBulletCollider.cpp" />
     <ClCompile Include="Component_PlayerBulletController.cpp" />
     <ClCompile Include="Component_PlayerCollider.cpp" />
@@ -224,6 +227,9 @@
     <ClInclude Include="Component_HomingMissileCollider.h" />
     <ClInclude Include="Component_HomingMissileController.h" />
     <ClInclude Include="Component_InputReader.h" />
+    <ClInclude Include="Component_LaserController.h" />
+    <ClInclude Include="Component_MineCollider.h" />
+    <ClInclude Include="Component_MineController.h" />
     <ClInclude Include="Component_PlayerBulletCollider.h" />
     <ClInclude Include="Component_PlayerBulletController.h" />
     <ClInclude Include="Component_PlayerCollider.h" />

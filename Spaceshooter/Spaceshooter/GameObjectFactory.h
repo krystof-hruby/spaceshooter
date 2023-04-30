@@ -19,6 +19,7 @@ enum class GameObjectType {
 	EnemyShipsManager,
 	Boss,
 	HomingMissile,
+	Mine,
 	Laser,
 };
 
@@ -50,6 +51,8 @@ private:
 		{ GameObjectType::EnemyShipsManager, CreateGameObject_EnemyShipsManager },
 		{ GameObjectType::Boss, CreateGameObject_Boss },
 		{ GameObjectType::HomingMissile, CreateGameObject_HomingMissile },
+		{ GameObjectType::Mine, CreateGameObject_Mine },
+		{ GameObjectType::Laser, CreateGameObject_Laser },
 	};
 
 	// Specific CreateGameObject methods:
@@ -63,5 +66,7 @@ private:
 	static std::shared_ptr<GameObject> CreateGameObject_EnemyShipsManager(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Boss(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_HomingMissile(std::shared_ptr<ComponentRegistry> component_registry);
+	static std::shared_ptr<GameObject> CreateGameObject_Mine(std::shared_ptr<ComponentRegistry> component_registry);
+	static std::shared_ptr<GameObject> CreateGameObject_Laser(std::shared_ptr<ComponentRegistry> component_registry);
 };
 

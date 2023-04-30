@@ -29,6 +29,10 @@ const Sprite SPACESHIP_BOSS = L"assets/spaceships/spaceship_boss.png";
 
 const Sprite PROJECTILE_YELLOW = L"assets/projectiles/projectile_yellow.png";
 
+const Sprite MINE = L"assets/projectiles/mine.png";
+
+const Sprite PROJECTILE_GREEN_LASER = L"assets/projectiles/projectile_green_laser.png";
+
 // Animations:
 
 const std::vector<Sprite> BLUE_SHIP_EXPLOSION = {
@@ -59,14 +63,26 @@ const std::vector<Sprite> PURPLE_SHIP_EXPLOSION = {
 	L"assets/spaceships/purple_ship_explosion_4.png",
 };
 
+const std::vector<Sprite> BOSS_HURT = {
+	L"assets/spaceships/spaceship_boss_hurt.png"
+};
+
 const std::vector<Sprite> PROJECTILE_YELLOW_SPAWN = {
-		L"assets/projectiles/projectile_yellow_line.png",
-		L"assets/projectiles/projectile_yellow_arrows.png",
-		L"assets/projectiles/projectile_yellow.png",
+	L"assets/projectiles/projectile_yellow_line.png",
+	L"assets/projectiles/projectile_yellow_arrows.png",
+	L"assets/projectiles/projectile_yellow_lines.png",
+	L"assets/projectiles/projectile_yellow.png",
 };
 
 const std::vector<Sprite> PROJECTILE_YELLOW_EXPLODE = {
-		L"assets/projectiles/projectile_yellow.png",
-		L"assets/projectiles/projectile_yellow_arrows.png",
-		L"assets/projectiles/projectile_yellow_line.png",
+	L"assets/projectiles/projectile_yellow.png",
+	L"assets/projectiles/projectile_yellow_arrows.png",
+	L"assets/projectiles/projectile_yellow_lines.png",
+	L"assets/projectiles/projectile_yellow_line.png",
+};
+
+const std::vector<Sprite> MINE_SPAWN = {
+	L"assets/projectiles/mine_spawn_1.png",
+	L"assets/projectiles/mine_spawn_2.png",
+	L"assets/projectiles/mine_spawn_3.png",
 };

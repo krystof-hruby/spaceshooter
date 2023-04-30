@@ -10,6 +10,5 @@
 void Component_BossCollider::OnCollisionEnter(std::shared_ptr<GameObject> other) {
 	if (other->tag == "Player Bullet") {
 		this->GetGameObject()->GetComponent<Component_BossController>()->GetDamaged(1);
-		// TODO: play damage animation
 	}
 }

@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <unordered_map>
 #include <vector>
 #include "BossState_Exploding.h"
 #include "BossState_Floating.h"
@@ -26,16 +27,17 @@ public:
 	float floating_movement_speed = 1;
 	float grace_period = 1;
 	float moving_to_floating_spot_period = 1;
-	float lasers_shoot_period = 1;
-	float homing_missile_shoot_period = 1;
+	float attack_period = 1;
 	Vector2D homing_missile_spawn_offset;
+	int number_of_mines = 1;
+	std::unordered_map<float, Vector2D> laser_positions;
 
 	void ChangeState(std::shared_ptr<BossState> state);
-	void ShootLasers();
 	void ShootHomingMissile();
+	void SpawnMines();
+	void ShootLasers();
 	void GetDamaged(int damage);
 	void Explode();
-	void DespawnHomingMissiles();
 
 private:
 	// For states.
@@ -54,6 +56,10 @@ private:
 
 	Vector2D current_floating_spot;
 	std::vector<std::weak_ptr<GameObject>> homing_missiles;
+	std::vector<std::weak_ptr<GameObject>> mines;
 	std::vector<std::weak_ptr<GameObject>> lasers;
+
+	void DespawnHomingMissiles();
+	void DespawnMines();
 };
 

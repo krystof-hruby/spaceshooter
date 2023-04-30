@@ -18,6 +18,9 @@
 #include "Component_HomingMissileCollider.h"
 #include "Component_HomingMissileController.h"
 #include "Component_InputReader.h"
+#include "Component_LaserController.h"
+#include "Component_MineCollider.h"
+#include "Component_MineController.h"
 #include "Component_PlayerBulletCollider.h"
 #include "Component_PlayerBulletController.h"
 #include "Component_PlayerCollider.h"
@@ -49,7 +52,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Background(std::
 
 	auto transform = game_object->AddComponent<Component_Transform>();
 	transform->rotation = PI / 2;
-	
+
 	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
 	#if VISUALIZE_HITBOXES
 		sprite_renderer->is_active = false;
@@ -61,16 +64,16 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Background(std::
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_ScoreManager(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Score Manager";
-	
+
 	auto score_manager = game_object->AddComponent<Component_ScoreManager>();
-	
+
 	return game_object;
 }
 
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Player";
-	
+
 	auto transform = game_object->AddComponent<Component_Transform>();
 	transform->scale = 0.2f;
 
@@ -119,7 +122,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_PlayerBullet(std
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Asteroid(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Asteroid";
-	
+
 	auto transform = game_object->AddComponent<Component_Transform>();
 	// Randomize spawn position.
 	if (rand() % 2 == 1) {
@@ -159,7 +162,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Asteroid(std::sh
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_AsteroidsManager(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Asteroids Manager";
-	
+
 	auto asteroids_manager = game_object->AddComponent<Component_AsteroidsManager>();
 
 	return game_object;
@@ -168,7 +171,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_AsteroidsManager
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShip(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Enemy Ship";
-	
+
 	auto transform = game_object->AddComponent<Component_Transform>();
 	transform->scale = 0.2f;
 	// Randomize spawn position.
@@ -201,7 +204,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShipsManage
 	game_object->tag = "Enemy Ships Manager";
 
 	auto enemy_ships_manager = game_object->AddComponent<Component_EnemyShipsManager>();
-	
+
 	return game_object;
 }
 
@@ -217,12 +220,18 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 
 	auto animator = game_object->AddComponent<Component_Animator>();
 	animator->RegisterAnimation(std::make_shared<Animation>("boss explosion", PURPLE_SHIP_EXPLOSION, false, 15));
+	animator->RegisterAnimation(std::make_shared<Animation>("boss hurt", BOSS_HURT, false, 10));
 
 	auto collider = game_object->AddComponent<Component_BossCollider>();
 	collider->width = 200;
 	collider->height = 200;
 
 	auto boss_controller = game_object->AddComponent<Component_BossController>();
+	#if LOWER_BOSS_HEALTH
+		boss_controller->health = BOSS_HEALTH;
+	#else
+		boss_controller->health = 100;
+	#endif
 	boss_controller->movement_speed = 0.8f;
 	boss_controller->floating_movement_speed = 60;
 	boss_controller->spawn_position = Vector2D(0, 1500);
@@ -232,14 +241,13 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 	boss_controller->floating_spots.push_back(Vector2D(800, -600));
 	boss_controller->floating_spots.push_back(Vector2D(800, 600));
 	boss_controller->moving_to_floating_spot_period = 13;
-	boss_controller->lasers_shoot_period = 5;
-	boss_controller->homing_missile_shoot_period = 4;
+	boss_controller->attack_period = 5;
 	boss_controller->homing_missile_spawn_offset = Vector2D(0, -200);
-	#if LOWER_BOSS_HEALTH
-		boss_controller->health = BOSS_HEALTH;
-	#else
-		boss_controller->health = 100;
-	#endif
+	boss_controller->number_of_mines = 7;
+	boss_controller->laser_positions[0] = Vector2D(350, 0);
+	boss_controller->laser_positions[-PI / 2] = Vector2D(0, 350);
+	boss_controller->laser_positions[-PI] = Vector2D(-350, 0);
+	boss_controller->laser_positions[PI / 2] = Vector2D(0, -350);
 
 	return game_object;
 }
@@ -255,14 +263,56 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_HomingMissile(st
 	sprite_renderer->SetSprite(PROJECTILE_YELLOW);
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->RegisterAnimation(std::make_shared<Animation>("homing missile spawn", PROJECTILE_YELLOW_SPAWN, false, 15));
-	animator->RegisterAnimation(std::make_shared<Animation>("homing missile explosion", PROJECTILE_YELLOW_EXPLODE, false, 15));
+	animator->RegisterAnimation(std::make_shared<Animation>("homing missile spawn", PROJECTILE_YELLOW_SPAWN, false, 17));
+	animator->RegisterAnimation(std::make_shared<Animation>("homing missile explosion", PROJECTILE_YELLOW_EXPLODE, false, 17));
 
 	auto collider = game_object->AddComponent<Component_HomingMissileCollider>();
 	collider->radius = 45;
 
 	auto homing_missile_controller = game_object->AddComponent<Component_HomingMissileController>();
 	homing_missile_controller->movement_speed = 0.5f;
+
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Mine(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Mine";
+
+	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->scale = 0.2f;
+
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	sprite_renderer->SetSprite(MINE);
+
+	auto animator = game_object->AddComponent<Component_Animator>();
+	animator->RegisterAnimation(std::make_shared<Animation>("mine spawn", MINE_SPAWN, false, 15));
+	animator->RegisterAnimation(std::make_shared<Animation>("mine explosion", ASTEROID_EXPLOSION, false, 15));
+
+	auto collider = game_object->AddComponent<Component_MineCollider>();
+	collider->radius = 50;
+
+	auto mine_controller = game_object->AddComponent<Component_MineController>();
+
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Laser(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Laser";
+
+	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->scale = 0.18f;
+
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	sprite_renderer->SetSprite(PROJECTILE_GREEN_LASER);
+
+	auto collider = game_object->AddComponent<Component_RectangleCollider>();
+	collider->width = 50;
+	collider->height = 380;
+
+	auto laser_controller = game_object->AddComponent<Component_LaserController>();
+	laser_controller->laser_period = 0.5f;
 
 	return game_object;
 }

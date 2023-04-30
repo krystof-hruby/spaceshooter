@@ -8,9 +8,10 @@
 
 class Component_BossController;
 
+// Abstract parent class for boss states. Override methods to provide functionality.
 class BossState {
 public:
-	virtual void Play(std::shared_ptr<Component_BossController> boss_controller) = 0;
+	virtual void Play(std::shared_ptr<Component_BossController> boss_controller) { }
 
 protected:
 	BossState() { }

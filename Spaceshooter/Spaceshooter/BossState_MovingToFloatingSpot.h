@@ -9,7 +9,7 @@
 
 class BossState_MovingToFloatingSpot final : public BossState {
 private:
-	int current_floating_spot = 0;
+	int next_floating_spot = 0;
 
 	bool IsAtFloatingSpot(Vector2D position, Vector2D floating_spot) const;
 

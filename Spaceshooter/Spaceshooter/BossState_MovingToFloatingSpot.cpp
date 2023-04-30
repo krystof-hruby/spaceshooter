@@ -10,7 +10,7 @@
 
 void BossState_MovingToFloatingSpot::Play(std::shared_ptr<Component_BossController> boss_controller) {
 	auto transform = boss_controller->GetGameObject()->GetComponent<Component_Transform>();
-	Vector2D next_floating_spot = boss_controller->floating_spots[this->current_floating_spot];
+	Vector2D next_floating_spot = boss_controller->floating_spots[this->next_floating_spot];
 
 	// Interpolate between current position and next floating spot.
 	float time_step = (float)Time::delta_time * boss_controller->movement_speed;
@@ -23,8 +23,10 @@ void BossState_MovingToFloatingSpot::Play(std::shared_ptr<Component_BossControll
 		// Update current floating spot to current position (is slightly different).
 		boss_controller->current_floating_spot = transform->position;
 		
-		// Update next floating spot.
-		this->current_floating_spot = (this->current_floating_spot + 1) % boss_controller->floating_spots.size();
+		// Randomly choose next floating spot that is not the current floating spot.
+		int current_floating_spot = this->next_floating_spot;
+		while (this->next_floating_spot == current_floating_spot)
+			this->next_floating_spot = rand() % boss_controller->floating_spots.size();
 	}
 }
 

@@ -145,6 +145,9 @@
     <Filter Include="Source Files\Game\Components\Boss\HomingMissile">
       <UniqueIdentifier>{605a45d2-8757-4047-b6b6-49e659f3d1b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Assets">
+      <UniqueIdentifier>{edbfc724-2b66-4ea8-bc6e-7b0e73e2f86a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -496,6 +499,9 @@
     </ClInclude>
     <ClInclude Include="Component_HomingMissileController.h">
       <Filter>Header Files\Game\Components\Boss\HomingMissile</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprites.h">
+      <Filter>Header Files\Game\Assets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

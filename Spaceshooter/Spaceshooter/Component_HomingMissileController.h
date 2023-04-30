@@ -9,7 +9,7 @@
 class Component_HomingMissileController final : public Component {
 public:
 	using Component::Component;
-	inline bool Startable() const override { return false; }
+	void Start() override;
 	void Update() override;
 
 	std::weak_ptr<Component_Transform> player_transform;
@@ -19,5 +19,7 @@ public:
 
 private:
 	Vector2D initial_position;
+	bool exploded = false;
+	float time_step = 0;
 };
 

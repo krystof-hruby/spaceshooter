@@ -4,6 +4,10 @@
 
 #include "Component_CircleCollider.h"
 
+#include "Component_Transform.h"
+#include "GameObject.h"
+#include "mydrawengine.h"
+
 std::shared_ptr<IShape2D> Component_CircleCollider::GetShape() {
 	return this->shape;
 }

@@ -14,6 +14,7 @@
 #include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "Scene.h"
+#include "Sprites.h"
 #include "Time.h"
 
 void Component_PlayerController::Start() {
@@ -69,11 +70,11 @@ void Component_PlayerController::Update() {
 
 	// Update sprite.
 	if (player_input->GetInput_Rotation() > 0)
-		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green_right.png");
+		sprite_renderer->SetSprite(SPACESHIP_GREEN_RIGHT);
 	else if (player_input->GetInput_Rotation() < 0)
-		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green_left.png");
+		sprite_renderer->SetSprite(SPACESHIP_GREEN_LEFT);
 	else // No rotation.
-		sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green.png");
+		sprite_renderer->SetSprite(SPACESHIP_GREEN);
 }
 
 

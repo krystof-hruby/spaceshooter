@@ -12,6 +12,7 @@
 #include "Constants.h"
 #include "GameObjectFactory.h"
 #include "Logging.h"
+#include "Sprites.h"
 #include "Time.h"
 
 void Scene_Level1::Load() {
@@ -23,7 +24,7 @@ void Scene_Level1::Load() {
 
 	// Background.
 	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry);
-	background->GetComponent<Component_SpriteRenderer>()->SetSprite(L"assets/backgrounds/background_black.png");
+	background->GetComponent<Component_SpriteRenderer>()->SetSprite(BACKGROUND_BLACK);
 	Scene::Instantiate(background);
 	
 	// Player.

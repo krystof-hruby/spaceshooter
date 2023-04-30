@@ -16,17 +16,18 @@ void BossState_Floating::Play(std::shared_ptr<Component_BossController> boss_con
 	transform->position.YValue = boss_controller->current_floating_spot.YValue + (sin(this->floating_time * 1) * boss_controller->floating_movement_speed);
 
 	// Shoot lasers.
-	if (this->laser_shoot_time > boss_controller->lasers_shoot_period)
+	if (this->laser_shoot_time > boss_controller->lasers_shoot_period) {
 		boss_controller->ShootLasers();
+		this->laser_shoot_time = 0;
+	}
 
 	// Shoot homing missiles.
-	if (this->homing_missile_shoot_time > boss_controller->homing_missile_shoot_period)
+	if (this->homing_missile_shoot_time > boss_controller->homing_missile_shoot_period) {
 		boss_controller->ShootHomingMissile();
+		this->homing_missile_shoot_time = 0;
+	}
 
-	this->moving_to_floating_spot_time += (float)Time::delta_time;
-	this->laser_shoot_time += (float)Time::delta_time;
-	this->homing_missile_shoot_time += (float)Time::delta_time;
-	
+	// Time to move to another spot.
 	if (this->moving_to_floating_spot_time > boss_controller->moving_to_floating_spot_period) {
 		boss_controller->ChangeState(boss_controller->state_movig_to_floating_spot);
 
@@ -36,4 +37,8 @@ void BossState_Floating::Play(std::shared_ptr<Component_BossController> boss_con
 		this->homing_missile_shoot_time = 0;
 		this->moving_to_floating_spot_time = 0;
 	}
+
+	this->moving_to_floating_spot_time += (float)Time::delta_time;
+	this->laser_shoot_time += (float)Time::delta_time;
+	this->homing_missile_shoot_time += (float)Time::delta_time;
 }

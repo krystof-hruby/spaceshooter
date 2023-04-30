@@ -29,9 +29,10 @@ void Component_BossController::ShootLasers() {
 }
 
 void Component_BossController::ShootHomingMissile() {
+	LOG("spawning missile");
 	std::shared_ptr<GameObject> homing_missile = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::HomingMissile, this->GetGameObject()->GetComponentRegistry());
 	homing_missile->GetComponent<Component_HomingMissileController>()->player_transform = this->player_transform;
-	homing_missile->GetComponent<Component_Transform>()->position = this->GetGameObject()->GetComponent<Component_Transform>()->position - this->homing_missile_spawn_offset;
+	homing_missile->GetComponent<Component_Transform>()->position = this->GetGameObject()->GetComponent<Component_Transform>()->position + this->homing_missile_spawn_offset;
 
 	Scene::Instantiate(homing_missile);
 	this->homing_missiles.push_back(homing_missile);

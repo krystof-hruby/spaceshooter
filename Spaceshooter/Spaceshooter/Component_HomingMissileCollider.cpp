@@ -8,6 +8,6 @@
 #include "GameObject.h"
 
 void Component_HomingMissileCollider::OnCollisionEnter(std::shared_ptr<GameObject> other) {
-	if (other->tag == "Player" || other->tag == "Homing Missile" || other->tag == "Boss")
+	if (other->tag == "Player" || other->tag == "Homing Missile" || other->tag == "Player Bullet")
 		this->GetGameObject()->GetComponent<Component_HomingMissileController>()->Explode();
 }

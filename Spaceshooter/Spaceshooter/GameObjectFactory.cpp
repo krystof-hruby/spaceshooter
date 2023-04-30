@@ -30,6 +30,7 @@
 #include "Constants.h"
 #include "Debugging.h"
 #include "Logging.h" // TODO: remove
+#include "Sprites.h"
 
 GameObjectFactory& GameObjectFactory::GetInstance() {
 	static GameObjectFactory instance;
@@ -77,23 +78,11 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 	collider->radius = 45;
 
 	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
-	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_green.png");
+	sprite_renderer->SetSprite(SPACESHIP_GREEN);
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	std::vector<Sprite> sprites = {
-		L"assets/spaceships/blue_ship_explosion_1.png",
-		L"assets/spaceships/blue_ship_explosion_2.png",
-		L"assets/spaceships/blue_ship_explosion_3.png",
-		L"assets/spaceships/blue_ship_explosion_4.png",
-	};
-	animator->RegisterAnimation(std::make_shared<Animation>("player explode", sprites, false, 15));
-	sprites = {
-		L"assets/spaceships/blue_ship_spawn_1.png",
-		L"assets/spaceships/blue_ship_spawn_2.png",
-		L"assets/spaceships/blue_ship_spawn_3.png",
-		L"assets/spaceships/blue_ship_spawn_4.png",
-	};
-	animator->RegisterAnimation(std::make_shared<Animation>("player spawn", sprites, false, 11));
+	animator->RegisterAnimation(std::make_shared<Animation>("player explode", BLUE_SHIP_EXPLOSION, false, 15));
+	animator->RegisterAnimation(std::make_shared<Animation>("player spawn", BLUE_SHIP_SPAWN, false, 11));
 
 	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
 
@@ -115,7 +104,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_PlayerBullet(std
 	transform->scale = 0.2f;
 
 	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
-	sprite_renderer->SetSprite(L"assets/projectiles/projectile_pink.png");
+	sprite_renderer->SetSprite(PROJECTILE_PINK);
 
 	auto collider = game_object->AddComponent<Component_PlayerBulletCollider>();
 	collider->width = 80;
@@ -146,20 +135,14 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Asteroid(std::sh
 
 	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
 	// Randomize sprite.
-	Sprite sprite = rand() % 2 == 1 ? L"assets/asteroids/asteroid_large.png" : L"assets/asteroids/asteroid_small.png";
+	Sprite sprite = rand() % 2 == 1 ? ASTEROID_LARGE : ASTEROID_SMALL;
 	sprite_renderer->SetSprite(sprite);
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	std::vector<Sprite> sprites = {
-		L"assets/asteroids/asteroid_explosion_1.png",
-		L"assets/asteroids/asteroid_explosion_2.png",
-		L"assets/asteroids/asteroid_explosion_3.png",
-		L"assets/asteroids/asteroid_explosion_4.png",
-	};
-	game_object->GetComponent<Component_Animator>()->RegisterAnimation(std::make_shared<Animation>("asteroid explosion", sprites, false, 15));
+	game_object->GetComponent<Component_Animator>()->RegisterAnimation(std::make_shared<Animation>("asteroid explosion", ASTEROID_EXPLOSION, false, 15));
 
 	auto collider = game_object->AddComponent<Component_AsteroidCollider>();
-	int scale_multiplier = sprite == L"assets/asteroids/asteroid_large.png" ? 190 : 250; // Sprites have different sizes.
+	int scale_multiplier = sprite == ASTEROID_LARGE ? 190 : 250; // Sprites have different sizes.
 	collider->radius = transform->scale * scale_multiplier;
 
 	auto asteroid_controller = game_object->AddComponent<Component_AsteroidController>();
@@ -199,16 +182,10 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShip(std::s
 	}
 
 	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
-	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_purple.png");
+	sprite_renderer->SetSprite(SPACESHIP_PURPLE);
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	std::vector<Sprite> sprites = {
-		L"assets/spaceships/purple_ship_explosion_1.png",
-		L"assets/spaceships/purple_ship_explosion_2.png",
-		L"assets/spaceships/purple_ship_explosion_3.png",
-		L"assets/spaceships/purple_ship_explosion_4.png",
-	};
-	animator->RegisterAnimation(std::make_shared<Animation>("enemy ship explosion", sprites, false, 15));
+	animator->RegisterAnimation(std::make_shared<Animation>("enemy ship explosion", PURPLE_SHIP_EXPLOSION, false, 15));
 
 	auto collider = game_object->AddComponent<Component_EnemyShipCollider>();
 	collider->radius = 50;
@@ -236,16 +213,10 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 	transform->scale = 0.5f;
 
 	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
-	sprite_renderer->SetSprite(L"assets/spaceships/spaceship_boss.png");
+	sprite_renderer->SetSprite(SPACESHIP_BOSS);
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	std::vector<Sprite> sprites = {
-		L"assets/spaceships/purple_ship_explosion_1.png",
-		L"assets/spaceships/purple_ship_explosion_2.png",
-		L"assets/spaceships/purple_ship_explosion_3.png",
-		L"assets/spaceships/purple_ship_explosion_4.png",
-	};
-	animator->RegisterAnimation(std::make_shared<Animation>("boss explosion", sprites, false, 15));
+	animator->RegisterAnimation(std::make_shared<Animation>("boss explosion", PURPLE_SHIP_EXPLOSION, false, 15));
 
 	auto collider = game_object->AddComponent<Component_BossCollider>();
 	collider->width = 200;
@@ -260,10 +231,10 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 	boss_controller->floating_spots.push_back(Vector2D(-800, -600));
 	boss_controller->floating_spots.push_back(Vector2D(800, -600));
 	boss_controller->floating_spots.push_back(Vector2D(800, 600));
-	boss_controller->moving_to_floating_spot_period = 10;
+	boss_controller->moving_to_floating_spot_period = 13;
 	boss_controller->lasers_shoot_period = 5;
-	boss_controller->homing_missile_shoot_period = 5;
-	boss_controller->homing_missile_spawn_offset = Vector2D(0, -30);
+	boss_controller->homing_missile_shoot_period = 4;
+	boss_controller->homing_missile_spawn_offset = Vector2D(0, -200);
 	#if LOWER_BOSS_HEALTH
 		boss_controller->health = BOSS_HEALTH;
 	#else
@@ -278,22 +249,20 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_HomingMissile(st
 	game_object->tag = "Homing Missile";
 
 	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->scale = 0.18f;
 
 	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	sprite_renderer->SetSprite(PROJECTILE_YELLOW);
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	std::vector<Sprite> sprites = {
-		L"assets/spaceships/purple_ship_explosion_1.png", //TODO: change sprites
-		L"assets/spaceships/purple_ship_explosion_2.png",
-		L"assets/spaceships/purple_ship_explosion_3.png",
-		L"assets/spaceships/purple_ship_explosion_4.png",
-	};
-	animator->RegisterAnimation(std::make_shared<Animation>("homing missile explosion", sprites, false, 15));
+	animator->RegisterAnimation(std::make_shared<Animation>("homing missile spawn", PROJECTILE_YELLOW_SPAWN, false, 15));
+	animator->RegisterAnimation(std::make_shared<Animation>("homing missile explosion", PROJECTILE_YELLOW_EXPLODE, false, 15));
 
 	auto collider = game_object->AddComponent<Component_HomingMissileCollider>();
-	collider->radius = 50;
+	collider->radius = 45;
 
 	auto homing_missile_controller = game_object->AddComponent<Component_HomingMissileController>();
+	homing_missile_controller->movement_speed = 0.5f;
 
 	return game_object;
 }

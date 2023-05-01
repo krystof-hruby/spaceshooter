@@ -47,11 +47,11 @@ void Component_BossController::SpawnMines() {
 			mine_controller->spawn_position.YValue = (float)(rand() % 2000 - 1000);
 
 			// If near player.
-			if (mine_controller->IsNearPosition(this->player_transform.lock()->position, 150))
+			if (mine_controller->IsNearPosition(this->player_transform.lock()->position, 200))
 				continue;
 
 			// If near boss.
-			if (mine_controller->IsNearPosition(this->GetGameObject()->GetComponent<Component_Transform>()->position, 150))
+			if (mine_controller->IsNearPosition(this->GetGameObject()->GetComponent<Component_Transform>()->position, 200))
 				continue;
 
 			break;

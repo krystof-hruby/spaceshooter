@@ -533,5 +533,8 @@
     <ClInclude Include="Component_MineCollider.h">
       <Filter>Header Files\Game\Components\Boss\Mines</Filter>
     </ClInclude>
+    <ClInclude Include="AudioClips.h">
+      <Filter>Header Files\Game\Assets</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

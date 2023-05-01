@@ -20,6 +20,5 @@ public:
 private:
 	Vector2D initial_position;
 	bool exploded = false;
-	float time_step = 0;
 };
 

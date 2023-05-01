@@ -4,8 +4,10 @@
 
 #include "Component_AsteroidsManager.h"
 
+#include "AudioClips.h"
 #include "Component_AsteroidCollider.h"
 #include "Component_AsteroidController.h"
+#include "Component_AudioEmitter.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
 #include "GameObject.h"
@@ -30,6 +32,8 @@ void Component_AsteroidsManager::SpawnAsteroid() {
 	// Add to scene.
 	Scene::Instantiate(asteroid);
 	this->asteroids.push_back(asteroid);
+
+	asteroid->GetComponent<Component_AudioEmitter>()->Play(ASTEROID_WHOOSH); // TODO: ????????????????
 
 	// Reset spawning.
 	this->asteroid_spawn_time = 0;

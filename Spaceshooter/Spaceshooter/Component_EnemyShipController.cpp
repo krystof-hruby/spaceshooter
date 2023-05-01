@@ -28,10 +28,8 @@ void Component_EnemyShipController::Update() {
 
 	// Interpolate between this position and player position.
 	float time_step = (float)Time::delta_time * this->movement_speed;
-	Vector2D new_position;
-	new_position.XValue = (1 - time_step) * transform->position.XValue + time_step * player_transform->position.XValue;
-	new_position.YValue = (1 - time_step) * transform->position.YValue + time_step * player_transform->position.YValue;
-	transform->position = new_position;
+	transform->position.XValue = (1 - time_step) * transform->position.XValue + time_step * player_transform->position.XValue;
+	transform->position.YValue = (1 - time_step) * transform->position.YValue + time_step * player_transform->position.YValue;
 }
 
 void Component_EnemyShipController::Explode() {

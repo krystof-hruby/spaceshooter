@@ -4,6 +4,7 @@
 
 #include "GameObjectFactory.h"
 
+#include "AudioClips.h"
 #include "Component_Animator.h"
 #include "Component_AsteroidCollider.h"
 #include "Component_AsteroidController.h"
@@ -32,7 +33,6 @@
 #include "Component_Transform.h"
 #include "Constants.h"
 #include "Debugging.h"
-#include "Logging.h" // TODO: remove
 #include "Sprites.h"
 
 GameObjectFactory& GameObjectFactory::GetInstance() {
@@ -88,6 +88,12 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 	animator->RegisterAnimation(std::make_shared<Animation>("player spawn", BLUE_SHIP_SPAWN, false, 11));
 
 	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
+	audio_emitter->Load(PLAYER_PROJECTILE);
+	audio_emitter->SetVolume(PLAYER_PROJECTILE, 70);
+	audio_emitter->Load(PLAYER_EXPLOSION);
+	audio_emitter->SetVolume(PLAYER_EXPLOSION, 80);
+	audio_emitter->Load(PLAYER_SPAWN);
+	audio_emitter->SetVolume(PLAYER_SPAWN, 80);
 
 	auto player_input = game_object->AddComponent<Component_PlayerInput>();
 
@@ -143,6 +149,9 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Asteroid(std::sh
 
 	auto animator = game_object->AddComponent<Component_Animator>();
 	game_object->GetComponent<Component_Animator>()->RegisterAnimation(std::make_shared<Animation>("asteroid explosion", ASTEROID_EXPLOSION, false, 15));
+
+	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
+	audio_emitter->Load(ASTEROID_WHOOSH);
 
 	auto collider = game_object->AddComponent<Component_AsteroidCollider>();
 	int scale_multiplier = sprite == ASTEROID_LARGE ? 190 : 250; // Sprites have different sizes.
@@ -243,7 +252,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 	boss_controller->moving_to_floating_spot_period = 13;
 	boss_controller->attack_period = 3;
 	boss_controller->homing_missile_spawn_offset = Vector2D(0, -200);
-	boss_controller->number_of_mines = 7;
+	boss_controller->number_of_mines = 9;
 	boss_controller->laser_positions[0] = Vector2D(350, 0);
 	boss_controller->laser_positions[-PI / 2] = Vector2D(0, 350);
 	boss_controller->laser_positions[-PI] = Vector2D(-350, 0);
@@ -270,7 +279,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_HomingMissile(st
 	collider->radius = 45;
 
 	auto homing_missile_controller = game_object->AddComponent<Component_HomingMissileController>();
-	homing_missile_controller->movement_speed = 0.5f;
+	homing_missile_controller->movement_speed = 0.9f;
 
 	return game_object;
 }

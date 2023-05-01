@@ -5,7 +5,9 @@
 #include "Component_PlayerController.h"
 
 #include "ActiveBounds.h"
+#include "AudioClips.h"
 #include "Component_Animator.h"
+#include "Component_AudioEmitter.h"
 #include "Component_PlayerBulletController.h"
 #include "Component_PlayerCollider.h"
 #include "Component_PlayerInput.h"
@@ -21,6 +23,7 @@ void Component_PlayerController::Start() {
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player spawn");
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
 	this->GetGameObject()->GetComponent<Component_Transform>()->scale = 0.3f;
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(PLAYER_SPAWN);
 }
 
 void Component_PlayerController::Update() {
@@ -83,6 +86,7 @@ void Component_PlayerController::Explode() {
 	this->GetGameObject()->GetComponent<Component_PlayerCollider>()->is_active = false; // Disable collision.
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player explode");
 	this->dead = true;
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(PLAYER_EXPLOSION);
 }
 
 void Component_PlayerController::ShootBullet(Vector2D position, float rotation, Vector2D direction) {
@@ -93,4 +97,6 @@ void Component_PlayerController::ShootBullet(Vector2D position, float rotation, 
 	bullet->GetComponent<Component_PlayerBulletController>()->score_manager = this->score_manager;
 
 	Scene::Instantiate(bullet);
+
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(PLAYER_PROJECTILE);
 }

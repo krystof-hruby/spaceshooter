@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActiveBounds.h" />
+    <ClInclude Include="AudioClips.h" />
     <ClInclude Include="BossState.h" />
     <ClInclude Include="BossState_Exploding.h" />
     <ClInclude Include="BossState_Floating.h" />

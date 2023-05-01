@@ -40,9 +40,9 @@ void Component_HomingMissileController::Update() {
 	auto player_transform = this->player_transform.lock();
 
 	// Interpolate between this position and player position.
-	this->time_step += (float)Time::delta_time * (this->movement_speed + (float)Time::delta_time);
-	transform->position.XValue = (1 - this->time_step) * this->initial_position.XValue + this->time_step * player_transform->position.XValue;
-	transform->position.YValue = (1 - this->time_step) * this->initial_position.YValue + this->time_step * player_transform->position.YValue;
+	float time_step = (float)Time::delta_time * this->movement_speed;
+	transform->position.XValue = (1 - time_step) * transform->position.XValue + time_step * player_transform->position.XValue;
+	transform->position.YValue = (1 - time_step) * transform->position.YValue + time_step * player_transform->position.YValue;
 }
 
 void Component_HomingMissileController::Explode() {

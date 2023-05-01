@@ -15,6 +15,10 @@ public:
 
 	Vector2D spawn_position;
 
+	bool IsNearPosition(Vector2D position, float delta);
 	void Explode();
+
+private:
+	bool exploded = false;
 };
 

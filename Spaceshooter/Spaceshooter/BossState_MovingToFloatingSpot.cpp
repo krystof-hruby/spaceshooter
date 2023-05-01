@@ -19,6 +19,7 @@ void BossState_MovingToFloatingSpot::Play(std::shared_ptr<Component_BossControll
 
 	if (this->IsAtFloatingSpot(transform->position, next_floating_spot)) {
 		boss_controller->ChangeState(boss_controller->state_floating);
+		boss_controller->state_floating->RandomizeMovementDirection();
 
 		// Update current floating spot to current position (is slightly different).
 		boss_controller->current_floating_spot = transform->position;

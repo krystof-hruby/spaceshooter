@@ -241,7 +241,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 	boss_controller->floating_spots.push_back(Vector2D(800, -600));
 	boss_controller->floating_spots.push_back(Vector2D(800, 600));
 	boss_controller->moving_to_floating_spot_period = 13;
-	boss_controller->attack_period = 5;
+	boss_controller->attack_period = 3;
 	boss_controller->homing_missile_spawn_offset = Vector2D(0, -200);
 	boss_controller->number_of_mines = 7;
 	boss_controller->laser_positions[0] = Vector2D(350, 0);
@@ -263,8 +263,8 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_HomingMissile(st
 	sprite_renderer->SetSprite(PROJECTILE_YELLOW);
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->RegisterAnimation(std::make_shared<Animation>("homing missile spawn", PROJECTILE_YELLOW_SPAWN, false, 17));
-	animator->RegisterAnimation(std::make_shared<Animation>("homing missile explosion", PROJECTILE_YELLOW_EXPLODE, false, 17));
+	animator->RegisterAnimation(std::make_shared<Animation>("homing missile spawn", PROJECTILE_YELLOW_SPAWN, false, 18));
+	animator->RegisterAnimation(std::make_shared<Animation>("homing missile explosion", PROJECTILE_YELLOW_EXPLODE, false, 18));
 
 	auto collider = game_object->AddComponent<Component_HomingMissileCollider>();
 	collider->radius = 45;

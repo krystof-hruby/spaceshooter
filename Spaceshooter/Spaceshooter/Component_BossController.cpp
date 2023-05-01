@@ -41,9 +41,21 @@ void Component_BossController::SpawnMines() {
 		std::shared_ptr<GameObject> mine = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Mine, this->GetGameObject()->GetComponentRegistry());
 
 		// Randomize spawn position.
-		// TODO: spawning outside of player and boss
-		mine->GetComponent<Component_MineController>()->spawn_position.XValue = (float)(rand() % 2000 - 1000);
-		mine->GetComponent<Component_MineController>()->spawn_position.YValue = (float)(rand() % 2000 - 1000);
+		auto mine_controller = mine->GetComponent<Component_MineController>();
+		while (true) {
+			mine_controller->spawn_position.XValue = (float)(rand() % 4000 - 2000);
+			mine_controller->spawn_position.YValue = (float)(rand() % 2000 - 1000);
+
+			// If near player.
+			if (mine_controller->IsNearPosition(this->player_transform.lock()->position, 150))
+				continue;
+
+			// If near boss.
+			if (mine_controller->IsNearPosition(this->GetGameObject()->GetComponent<Component_Transform>()->position, 150))
+				continue;
+
+			break;
+		}
 
 		Scene::Instantiate(mine);
 		this->mines.push_back(mine);

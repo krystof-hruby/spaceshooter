@@ -11,8 +11,8 @@
 void BossState_Floating::Play(std::shared_ptr<Component_BossController> boss_controller) {
 	// Float.
 	auto transform = boss_controller->GetGameObject()->GetComponent<Component_Transform>();
-	transform->position.XValue = boss_controller->current_floating_spot.XValue + (sin(this->floating_time * 2) * boss_controller->floating_movement_speed);
-	transform->position.YValue = boss_controller->current_floating_spot.YValue + (sin(this->floating_time * 1) * boss_controller->floating_movement_speed);
+	transform->position.XValue = boss_controller->current_floating_spot.XValue + (sin(this->floating_time * this->movement_direction.XValue) * boss_controller->floating_movement_speed);
+	transform->position.YValue = boss_controller->current_floating_spot.YValue + (sin(this->floating_time * this->movement_direction.YValue) * boss_controller->floating_movement_speed);
 
 	// Attac.
 	if (this->attack_time > boss_controller->attack_period) {
@@ -43,4 +43,11 @@ void BossState_Floating::Play(std::shared_ptr<Component_BossController> boss_con
 	}
 	this->floating_time += (float)Time::delta_time;
 	this->moving_to_floating_spot_time += (float)Time::delta_time;
+}
+
+void BossState_Floating::RandomizeMovementDirection() {
+	while (this->movement_direction.XValue == this->movement_direction.YValue) {
+		this->movement_direction.XValue = (float)(rand() % 3 + 1);
+		this->movement_direction.YValue = (float)(rand() % 3 + 1);
+	}
 }

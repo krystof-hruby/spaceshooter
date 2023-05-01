@@ -17,17 +17,25 @@ void Component_MineController::Start() {
 }
 
 void Component_MineController::Update() {
-	if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("mine explosion")) {
+	if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("mine explosion"))
 		this->GetGameObject()->Destroy();
+
+	if (this->exploded)
 		return;
-	}
 
 	if (this->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("mine spawn"))
 		this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = true;
+}
+
+bool Component_MineController::IsNearPosition(Vector2D position, float delta) {
+	bool is_near_x = (this->spawn_position.XValue < position.XValue + delta) && (this->spawn_position.XValue > position.XValue - delta);
+	bool is_near_y = (this->spawn_position.YValue < position.YValue + delta) && (this->spawn_position.YValue > position.YValue - delta);
+	return is_near_x && is_near_y;
 }
 
 void Component_MineController::Explode() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
 	this->GetGameObject()->GetComponent<Component_MineCollider>()->is_active = false;
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("mine explosion");
+	this->exploded = true;
 }

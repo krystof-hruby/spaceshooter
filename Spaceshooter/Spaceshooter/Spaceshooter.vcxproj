@@ -190,6 +190,10 @@
     <ClCompile Include="mydrawengine.cpp" />
     <ClCompile Include="myinputs.cpp" />
     <ClCompile Include="mysoundengine.cpp" />
+    <ClCompile Include="PlayerState_Exploding.cpp" />
+    <ClCompile Include="PlayerState_Flying.cpp" />
+    <ClCompile Include="PlayerState_GracePeriod.cpp" />
+    <ClCompile Include="PlayerState_Spawning.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Level1.cpp" />
@@ -258,6 +262,11 @@
     <ClInclude Include="myinputs.h" />
     <ClInclude Include="mysoundengine.h" />
     <ClInclude Include="objecttypes.h" />
+    <ClInclude Include="PlayerState.h" />
+    <ClInclude Include="PlayerState_Exploding.h" />
+    <ClInclude Include="PlayerState_Flying.h" />
+    <ClInclude Include="PlayerState_GracePeriod.h" />
+    <ClInclude Include="PlayerState_Spawning.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene_Level1.h" />

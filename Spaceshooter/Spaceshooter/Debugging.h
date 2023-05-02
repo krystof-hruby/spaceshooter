@@ -11,7 +11,7 @@
 
 #define LOGGING_ENABLED true
 #define VISUALIZE_HITBOXES false
-#define PLAYER_INVINCIBILITY false
+#define PLAYER_INVINCIBILITY true
 #define START_LEVEL 1
 
 #define LOWER_GOAL true

@@ -101,6 +101,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 	auto player_controller = game_object->AddComponent<Component_PlayerController>();
 	player_controller->movement_speed = 500;
 	player_controller->rotation_speed = 5;
+	player_controller->grace_period = 3;
 	player_controller->reload_period = 0.25f;
 
 	return game_object;
@@ -206,6 +207,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShip(std::s
 
 	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
 	audio_emitter->Load(AUDIO_ENEMY_SHIP_EXPLOSION);
+	audio_emitter->SetVolume(AUDIO_ENEMY_SHIP_EXPLOSION, 70);
 
 	auto collider = game_object->AddComponent<Component_EnemyShipCollider>();
 	collider->radius = 50;

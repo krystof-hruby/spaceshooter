@@ -5,7 +5,9 @@
 #include "Component_EnemyShipController.h"
 
 #include "ActiveBounds.h"
+#include "AudioClips.h"
 #include "Component_Animator.h"
+#include "Component_AudioEmitter.h"
 #include "Component_EnemyShipCollider.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
@@ -36,4 +38,5 @@ void Component_EnemyShipController::Explode() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false; // Hide sprite.
 	this->GetGameObject()->GetComponent<Component_EnemyShipCollider>()->is_active = false; // Disable collision.
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("enemy ship explosion");
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_ENEMY_SHIP_EXPLOSION);
 }

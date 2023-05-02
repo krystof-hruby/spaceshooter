@@ -9,7 +9,9 @@
 
 void Component_PlayerBulletCollider::OnCollisionEnter(std::shared_ptr<GameObject> other) {
 	if (other->tag == "Asteroid" || other->tag == "Enemy Ship" || other->tag == "Boss" || other->tag == "Homing Missile" || other->tag == "Mine") {
-		this->GetGameObject()->GetComponent<Component_PlayerBulletController>()->score_manager.lock()->score += 1;
+		auto score_manager = this->GetGameObject()->GetComponent<Component_PlayerBulletController>()->score_manager.lock();
+		score_manager->score += 1;
+
 		this->GetGameObject()->Destroy();
 	}
 }

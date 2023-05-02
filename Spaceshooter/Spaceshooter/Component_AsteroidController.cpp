@@ -5,7 +5,9 @@
 #include "Component_AsteroidController.h"
 
 #include "ActiveBounds.h"
+#include "AudioClips.h"
 #include "Component_Animator.h"
+#include "Component_AudioEmitter.h"
 #include "Component_AsteroidCollider.h"
 #include "Component_Transform.h"
 #include "GameObject.h"
@@ -24,6 +26,7 @@ void Component_AsteroidController::Update() {
 }
 
 void Component_AsteroidController::Explode() {
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_ASTEROID_EXPLOSION);
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false; // Hide sprite.
 	this->GetGameObject()->GetComponent<Component_AsteroidCollider>()->is_active = false; // Disable collision.
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("asteroid explosion");

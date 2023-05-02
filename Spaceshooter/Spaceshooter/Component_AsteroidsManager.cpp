@@ -33,11 +33,9 @@ void Component_AsteroidsManager::SpawnAsteroid() {
 	Scene::Instantiate(asteroid);
 	this->asteroids.push_back(asteroid);
 
-	asteroid->GetComponent<Component_AudioEmitter>()->Play(ASTEROID_WHOOSH); // TODO: ????????????????
-
 	// Reset spawning.
 	this->asteroid_spawn_time = 0;
-	this->asteroid_spawn_period = (float)((rand() % 10) + 1) / 50; // Randomize spawn period.
+	this->asteroid_spawn_period = (float)((rand() % 10) + 1) / 15; // Randomize spawn period.
 }
 
 void Component_AsteroidsManager::DespawnAsteroids() {

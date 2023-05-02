@@ -8,11 +8,12 @@
 #include "Constants.h"
 #include "EngineException.h"
 #include "GameObject.h"
+#include "ImageRenderer.h"
 #include "Time.h"
 
 // Animation:
 
-Animation::Animation(std::string name, std::vector<Sprite> sprites, bool loop, double speed) {
+Animation::Animation(std::string name, std::vector<Sprite> sprites, int layer, bool loop, double speed) {
 	this->name = name;
 
 	if (sprites.size() <= 0)
@@ -21,6 +22,7 @@ Animation::Animation(std::string name, std::vector<Sprite> sprites, bool loop, d
 	for (int i = 0; i < sprites.size(); i++)
 		this->animation_frames->push_back(MyDrawEngine::GetInstance()->LoadPicture(sprites[i]));
 
+	this->layer = layer;
 	this->loop = loop;
 	this->speed = speed;
 }
@@ -37,8 +39,8 @@ void Animation::Play(Vector2D position, float scale, float rotation) {
 		
 		this->Reset(); // Loop.
 	}
-	
-	MyDrawEngine::GetInstance()->DrawAt(position, (*this->animation_frames)[this->current_frame], scale, rotation, this->transparency);
+
+	ImageRenderer::GetInstance().ScheduleImage((*this->animation_frames)[this->current_frame], this->layer, position, scale, rotation, this->transparency);
 
 	this->frame_time += Time::delta_time;
 	this->elapsed_time += Time::delta_time;
@@ -89,28 +91,6 @@ void Component_Animator::PlayAnimation(std::string animation_name) {
 
 void Component_Animator::StopAnimation() {
 	this->current_animation = nullptr;
-}
-
-void Component_Animator::ModifyAnimation(std::string animation_name, bool loop, double speed) {
-	if (!this->animations[animation_name])
-		throw EngineException("Cannot modify animation. Animation under the name: " + animation_name + " not found.");
-
-	this->animations[animation_name]->loop = loop;
-	this->animations[animation_name]->speed = speed;
-}
-
-void Component_Animator::ModifyAnimation(std::string animation_name, bool loop) {
-	if (!this->animations[animation_name])
-		throw EngineException("Cannot modify animation. Animation under the name: " + animation_name + " not found.");
-
-	this->animations[animation_name]->loop = loop;
-}
-
-void Component_Animator::ModifyAnimation(std::string animation_name, double speed) {
-	if (!this->animations[animation_name])
-		throw EngineException("Cannot modify animation. Animation under the name: " + animation_name + " not found.");
-
-	this->animations[animation_name]->speed = speed;
 }
 
 bool Component_Animator::AnimationFinished(std::string animation_name) {

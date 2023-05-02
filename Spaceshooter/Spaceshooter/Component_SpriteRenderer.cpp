@@ -4,8 +4,9 @@
 
 #include "Component_SpriteRenderer.h"
 
-#include "GameObject.h"
 #include "Component_Transform.h"
+#include "GameObject.h"
+#include "ImageRenderer.h"
 
 void Component_SpriteRenderer::SetSprite(Sprite sprite) {
 	this->image = MyDrawEngine::GetInstance()->LoadPicture(sprite);
@@ -23,5 +24,5 @@ void Component_SpriteRenderer::Update() {
 		return;
 
 	auto transform = this->GetGameObject()->GetComponent<Component_Transform>();
-	MyDrawEngine::GetInstance()->DrawAt(transform->position, this->image, transform->scale, transform->rotation, this->transparency);
+	ImageRenderer::GetInstance().ScheduleImage(this->image, this->layer, transform->position, transform->scale, transform->rotation, this->transparency);
 }

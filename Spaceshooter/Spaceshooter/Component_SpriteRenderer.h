@@ -20,6 +20,9 @@ public:
 	// Value from 0 to 1 (not transparent to fully transparent).
 	float transparency = 0;
 
+	// Rendering layer in which the image will be drawn. Higher layers are drawn on top of lower layers.
+	int layer = 0;
+
 	// Changes the sprite.
 	void SetSprite(Sprite sprite);
 

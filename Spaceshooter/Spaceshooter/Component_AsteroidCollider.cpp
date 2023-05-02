@@ -9,6 +9,6 @@
 #include "GameObject.h"
 
 void Component_AsteroidCollider::OnCollisionEnter(std::shared_ptr<GameObject> other) {
-	if (other->tag == "Player" || other->tag == "Player Bullet" || other->tag == "Asteroid" || other->tag == "Enemy Ship")
+	if (other->tag == "Player" || other->tag == "Player Bullet")
 		this->GetGameObject()->GetComponent<Component_AsteroidController>()->Explode();
 }

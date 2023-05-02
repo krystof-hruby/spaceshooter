@@ -24,9 +24,6 @@ void BossState_Floating::Play(std::shared_ptr<Component_BossController> boss_con
 		case 2:
 			boss_controller->SpawnMines();
 			break;
-		//case 1:
-			//boss_controller->ShootLasers();
-			//break;
 		}
 
 		this->attack_time = 0;

@@ -26,7 +26,7 @@ void Scene_Level3::Load() {
 
 	// Background.
 	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry);
-	background->GetComponent<Component_SpriteRenderer>()->SetSprite(BACKGROUND_BLACK);
+	background->GetComponent<Component_SpriteRenderer>()->SetSprite(SPRITE_BACKGROUND_PURPLE);
 	Scene::Instantiate(background);
 
 	// Player.

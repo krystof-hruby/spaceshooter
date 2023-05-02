@@ -15,7 +15,8 @@
 #include "Component_Transform.h"
 #include "GameObject.h"
 #include "GameObjectFactory.h"
-#include "Scene.h"
+#include "Scene_Level2.h"
+#include "SceneManager.h"
 #include "Sprites.h"
 #include "Time.h"
 
@@ -23,7 +24,7 @@ void Component_PlayerController::Start() {
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player spawn");
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
 	this->GetGameObject()->GetComponent<Component_Transform>()->scale = 0.3f;
-	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(PLAYER_SPAWN);
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_PLAYER_SPAWN);
 }
 
 void Component_PlayerController::Update() {
@@ -37,6 +38,8 @@ void Component_PlayerController::Update() {
 		this->GetGameObject()->Destroy();
 
 		// TODO: display end screen
+
+		SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level2>());
 
 		return;
 	}
@@ -73,11 +76,11 @@ void Component_PlayerController::Update() {
 
 	// Update sprite.
 	if (player_input->GetInput_Rotation() > 0)
-		sprite_renderer->SetSprite(SPACESHIP_GREEN_RIGHT);
+		sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN_RIGHT);
 	else if (player_input->GetInput_Rotation() < 0)
-		sprite_renderer->SetSprite(SPACESHIP_GREEN_LEFT);
+		sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN_LEFT);
 	else // No rotation.
-		sprite_renderer->SetSprite(SPACESHIP_GREEN);
+		sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN);
 }
 
 
@@ -86,7 +89,7 @@ void Component_PlayerController::Explode() {
 	this->GetGameObject()->GetComponent<Component_PlayerCollider>()->is_active = false; // Disable collision.
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player explode");
 	this->dead = true;
-	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(PLAYER_EXPLOSION);
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_PLAYER_EXPLOSION);
 }
 
 void Component_PlayerController::ShootBullet(Vector2D position, float rotation, Vector2D direction) {
@@ -98,5 +101,5 @@ void Component_PlayerController::ShootBullet(Vector2D position, float rotation, 
 
 	Scene::Instantiate(bullet);
 
-	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(PLAYER_PROJECTILE);
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_PLAYER_PROJECTILE);
 }

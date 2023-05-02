@@ -30,12 +30,10 @@ public:
 	float attack_period = 1;
 	Vector2D homing_missile_spawn_offset;
 	int number_of_mines = 1;
-	std::unordered_map<float, Vector2D> laser_positions;
 
 	void ChangeState(std::shared_ptr<BossState> state);
 	void ShootHomingMissile();
 	void SpawnMines();
-	void ShootLasers();
 	void GetDamaged(int damage);
 	void Explode();
 
@@ -57,7 +55,6 @@ private:
 	Vector2D current_floating_spot;
 	std::vector<std::weak_ptr<GameObject>> homing_missiles;
 	std::vector<std::weak_ptr<GameObject>> mines;
-	std::vector<std::weak_ptr<GameObject>> lasers;
 
 	void DespawnHomingMissiles();
 	void DespawnMines();

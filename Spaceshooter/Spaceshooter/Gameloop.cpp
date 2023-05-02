@@ -4,6 +4,7 @@
 
 #include "Gameloop.h"
 
+#include "ImageRenderer.h"
 #include "InputManager.h"
 #include "Logging.h"
 #include "SceneManager.h"
@@ -32,6 +33,7 @@ void Gameloop::Update(double frame_time) {
 	InputManager::GetInstance().Update();
 	SceneManager::GetInstance().GetCurrentScene()->Update();
 	SceneManager::GetInstance().GetCurrentScene()->Components_Update();
+	ImageRenderer::GetInstance().RenderScheduledImages();
 }
 
 void Gameloop::End() {

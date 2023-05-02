@@ -62,17 +62,6 @@ void Component_BossController::SpawnMines() {
 	}
 }
 
-void Component_BossController::ShootLasers() {
-	for (auto position : this->laser_positions) {
-		std::shared_ptr<GameObject> laser = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Laser, this->GetGameObject()->GetComponentRegistry());
-		laser->GetComponent<Component_Transform>()->position = this->GetGameObject()->GetComponent<Component_Transform>()->position + position.second;
-		laser->GetComponent<Component_Transform>()->rotation = position.first;
-
-		Scene::Instantiate(laser);
-		this->lasers.push_back(laser);
-	}
-}
-
 void Component_BossController::ChangeState(std::shared_ptr<BossState> state) {
 	this->current_state = state;
 }

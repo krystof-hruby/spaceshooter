@@ -10,7 +10,7 @@
 // Holds information about animation.
 class Animation final : public Identifiable {
 public:
-	Animation(std::string name, std::vector<Sprite> sprites, bool loop = false, double speed = 1);
+	Animation(std::string name, std::vector<Sprite> sprites, int layer = 0, bool loop = false, double speed = 1);
 
 	// Name of the animation.
 	std::string name;
@@ -23,6 +23,9 @@ public:
 
 	// 0 = not transparent. 1 = fully transparent.
 	float transparency = 0;
+
+	// Rendering layer in which the image will be drawn. Higher layers are drawn on top of lower layers.
+	int layer = 0;
 
 	// Returns time elapsed from the start of the animation.
 	double GetElapsedTime() const;
@@ -65,15 +68,6 @@ public:
 
 	// Stops any currently played animation.
 	void StopAnimation();
-
-	// Modify values of animation registered with this name. May produce unpredictable results if modified wile playing.
-	void ModifyAnimation(std::string animation_name, bool loop, double speed);
-
-	// Modify values of animation registered with this name. May produce unpredictable results if modified wile playing.
-	void ModifyAnimation(std::string animation_name, bool loop);
-
-	// Modify values of animation registered with this name. May produce unpredictable results if modified wile playing.
-	void ModifyAnimation(std::string animation_name, double speed);
 
 	// Whether the animation has finished.
 	bool AnimationFinished(std::string animation_name);

@@ -165,7 +165,6 @@
     <ClCompile Include="Component_EnemyShipsManager.cpp" />
     <ClCompile Include="Component_HomingMissileCollider.cpp" />
     <ClCompile Include="Component_HomingMissileController.cpp" />
-    <ClCompile Include="Component_LaserController.cpp" />
     <ClCompile Include="Component_MineCollider.cpp" />
     <ClCompile Include="Component_MineController.cpp" />
     <ClCompile Include="Component_PlayerBulletCollider.cpp" />
@@ -197,6 +196,7 @@
     <ClCompile Include="Scene_Level2.cpp" />
     <ClCompile Include="Scene_Level3.cpp" />
     <ClCompile Include="Shapes.cpp" />
+    <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="StartScheduler.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="vector2D.cpp" />
@@ -228,7 +228,6 @@
     <ClInclude Include="Component_HomingMissileCollider.h" />
     <ClInclude Include="Component_HomingMissileController.h" />
     <ClInclude Include="Component_InputReader.h" />
-    <ClInclude Include="Component_LaserController.h" />
     <ClInclude Include="Component_MineCollider.h" />
     <ClInclude Include="Component_MineController.h" />
     <ClInclude Include="Component_PlayerBulletCollider.h" />
@@ -265,6 +264,7 @@
     <ClInclude Include="Scene_Level2.h" />
     <ClInclude Include="Scene_Level3.h" />
     <ClInclude Include="Shapes.h" />
+    <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="StartScheduler.h" />
     <ClInclude Include="Time.h" />

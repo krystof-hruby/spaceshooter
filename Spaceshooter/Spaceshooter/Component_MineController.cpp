@@ -4,7 +4,9 @@
 
 #include "Component_MineController.h"
 
+#include "AudioClips.h"
 #include "Component_Animator.h"
+#include "Component_AudioEmitter.h"
 #include "Component_MineCollider.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
@@ -37,5 +39,6 @@ void Component_MineController::Explode() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
 	this->GetGameObject()->GetComponent<Component_MineCollider>()->is_active = false;
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("mine explosion");
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_MINE_EXPLOSION);
 	this->exploded = true;
 }

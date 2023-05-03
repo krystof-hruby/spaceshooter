@@ -14,7 +14,6 @@
 
 void PlayerState_GracePeriod::Play(std::shared_ptr<Component_PlayerController> player_controller) {
 	if (this->grace_period_time > player_controller->grace_period) {
-		player_controller->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
 		player_controller->GetGameObject()->GetComponent<Component_Transform>()->scale = 0.3f;
 		player_controller->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player spawn");
 		player_controller->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_PLAYER_SPAWN);

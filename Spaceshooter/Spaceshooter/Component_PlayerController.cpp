@@ -21,6 +21,8 @@
 #include "Time.h"
 
 void Component_PlayerController::Start() {
+	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
+
 	this->current_state = this->state_grace_period;
 }
 
@@ -41,6 +43,14 @@ void Component_PlayerController::Explode() {
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player explode");
 	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_PLAYER_EXPLOSION);
 	this->current_state = this->state_exploding;
+}
+
+void Component_PlayerController::Despawn() {
+	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false; // Hide sprite.
+	this->GetGameObject()->GetComponent<Component_PlayerCollider>()->is_active = false; // Disable collision.
+	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player despawn");
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_PLAYER_SPAWN);
+	this->current_state = this->state_despawning;
 }
 
 void Component_PlayerController::ShootBullet(Vector2D position, float rotation, Vector2D direction) {

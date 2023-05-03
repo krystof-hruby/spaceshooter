@@ -26,9 +26,9 @@ void Component_AsteroidController::Update() {
 }
 
 void Component_AsteroidController::Explode() {
-	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_ASTEROID_EXPLOSION);
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false; // Hide sprite.
 	this->GetGameObject()->GetComponent<Component_AsteroidCollider>()->is_active = false; // Disable collision.
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("asteroid explosion");
+	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_ASTEROID_EXPLOSION);
 }
 

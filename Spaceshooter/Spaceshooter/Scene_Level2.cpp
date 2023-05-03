@@ -13,6 +13,8 @@
 #include "Constants.h"
 #include "GameObjectFactory.h"
 #include "Logging.h"
+#include "Scene_Level3.h"
+#include "SceneManager.h"
 #include "Sprites.h"
 #include "Time.h"
 
@@ -32,6 +34,7 @@ void Scene_Level2::Load() {
 	std::shared_ptr<GameObject> player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry);
 	player->GetComponent<Component_PlayerController>()->score_manager = score_manager->GetComponent<Component_ScoreManager>();
 	Scene::Instantiate(player);
+	this->player_controller = player->GetComponent<Component_PlayerController>();
 
 	// Asteroids manager.
 	std::shared_ptr<GameObject> asteroids_manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::AsteroidsManager, this->component_registry);
@@ -48,7 +51,8 @@ void Scene_Level2::Load() {
 }
 
 void Scene_Level2::Update() {
-
+	if (this->player_controller.lock()->Despawned())
+		SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level3>());
 }
 
 void Scene_Level2::Unload() {

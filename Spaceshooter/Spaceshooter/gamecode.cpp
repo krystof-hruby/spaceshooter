@@ -12,6 +12,7 @@
 
 // Engine includes
 #include "Gameloop.h"
+#include "AudioClips.h"
 
 Game::Game()
 {

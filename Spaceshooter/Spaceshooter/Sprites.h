@@ -49,6 +49,13 @@ const std::vector<Sprite> ANIMATION_BLUE_SHIP_SPAWN = {
 	L"assets/sprites/spaceships/blue_ship_spawn_4.png",
 };
 
+const std::vector<Sprite> ANIMATION_BLUE_SHIP_DESPAWN = {
+	L"assets/sprites/spaceships/blue_ship_spawn_4.png",
+	L"assets/sprites/spaceships/blue_ship_spawn_3.png",
+	L"assets/sprites/spaceships/blue_ship_spawn_2.png",
+	L"assets/sprites/spaceships/blue_ship_spawn_1.png",
+};
+
 const std::vector<Sprite> ANIMATION_ASTEROID_EXPLOSION = {
 	L"assets/sprites/asteroids/asteroid_explosion_1.png",
 	L"assets/sprites/asteroids/asteroid_explosion_2.png",

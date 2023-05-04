@@ -17,7 +17,6 @@ void Component_PlayerBulletController::Update() {
 	transform->position += this->movement_direction * this->movement_speed * Time::delta_time;
 
 	// Despawn bullet if out of bounds.
-	if (!ActiveBounds::IsInBounds(transform->position)) {
+	if (!ActiveBounds::IsInBounds(transform->position))
 		this->GetGameObject()->Destroy();
-	}
 }

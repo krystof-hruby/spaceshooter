@@ -7,7 +7,6 @@
 #include "ActiveBounds.h"
 #include "AudioClips.h"
 #include "Component_Animator.h"
-#include "Component_AudioEmitter.h"
 #include "Component_PlayerBulletController.h"
 #include "Component_PlayerCollider.h"
 #include "Component_PlayerInput.h"
@@ -40,16 +39,18 @@ void Component_PlayerController::ChangeState(std::shared_ptr<PlayerState> player
 void Component_PlayerController::Explode() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false; // Hide sprite.
 	this->GetGameObject()->GetComponent<Component_PlayerCollider>()->is_active = false; // Disable collision.
+	this->GetGameObject()->GetComponent<Component_Transform>()->scale = 0.27f;
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player explode");
-	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_PLAYER_EXPLOSION);
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_PLAYER_EXPLOSION, 70);
 	this->current_state = this->state_exploding;
 }
 
 void Component_PlayerController::Despawn() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false; // Hide sprite.
 	this->GetGameObject()->GetComponent<Component_PlayerCollider>()->is_active = false; // Disable collision.
+	this->GetGameObject()->GetComponent<Component_Transform>()->scale = 0.31f;
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player despawn");
-	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_PLAYER_SPAWN);
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_PLAYER_SPAWN, 70);
 	this->current_state = this->state_despawning;
 }
 
@@ -58,9 +59,8 @@ void Component_PlayerController::ShootBullet(Vector2D position, float rotation, 
 	bullet->GetComponent<Component_Transform>()->position = position;
 	bullet->GetComponent<Component_Transform>()->rotation = rotation;
 	bullet->GetComponent<Component_PlayerBulletController>()->movement_direction = direction;
-	bullet->GetComponent<Component_PlayerBulletController>()->score_manager = this->score_manager;
 
 	Scene::Instantiate(bullet);
 
-	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_PLAYER_PROJECTILE);
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_PLAYER_PROJECTILE, 70);
 }

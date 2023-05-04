@@ -8,20 +8,7 @@
 #include "mysoundengine.h"
 #include "SceneManager.h"
 
-Scene::Scene() { }
-
-void Scene::Load() { }
-
-void Scene::Update() { }
-
-void Scene::Unload() { }
-
-void Scene::StopAllSounds() const {
-	LOG("SCENE: Stopping all sounds.");
-	MySoundEngine::GetInstance()->StopAllSounds();
-}
-
-void Scene::Components_Update() const {
+void Scene::Update() const {
 	this->component_registry->AllComponents_Update();
 }
 

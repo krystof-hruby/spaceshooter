@@ -4,6 +4,7 @@
 
 #include "BossState_Floating.h"
 
+#include "AudioClips.h"
 #include "Component_BossController.h"
 #include "GameObject.h"
 #include "Time.h"
@@ -16,12 +17,11 @@ void BossState_Floating::Play(std::shared_ptr<Component_BossController> boss_con
 
 	// Attac.
 	if (this->attack_time > boss_controller->attack_period) {
-		switch (rand() % 3) {
+		switch (rand() % 2) {
 		case 0:
-		case 1:
 			boss_controller->ShootHomingMissile();
 			break;
-		case 2:
+		case 1:
 			boss_controller->SpawnMines();
 			break;
 		}

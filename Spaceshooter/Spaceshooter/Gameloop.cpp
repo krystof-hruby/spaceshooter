@@ -16,6 +16,9 @@
 void Gameloop::Start() {
 	LOG("GAMELOOP: Starting the game.");
 
+	// Set rng seed.
+	srand((unsigned int)time(NULL));
+
 	#ifndef START_LEVEL
 		SceneManager::GetInstance().ChangeScene(std::make_shared<Scene_Level1>());
 	#elif START_LEVEL == 1
@@ -31,8 +34,9 @@ void Gameloop::Update(double frame_time) {
 	Time::delta_time = frame_time;
 	
 	InputManager::GetInstance().Update();
+
 	SceneManager::GetInstance().GetCurrentScene()->Update();
-	SceneManager::GetInstance().GetCurrentScene()->Components_Update();
+
 	ImageRenderer::GetInstance().RenderScheduledImages();
 }
 

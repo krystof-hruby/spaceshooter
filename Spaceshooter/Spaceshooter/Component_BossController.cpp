@@ -5,6 +5,7 @@
 #include "Component_BossController.h"
 
 #include "ActiveBounds.h"
+#include "AudioClips.h"
 #include "Component_Animator.h"
 #include "Component_BossCollider.h"
 #include "Component_HomingMissileController.h"
@@ -13,9 +14,9 @@
 #include "GameObjectFactory.h"
 #include "Scene.h"
 #include "Time.h"
-#include "Logging.h" // TODO
 
 void Component_BossController::Start() {
+	this->score_manager.lock()->goal = this->health;
 	this->GetGameObject()->GetComponent<Component_Transform>()->position = this->spawn_position;
 	this->ChangeState(this->state_grace_period);
 }
@@ -34,6 +35,8 @@ void Component_BossController::ShootHomingMissile() {
 
 	Scene::Instantiate(homing_missile);
 	this->homing_missiles.push_back(homing_missile);
+
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_HOMING_MISSILE_SHOOT, 70);
 }
 
 void Component_BossController::SpawnMines() {
@@ -60,6 +63,8 @@ void Component_BossController::SpawnMines() {
 		Scene::Instantiate(mine);
 		this->mines.push_back(mine);
 	}
+
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_MINES_SPAWN, 70);
 }
 
 void Component_BossController::ChangeState(std::shared_ptr<BossState> state) {
@@ -68,8 +73,10 @@ void Component_BossController::ChangeState(std::shared_ptr<BossState> state) {
 
 void Component_BossController::GetDamaged(int damage) {
 	this->health -= damage;
+	this->score_manager.lock()->score += damage;
 
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("boss hurt");
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BOSS_HURT, 80);
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
 
 	if (this->health <= 0)

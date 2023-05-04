@@ -4,13 +4,14 @@
 
 #pragma once
 
-#include "Component_ScoreManager.h"
+#include "Component.h"
 #include "PlayerState.h"
 #include "PlayerState_Despawning.h"
 #include "PlayerState_Exploding.h"
 #include "PlayerState_Flying.h"
 #include "PlayerState_GracePeriod.h"
 #include "PlayerState_Spawning.h"
+#include "ScoreManager.h"
 #include "vector2D.h"
 
 class Component_PlayerController final : public Component, public std::enable_shared_from_this<Component_PlayerController> {
@@ -19,7 +20,7 @@ public:
 	void Start() override;
 	void Update() override;
 
-	std::weak_ptr<Component_ScoreManager> score_manager;
+	std::weak_ptr<ScoreManager> score_manager;
 	float movement_speed = 1;
 	float rotation_speed = 1;
 	float grace_period = 1;
@@ -29,7 +30,6 @@ public:
 	void ChangeState(std::shared_ptr<PlayerState> player_state);
 	void Explode();
 	void Despawn();
-	bool Despawned() const { return this->despawned; }
 
 private:
 	// For states.
@@ -48,7 +48,6 @@ private:
 	std::shared_ptr<PlayerState_Exploding> state_exploding = std::make_shared<PlayerState_Exploding>();
 	std::shared_ptr<PlayerState_Despawning> state_despawning = std::make_shared<PlayerState_Despawning>();
 
-	bool despawned = false;
 	void ShootBullet(Vector2D position, float rotation, Vector2D direction);
 };
 

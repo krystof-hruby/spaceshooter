@@ -160,6 +160,24 @@
     <Filter Include="Source Files\Game\Components\Player\States">
       <UniqueIdentifier>{14ffcff9-22f1-4477-b4ca-d5f9fc9297cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\AudioManagement">
+      <UniqueIdentifier>{a805c8f3-d739-4a40-80b1-553b5f2997c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\AudioManagement">
+      <UniqueIdentifier>{3da11208-765c-43c9-8818-2fe245a54a10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\LevelManagers">
+      <UniqueIdentifier>{1dd446fe-33a0-4a45-bb15-fc2f28146d53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\LevelManagers">
+      <UniqueIdentifier>{cf6f596b-3a69-4e48-9e26-d3de039fff66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\Background">
+      <UniqueIdentifier>{d15d59d1-9556-4b94-ad20-427da73eb404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\Background">
+      <UniqueIdentifier>{681db334-1d38-4e44-ba89-3e00b195c715}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -219,9 +237,6 @@
     <ClCompile Include="Component_RectangleCollider.cpp">
       <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
     </ClCompile>
-    <ClCompile Include="Component_AudioEmitter.cpp">
-      <Filter>Source Files\Engine\Components\IndividualComponents</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\Engine\InputManagment</Filter>
     </ClCompile>
@@ -263,9 +278,6 @@
     </ClCompile>
     <ClCompile Include="Logging.cpp">
       <Filter>Source Files\Debugging</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_ScoreManager.cpp">
-      <Filter>Source Files\Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="StartScheduler.cpp">
       <Filter>Source Files\Engine\Components</Filter>
@@ -351,6 +363,24 @@
     <ClCompile Include="PlayerState_Despawning.cpp">
       <Filter>Source Files\Game\Components\Player\States</Filter>
     </ClCompile>
+    <ClCompile Include="AudioPlayer.cpp">
+      <Filter>Source Files\Engine\AudioManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Level1Manager.cpp">
+      <Filter>Source Files\Game\Components\LevelManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>Source Files\Game\Components\LevelManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Level2Manager.cpp">
+      <Filter>Source Files\Game\Components\LevelManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Level3Manager.cpp">
+      <Filter>Source Files\Game\Components\LevelManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_BackgroundController.cpp">
+      <Filter>Source Files\Game\Components\Background</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
@@ -416,9 +446,6 @@
     <ClInclude Include="Component_RectangleCollider.h">
       <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
     </ClInclude>
-    <ClInclude Include="Component_AudioEmitter.h">
-      <Filter>Header Files\Engine\Components\IndividualComponents</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Header Files\Engine\InputManagement</Filter>
     </ClInclude>
@@ -469,9 +496,6 @@
     </ClInclude>
     <ClInclude Include="Logging.h">
       <Filter>Header Files\Debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_ScoreManager.h">
-      <Filter>Header Files\Game\Components</Filter>
     </ClInclude>
     <ClInclude Include="StartScheduler.h">
       <Filter>Header Files\Engine\Components</Filter>
@@ -568,6 +592,24 @@
     </ClInclude>
     <ClInclude Include="PlayerState_Despawning.h">
       <Filter>Header Files\Game\Components\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioPlayer.h">
+      <Filter>Header Files\Engine\AudioManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Level1Manager.h">
+      <Filter>Header Files\Game\Components\LevelManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Header Files\Game\Components\LevelManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Level2Manager.h">
+      <Filter>Header Files\Game\Components\LevelManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Level3Manager.h">
+      <Filter>Header Files\Game\Components\LevelManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_BackgroundController.h">
+      <Filter>Header Files\Game\Components\Background</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

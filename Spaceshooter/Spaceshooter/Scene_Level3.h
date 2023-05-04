@@ -10,7 +10,6 @@
 class Scene_Level3 final : public Scene {
 public:
 	void Load() override;
-	void Update() override;
 	void Unload() override;
 };
 

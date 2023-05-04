@@ -60,8 +60,8 @@ public:
 	inline bool Startable() const override { return false; }
 	void Update() override;
 
-	// Registered animation can be played by their name.
-	void RegisterAnimation(std::shared_ptr<Animation> animation);
+	// Loaded animations can be played by their name.
+	void LoadAnimation(std::shared_ptr<Animation> animation);
 
 	// Play animation registered with this name.
 	void PlayAnimation(std::string animation_name);

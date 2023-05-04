@@ -4,11 +4,12 @@
 
 #pragma once
 
-#include "Component.h"
+#include "Component_Level1Manager.h"
+#include "ScoreManager.h"
 #include "vector2D.h"
 
-#define CLOCKWISE 1
-#define COUNTERCLOCKWISE -1
+const int CLOCKWISE = 1;
+const int COUNTERCLOCKWISE = -1;
 
 class Component_AsteroidController final : public Component {
 public:
@@ -16,6 +17,7 @@ public:
 	inline bool Startable() const override { return false; }
 	void Update() override;
 
+	std::weak_ptr<ScoreManager> score_manager;
 	float movement_speed = 1;
 	Vector2D movement_direction;
 	float rotation_speed = 1;

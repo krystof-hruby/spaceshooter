@@ -6,11 +6,11 @@
 
 #include "Component_InputReader.h"
 
-#define INPUT_NONE 0
-#define INPUT_LEFT -1
-#define INPUT_RIGHT 1
-#define INPUT_FORWARD 1
-#define INPUT_BACKWARD -1
+const int INPUT_NONE = 0;
+const int INPUT_LEFT = -1;
+const int INPUT_RIGHT = 1;
+const int INPUT_FORWARD = 1;
+const int INPUT_BACKWARD = -1;
 
 // Gets input controlling player spaceship.
 class Component_PlayerInput final : public Component_InputReader {

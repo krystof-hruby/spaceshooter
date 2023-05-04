@@ -6,7 +6,6 @@
 
 #include "AudioClips.h"
 #include "Component_Animator.h"
-#include "Component_AudioEmitter.h"
 #include "Component_MineCollider.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
@@ -38,7 +37,8 @@ bool Component_MineController::IsNearPosition(Vector2D position, float delta) {
 void Component_MineController::Explode() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
 	this->GetGameObject()->GetComponent<Component_MineCollider>()->is_active = false;
+	this->GetGameObject()->GetComponent<Component_Transform>()->scale = 0.35f;
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("mine explosion");
-	this->GetGameObject()->GetComponent<Component_AudioEmitter>()->Play(AUDIO_MINE_EXPLOSION);
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_MINE_EXPLOSION, 85);
 	this->exploded = true;
 }

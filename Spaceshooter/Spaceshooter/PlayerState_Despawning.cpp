@@ -11,5 +11,5 @@
 
 void PlayerState_Despawning::Play(std::shared_ptr<Component_PlayerController> player_controller) {
 	if (player_controller->GetGameObject()->GetComponent<Component_Animator>()->AnimationFinished("player despawn"))
-		player_controller->despawned = true;
+		return;
 }

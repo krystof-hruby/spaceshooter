@@ -11,20 +11,19 @@
 
 #define LOGGING_ENABLED true
 #define VISUALIZE_HITBOXES false
-#define PLAYER_INVINCIBILITY true
-#define START_LEVEL 3
+#define PLAYER_INVINCIBILITY false
+#define START_LEVEL 1
 
-#define LOWER_GOAL false
-#define GOAL 5
+#define DIFFERENT_GOAL true
+#define GOAL 1
 
-#define LOWER_BOSS_HEALTH false
+#define DIFFERENT_BOSS_HEALTH false
 #define BOSS_HEALTH 5
 
 #endif
 
 // TODO:
 /*
-sounds for boss
 sounds for ending level
 level ending?
 ui

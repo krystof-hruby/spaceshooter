@@ -9,7 +9,9 @@
 
 // Type of game object based on which GameObjectFactory creates game objects.
 enum class GameObjectType {
-	ScoreManager,
+	Level1Manager,
+	Level2Manager,
+	Level3Manager,
 	Background,
 	Player,
 	PlayerBullet,
@@ -40,7 +42,9 @@ private:
 
 	// Add all specific objects with their creation functions here:
 	std::unordered_map<GameObjectType, std::function<std::shared_ptr<GameObject>(std::shared_ptr<ComponentRegistry>)>> object_creation_jump_table = {
-		{ GameObjectType::ScoreManager, CreateGameObject_ScoreManager },
+		{ GameObjectType::Level1Manager, CreateGameObject_Level1Manager },
+		{ GameObjectType::Level2Manager, CreateGameObject_Level2Manager },
+		{ GameObjectType::Level3Manager, CreateGameObject_Level3Manager },
 		{ GameObjectType::Background, CreateGameObject_Background },
 		{ GameObjectType::Player, CreateGameObject_Player },
 		{ GameObjectType::PlayerBullet, CreateGameObject_PlayerBullet },
@@ -54,8 +58,10 @@ private:
 	};
 
 	// Specific CreateGameObject methods:
+	static std::shared_ptr<GameObject> CreateGameObject_Level1Manager(std::shared_ptr<ComponentRegistry> component_registry);
+	static std::shared_ptr<GameObject> CreateGameObject_Level2Manager(std::shared_ptr<ComponentRegistry> component_registry);
+	static std::shared_ptr<GameObject> CreateGameObject_Level3Manager(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Background(std::shared_ptr<ComponentRegistry> component_registry);
-	static std::shared_ptr<GameObject> CreateGameObject_ScoreManager(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Player(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_PlayerBullet(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Asteroid(std::shared_ptr<ComponentRegistry> component_registry);

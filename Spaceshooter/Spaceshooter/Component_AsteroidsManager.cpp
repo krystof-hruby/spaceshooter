@@ -7,7 +7,6 @@
 #include "AudioClips.h"
 #include "Component_AsteroidCollider.h"
 #include "Component_AsteroidController.h"
-#include "Component_AudioEmitter.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
 #include "GameObject.h"
@@ -28,6 +27,7 @@ void Component_AsteroidsManager::Update() {
 
 void Component_AsteroidsManager::SpawnAsteroid() {
 	std::shared_ptr<GameObject> asteroid = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Asteroid, this->GetGameObject()->GetComponentRegistry());
+	asteroid->GetComponent<Component_AsteroidController>()->score_manager = this->score_manager;
 
 	// Add to scene.
 	Scene::Instantiate(asteroid);

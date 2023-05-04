@@ -74,7 +74,7 @@ void Component_Animator::Update() {
 		this->StopAnimation(); // Do not recalculate anything for finished animations.
 }
 
-void Component_Animator::RegisterAnimation(std::shared_ptr<Animation> animation) {
+void Component_Animator::LoadAnimation(std::shared_ptr<Animation> animation) {
 	if (this->animations[animation->name])
 		throw EngineException("Cannot register animation. Animation under the name: " + animation->name + " already registered.");
 	

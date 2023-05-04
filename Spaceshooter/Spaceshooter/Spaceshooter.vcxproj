@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActiveBounds.cpp" />
+    <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="BossState_Exploding.cpp" />
     <ClCompile Include="BossState_Floating.cpp" />
     <ClCompile Include="BossState_GracePeriod.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Component_AsteroidCollider.cpp" />
     <ClCompile Include="Component_AsteroidController.cpp" />
     <ClCompile Include="Component_AsteroidsManager.cpp" />
+    <ClCompile Include="Component_BackgroundController.cpp" />
     <ClCompile Include="Component_BossCollider.cpp" />
     <ClCompile Include="Component_BossController.cpp" />
     <ClCompile Include="Component_CircleCollider.cpp" />
@@ -165,6 +167,8 @@
     <ClCompile Include="Component_EnemyShipsManager.cpp" />
     <ClCompile Include="Component_HomingMissileCollider.cpp" />
     <ClCompile Include="Component_HomingMissileController.cpp" />
+    <ClCompile Include="Component_Level2Manager.cpp" />
+    <ClCompile Include="Component_Level3Manager.cpp" />
     <ClCompile Include="Component_MineCollider.cpp" />
     <ClCompile Include="Component_MineController.cpp" />
     <ClCompile Include="Component_PlayerBulletCollider.cpp" />
@@ -173,8 +177,6 @@
     <ClCompile Include="Component_PlayerController.cpp" />
     <ClCompile Include="Component_PlayerInput.cpp" />
     <ClCompile Include="Component_RectangleCollider.cpp" />
-    <ClCompile Include="Component_AudioEmitter.cpp" />
-    <ClCompile Include="Component_ScoreManager.cpp" />
     <ClCompile Include="Component_SpriteRenderer.cpp" />
     <ClCompile Include="EngineException.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -185,6 +187,7 @@
     <ClCompile Include="Gameloop.cpp" />
     <ClCompile Include="gametimer.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Component_Level1Manager.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="MainCamera.cpp" />
     <ClCompile Include="mydrawengine.cpp" />
@@ -200,6 +203,7 @@
     <ClCompile Include="Scene_Level1.cpp" />
     <ClCompile Include="Scene_Level2.cpp" />
     <ClCompile Include="Scene_Level3.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="StartScheduler.cpp" />
@@ -210,6 +214,7 @@
   <ItemGroup>
     <ClInclude Include="ActiveBounds.h" />
     <ClInclude Include="AudioClips.h" />
+    <ClInclude Include="AudioPlayer.h" />
     <ClInclude Include="BossState.h" />
     <ClInclude Include="BossState_Exploding.h" />
     <ClInclude Include="BossState_Floating.h" />
@@ -223,6 +228,7 @@
     <ClInclude Include="Component_AsteroidCollider.h" />
     <ClInclude Include="Component_AsteroidController.h" />
     <ClInclude Include="Component_AsteroidsManager.h" />
+    <ClInclude Include="Component_BackgroundController.h" />
     <ClInclude Include="Component_BossCollider.h" />
     <ClInclude Include="Component_BossController.h" />
     <ClInclude Include="Component_CircleCollider.h" />
@@ -233,6 +239,8 @@
     <ClInclude Include="Component_HomingMissileCollider.h" />
     <ClInclude Include="Component_HomingMissileController.h" />
     <ClInclude Include="Component_InputReader.h" />
+    <ClInclude Include="Component_Level2Manager.h" />
+    <ClInclude Include="Component_Level3Manager.h" />
     <ClInclude Include="Component_MineCollider.h" />
     <ClInclude Include="Component_MineController.h" />
     <ClInclude Include="Component_PlayerBulletCollider.h" />
@@ -241,8 +249,6 @@
     <ClInclude Include="Component_PlayerController.h" />
     <ClInclude Include="Component_PlayerInput.h" />
     <ClInclude Include="Component_RectangleCollider.h" />
-    <ClInclude Include="Component_AudioEmitter.h" />
-    <ClInclude Include="Component_ScoreManager.h" />
     <ClInclude Include="Component_SpriteRenderer.h" />
     <ClInclude Include="Component_Transform.h" />
     <ClInclude Include="Constants.h" />
@@ -257,6 +263,7 @@
     <ClInclude Include="gametimer.h" />
     <ClInclude Include="Debugging.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Component_Level1Manager.h" />
     <ClInclude Include="Logging.h" />
     <ClInclude Include="MainCamera.h" />
     <ClInclude Include="mydrawengine.h" />
@@ -274,6 +281,7 @@
     <ClInclude Include="Scene_Level1.h" />
     <ClInclude Include="Scene_Level2.h" />
     <ClInclude Include="Scene_Level3.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="Sprites.h" />

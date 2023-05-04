@@ -9,7 +9,7 @@
 #include "Component_AsteroidCollider.h"
 #include "Component_AsteroidController.h"
 #include "Component_AsteroidsManager.h"
-#include "Component_AudioEmitter.h"
+#include "Component_BackgroundController.h"
 #include "Component_BossCollider.h"
 #include "Component_BossController.h"
 #include "Component_CircleCollider.h"
@@ -19,6 +19,9 @@
 #include "Component_HomingMissileCollider.h"
 #include "Component_HomingMissileController.h"
 #include "Component_InputReader.h"
+#include "Component_Level1Manager.h"
+#include "Component_Level2Manager.h"
+#include "Component_Level3Manager.h"
 #include "Component_MineCollider.h"
 #include "Component_MineController.h"
 #include "Component_PlayerBulletCollider.h"
@@ -27,7 +30,6 @@
 #include "Component_PlayerController.h"
 #include "Component_PlayerInput.h"
 #include "Component_RectangleCollider.h"
-#include "Component_ScoreManager.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
 #include "Constants.h"
@@ -45,6 +47,33 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject(GameObjectType t
 
 // Specific CreateGameObject methods:
 
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level1Manager(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Level 1 Manager";
+
+	auto level1manager = game_object->AddComponent<Component_Level1Manager>();
+
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level2Manager(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Level 2 Manager";
+
+	auto level2manager = game_object->AddComponent<Component_Level2Manager>();
+
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level3Manager(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Level 3 Manager";
+
+	auto level3manager = game_object->AddComponent<Component_Level3Manager>();
+
+	return game_object;
+}
+
 std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Background(std::shared_ptr<ComponentRegistry> component_registry) {
 	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
 	game_object->tag = "Background";
@@ -57,15 +86,8 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Background(std::
 	#if VISUALIZE_HITBOXES
 		sprite_renderer->is_active = false;
 	#endif
-
-	return game_object;
-}
-
-std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_ScoreManager(std::shared_ptr<ComponentRegistry> component_registry) {
-	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
-	game_object->tag = "Score Manager";
-
-	auto score_manager = game_object->AddComponent<Component_ScoreManager>();
+	
+	auto background_controller = game_object->AddComponent<Component_BackgroundController>();
 
 	return game_object;
 }
@@ -85,17 +107,9 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 	sprite_renderer->layer = 10;
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->RegisterAnimation(std::make_shared<Animation>("player explode", ANIMATION_BLUE_SHIP_EXPLOSION, 10, false, 15));
-	animator->RegisterAnimation(std::make_shared<Animation>("player spawn", ANIMATION_BLUE_SHIP_SPAWN, 10, false, 11));
-	animator->RegisterAnimation(std::make_shared<Animation>("player despawn", ANIMATION_BLUE_SHIP_DESPAWN, 10, false, 11));
-
-	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
-	audio_emitter->Load(AUDIO_PLAYER_PROJECTILE);
-	audio_emitter->SetVolume(AUDIO_PLAYER_PROJECTILE, 68);
-	audio_emitter->Load(AUDIO_PLAYER_EXPLOSION);
-	audio_emitter->SetVolume(AUDIO_PLAYER_EXPLOSION, 80);
-	audio_emitter->Load(AUDIO_PLAYER_SPAWN);
-	audio_emitter->SetVolume(AUDIO_PLAYER_SPAWN, 80);
+	animator->LoadAnimation(std::make_shared<Animation>("player explode", ANIMATION_BLUE_SHIP_EXPLOSION, 10, false, 15));
+	animator->LoadAnimation(std::make_shared<Animation>("player spawn", ANIMATION_BLUE_SHIP_SPAWN, 10, false, 11));
+	animator->LoadAnimation(std::make_shared<Animation>("player despawn", ANIMATION_BLUE_SHIP_DESPAWN, 10, false, 11));
 
 	auto player_input = game_object->AddComponent<Component_PlayerInput>();
 
@@ -154,11 +168,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Asteroid(std::sh
 	sprite_renderer->SetSprite(sprite);
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->RegisterAnimation(std::make_shared<Animation>("asteroid explosion", ANIMATION_ASTEROID_EXPLOSION, 7, false, 15));
-
-	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
-	audio_emitter->Load(AUDIO_ASTEROID_EXPLOSION);
-	audio_emitter->SetVolume(AUDIO_ASTEROID_EXPLOSION, 75);
+	animator->LoadAnimation(std::make_shared<Animation>("asteroid explosion", ANIMATION_ASTEROID_EXPLOSION, 7, false, 15));
 
 	auto collider = game_object->AddComponent<Component_AsteroidCollider>();
 	int scale_multiplier = sprite == SPRITE_ASTEROID_LARGE ? 190 : 250; // Sprites have different sizes.
@@ -204,11 +214,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_EnemyShip(std::s
 	sprite_renderer->layer = 8;
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->RegisterAnimation(std::make_shared<Animation>("enemy ship explosion", ANIMATION_PURPLE_SHIP_EXPLOSION, 8, false, 15));
-
-	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
-	audio_emitter->Load(AUDIO_ENEMY_SHIP_EXPLOSION);
-	audio_emitter->SetVolume(AUDIO_ENEMY_SHIP_EXPLOSION, 70);
+	animator->LoadAnimation(std::make_shared<Animation>("enemy ship explosion", ANIMATION_PURPLE_SHIP_EXPLOSION, 8, false, 15));
 
 	auto collider = game_object->AddComponent<Component_EnemyShipCollider>();
 	collider->radius = 50;
@@ -240,18 +246,15 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 	sprite_renderer->layer = 7;
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->RegisterAnimation(std::make_shared<Animation>("boss explosion", ANIMATION_PURPLE_SHIP_EXPLOSION, 7, false, 15));
-	animator->RegisterAnimation(std::make_shared<Animation>("boss hurt", ANIMATION_BOSS_HURT, 7, false, 10));
-
-	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
-	//audio_emitter->Load();
+	animator->LoadAnimation(std::make_shared<Animation>("boss explosion", ANIMATION_PURPLE_SHIP_EXPLOSION, 7, false, 15));
+	animator->LoadAnimation(std::make_shared<Animation>("boss hurt", ANIMATION_BOSS_HURT, 7, false, 10));
 
 	auto collider = game_object->AddComponent<Component_BossCollider>();
 	collider->width = 200;
 	collider->height = 200;
 
 	auto boss_controller = game_object->AddComponent<Component_BossController>();
-	#if LOWER_BOSS_HEALTH
+	#if DIFFERENT_BOSS_HEALTH
 		boss_controller->health = BOSS_HEALTH;
 	#else
 		boss_controller->health = 100;
@@ -284,12 +287,8 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_HomingMissile(st
 	sprite_renderer->layer = 8;
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->RegisterAnimation(std::make_shared<Animation>("homing missile spawn", ANIMATION_PROJECTILE_YELLOW_SPAWN, 8, false, 18));
-	animator->RegisterAnimation(std::make_shared<Animation>("homing missile explosion", ANIMATION_PROJECTILE_YELLOW_EXPLODE, 8, false, 18));
-
-	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
-	audio_emitter->Load(AUDIO_HOMING_MISSILE_EXPLOSION);
-	audio_emitter->SetVolume(AUDIO_HOMING_MISSILE_EXPLOSION, 70);
+	animator->LoadAnimation(std::make_shared<Animation>("homing missile spawn", ANIMATION_PROJECTILE_YELLOW_SPAWN, 8, false, 18));
+	animator->LoadAnimation(std::make_shared<Animation>("homing missile explosion", ANIMATION_PROJECTILE_YELLOW_EXPLODE, 8, false, 18));
 
 	auto collider = game_object->AddComponent<Component_HomingMissileCollider>();
 	collider->radius = 45;
@@ -312,12 +311,8 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Mine(std::shared
 	sprite_renderer->layer = 6;
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->RegisterAnimation(std::make_shared<Animation>("mine spawn", ANIMATION_MINE_SPAWN, 6, false, 15));
-	animator->RegisterAnimation(std::make_shared<Animation>("mine explosion", ANIMATION_ASTEROID_EXPLOSION, 6, false, 15));
-
-	auto audio_emitter = game_object->AddComponent<Component_AudioEmitter>();
-	audio_emitter->Load(AUDIO_MINE_EXPLOSION);
-	audio_emitter->SetVolume(AUDIO_MINE_EXPLOSION, 70);
+	animator->LoadAnimation(std::make_shared<Animation>("mine spawn", ANIMATION_MINE_SPAWN, 6, false, 15));
+	animator->LoadAnimation(std::make_shared<Animation>("mine explosion", ANIMATION_ASTEROID_EXPLOSION, 6, false, 15));
 
 	auto collider = game_object->AddComponent<Component_MineCollider>();
 	collider->radius = 50;

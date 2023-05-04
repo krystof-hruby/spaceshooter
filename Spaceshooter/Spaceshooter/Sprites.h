@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Component_SpriteRenderer.h"
+#include "Component_SpriteRenderer.h" // For Sprite.
 
 // Relative paths to all sprite assets used in the project.
 

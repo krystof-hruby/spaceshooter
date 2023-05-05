@@ -21,8 +21,11 @@
 
 void Component_PlayerController::Start() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
+	this->GetGameObject()->GetComponent<Component_Transform>()->scale = 0.31f;
+	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player spawn");
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_PLAYER_SPAWN, 80);
 
-	this->current_state = this->state_grace_period;
+	this->current_state = this->state_spawning;
 }
 
 void Component_PlayerController::Update() {

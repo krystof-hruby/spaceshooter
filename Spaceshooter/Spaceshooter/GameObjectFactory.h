@@ -9,19 +9,32 @@
 
 // Type of game object based on which GameObjectFactory creates game objects.
 enum class GameObjectType {
+	// Level managers:
 	Level1Manager,
 	Level2Manager,
 	Level3Manager,
+
+	// Environment:
 	Background,
+	
+	// Player:
 	Player,
 	PlayerBullet,
+
+	// Hazards:
 	Asteroid,
 	AsteroidsManager,
+
 	EnemyShip,
 	EnemyShipsManager,
+	
 	Boss,
 	HomingMissile,
 	Mine,
+
+	// UI:
+	UI_Commander,
+	UI_Text,
 };
 
 // Creates specific game objects by combining components.
@@ -45,31 +58,47 @@ private:
 		{ GameObjectType::Level1Manager, CreateGameObject_Level1Manager },
 		{ GameObjectType::Level2Manager, CreateGameObject_Level2Manager },
 		{ GameObjectType::Level3Manager, CreateGameObject_Level3Manager },
+		
 		{ GameObjectType::Background, CreateGameObject_Background },
+		
 		{ GameObjectType::Player, CreateGameObject_Player },
 		{ GameObjectType::PlayerBullet, CreateGameObject_PlayerBullet },
+		
 		{ GameObjectType::Asteroid, CreateGameObject_Asteroid },
 		{ GameObjectType::AsteroidsManager, CreateGameObject_AsteroidsManager },
+		
 		{ GameObjectType::EnemyShip, CreateGameObject_EnemyShip },
 		{ GameObjectType::EnemyShipsManager, CreateGameObject_EnemyShipsManager },
+		
 		{ GameObjectType::Boss, CreateGameObject_Boss },
 		{ GameObjectType::HomingMissile, CreateGameObject_HomingMissile },
 		{ GameObjectType::Mine, CreateGameObject_Mine },
+
+		{ GameObjectType::UI_Commander, CreateGameObject_UI_Commander },
+		{ GameObjectType::UI_Text, CreateGameObject_UI_Text },
 	};
 
 	// Specific CreateGameObject methods:
 	static std::shared_ptr<GameObject> CreateGameObject_Level1Manager(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Level2Manager(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Level3Manager(std::shared_ptr<ComponentRegistry> component_registry);
+	
 	static std::shared_ptr<GameObject> CreateGameObject_Background(std::shared_ptr<ComponentRegistry> component_registry);
+	
 	static std::shared_ptr<GameObject> CreateGameObject_Player(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_PlayerBullet(std::shared_ptr<ComponentRegistry> component_registry);
+	
 	static std::shared_ptr<GameObject> CreateGameObject_Asteroid(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_AsteroidsManager(std::shared_ptr<ComponentRegistry> component_registry);
+	
 	static std::shared_ptr<GameObject> CreateGameObject_EnemyShip(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_EnemyShipsManager(std::shared_ptr<ComponentRegistry> component_registry);
+	
 	static std::shared_ptr<GameObject> CreateGameObject_Boss(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_HomingMissile(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Mine(std::shared_ptr<ComponentRegistry> component_registry);
+	
+	static std::shared_ptr<GameObject> CreateGameObject_UI_Commander(std::shared_ptr<ComponentRegistry> component_registry);
+	static std::shared_ptr<GameObject> CreateGameObject_UI_Text(std::shared_ptr<ComponentRegistry> component_registry);
 };
 

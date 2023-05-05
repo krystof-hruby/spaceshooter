@@ -15,6 +15,8 @@
 void Scene_Level3::Load() {
 	LOG("LEVEL 3: Loading level 3. Scene UUID: " + std::to_string(this->GetID()));
 
+	/*
+
 	// Background.
 	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry);
 	background->GetComponent<Component_SpriteRenderer>()->SetSprite(SPRITE_BACKGROUND_PURPLE);
@@ -38,6 +40,8 @@ void Scene_Level3::Load() {
 	boss->GetComponent<Component_BossController>()->grace_period = 6;
 	boss->GetComponent<Component_BossController>()->score_manager = level3manager->GetComponent<Component_Level3Manager>()->score_manager;
 	Scene::Instantiate(boss);
+
+	*/
 }
 
 void Scene_Level3::Unload() {

@@ -52,6 +52,9 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level1Manager(st
 	game_object->tag = "Level 1 Manager";
 
 	auto level1manager = game_object->AddComponent<Component_Level1Manager>();
+	level1manager->preparation_period = 6;
+	level1manager->commander_ui_spawn_period = 4;
+	level1manager->fade_in_period = 2;
 
 	return game_object;
 }
@@ -116,9 +119,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 	auto player_controller = game_object->AddComponent<Component_PlayerController>();
 	player_controller->movement_speed = 500;
 	player_controller->rotation_speed = 5;
-	player_controller->grace_period = 3;
 	player_controller->reload_period = 0.25f;
-	player_controller->free_roaming_period = 4;
 
 	return game_object;
 }
@@ -319,5 +320,45 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Mine(std::shared
 
 	auto mine_controller = game_object->AddComponent<Component_MineController>();
 	
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_UI_Commander(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Commander UI";
+
+	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->position = Vector2D(-1300, -600);
+	transform->scale = 0;
+
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	sprite_renderer->SetSprite(SPRITE_COMMANDER_FRAME);
+	sprite_renderer->layer = 14;
+
+	auto animator = game_object->AddComponent<Component_Animator>();
+	animator->LoadAnimation(std::make_shared<Animation>("commander talk", ANIMATION_COMMANDER_TALK, 15, true, 10));
+	animator->LoadAnimation(std::make_shared<Animation>("commander spawn", ANIMATION_COMMANDER_SPAWN, 15, false, 2));
+	animator->LoadAnimation(std::make_shared<Animation>("commander despawn", ANIMATION_COMMANDER_DESPAWN, 15, false, 2));
+
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_UI_Text(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Text UI";
+
+	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->position = Vector2D(-150, -600);
+
+	/*auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	sprite_renderer->SetSprite(TESTSP);
+	sprite_renderer->layer = 15;*/
+
+	auto animator = game_object->AddComponent<Component_Animator>();
+	animator->LoadAnimation(std::make_shared<Animation>("text intro", TEXT_COMMANDER_INTRO, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text tutorial", TEXT_COMMANDER_TUTORIAL, 15, false, 0.15));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 1 start", TEXT_COMMANDER_LEVEL1_START, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text storm incoming", TEXT_STORM_INCOMING, 15, false, 0.2));
+
 	return game_object;
 }

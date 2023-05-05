@@ -9,7 +9,6 @@
 #include "PlayerState_Despawning.h"
 #include "PlayerState_Exploding.h"
 #include "PlayerState_Flying.h"
-#include "PlayerState_GracePeriod.h"
 #include "PlayerState_Spawning.h"
 #include "ScoreManager.h"
 #include "vector2D.h"
@@ -20,12 +19,9 @@ public:
 	void Start() override;
 	void Update() override;
 
-	std::weak_ptr<ScoreManager> score_manager;
 	float movement_speed = 1;
 	float rotation_speed = 1;
-	float grace_period = 1;
 	float reload_period = 1;
-	float free_roaming_period = 1;
 
 	void ChangeState(std::shared_ptr<PlayerState> player_state);
 	void Explode();
@@ -33,7 +29,6 @@ public:
 
 private:
 	// For states.
-	friend class PlayerState_GracePeriod;
 	friend class PlayerState_Spawning;
 	friend class PlayerState_Flying;
 	friend class PlayerState_Exploding;
@@ -42,7 +37,6 @@ private:
 	std::shared_ptr<PlayerState> current_state;
 	
 	// States:
-	std::shared_ptr<PlayerState_GracePeriod> state_grace_period = std::make_shared<PlayerState_GracePeriod>();
 	std::shared_ptr<PlayerState_Spawning> state_spawning = std::make_shared<PlayerState_Spawning>();
 	std::shared_ptr<PlayerState_Flying> state_flying = std::make_shared<PlayerState_Flying>();
 	std::shared_ptr<PlayerState_Exploding> state_exploding = std::make_shared<PlayerState_Exploding>();

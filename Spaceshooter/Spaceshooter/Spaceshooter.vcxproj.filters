@@ -178,6 +178,18 @@
     <Filter Include="Source Files\Game\Components\Background">
       <UniqueIdentifier>{681db334-1d38-4e44-ba89-3e00b195c715}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Components\UI">
+      <UniqueIdentifier>{4dab1576-ec66-4673-bd9b-a89a2aba6025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\UI">
+      <UniqueIdentifier>{b5647157-8e34-49f3-b79c-b8e2b766c719}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\LevelManagers\Phases_Level1">
+      <UniqueIdentifier>{b371fb29-f86e-4904-a861-fa158df9be2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components\LevelManagers\Phases_Level1">
+      <UniqueIdentifier>{ab3ecc5b-80ab-4f80-85c6-6a2622e1917b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -348,9 +360,6 @@
     <ClCompile Include="ImageRenderer.cpp">
       <Filter>Source Files\Engine\Misc</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerState_GracePeriod.cpp">
-      <Filter>Source Files\Game\Components\Player\States</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerState_Spawning.cpp">
       <Filter>Source Files\Game\Components\Player\States</Filter>
     </ClCompile>
@@ -380,6 +389,15 @@
     </ClCompile>
     <ClCompile Include="Component_BackgroundController.cpp">
       <Filter>Source Files\Game\Components\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1Phase_Preparation.cpp">
+      <Filter>Source Files\Game\Components\LevelManagers\Phases_Level1</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1Phase_Tutorial.cpp">
+      <Filter>Source Files\Game\Components\LevelManagers\Phases_Level1</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1Phase_Gameplay.cpp">
+      <Filter>Source Files\Game\Components\LevelManagers\Phases_Level1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -578,9 +596,6 @@
     <ClInclude Include="PlayerState.h">
       <Filter>Header Files\Game\Components\Player\States</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerState_GracePeriod.h">
-      <Filter>Header Files\Game\Components\Player\States</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerState_Spawning.h">
       <Filter>Header Files\Game\Components\Player\States</Filter>
     </ClInclude>
@@ -610,6 +625,18 @@
     </ClInclude>
     <ClInclude Include="Component_BackgroundController.h">
       <Filter>Header Files\Game\Components\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1Phase.h">
+      <Filter>Header Files\Game\Components\LevelManagers\Phases_Level1</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1Phase_Preparation.h">
+      <Filter>Header Files\Game\Components\LevelManagers\Phases_Level1</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1Phase_Tutorial.h">
+      <Filter>Header Files\Game\Components\LevelManagers\Phases_Level1</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1Phase_Gameplay.h">
+      <Filter>Header Files\Game\Components\LevelManagers\Phases_Level1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -44,9 +44,9 @@ void PlayerState_Flying::Play(std::shared_ptr<Component_PlayerController> player
 	}
 	this->reload_time += (float)Time::delta_time;
 
-	if (player_controller->score_manager.lock()->ReachedGoal())
+	/*if (player_controller->score_manager.lock()->ReachedGoal())
 		this->free_roaming_time += (float)Time::delta_time;
 
 	if (this->free_roaming_time > player_controller->free_roaming_period)
-		player_controller->Despawn();
+		player_controller->Despawn();*/
 }

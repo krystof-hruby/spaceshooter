@@ -18,10 +18,9 @@ void Component_AsteroidsManager::Update() {
 	if (this->score_manager.lock()->ReachedGoal())
 		this->DespawnAsteroids();
 
-	this->grace_period_time += (float)Time::delta_time;
 	this->asteroid_spawn_time += (float)Time::delta_time;
 
-	if (!this->asteroids_despawned && this->grace_period_time > this->grace_period && this->asteroid_spawn_time > this->asteroid_spawn_period)
+	if (!this->asteroids_despawned && this->asteroid_spawn_time > this->asteroid_spawn_period)
 		this->SpawnAsteroid();
 }
 

@@ -10,7 +10,6 @@
 
 void Component_BackgroundController::Start() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->transparency = 1;
-	this->FadeIn();
 }
 
 void Component_BackgroundController::Update() {
@@ -44,11 +43,13 @@ void Component_BackgroundController::FadeIn() {
 		return;
 
 	this->fading_in = true;
+	this->fading_out = false;
 }
 
 void Component_BackgroundController::FadeOut() {
 	if (this->fading_out)
 		return;
 	
+	this->fading_in = false;
 	this->fading_out = true;
 }

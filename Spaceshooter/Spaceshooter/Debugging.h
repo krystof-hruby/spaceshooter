@@ -14,7 +14,7 @@
 #define PLAYER_INVINCIBILITY false
 #define START_LEVEL 1
 
-#define DIFFERENT_GOAL true
+#define DIFFERENT_GOAL false
 #define GOAL 1
 
 #define DIFFERENT_BOSS_HEALTH false

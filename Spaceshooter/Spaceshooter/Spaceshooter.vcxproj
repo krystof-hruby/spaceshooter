@@ -188,6 +188,9 @@
     <ClCompile Include="gametimer.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Component_Level1Manager.cpp" />
+    <ClCompile Include="Level1Phase_Gameplay.cpp" />
+    <ClCompile Include="Level1Phase_Preparation.cpp" />
+    <ClCompile Include="Level1Phase_Tutorial.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="MainCamera.cpp" />
     <ClCompile Include="mydrawengine.cpp" />
@@ -196,7 +199,6 @@
     <ClCompile Include="PlayerState_Despawning.cpp" />
     <ClCompile Include="PlayerState_Exploding.cpp" />
     <ClCompile Include="PlayerState_Flying.cpp" />
-    <ClCompile Include="PlayerState_GracePeriod.cpp" />
     <ClCompile Include="PlayerState_Spawning.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -264,6 +266,10 @@
     <ClInclude Include="Debugging.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Component_Level1Manager.h" />
+    <ClInclude Include="Level1Phase_Gameplay.h" />
+    <ClInclude Include="Level1Phase_Preparation.h" />
+    <ClInclude Include="Level1Phase.h" />
+    <ClInclude Include="Level1Phase_Tutorial.h" />
     <ClInclude Include="Logging.h" />
     <ClInclude Include="MainCamera.h" />
     <ClInclude Include="mydrawengine.h" />
@@ -274,7 +280,6 @@
     <ClInclude Include="PlayerState_Despawning.h" />
     <ClInclude Include="PlayerState_Exploding.h" />
     <ClInclude Include="PlayerState_Flying.h" />
-    <ClInclude Include="PlayerState_GracePeriod.h" />
     <ClInclude Include="PlayerState_Spawning.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />

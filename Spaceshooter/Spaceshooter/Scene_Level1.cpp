@@ -27,8 +27,26 @@ void Scene_Level1::Load() {
 	background->GetComponent<Component_SpriteRenderer>()->SetSprite(SPRITE_BACKGROUND_BLACK);
 	Scene::Instantiate(background);
 
+	// Commander UI.
+	std::shared_ptr<GameObject> commander_ui = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::UI_Commander, this->component_registry);
+	Scene::Instantiate(commander_ui);
+
+	// Text UI.
+	std::shared_ptr<GameObject> text_ui = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::UI_Text, this->component_registry);
+	Scene::Instantiate(text_ui);
+
 	// Level manager.
 	std::shared_ptr<GameObject> level1manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Level1Manager, this->component_registry);
+	level1manager->GetComponent<Component_Level1Manager>()->preparation_period = 6;
+	level1manager->GetComponent<Component_Level1Manager>()->commander_ui_spawn_period = 4;
+	level1manager->GetComponent<Component_Level1Manager>()->fade_in_period = 2;
+	
+	level1manager->GetComponent<Component_Level1Manager>()->component_registry = this->component_registry;
+	level1manager->GetComponent<Component_Level1Manager>()->commander_ui = commander_ui;
+	level1manager->GetComponent<Component_Level1Manager>()->text_ui = text_ui;
+	
+
+
 	level1manager->GetComponent<Component_Level1Manager>()->level_end_period = 10;
 	level1manager->GetComponent<Component_Level1Manager>()->fade_out_period = 5;
 	#if DIFFERENT_GOAL
@@ -38,17 +56,6 @@ void Scene_Level1::Load() {
 	#endif
 	level1manager->GetComponent<Component_Level1Manager>()->background_controller = background->GetComponent<Component_BackgroundController>();
 	Scene::Instantiate(level1manager);
-	
-	// Player.
-	std::shared_ptr<GameObject> player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry);
-	player->GetComponent<Component_PlayerController>()->score_manager = level1manager->GetComponent<Component_Level1Manager>()->score_manager;
-	Scene::Instantiate(player);
-
-	// Asteroids manager.
-	std::shared_ptr<GameObject> asteroids_manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::AsteroidsManager, this->component_registry);
-	asteroids_manager->GetComponent<Component_AsteroidsManager>()->grace_period = 7;
-	asteroids_manager->GetComponent<Component_AsteroidsManager>()->score_manager = level1manager->GetComponent<Component_Level1Manager>()->score_manager;
-	Scene::Instantiate(asteroids_manager);
 }
 
 void Scene_Level1::Unload() {

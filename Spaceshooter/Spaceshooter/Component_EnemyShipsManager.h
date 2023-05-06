@@ -6,7 +6,6 @@
 
 #include <vector>
 #include "Component_Transform.h"
-#include "ScoreManager.h"
 
 class Component_EnemyShipsManager final : public Component {
 public:
@@ -14,7 +13,6 @@ public:
 	inline bool Startable() const override { return false; }
 	void Update() override;
 
-	std::weak_ptr<ScoreManager> score_manager;
 	std::weak_ptr<Component_Transform> player_transform;
 	float grace_period = 1;
 

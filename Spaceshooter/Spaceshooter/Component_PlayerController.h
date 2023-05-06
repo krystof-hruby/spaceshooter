@@ -10,7 +10,6 @@
 #include "PlayerState_Exploding.h"
 #include "PlayerState_Flying.h"
 #include "PlayerState_Spawning.h"
-#include "ScoreManager.h"
 #include "vector2D.h"
 
 class Component_PlayerController final : public Component, public std::enable_shared_from_this<Component_PlayerController> {

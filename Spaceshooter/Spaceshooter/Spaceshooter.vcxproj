@@ -178,6 +178,7 @@
     <ClCompile Include="Component_PlayerInput.cpp" />
     <ClCompile Include="Component_RectangleCollider.cpp" />
     <ClCompile Include="Component_SpriteRenderer.cpp" />
+    <ClCompile Include="Component_UIController.cpp" />
     <ClCompile Include="EngineException.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
@@ -188,9 +189,7 @@
     <ClCompile Include="gametimer.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Component_Level1Manager.cpp" />
-    <ClCompile Include="Level1Phase_Gameplay.cpp" />
-    <ClCompile Include="Level1Phase_Preparation.cpp" />
-    <ClCompile Include="Level1Phase_Tutorial.cpp" />
+    <ClCompile Include="Level1Phases.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="MainCamera.cpp" />
     <ClCompile Include="mydrawengine.cpp" />
@@ -205,7 +204,6 @@
     <ClCompile Include="Scene_Level1.cpp" />
     <ClCompile Include="Scene_Level2.cpp" />
     <ClCompile Include="Scene_Level3.cpp" />
-    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="StartScheduler.cpp" />
@@ -252,6 +250,7 @@
     <ClInclude Include="Component_PlayerInput.h" />
     <ClInclude Include="Component_RectangleCollider.h" />
     <ClInclude Include="Component_SpriteRenderer.h" />
+    <ClInclude Include="Component_UIController.h" />
     <ClInclude Include="Component_Transform.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="EngineException.h" />
@@ -266,10 +265,7 @@
     <ClInclude Include="Debugging.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Component_Level1Manager.h" />
-    <ClInclude Include="Level1Phase_Gameplay.h" />
-    <ClInclude Include="Level1Phase_Preparation.h" />
-    <ClInclude Include="Level1Phase.h" />
-    <ClInclude Include="Level1Phase_Tutorial.h" />
+    <ClInclude Include="Level1Phases.h" />
     <ClInclude Include="Logging.h" />
     <ClInclude Include="MainCamera.h" />
     <ClInclude Include="mydrawengine.h" />
@@ -286,7 +282,6 @@
     <ClInclude Include="Scene_Level1.h" />
     <ClInclude Include="Scene_Level2.h" />
     <ClInclude Include="Scene_Level3.h" />
-    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="Sprites.h" />

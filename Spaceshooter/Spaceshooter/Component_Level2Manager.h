@@ -6,7 +6,6 @@
 
 #include "Component.h"
 #include "Component_BackgroundController.h"
-#include "ScoreManager.h"
 
 class Component_Level2Manager : public Component {
 public:
@@ -15,7 +14,6 @@ public:
 	void Update() override;
 
 	std::weak_ptr<Component_BackgroundController> background_controller;
-	std::shared_ptr<ScoreManager> score_manager = std::make_shared<ScoreManager>();
 	float level_end_period = 1;
 	float fade_out_period = 1;
 

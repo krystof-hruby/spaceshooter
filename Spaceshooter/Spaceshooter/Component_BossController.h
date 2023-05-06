@@ -11,7 +11,6 @@
 #include "BossState_GracePeriod.h"
 #include "BossState_MovingToFloatingSpot.h"
 #include "Component_Transform.h"
-#include "ScoreManager.h"
 
 // Controls the boss through state machine.
 class Component_BossController final : public Component, public std::enable_shared_from_this<Component_BossController> {
@@ -20,7 +19,6 @@ public:
 	void Start() override;
 	void Update() override;
 	
-	std::weak_ptr<ScoreManager> score_manager;
 	std::weak_ptr<Component_Transform> player_transform;
 	Vector2D spawn_position;
 	std::vector<Vector2D> floating_spots;

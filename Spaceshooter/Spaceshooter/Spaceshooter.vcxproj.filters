@@ -184,11 +184,11 @@
     <Filter Include="Source Files\Game\Components\UI">
       <UniqueIdentifier>{b5647157-8e34-49f3-b79c-b8e2b766c719}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game\Components\LevelManagers\Phases_Level1">
-      <UniqueIdentifier>{b371fb29-f86e-4904-a861-fa158df9be2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Game\Components\LevelManagers\Phases_Level1">
+    <Filter Include="Source Files\Game\Components\LevelManagers\LevelPhases">
       <UniqueIdentifier>{ab3ecc5b-80ab-4f80-85c6-6a2622e1917b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components\LevelManagers\LevelPhases">
+      <UniqueIdentifier>{b371fb29-f86e-4904-a861-fa158df9be2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -378,9 +378,6 @@
     <ClCompile Include="Component_Level1Manager.cpp">
       <Filter>Source Files\Game\Components\LevelManagers</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreManager.cpp">
-      <Filter>Source Files\Game\Components\LevelManagers</Filter>
-    </ClCompile>
     <ClCompile Include="Component_Level2Manager.cpp">
       <Filter>Source Files\Game\Components\LevelManagers</Filter>
     </ClCompile>
@@ -390,14 +387,11 @@
     <ClCompile Include="Component_BackgroundController.cpp">
       <Filter>Source Files\Game\Components\Background</Filter>
     </ClCompile>
-    <ClCompile Include="Level1Phase_Preparation.cpp">
-      <Filter>Source Files\Game\Components\LevelManagers\Phases_Level1</Filter>
+    <ClCompile Include="Level1Phases.cpp">
+      <Filter>Source Files\Game\Components\LevelManagers\LevelPhases</Filter>
     </ClCompile>
-    <ClCompile Include="Level1Phase_Tutorial.cpp">
-      <Filter>Source Files\Game\Components\LevelManagers\Phases_Level1</Filter>
-    </ClCompile>
-    <ClCompile Include="Level1Phase_Gameplay.cpp">
-      <Filter>Source Files\Game\Components\LevelManagers\Phases_Level1</Filter>
+    <ClCompile Include="Component_UIController.cpp">
+      <Filter>Source Files\Game\Components\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -614,9 +608,6 @@
     <ClInclude Include="Component_Level1Manager.h">
       <Filter>Header Files\Game\Components\LevelManagers</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreManager.h">
-      <Filter>Header Files\Game\Components\LevelManagers</Filter>
-    </ClInclude>
     <ClInclude Include="Component_Level2Manager.h">
       <Filter>Header Files\Game\Components\LevelManagers</Filter>
     </ClInclude>
@@ -626,17 +617,11 @@
     <ClInclude Include="Component_BackgroundController.h">
       <Filter>Header Files\Game\Components\Background</Filter>
     </ClInclude>
-    <ClInclude Include="Level1Phase.h">
-      <Filter>Header Files\Game\Components\LevelManagers\Phases_Level1</Filter>
+    <ClInclude Include="Level1Phases.h">
+      <Filter>Header Files\Game\Components\LevelManagers\LevelPhases</Filter>
     </ClInclude>
-    <ClInclude Include="Level1Phase_Preparation.h">
-      <Filter>Header Files\Game\Components\LevelManagers\Phases_Level1</Filter>
-    </ClInclude>
-    <ClInclude Include="Level1Phase_Tutorial.h">
-      <Filter>Header Files\Game\Components\LevelManagers\Phases_Level1</Filter>
-    </ClInclude>
-    <ClInclude Include="Level1Phase_Gameplay.h">
-      <Filter>Header Files\Game\Components\LevelManagers\Phases_Level1</Filter>
+    <ClInclude Include="Component_UIController.h">
+      <Filter>Header Files\Game\Components\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

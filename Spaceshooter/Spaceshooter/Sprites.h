@@ -104,26 +104,72 @@ const std::vector<Sprite> ANIMATION_COMMANDER_DESPAWN = {
 };
 
 // Text:
-const std::vector<Sprite> TEXT_COMMANDER_INTRO = {
-	L"assets/sprites/text/tutorial_0.png",
+const std::vector<Sprite> TEXT_LEVEL1_INTRO = {
+	L"assets/sprites/text/level1_intro_1.png",
+	L"assets/sprites/text/level1_intro_2.png",
+	L"assets/sprites/text/level1_intro_3.png",
+	L"assets/sprites/text/level1_intro_4.png",
+	L"assets/sprites/text/level1_intro_5.png",
+};
+
+const std::vector<Sprite> TEXT_TUTORIAL = {
+	L"assets/sprites/text/tutorial_1.png",
+	L"assets/sprites/text/tutorial_1.png",
+	L"assets/sprites/text/tutorial_1.png",
 	L"assets/sprites/text/tutorial_1.png",
 	L"assets/sprites/text/tutorial_2.png",
+	L"assets/sprites/text/tutorial_2.png",
+	L"assets/sprites/text/tutorial_2.png",
+	L"assets/sprites/text/tutorial_2.png",
+	L"assets/sprites/text/dots_1.png",
+	L"assets/sprites/text/dots_2.png",
+	L"assets/sprites/text/dots_3.png",
+	L"assets/sprites/text/tutorial_3.png",
+	L"assets/sprites/text/tutorial_3.png",
+	L"assets/sprites/text/tutorial_3.png",
 	L"assets/sprites/text/tutorial_3.png",
 	L"assets/sprites/text/tutorial_4.png",
-};
-
-const std::vector<Sprite> TEXT_COMMANDER_TUTORIAL = {
+	L"assets/sprites/text/tutorial_4.png",
+	L"assets/sprites/text/tutorial_4.png",
+	L"assets/sprites/text/tutorial_4.png",
+	L"assets/sprites/text/dots_1.png",
+	L"assets/sprites/text/dots_2.png",
+	L"assets/sprites/text/dots_3.png",
+	L"assets/sprites/text/tutorial_5.png",
+	L"assets/sprites/text/tutorial_5.png",
 	L"assets/sprites/text/tutorial_5.png",
 	L"assets/sprites/text/tutorial_6.png",
+	L"assets/sprites/text/tutorial_6.png",
+	L"assets/sprites/text/tutorial_6.png",
+	L"assets/sprites/text/tutorial_6.png",
+	L"assets/sprites/text/tutorial_7.png",
+	L"assets/sprites/text/tutorial_7.png",
+	L"assets/sprites/text/tutorial_7.png",
+	L"assets/sprites/text/tutorial_7.png",
 };
 
-const std::vector<Sprite> TEXT_COMMANDER_LEVEL1_START = {
-	L"assets/sprites/text/three_dots.png",
-	L"assets/sprites/text/level1_start_0.png",
-	L"assets/sprites/text/level1_start_1.png",
+const std::vector<Sprite> TEXT_LEVEL1_CUTSCENE1 = {
+	L"assets/sprites/text/level1_cutscene_1.png",
 };
 
-const std::vector<Sprite> TEXT_STORM_INCOMING = {
-	L"assets/sprites/text/three_dots.png",
-	L"assets/sprites/text/storm_incoming.png",
+const std::vector<Sprite> TEXT_LEVEL1_CUTSCENE2 = {
+	L"assets/sprites/text/level1_cutscene_2.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL1_CUTSCENE3 = {
+	L"assets/sprites/text/level1_cutscene_3.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL1_OUTRO = {
+	L"assets/sprites/text/level1_outro_1.png",
+	L"assets/sprites/text/level1_outro_1.png",
+	L"assets/sprites/text/level1_outro_1.png",
+	L"assets/sprites/text/level1_outro_1.png",
+	L"assets/sprites/text/dots_1.png",
+	L"assets/sprites/text/dots_2.png",
+	L"assets/sprites/text/dots_3.png",
+	L"assets/sprites/text/level1_outro_2.png",
+	L"assets/sprites/text/level1_outro_2.png",
+	L"assets/sprites/text/level1_outro_2.png",
+	L"assets/sprites/text/level1_outro_2.png",
 };

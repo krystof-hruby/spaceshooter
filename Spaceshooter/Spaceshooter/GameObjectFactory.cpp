@@ -32,6 +32,7 @@
 #include "Component_RectangleCollider.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
+#include "Component_UIController.h"
 #include "Constants.h"
 #include "Debugging.h"
 #include "Sprites.h"
@@ -52,9 +53,12 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level1Manager(st
 	game_object->tag = "Level 1 Manager";
 
 	auto level1manager = game_object->AddComponent<Component_Level1Manager>();
-	level1manager->preparation_period = 6;
-	level1manager->commander_ui_spawn_period = 4;
-	level1manager->fade_in_period = 2;
+	level1manager->preparation_period = 5;
+	level1manager->fade_in_period = 1;
+	level1manager->commander_ui_spawn_period = 3.5;
+	level1manager->player_spawn_period = 24;
+	level1manager->asteroids_spawn_period = 29;
+	level1manager->level_length = 60;
 
 	return game_object;
 }
@@ -340,6 +344,8 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_UI_Commander(std
 	animator->LoadAnimation(std::make_shared<Animation>("commander spawn", ANIMATION_COMMANDER_SPAWN, 15, false, 2));
 	animator->LoadAnimation(std::make_shared<Animation>("commander despawn", ANIMATION_COMMANDER_DESPAWN, 15, false, 2));
 
+	auto ui_controller = game_object->AddComponent<Component_UIController>();
+
 	return game_object;
 }
 
@@ -350,15 +356,13 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_UI_Text(std::sha
 	auto transform = game_object->AddComponent<Component_Transform>();
 	transform->position = Vector2D(-150, -600);
 
-	/*auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
-	sprite_renderer->SetSprite(TESTSP);
-	sprite_renderer->layer = 15;*/
-
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->LoadAnimation(std::make_shared<Animation>("text intro", TEXT_COMMANDER_INTRO, 15, false, 0.2));
-	animator->LoadAnimation(std::make_shared<Animation>("text tutorial", TEXT_COMMANDER_TUTORIAL, 15, false, 0.15));
-	animator->LoadAnimation(std::make_shared<Animation>("text level 1 start", TEXT_COMMANDER_LEVEL1_START, 15, false, 0.2));
-	animator->LoadAnimation(std::make_shared<Animation>("text storm incoming", TEXT_STORM_INCOMING, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 1 intro", TEXT_LEVEL1_INTRO, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text tutorial", TEXT_TUTORIAL, 15, false, 0.8));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 1 cutscene 1", TEXT_LEVEL1_CUTSCENE1, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 1 cutscene 2", TEXT_LEVEL1_CUTSCENE2, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 1 cutscene 3", TEXT_LEVEL1_CUTSCENE3, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 1 outro", TEXT_LEVEL1_OUTRO, 15, false, 0.8));
 
 	return game_object;
 }

@@ -16,7 +16,6 @@
 #include "Time.h"
 
 void Component_BossController::Start() {
-	this->score_manager.lock()->goal = this->health;
 	this->GetGameObject()->GetComponent<Component_Transform>()->position = this->spawn_position;
 	this->ChangeState(this->state_grace_period);
 }
@@ -73,8 +72,7 @@ void Component_BossController::ChangeState(std::shared_ptr<BossState> state) {
 
 void Component_BossController::GetDamaged(int damage) {
 	this->health -= damage;
-	this->score_manager.lock()->score += damage;
-
+	
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("boss hurt");
 	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BOSS_HURT, 80);
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;

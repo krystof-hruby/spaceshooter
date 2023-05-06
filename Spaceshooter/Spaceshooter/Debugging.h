@@ -11,11 +11,8 @@
 
 #define LOGGING_ENABLED true
 #define VISUALIZE_HITBOXES false
-#define PLAYER_INVINCIBILITY false
+#define PLAYER_INVINCIBILITY true
 #define START_LEVEL 1
-
-#define DIFFERENT_GOAL false
-#define GOAL 1
 
 #define DIFFERENT_BOSS_HEALTH false
 #define BOSS_HEALTH 5

@@ -10,6 +10,5 @@
 void Component_EnemyShipCollider::OnCollisionEnter(std::shared_ptr<GameObject> other) {
 	if (other->tag == "Player Bullet") {
 		this->GetGameObject()->GetComponent<Component_EnemyShipController>()->Explode();
-		this->GetGameObject()->GetComponent<Component_EnemyShipController>()->score_manager.lock()->score += 1;
 	}
 }

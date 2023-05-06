@@ -1,5 +1,7 @@
+LEVEL 1:
++++
 This is commander Harrison, pilot.
-We have reports of hostile alien behaviour.
+We have reports of hostile alien  behaviour.
 Medium alien ship near system 0x1A4.
 Your job is to find and destroy it, pilot.
 Warping you in...
@@ -9,12 +11,48 @@ And space to shoot.
 I think I warped you to the wrong system, pilot.
 Give me some time to find the right coordinates.
 ...
-Oh no, watch out! Asteroid storm incoming!
-...
-Hang in there pilot, I almost got it...
-...
-The asteroids are blocking my systems...
-...
-Keep breaking them, pilot!
-...
+Oh no...
+Asteroid storm incoming!
+Watch out! You have only one life, pilot.
+---
++++
+Hang in there, pilot.
+---
++++
+Working on it...
+---
++++
 We are almost there, pilot!
+---
++++
+Just a few moments!
+...
+Warping out!
+---
+
+LEVEL 2:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,10 +6,9 @@
 
 #include "AudioPlayer.h"
 #include "Component_AsteroidsManager.h"
-#include "Component_BackgroundController.h"
-#include "Component_UIController.h"
 #include "Component_Level1Manager.h"
 #include "Component_PlayerController.h"
+#include "Component_ScriptedEvent_CommanderTalk.h"
 #include "Component_Transform.h"
 #include "Constants.h"
 #include "Debugging.h"
@@ -22,7 +21,7 @@
 
 void Scene_Level1::Load() {
 	LOG("LEVEL 1: Loading level 1. Scene UUID: " + std::to_string(this->GetID()));
-	
+
 	// Background.
 	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry);
 	background->GetComponent<Component_SpriteRenderer>()->SetSprite(SPRITE_BACKGROUND_BLACK);
@@ -34,15 +33,18 @@ void Scene_Level1::Load() {
 
 	// Commander UI.
 	std::shared_ptr<GameObject> commander_ui = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::UI_Commander, this->component_registry);
-	commander_ui->GetComponent<Component_UIController>()->commander_ui = commander_ui;
-	commander_ui->GetComponent<Component_UIController>()->text_ui = text_ui;
 	Scene::Instantiate(commander_ui);
+
+	// Scripted Events.
+	std::shared_ptr<GameObject> scripted_events = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::ScriptedEvents, this->component_registry);
+	scripted_events->GetComponent<Component_ScriptedEvent_CommanderTalk>()->commander_ui_animator = commander_ui->GetComponent<Component_Animator>();
+	scripted_events->GetComponent<Component_ScriptedEvent_CommanderTalk>()->text_ui_animator = text_ui->GetComponent<Component_Animator>();
+	Scene::Instantiate(scripted_events);
 
 	// Level manager.
 	std::shared_ptr<GameObject> level1manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Level1Manager, this->component_registry);
-	level1manager->GetComponent<Component_Level1Manager>()->component_registry = this->component_registry;
-	level1manager->GetComponent<Component_Level1Manager>()->background_controller = background->GetComponent<Component_BackgroundController>();
-	level1manager->GetComponent<Component_Level1Manager>()->ui_controller = commander_ui->GetComponent<Component_UIController>();
+	level1manager->GetComponent<Component_Level1Manager>()->scripted_event_commander_talk = scripted_events->GetComponent<Component_ScriptedEvent_CommanderTalk>();
+	level1manager->GetComponent<Component_Level1Manager>()->commander_frame_transform = commander_ui->GetComponent<Component_Transform>();
 	Scene::Instantiate(level1manager);
 }
 

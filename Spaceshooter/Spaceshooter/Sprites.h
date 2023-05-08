@@ -106,42 +106,68 @@ const std::vector<Sprite> ANIMATION_COMMANDER_DESPAWN = {
 // Text:
 const std::vector<Sprite> TEXT_LEVEL1_INTRO = {
 	L"assets/sprites/text/level1_intro_1.png",
-	L"assets/sprites/text/level1_intro_2.png",
-	L"assets/sprites/text/level1_intro_3.png",
-	L"assets/sprites/text/level1_intro_4.png",
-	L"assets/sprites/text/level1_intro_5.png",
-};
+	L"assets/sprites/text/level1_intro_1.png",
+	L"assets/sprites/text/level1_intro_1.png",
+	L"assets/sprites/text/level1_intro_1.png",
 
-const std::vector<Sprite> TEXT_TUTORIAL = {
+	L"assets/sprites/text/level1_intro_2.png",
+	L"assets/sprites/text/level1_intro_2.png",
+	L"assets/sprites/text/level1_intro_2.png",
+	L"assets/sprites/text/level1_intro_2.png",
+	
+	L"assets/sprites/text/level1_intro_3.png",
+	L"assets/sprites/text/level1_intro_3.png",
+	L"assets/sprites/text/level1_intro_3.png",
+	L"assets/sprites/text/level1_intro_3.png",
+	
+	L"assets/sprites/text/level1_intro_4.png",
+	L"assets/sprites/text/level1_intro_4.png",
+	L"assets/sprites/text/level1_intro_4.png",
+	L"assets/sprites/text/level1_intro_4.png",
+	
+	L"assets/sprites/text/level1_intro_5.png",
+	L"assets/sprites/text/level1_intro_5.png",
+	L"assets/sprites/text/level1_intro_5.png",
+	L"assets/sprites/text/level1_intro_5.png",
+
 	L"assets/sprites/text/tutorial_1.png",
 	L"assets/sprites/text/tutorial_1.png",
 	L"assets/sprites/text/tutorial_1.png",
 	L"assets/sprites/text/tutorial_1.png",
+	
 	L"assets/sprites/text/tutorial_2.png",
 	L"assets/sprites/text/tutorial_2.png",
 	L"assets/sprites/text/tutorial_2.png",
 	L"assets/sprites/text/tutorial_2.png",
+	
 	L"assets/sprites/text/dots_1.png",
 	L"assets/sprites/text/dots_2.png",
 	L"assets/sprites/text/dots_3.png",
+	
 	L"assets/sprites/text/tutorial_3.png",
 	L"assets/sprites/text/tutorial_3.png",
 	L"assets/sprites/text/tutorial_3.png",
 	L"assets/sprites/text/tutorial_3.png",
+	
 	L"assets/sprites/text/tutorial_4.png",
 	L"assets/sprites/text/tutorial_4.png",
 	L"assets/sprites/text/tutorial_4.png",
 	L"assets/sprites/text/tutorial_4.png",
+	
 	L"assets/sprites/text/dots_1.png",
 	L"assets/sprites/text/dots_2.png",
 	L"assets/sprites/text/dots_3.png",
+	
 	L"assets/sprites/text/tutorial_5.png",
 	L"assets/sprites/text/tutorial_5.png",
 	L"assets/sprites/text/tutorial_5.png",
+	L"assets/sprites/text/tutorial_5.png",
+	
 	L"assets/sprites/text/tutorial_6.png",
 	L"assets/sprites/text/tutorial_6.png",
 	L"assets/sprites/text/tutorial_6.png",
 	L"assets/sprites/text/tutorial_6.png",
+	
 	L"assets/sprites/text/tutorial_7.png",
 	L"assets/sprites/text/tutorial_7.png",
 	L"assets/sprites/text/tutorial_7.png",

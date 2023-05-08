@@ -19,3 +19,5 @@ const AudioClip AUDIO_HOMING_MISSILE_SHOOT = L"assets/audio_clips/projectiles/ho
 const AudioClip AUDIO_HOMING_MISSILE_EXPLOSION = L"assets/audio_clips/explosions/homing_missile_explosion.wav";
 const AudioClip AUDIO_MINES_SPAWN = L"assets/audio_clips/spawns/mines_spawn.wav";
 const AudioClip AUDIO_MINE_EXPLOSION = L"assets/audio_clips/explosions/mine_explosion.wav";
+
+const AudioClip AUDIO_COMMANDER_TALK = L"assets/audio_clips/ui/character_talk.wav";

@@ -9,7 +9,6 @@
 #include "Component_AsteroidCollider.h"
 #include "Component_AsteroidController.h"
 #include "Component_AsteroidsManager.h"
-#include "Component_BackgroundController.h"
 #include "Component_BossCollider.h"
 #include "Component_BossController.h"
 #include "Component_CircleCollider.h"
@@ -30,9 +29,9 @@
 #include "Component_PlayerController.h"
 #include "Component_PlayerInput.h"
 #include "Component_RectangleCollider.h"
+#include "Component_ScriptedEvent_CommanderTalk.h"
 #include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
-#include "Component_UIController.h"
 #include "Constants.h"
 #include "Debugging.h"
 #include "Sprites.h"
@@ -53,12 +52,14 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level1Manager(st
 	game_object->tag = "Level 1 Manager";
 
 	auto level1manager = game_object->AddComponent<Component_Level1Manager>();
-	level1manager->preparation_period = 5;
-	level1manager->fade_in_period = 1;
-	level1manager->commander_ui_spawn_period = 3.5;
-	level1manager->player_spawn_period = 24;
-	level1manager->asteroids_spawn_period = 29;
-	level1manager->level_length = 60;
+	level1manager->level_length = 160;
+	level1manager->spawn_commander_frame_time = 4;
+	level1manager->start_intro_time = 5;
+	level1manager->spawn_player_time = 30;
+	level1manager->start_spawning_asteroids_time = 65;
+	level1manager->cutscene1_time = 90;
+	level1manager->cutscene2_time = 115;
+	level1manager->cutscene3_time = 140;
 
 	return game_object;
 }
@@ -94,8 +95,6 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Background(std::
 		sprite_renderer->is_active = false;
 	#endif
 	
-	auto background_controller = game_object->AddComponent<Component_BackgroundController>();
-
 	return game_object;
 }
 
@@ -333,7 +332,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_UI_Commander(std
 
 	auto transform = game_object->AddComponent<Component_Transform>();
 	transform->position = Vector2D(-1300, -600);
-	transform->scale = 0;
+	transform->scale = 0; // Grow to 0.4f.
 
 	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
 	sprite_renderer->SetSprite(SPRITE_COMMANDER_FRAME);
@@ -343,8 +342,6 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_UI_Commander(std
 	animator->LoadAnimation(std::make_shared<Animation>("commander talk", ANIMATION_COMMANDER_TALK, 15, true, 10));
 	animator->LoadAnimation(std::make_shared<Animation>("commander spawn", ANIMATION_COMMANDER_SPAWN, 15, false, 2));
 	animator->LoadAnimation(std::make_shared<Animation>("commander despawn", ANIMATION_COMMANDER_DESPAWN, 15, false, 2));
-
-	auto ui_controller = game_object->AddComponent<Component_UIController>();
 
 	return game_object;
 }
@@ -357,12 +354,20 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_UI_Text(std::sha
 	transform->position = Vector2D(-150, -600);
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->LoadAnimation(std::make_shared<Animation>("text level 1 intro", TEXT_LEVEL1_INTRO, 15, false, 0.2));
-	animator->LoadAnimation(std::make_shared<Animation>("text tutorial", TEXT_TUTORIAL, 15, false, 0.8));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 1 intro", TEXT_LEVEL1_INTRO, 15, false, 0.8));
 	animator->LoadAnimation(std::make_shared<Animation>("text level 1 cutscene 1", TEXT_LEVEL1_CUTSCENE1, 15, false, 0.2));
 	animator->LoadAnimation(std::make_shared<Animation>("text level 1 cutscene 2", TEXT_LEVEL1_CUTSCENE2, 15, false, 0.2));
 	animator->LoadAnimation(std::make_shared<Animation>("text level 1 cutscene 3", TEXT_LEVEL1_CUTSCENE3, 15, false, 0.2));
 	animator->LoadAnimation(std::make_shared<Animation>("text level 1 outro", TEXT_LEVEL1_OUTRO, 15, false, 0.8));
+
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_ScriptedEvents(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Scripted Events";
+
+	game_object->AddComponent<Component_ScriptedEvent_CommanderTalk>();
 
 	return game_object;
 }

@@ -172,23 +172,11 @@
     <Filter Include="Source Files\Game\Components\LevelManagers">
       <UniqueIdentifier>{cf6f596b-3a69-4e48-9e26-d3de039fff66}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game\Components\Background">
-      <UniqueIdentifier>{d15d59d1-9556-4b94-ad20-427da73eb404}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Game\Components\Background">
-      <UniqueIdentifier>{681db334-1d38-4e44-ba89-3e00b195c715}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Game\Components\UI">
       <UniqueIdentifier>{4dab1576-ec66-4673-bd9b-a89a2aba6025}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Game\Components\UI">
       <UniqueIdentifier>{b5647157-8e34-49f3-b79c-b8e2b766c719}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Game\Components\LevelManagers\LevelPhases">
-      <UniqueIdentifier>{ab3ecc5b-80ab-4f80-85c6-6a2622e1917b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Game\Components\LevelManagers\LevelPhases">
-      <UniqueIdentifier>{b371fb29-f86e-4904-a861-fa158df9be2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -384,13 +372,7 @@
     <ClCompile Include="Component_Level3Manager.cpp">
       <Filter>Source Files\Game\Components\LevelManagers</Filter>
     </ClCompile>
-    <ClCompile Include="Component_BackgroundController.cpp">
-      <Filter>Source Files\Game\Components\Background</Filter>
-    </ClCompile>
-    <ClCompile Include="Level1Phases.cpp">
-      <Filter>Source Files\Game\Components\LevelManagers\LevelPhases</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_UIController.cpp">
+    <ClCompile Include="Component_ScriptedEvent_CommanderTalk.cpp">
       <Filter>Source Files\Game\Components\UI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -614,13 +596,7 @@
     <ClInclude Include="Component_Level3Manager.h">
       <Filter>Header Files\Game\Components\LevelManagers</Filter>
     </ClInclude>
-    <ClInclude Include="Component_BackgroundController.h">
-      <Filter>Header Files\Game\Components\Background</Filter>
-    </ClInclude>
-    <ClInclude Include="Level1Phases.h">
-      <Filter>Header Files\Game\Components\LevelManagers\LevelPhases</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_UIController.h">
+    <ClInclude Include="Component_ScriptedEvent_CommanderTalk.h">
       <Filter>Header Files\Game\Components\UI</Filter>
     </ClInclude>
   </ItemGroup>

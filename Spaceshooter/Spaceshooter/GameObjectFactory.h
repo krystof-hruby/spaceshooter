@@ -35,6 +35,8 @@ enum class GameObjectType {
 	// UI:
 	UI_Commander,
 	UI_Text,
+
+	ScriptedEvents,
 };
 
 // Creates specific game objects by combining components.
@@ -76,6 +78,8 @@ private:
 
 		{ GameObjectType::UI_Commander, CreateGameObject_UI_Commander },
 		{ GameObjectType::UI_Text, CreateGameObject_UI_Text },
+
+		{ GameObjectType::ScriptedEvents, CreateGameObject_ScriptedEvents },
 	};
 
 	// Specific CreateGameObject methods:
@@ -83,6 +87,7 @@ private:
 	static std::shared_ptr<GameObject> CreateGameObject_Level2Manager(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Level3Manager(std::shared_ptr<ComponentRegistry> component_registry);
 	
+	static std::shared_ptr<GameObject> CreateGameObject_Black(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Background(std::shared_ptr<ComponentRegistry> component_registry);
 	
 	static std::shared_ptr<GameObject> CreateGameObject_Player(std::shared_ptr<ComponentRegistry> component_registry);
@@ -100,5 +105,7 @@ private:
 	
 	static std::shared_ptr<GameObject> CreateGameObject_UI_Commander(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_UI_Text(std::shared_ptr<ComponentRegistry> component_registry);
+
+	static std::shared_ptr<GameObject> CreateGameObject_ScriptedEvents(std::shared_ptr<ComponentRegistry> component_registry);
 };
 

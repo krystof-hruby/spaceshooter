@@ -52,9 +52,10 @@ public:
 	std::weak_ptr<Component_Animator> commander_ui_animator;
 	std::weak_ptr<Component_Animator> text_ui_animator;
 
-	void Activate(std::string text_animation);
+	void Activate(std::string text_animation, bool skip_spawning_phase = false);
 	void Deactivate();
-	bool HasFinished() { return this->finished; }
+	bool Activated() { return this->activated; }
+	bool Finished() { return this->finished; }
 
 private:
 	// For states.

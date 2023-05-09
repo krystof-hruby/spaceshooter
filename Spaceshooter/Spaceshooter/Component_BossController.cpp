@@ -17,7 +17,7 @@
 
 void Component_BossController::Start() {
 	this->GetGameObject()->GetComponent<Component_Transform>()->position = this->spawn_position;
-	this->ChangeState(this->state_grace_period);
+	this->ChangeState(this->state_movig_to_floating_spot);
 }
 
 void Component_BossController::Update() {
@@ -74,7 +74,7 @@ void Component_BossController::GetDamaged(int damage) {
 	this->health -= damage;
 	
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("boss hurt");
-	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BOSS_HURT, 80);
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BOSS_HURT, 75);
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;
 
 	if (this->health <= 0)

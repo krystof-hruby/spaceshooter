@@ -22,6 +22,10 @@
 void Scene_Level1::Load() {
 	LOG("LEVEL 1: Loading level 1. Scene UUID: " + std::to_string(this->GetID()));
 
+	// Fader.
+	std::shared_ptr<GameObject> fader = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Fader, this->component_registry);
+	Scene::Instantiate(fader);
+
 	// Background.
 	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry);
 	background->GetComponent<Component_SpriteRenderer>()->SetSprite(SPRITE_BACKGROUND_BLACK);
@@ -43,6 +47,7 @@ void Scene_Level1::Load() {
 
 	// Level manager.
 	std::shared_ptr<GameObject> level1manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Level1Manager, this->component_registry);
+	level1manager->GetComponent<Component_Level1Manager>()->fader_sprite_renderer = fader->GetComponent<Component_SpriteRenderer>();
 	level1manager->GetComponent<Component_Level1Manager>()->scripted_event_commander_talk = scripted_events->GetComponent<Component_ScriptedEvent_CommanderTalk>();
 	level1manager->GetComponent<Component_Level1Manager>()->commander_frame_transform = commander_ui->GetComponent<Component_Transform>();
 	Scene::Instantiate(level1manager);

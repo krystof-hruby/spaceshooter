@@ -34,38 +34,44 @@ LEVEL 2:
 +++
 ...
 Hm...
-I think this is not the right place either.
-...
+I don't think this is the right place either.
 And there is another asteroid storm coming.
 The developers really recycled it from level 1.
-...
 Oh but there are enemy ships now.
 Watch out!
 ---
 +++
+Give me a minute...
+---
++++
+You are doing great, pilot!
++++
 This time I have the correct coordinates.
 ---
++++
+Warp drive is ready.
+Warping out!
+---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+LEVEL 3:
++++
+This is the correct system now, I promise.
+I mean, there are only three levels in the game...
+The alien ship is coming any moment.
+Watch out!
+---
++++
+This is it, pilot.
+---
++++
+You got it!
+---
++++
+It's almost done. Destroy it!
+---
++++
+Well done, pilot.
+The mission is complete. You are going home.
+Commander Harrison singing off.
+Warping out.
+---

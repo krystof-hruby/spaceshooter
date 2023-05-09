@@ -46,6 +46,13 @@ void Component_PlayerController::Explode() {
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("player explode");
 	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_PLAYER_EXPLOSION, 70);
 	this->current_state = this->state_exploding;
+
+	if (!this->level1manager.expired())
+		this->level1manager.lock()->LevelFailed();
+	else if (!this->level2manager.expired())
+		this->level2manager.lock()->LevelFailed();
+	else if (!this->level3manager.expired())
+		this->level3manager.lock()->LevelFailed();
 }
 
 void Component_PlayerController::Despawn() {

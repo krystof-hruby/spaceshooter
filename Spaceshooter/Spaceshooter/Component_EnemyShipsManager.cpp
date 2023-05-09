@@ -11,9 +11,6 @@
 #include "Time.h"
 
 void Component_EnemyShipsManager::Update() {
-	/*if (this->score_manager.lock()->ReachedGoal())
-		this->DespawnEnemyShips();*/
-
 	this->grace_period_time += (float)Time::delta_time;
 	this->enemy_ship_spawn_time += (float)Time::delta_time;
 
@@ -27,20 +24,8 @@ void Component_EnemyShipsManager::SpawnEnemyShip() {
 
 	// Add to scene.
 	Scene::Instantiate(enemy_ship);
-	this->enemy_ships.push_back(enemy_ship);
 
 	// Reset spawning.
 	this->enemy_ship_spawn_time = 0;
 	this->enemy_ship_spawn_period = (float)((rand() % 10) + 1) / 5;
-}
-
-void Component_EnemyShipsManager::DespawnEnemyShips() {
-	if (this->enemy_ships_despawned)
-		return;
-	
-	for (auto enemy_ship : this->enemy_ships)
-		if (!enemy_ship.expired() && enemy_ship.lock()->HasComponent<Component_EnemyShipController>())
-			enemy_ship.lock()->GetComponent<Component_EnemyShipController>()->Explode();
-
-	this->enemy_ships_despawned = true;
 }

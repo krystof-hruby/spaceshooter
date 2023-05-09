@@ -147,7 +147,6 @@
     <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="BossState_Exploding.cpp" />
     <ClCompile Include="BossState_Floating.cpp" />
-    <ClCompile Include="BossState_GracePeriod.cpp" />
     <ClCompile Include="BossState_MovingToFloatingSpot.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
@@ -216,7 +215,6 @@
     <ClInclude Include="BossState.h" />
     <ClInclude Include="BossState_Exploding.h" />
     <ClInclude Include="BossState_Floating.h" />
-    <ClInclude Include="BossState_GracePeriod.h" />
     <ClInclude Include="BossState_MovingToFloatingSpot.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CollisionManager.h" />

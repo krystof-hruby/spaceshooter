@@ -12,21 +12,7 @@
 #define LOGGING_ENABLED true
 #define VISUALIZE_HITBOXES false
 #define PLAYER_INVINCIBILITY true
-#define START_LEVEL 1
+#define START_LEVEL 3
 
-#define DIFFERENT_BOSS_HEALTH false
-#define BOSS_HEALTH 5
 
 #endif
-
-// TODO:
-/*
-sounds for ending level
-level ending?
-ui
-boss explosions
-game ending
-trophies for levels
-tutorial
-
-*/

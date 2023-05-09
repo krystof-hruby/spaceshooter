@@ -52,14 +52,22 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level1Manager(st
 	game_object->tag = "Level 1 Manager";
 
 	auto level1manager = game_object->AddComponent<Component_Level1Manager>();
-	level1manager->level_length = 160;
+	level1manager->fade_in_time = 1;
 	level1manager->spawn_commander_frame_time = 4;
-	level1manager->start_intro_time = 5;
+	level1manager->intro_time = 5;
 	level1manager->spawn_player_time = 30;
-	level1manager->start_spawning_asteroids_time = 65;
+	level1manager->start_spawning_asteroids_time = 66;
 	level1manager->cutscene1_time = 90;
-	level1manager->cutscene2_time = 115;
-	level1manager->cutscene3_time = 140;
+	level1manager->cutscene2_time = 100;
+	level1manager->cutscene3_time = 110;
+	level1manager->outro_time = 120;
+	level1manager->despawn_player_time = 134;
+	level1manager->despawn_commander_frame_time = 138;
+	level1manager->fade_out_time = 138;
+	level1manager->level_length = 140;
+	level1manager->level_failed_despawn_commander_frame_time = 18;
+	level1manager->level_failed_fade_out_time = 18;
+	level1manager->level_failed_length = 20;
 
 	return game_object;
 }
@@ -69,6 +77,23 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level2Manager(st
 	game_object->tag = "Level 2 Manager";
 
 	auto level2manager = game_object->AddComponent<Component_Level2Manager>();
+	level2manager->fade_in_time = 1;
+	level2manager->spawn_commander_frame_time = 2;
+	level2manager->intro_time = 4;
+	level2manager->spawn_player_time = 3;
+	level2manager->start_spawning_asteroids_time = 32;
+	level2manager->start_spawning_enemy_ships_time = 32;
+	level2manager->cutscene1_time = 50;
+	level2manager->cutscene2_time = 60;
+	level2manager->cutscene3_time = 70;
+	level2manager->outro_time = 80;
+	level2manager->despawn_player_time = 90;
+	level2manager->despawn_commander_frame_time = 93;
+	level2manager->fade_out_time = 93;
+	level2manager->level_length = 95;
+	level2manager->level_failed_despawn_commander_frame_time = 18;
+	level2manager->level_failed_fade_out_time = 18;
+	level2manager->level_failed_length = 20;
 
 	return game_object;
 }
@@ -78,6 +103,32 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level3Manager(st
 	game_object->tag = "Level 3 Manager";
 
 	auto level3manager = game_object->AddComponent<Component_Level3Manager>();
+	level3manager->fade_in_time = 1;
+	level3manager->spawn_commander_frame_time = 2;
+	level3manager->intro_time = 4;
+	level3manager->spawn_player_time = 3;
+	level3manager->spawn_boss_time = 20;
+	level3manager->level_finished_despawn_player_time = 10;
+	level3manager->level_finished_despawn_commander_frame_time = 15;
+	level3manager->level_finished_fade_out_time = 20;
+	level3manager->level_finished_length = 22;
+	level3manager->level_failed_despawn_commander_frame_time = 18;
+	level3manager->level_failed_fade_out_time = 18;
+	level3manager->level_failed_length = 20;
+
+	return game_object;
+}
+
+std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Fader(std::shared_ptr<ComponentRegistry> component_registry) {
+	std::shared_ptr<GameObject> game_object = std::make_shared<GameObject>(component_registry);
+	game_object->tag = "Fader";
+
+	auto transform = game_object->AddComponent<Component_Transform>();
+	transform->scale = 2;
+
+	auto sprite_renderer = game_object->AddComponent<Component_SpriteRenderer>();
+	sprite_renderer->SetSprite(SPRITE_FADER);
+	sprite_renderer->layer = 20;
 
 	return game_object;
 }
@@ -258,11 +309,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 	collider->height = 200;
 
 	auto boss_controller = game_object->AddComponent<Component_BossController>();
-	#if DIFFERENT_BOSS_HEALTH
-		boss_controller->health = BOSS_HEALTH;
-	#else
-		boss_controller->health = 100;
-	#endif
+	boss_controller->health = 200;
 	boss_controller->movement_speed = 0.8f;
 	boss_controller->floating_movement_speed = 60;
 	boss_controller->spawn_position = Vector2D(0, 1500);
@@ -354,11 +401,25 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_UI_Text(std::sha
 	transform->position = Vector2D(-150, -600);
 
 	auto animator = game_object->AddComponent<Component_Animator>();
+	animator->LoadAnimation(std::make_shared<Animation>("text fail", TEXT_FAIL, 15, false, 0.8));
+
 	animator->LoadAnimation(std::make_shared<Animation>("text level 1 intro", TEXT_LEVEL1_INTRO, 15, false, 0.8));
 	animator->LoadAnimation(std::make_shared<Animation>("text level 1 cutscene 1", TEXT_LEVEL1_CUTSCENE1, 15, false, 0.2));
 	animator->LoadAnimation(std::make_shared<Animation>("text level 1 cutscene 2", TEXT_LEVEL1_CUTSCENE2, 15, false, 0.2));
 	animator->LoadAnimation(std::make_shared<Animation>("text level 1 cutscene 3", TEXT_LEVEL1_CUTSCENE3, 15, false, 0.2));
 	animator->LoadAnimation(std::make_shared<Animation>("text level 1 outro", TEXT_LEVEL1_OUTRO, 15, false, 0.8));
+
+	animator->LoadAnimation(std::make_shared<Animation>("text level 2 intro", TEXT_LEVEL2_INTRO, 15, false, 0.8));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 2 cutscene 1", TEXT_LEVEL2_CUTSCENE1, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 2 cutscene 2", TEXT_LEVEL2_CUTSCENE2, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 2 cutscene 3", TEXT_LEVEL2_CUTSCENE3, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 2 outro", TEXT_LEVEL2_OUTRO, 15, false, 0.8));
+
+	animator->LoadAnimation(std::make_shared<Animation>("text level 3 intro", TEXT_LEVEL3_INTRO, 15, false, 0.8));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 3 cutscene 1", TEXT_LEVEL3_CUTSCENE1, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 3 cutscene 2", TEXT_LEVEL3_CUTSCENE2, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 3 cutscene 3", TEXT_LEVEL3_CUTSCENE3, 15, false, 0.2));
+	animator->LoadAnimation(std::make_shared<Animation>("text level 3 outro", TEXT_LEVEL3_OUTRO, 15, false, 0.8));
 
 	return game_object;
 }

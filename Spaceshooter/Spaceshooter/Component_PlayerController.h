@@ -5,6 +5,9 @@
 #pragma once
 
 #include "Component.h"
+#include "Component_Level1Manager.h"
+#include "Component_Level2Manager.h"
+#include "Component_Level3Manager.h"
 #include "PlayerState.h"
 #include "PlayerState_Despawning.h"
 #include "PlayerState_Exploding.h"
@@ -21,6 +24,10 @@ public:
 	float movement_speed = 1;
 	float rotation_speed = 1;
 	float reload_period = 1;
+
+	std::weak_ptr<Component_Level1Manager> level1manager;
+	std::weak_ptr<Component_Level2Manager> level2manager;
+	std::weak_ptr<Component_Level3Manager> level3manager;
 
 	void ChangeState(std::shared_ptr<PlayerState> player_state);
 	void Explode();

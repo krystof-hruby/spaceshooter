@@ -10,6 +10,8 @@
 
 // Sprites:
 
+const Sprite SPRITE_FADER = L"assets/sprites/backgrounds/black.png";
+
 const Sprite SPRITE_BACKGROUND_BLACK = L"assets/sprites/backgrounds/background_black.png";
 const Sprite SPRITE_BACKGROUND_BROWN = L"assets/sprites/backgrounds/background_brown.png";
 const Sprite SPRITE_BACKGROUND_PURPLE = L"assets/sprites/backgrounds/background_purple.png";
@@ -104,6 +106,23 @@ const std::vector<Sprite> ANIMATION_COMMANDER_DESPAWN = {
 };
 
 // Text:
+const std::vector<Sprite> TEXT_FAIL = {
+	L"assets/sprites/text/dots_1.png",
+	L"assets/sprites/text/dots_2.png",
+	L"assets/sprites/text/dots_3.png",
+	L"assets/sprites/text/dots_3.png",
+
+	L"assets/sprites/text/fail_1.png",
+	L"assets/sprites/text/fail_1.png",
+	L"assets/sprites/text/fail_1.png",
+	L"assets/sprites/text/fail_1.png",
+	
+	L"assets/sprites/text/fail_2.png",
+	L"assets/sprites/text/fail_2.png",
+	L"assets/sprites/text/fail_2.png",
+	L"assets/sprites/text/fail_2.png",
+};
+
 const std::vector<Sprite> TEXT_LEVEL1_INTRO = {
 	L"assets/sprites/text/level1_intro_1.png",
 	L"assets/sprites/text/level1_intro_1.png",
@@ -143,6 +162,7 @@ const std::vector<Sprite> TEXT_LEVEL1_INTRO = {
 	L"assets/sprites/text/dots_1.png",
 	L"assets/sprites/text/dots_2.png",
 	L"assets/sprites/text/dots_3.png",
+	L"assets/sprites/text/dots_3.png",
 	
 	L"assets/sprites/text/tutorial_3.png",
 	L"assets/sprites/text/tutorial_3.png",
@@ -156,6 +176,7 @@ const std::vector<Sprite> TEXT_LEVEL1_INTRO = {
 	
 	L"assets/sprites/text/dots_1.png",
 	L"assets/sprites/text/dots_2.png",
+	L"assets/sprites/text/dots_3.png",
 	L"assets/sprites/text/dots_3.png",
 	
 	L"assets/sprites/text/tutorial_5.png",
@@ -191,11 +212,132 @@ const std::vector<Sprite> TEXT_LEVEL1_OUTRO = {
 	L"assets/sprites/text/level1_outro_1.png",
 	L"assets/sprites/text/level1_outro_1.png",
 	L"assets/sprites/text/level1_outro_1.png",
+
 	L"assets/sprites/text/dots_1.png",
 	L"assets/sprites/text/dots_2.png",
 	L"assets/sprites/text/dots_3.png",
+	L"assets/sprites/text/dots_3.png",
+	
 	L"assets/sprites/text/level1_outro_2.png",
 	L"assets/sprites/text/level1_outro_2.png",
 	L"assets/sprites/text/level1_outro_2.png",
 	L"assets/sprites/text/level1_outro_2.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL2_INTRO = {
+	L"assets/sprites/text/dots_1.png",
+	L"assets/sprites/text/dots_2.png",
+	L"assets/sprites/text/dots_3.png",
+	L"assets/sprites/text/dots_3.png",
+
+	L"assets/sprites/text/level2_intro_1.png",
+	L"assets/sprites/text/level2_intro_1.png",
+	L"assets/sprites/text/level2_intro_1.png",
+	L"assets/sprites/text/level2_intro_1.png",
+	
+	L"assets/sprites/text/level2_intro_2.png",
+	L"assets/sprites/text/level2_intro_2.png",
+	L"assets/sprites/text/level2_intro_2.png",
+	L"assets/sprites/text/level2_intro_2.png",
+
+	L"assets/sprites/text/level2_intro_3.png",
+	L"assets/sprites/text/level2_intro_3.png",
+	L"assets/sprites/text/level2_intro_3.png",
+	L"assets/sprites/text/level2_intro_3.png",
+
+	L"assets/sprites/text/level2_intro_4.png",
+	L"assets/sprites/text/level2_intro_4.png",
+	L"assets/sprites/text/level2_intro_4.png",
+	L"assets/sprites/text/level2_intro_4.png",
+
+	L"assets/sprites/text/level2_intro_5.png",
+	L"assets/sprites/text/level2_intro_5.png",
+	L"assets/sprites/text/level2_intro_5.png",
+	L"assets/sprites/text/level2_intro_5.png",
+
+	L"assets/sprites/text/level2_intro_6.png",
+	L"assets/sprites/text/level2_intro_6.png",
+	L"assets/sprites/text/level2_intro_6.png",
+	L"assets/sprites/text/level2_intro_6.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL2_CUTSCENE1 = {
+	L"assets/sprites/text/level2_cutscene_1.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL2_CUTSCENE2 = {
+	L"assets/sprites/text/level2_cutscene_2.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL2_CUTSCENE3 = {
+	L"assets/sprites/text/level2_cutscene_3.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL2_OUTRO = {
+	L"assets/sprites/text/level2_outro_1.png",
+	L"assets/sprites/text/level2_outro_1.png",
+	L"assets/sprites/text/level2_outro_1.png",
+	L"assets/sprites/text/level2_outro_1.png",
+
+	L"assets/sprites/text/level2_outro_2.png",
+	L"assets/sprites/text/level2_outro_2.png",
+	L"assets/sprites/text/level2_outro_2.png",
+	L"assets/sprites/text/level2_outro_2.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL3_INTRO = {
+	L"assets/sprites/text/level3_intro_1.png",
+	L"assets/sprites/text/level3_intro_1.png",
+	L"assets/sprites/text/level3_intro_1.png",
+	L"assets/sprites/text/level3_intro_1.png",
+
+	L"assets/sprites/text/level3_intro_2.png",
+	L"assets/sprites/text/level3_intro_2.png",
+	L"assets/sprites/text/level3_intro_2.png",
+	L"assets/sprites/text/level3_intro_2.png",
+
+	L"assets/sprites/text/level3_intro_3.png",
+	L"assets/sprites/text/level3_intro_3.png",
+	L"assets/sprites/text/level3_intro_3.png",
+	L"assets/sprites/text/level3_intro_3.png",
+
+	L"assets/sprites/text/level3_intro_4.png",
+	L"assets/sprites/text/level3_intro_4.png",
+	L"assets/sprites/text/level3_intro_4.png",
+	L"assets/sprites/text/level3_intro_4.png",
+
+};
+
+const std::vector<Sprite> TEXT_LEVEL3_CUTSCENE1 = {
+	L"assets/sprites/text/level3_cutscene_1.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL3_CUTSCENE2 = {
+	L"assets/sprites/text/level3_cutscene_2.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL3_CUTSCENE3 = {
+	L"assets/sprites/text/level3_cutscene_3.png",
+};
+
+const std::vector<Sprite> TEXT_LEVEL3_OUTRO = {
+	L"assets/sprites/text/level3_outro_1.png",
+	L"assets/sprites/text/level3_outro_1.png",
+	L"assets/sprites/text/level3_outro_1.png",
+	L"assets/sprites/text/level3_outro_1.png",
+
+	L"assets/sprites/text/level3_outro_2.png",
+	L"assets/sprites/text/level3_outro_2.png",
+	L"assets/sprites/text/level3_outro_2.png",
+	L"assets/sprites/text/level3_outro_2.png",
+
+	L"assets/sprites/text/level3_outro_3.png",
+	L"assets/sprites/text/level3_outro_3.png",
+	L"assets/sprites/text/level3_outro_3.png",
+	L"assets/sprites/text/level3_outro_3.png",
+
+	L"assets/sprites/text/level3_outro_4.png",
+	L"assets/sprites/text/level3_outro_4.png",
+	L"assets/sprites/text/level3_outro_4.png",
+	L"assets/sprites/text/level3_outro_4.png",
 };

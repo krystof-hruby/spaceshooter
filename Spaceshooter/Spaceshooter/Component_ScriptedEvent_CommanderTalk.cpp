@@ -15,14 +15,18 @@ void Component_ScriptedEvent_CommanderTalk::Update() {
 	this->current_phase->Play(this->shared_from_this());
 }
 
-void Component_ScriptedEvent_CommanderTalk::Activate(std::string text_animation) {
+void Component_ScriptedEvent_CommanderTalk::Activate(std::string text_animation, bool skip_spawning_phase) {
 	if (this->activated && !this->finished)
 		return;
 
 	this->text_animation = text_animation;
 	this->activated = true;
 	this->finished = false;
-	this->current_phase = this->phase_spawn_commander;
+
+	if (skip_spawning_phase)
+		this->current_phase = this->phase_start_talk;
+	else
+		this->current_phase = this->phase_spawn_commander;
 }
 
 void Component_ScriptedEvent_CommanderTalk::Deactivate() {

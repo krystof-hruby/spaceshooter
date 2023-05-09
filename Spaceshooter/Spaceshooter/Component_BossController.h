@@ -8,7 +8,6 @@
 #include <vector>
 #include "BossState_Exploding.h"
 #include "BossState_Floating.h"
-#include "BossState_GracePeriod.h"
 #include "BossState_MovingToFloatingSpot.h"
 #include "Component_Transform.h"
 
@@ -25,7 +24,6 @@ public:
 	int health = 1;
 	float movement_speed = 1;
 	float floating_movement_speed = 1;
-	float grace_period = 1;
 	float moving_to_floating_spot_period = 1;
 	float attack_period = 1;
 	Vector2D homing_missile_spawn_offset;
@@ -39,7 +37,6 @@ public:
 
 private:
 	// For states.
-	friend class BossState_GracePeriod;
 	friend class BossState_MovingToFloatingSpot;
 	friend class BossState_Floating;
 	friend class BossState_Exploding;
@@ -47,7 +44,6 @@ private:
 	std::shared_ptr<BossState> current_state;
 
 	// States:
-	std::shared_ptr<BossState_GracePeriod> state_grace_period = std::make_shared<BossState_GracePeriod>();
 	std::shared_ptr<BossState_MovingToFloatingSpot> state_movig_to_floating_spot = std::make_shared<BossState_MovingToFloatingSpot>();
 	std::shared_ptr<BossState_Floating> state_floating = std::make_shared<BossState_Floating>();
 	std::shared_ptr<BossState_Exploding> state_exploding = std::make_shared<BossState_Exploding>();

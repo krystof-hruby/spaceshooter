@@ -638,7 +638,7 @@ PictureIndex MyDrawEngine::LoadPicture(const wchar_t* filename)
 		HRESULT err = D3DXCreateTextureFromFileEx(m_lpD3DDevice,
 			filename, D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT,
 			D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR,
-			0xff000000,				         // Colour key is black
+			0x00000000,			         // Colour key is black
 			NULL, NULL,
 			&tempMyPicture.lpTheTexture);
 

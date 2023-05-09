@@ -327,9 +327,6 @@
     <ClCompile Include="BossState_Floating.cpp">
       <Filter>Source Files\Game\Components\Boss\States</Filter>
     </ClCompile>
-    <ClCompile Include="BossState_GracePeriod.cpp">
-      <Filter>Source Files\Game\Components\Boss\States</Filter>
-    </ClCompile>
     <ClCompile Include="BossState_MovingToFloatingSpot.cpp">
       <Filter>Source Files\Game\Components\Boss\States</Filter>
     </ClCompile>
@@ -540,9 +537,6 @@
       <Filter>Header Files\Game\Components\Boss\States</Filter>
     </ClInclude>
     <ClInclude Include="BossState_Floating.h">
-      <Filter>Header Files\Game\Components\Boss\States</Filter>
-    </ClInclude>
-    <ClInclude Include="BossState_GracePeriod.h">
       <Filter>Header Files\Game\Components\Boss\States</Filter>
     </ClInclude>
     <ClInclude Include="BossState_MovingToFloatingSpot.h">

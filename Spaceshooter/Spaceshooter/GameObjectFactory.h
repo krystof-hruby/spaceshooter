@@ -15,6 +15,7 @@ enum class GameObjectType {
 	Level3Manager,
 
 	// Environment:
+	Fader,
 	Background,
 	
 	// Player:
@@ -61,6 +62,7 @@ private:
 		{ GameObjectType::Level2Manager, CreateGameObject_Level2Manager },
 		{ GameObjectType::Level3Manager, CreateGameObject_Level3Manager },
 		
+		{ GameObjectType::Fader, CreateGameObject_Fader },
 		{ GameObjectType::Background, CreateGameObject_Background },
 		
 		{ GameObjectType::Player, CreateGameObject_Player },
@@ -87,7 +89,7 @@ private:
 	static std::shared_ptr<GameObject> CreateGameObject_Level2Manager(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Level3Manager(std::shared_ptr<ComponentRegistry> component_registry);
 	
-	static std::shared_ptr<GameObject> CreateGameObject_Black(std::shared_ptr<ComponentRegistry> component_registry);
+	static std::shared_ptr<GameObject> CreateGameObject_Fader(std::shared_ptr<ComponentRegistry> component_registry);
 	static std::shared_ptr<GameObject> CreateGameObject_Background(std::shared_ptr<ComponentRegistry> component_registry);
 	
 	static std::shared_ptr<GameObject> CreateGameObject_Player(std::shared_ptr<ComponentRegistry> component_registry);

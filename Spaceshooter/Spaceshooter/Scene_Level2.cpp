@@ -16,42 +16,35 @@
 void Scene_Level2::Load() {
 	LOG("LEVEL 2: Loading level 2. Scene UUID: " + std::to_string(this->GetID()));
 
-	/*
+	// Fader.
+	std::shared_ptr<GameObject> fader = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Fader, this->component_registry);
+	Scene::Instantiate(fader);
 
 	// Background.
 	std::shared_ptr<GameObject> background = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Background, this->component_registry);
 	background->GetComponent<Component_SpriteRenderer>()->SetSprite(SPRITE_BACKGROUND_BROWN);
 	Scene::Instantiate(background);
 
+	// Text UI.
+	std::shared_ptr<GameObject> text_ui = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::UI_Text, this->component_registry);
+	Scene::Instantiate(text_ui);
+
+	// Commander UI.
+	std::shared_ptr<GameObject> commander_ui = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::UI_Commander, this->component_registry);
+	Scene::Instantiate(commander_ui);
+
+	// Scripted Events.
+	std::shared_ptr<GameObject> scripted_events = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::ScriptedEvents, this->component_registry);
+	scripted_events->GetComponent<Component_ScriptedEvent_CommanderTalk>()->commander_ui_animator = commander_ui->GetComponent<Component_Animator>();
+	scripted_events->GetComponent<Component_ScriptedEvent_CommanderTalk>()->text_ui_animator = text_ui->GetComponent<Component_Animator>();
+	Scene::Instantiate(scripted_events);
+
 	// Level manager.
 	std::shared_ptr<GameObject> level2manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Level2Manager, this->component_registry);
-	level2manager->GetComponent<Component_Level2Manager>()->level_end_period = 10;
-	level2manager->GetComponent<Component_Level2Manager>()->fade_out_period = 5;
-	#if DIFFERENT_GOAL
-		level2manager->GetComponent<Component_Level2Manager>()->score_manager->goal = GOAL;
-	#else
-		level2manager->GetComponent<Component_Level2Manager>()->score_manager->goal = 100;
-	#endif
-	level2manager->GetComponent<Component_Level2Manager>()->background_controller = background->GetComponent<Component_BackgroundController>();
+	level2manager->GetComponent<Component_Level2Manager>()->fader_sprite_renderer = fader->GetComponent<Component_SpriteRenderer>();
+	level2manager->GetComponent<Component_Level2Manager>()->scripted_event_commander_talk = scripted_events->GetComponent<Component_ScriptedEvent_CommanderTalk>();
+	level2manager->GetComponent<Component_Level2Manager>()->commander_frame_transform = commander_ui->GetComponent<Component_Transform>();
 	Scene::Instantiate(level2manager);
-
-	// Player.
-	std::shared_ptr<GameObject> player = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::Player, this->component_registry);
-	Scene::Instantiate(player);
-
-	// Asteroids manager.
-	std::shared_ptr<GameObject> asteroids_manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::AsteroidsManager, this->component_registry);
-	asteroids_manager->GetComponent<Component_AsteroidsManager>()->score_manager = level2manager->GetComponent<Component_Level2Manager>()->score_manager;
-	Scene::Instantiate(asteroids_manager);
-
-	// Enemy ships manager.
-	std::shared_ptr<GameObject> enemy_ships_manager = GameObjectFactory::GetInstance().CreateGameObject(GameObjectType::EnemyShipsManager, this->component_registry);
-	enemy_ships_manager->GetComponent<Component_EnemyShipsManager>()->player_transform = player->GetComponent<Component_Transform>();
-	enemy_ships_manager->GetComponent<Component_EnemyShipsManager>()->grace_period = 7;
-	enemy_ships_manager->GetComponent<Component_EnemyShipsManager>()->score_manager = level2manager->GetComponent<Component_Level2Manager>()->score_manager;
-	Scene::Instantiate(enemy_ships_manager);
-
-	*/
 }
 
 void Scene_Level2::Unload() {

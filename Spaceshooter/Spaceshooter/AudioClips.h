@@ -6,6 +6,8 @@
 
 #include "AudioPlayer.h" // For AudioClip.
 
+// Relative paths to all audio assets used in the project.
+
 const AudioClip AUDIO_PLAYER_PROJECTILE = L"assets/audio_clips/projectiles/player_projectile.wav";
 const AudioClip AUDIO_PLAYER_EXPLOSION = L"assets/audio_clips/explosions/player_explosion.wav";
 const AudioClip AUDIO_PLAYER_SPAWN = L"assets/audio_clips/spawns/player_spawn.wav";

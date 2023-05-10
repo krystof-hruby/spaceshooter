@@ -9,6 +9,8 @@
 
 class Component_ScriptedEvent_CommanderTalk;
 
+// Phases:
+
 class CommanderTalkPhase {
 public:
 	virtual void Play(std::shared_ptr<Component_ScriptedEvent_CommanderTalk> commander_talk) { }
@@ -42,6 +44,7 @@ public:
 	void Play(std::shared_ptr<Component_ScriptedEvent_CommanderTalk> commander_talk) override;
 };
 
+// Controls commander talk scripted event.
 class Component_ScriptedEvent_CommanderTalk final : public Component, public std::enable_shared_from_this< Component_ScriptedEvent_CommanderTalk> {
 public:
 	using Component::Component;
@@ -51,6 +54,7 @@ public:
 	std::weak_ptr<Component_Animator> commander_ui_animator;
 	std::weak_ptr<Component_Animator> text_ui_animator;
 
+	// Spawns commander. Talks commander until text animation finishes. Despawns commander.
 	void Activate(std::string text_animation, bool skip_spawning_phase = false);
 	void Deactivate();
 	bool Activated() { return this->activated; }

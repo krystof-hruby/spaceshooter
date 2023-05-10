@@ -6,7 +6,7 @@
 
 #include "Component.h"
 
-// Provides field and method for spawning and managing asteroids.
+// Provides fields and methods for spawning and managing asteroids.
 class Component_AsteroidsManager final : public Component {
 public:
 	using Component::Component;

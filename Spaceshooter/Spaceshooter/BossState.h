@@ -6,7 +6,7 @@
 
 #include <memory>
 
-class Component_BossController;
+class Component_BossController; // Must #include Component_BossController in .cpp file.
 
 // Abstract parent class for boss states. Override methods to provide functionality.
 class BossState {

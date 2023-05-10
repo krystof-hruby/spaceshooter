@@ -9,6 +9,7 @@
 
 class Component_PlayerController;
 
+// Manages level 3 phases.
 class Component_Level3Manager : public Component, public std::enable_shared_from_this<Component_Level3Manager> {
 public:
 	using Component::Component;

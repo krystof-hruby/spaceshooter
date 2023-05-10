@@ -6,6 +6,7 @@
 
 #include "Component_Transform.h"
 
+// Controls an enemy ship.
 class Component_EnemyShipController final : public Component {
 public:
 	using Component::Component;

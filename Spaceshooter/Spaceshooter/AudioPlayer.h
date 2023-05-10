@@ -10,7 +10,7 @@
 typedef const wchar_t* AudioClip;
 
 // Plays audio.
-class AudioPlayer {
+class AudioPlayer final {
 public:
 	// Returns singleton instance.
 	static AudioPlayer& GetInstance();

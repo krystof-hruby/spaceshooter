@@ -6,6 +6,7 @@
 
 #include "Component_Transform.h"
 
+// Controls a homing missile.
 class Component_HomingMissileController final : public Component {
 public:
 	using Component::Component;

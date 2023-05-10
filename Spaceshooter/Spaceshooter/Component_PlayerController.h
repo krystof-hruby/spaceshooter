@@ -13,6 +13,7 @@
 #include "PlayerState_Flying.h"
 #include "PlayerState_Spawning.h"
 
+// Controls the player spaceship.
 class Component_PlayerController final : public Component, public std::enable_shared_from_this<Component_PlayerController> {
 public:
 	using Component::Component;
@@ -27,7 +28,6 @@ public:
 	std::weak_ptr<Component_Level2Manager> level2manager;
 	std::weak_ptr<Component_Level3Manager> level3manager;
 
-	void ChangeState(std::shared_ptr<PlayerState> player_state);
 	void Explode();
 	void Despawn();
 
@@ -39,6 +39,7 @@ private:
 	friend class PlayerState_Despawning;
 
 	std::shared_ptr<PlayerState> current_state;
+	void ChangeState(std::shared_ptr<PlayerState> player_state);
 	
 	// States:
 	std::shared_ptr<PlayerState_Spawning> state_spawning = std::make_shared<PlayerState_Spawning>();

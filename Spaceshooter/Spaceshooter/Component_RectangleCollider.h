@@ -6,6 +6,7 @@
 
 #include "Component_Collider.h"
 
+// Collider with a rectangular shape (can be rotated).
 class Component_RectangleCollider : public Component_Collider {
 public:
 	using Component_Collider::Component_Collider;

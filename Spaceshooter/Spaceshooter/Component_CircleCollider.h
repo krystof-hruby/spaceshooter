@@ -6,6 +6,7 @@
 
 #include "Component_Collider.h"
 
+// Collider with a circular shape.
 class Component_CircleCollider : public Component_Collider {
 public:
 	using Component_Collider::Component_Collider;

@@ -10,6 +10,7 @@
 const int CLOCKWISE = 1;
 const int COUNTERCLOCKWISE = -1;
 
+// Controls an asteroid.
 class Component_AsteroidController final : public Component {
 public:
 	using Component::Component;

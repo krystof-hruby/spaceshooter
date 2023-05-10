@@ -7,6 +7,7 @@
 #include "Component.h"
 #include "vector2D.h"
 
+// Controls a player bullet.
 class Component_PlayerBulletController final : public Component {
 public:
 	using Component::Component;

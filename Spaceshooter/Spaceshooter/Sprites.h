@@ -8,6 +8,7 @@
 
 // Relative paths to all sprite assets used in the project.
 
+
 // Sprites:
 
 const Sprite SPRITE_FADER = L"assets/sprites/backgrounds/black.png";
@@ -35,6 +36,7 @@ const Sprite SPRITE_PROJECTILE_YELLOW = L"assets/sprites/projectiles/projectile_
 const Sprite SPRITE_MINE = L"assets/sprites/projectiles/mine.png";
 
 const Sprite SPRITE_COMMANDER_FRAME = L"assets/sprites/ui/commander_0.png";
+
 
 // Animations:
 
@@ -108,7 +110,9 @@ const std::vector<Sprite> ANIMATION_COMMANDER_DESPAWN = {
 	L"assets/sprites/ui/commander_grey_1.png",
 };
 
+
 // Text:
+
 const std::vector<Sprite> TEXT_FAIL = {
 	L"assets/sprites/text/dots_1.png",
 	L"assets/sprites/text/dots_2.png",

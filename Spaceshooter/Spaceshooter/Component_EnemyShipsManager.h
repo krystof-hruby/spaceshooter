@@ -6,6 +6,7 @@
 
 #include "Component_Transform.h"
 
+// Provides fields and methods for spawning enemy ships.
 class Component_EnemyShipsManager final : public Component {
 public:
 	using Component::Component;

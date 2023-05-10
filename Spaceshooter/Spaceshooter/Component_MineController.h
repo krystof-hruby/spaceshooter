@@ -7,6 +7,7 @@
 #include "Component.h"
 #include "vector2D.h"
 
+// Controls a mine.
 class Component_MineController : public Component {
 public:
 	using Component::Component;

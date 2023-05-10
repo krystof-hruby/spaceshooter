@@ -5,7 +5,7 @@
 #pragma once
 
 // Disable all debugging.
-#define DEBUGGING true
+#define DEBUGGING false
 #if DEBUGGING
 
 

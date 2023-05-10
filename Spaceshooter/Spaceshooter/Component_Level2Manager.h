@@ -9,6 +9,7 @@
 
 class Component_PlayerController;
 
+// Manages level 2 phases.
 class Component_Level2Manager : public Component, public std::enable_shared_from_this<Component_Level2Manager> {
 public:
 	using Component::Component;

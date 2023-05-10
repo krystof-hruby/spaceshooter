@@ -6,7 +6,6 @@
 
 #include "Component_Transform.h"
 #include "Constants.h"
-#include "EngineException.h"
 #include "GameObject.h"
 #include "ImageRenderer.h"
 #include "Time.h"

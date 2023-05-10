@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include <vector>
-
 #include "Component_SpriteRenderer.h"
 
 // Holds values of the iamge to be rendered.

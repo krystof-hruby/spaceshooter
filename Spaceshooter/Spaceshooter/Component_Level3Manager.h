@@ -6,7 +6,6 @@
 
 #include "Component_BossController.h"
 #include "Component_ScriptedEvent_CommanderTalk.h"
-#include "Component_Transform.h"
 
 class Component_PlayerController;
 

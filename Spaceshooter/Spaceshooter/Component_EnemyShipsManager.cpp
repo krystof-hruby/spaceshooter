@@ -5,7 +5,6 @@
 #include "Component_EnemyShipsManager.h"
 
 #include "Component_EnemyShipController.h"
-#include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "Scene.h"
 #include "Time.h"

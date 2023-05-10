@@ -9,8 +9,6 @@
 #include "GameObject.h"
 #include "Time.h"
 
-#include "Logging.h"
-
 void Component_PlayerBulletController::Update() {
 	auto transform = this->GetGameObject()->GetComponent<Component_Transform>();
 

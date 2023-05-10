@@ -4,20 +4,10 @@
 
 #include "Scene_Level1.h"
 
-#include "AudioPlayer.h"
-#include "Component_AsteroidsManager.h"
 #include "Component_Level1Manager.h"
-#include "Component_PlayerController.h"
-#include "Component_ScriptedEvent_CommanderTalk.h"
-#include "Component_Transform.h"
-#include "Constants.h"
-#include "Debugging.h"
 #include "GameObjectFactory.h"
 #include "Logging.h"
-#include "Scene_Level2.h"
-#include "SceneManager.h"
 #include "Sprites.h"
-#include "Time.h"
 
 void Scene_Level1::Load() {
 	LOG("LEVEL 1: Loading level 1. Scene UUID: " + std::to_string(this->GetID()));

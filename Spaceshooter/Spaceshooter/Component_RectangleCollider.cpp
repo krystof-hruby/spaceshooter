@@ -6,7 +6,6 @@
 
 #include "Component_Transform.h"
 #include "GameObject.h"
-#include "mydrawengine.h"
 
 std::shared_ptr<IShape2D> Component_RectangleCollider::GetShape() {
 	return this->shape;

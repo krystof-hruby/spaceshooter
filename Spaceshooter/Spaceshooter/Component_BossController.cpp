@@ -4,16 +4,13 @@
 
 #include "Component_BossController.h"
 
-#include "ActiveBounds.h"
 #include "AudioClips.h"
 #include "Component_Animator.h"
 #include "Component_BossCollider.h"
 #include "Component_HomingMissileController.h"
 #include "Component_MineController.h"
-#include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "Scene.h"
-#include "Time.h"
 
 void Component_BossController::Start() {
 	this->GetGameObject()->GetComponent<Component_Transform>()->position = this->spawn_position;

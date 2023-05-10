@@ -4,11 +4,7 @@
 
 #include "Scene_Level2.h"
 
-#include "AudioClips.h"
-#include "Component_AsteroidsManager.h"
-#include "Component_EnemyShipsManager.h"
 #include "Component_Level2Manager.h"
-#include "Component_PlayerController.h"
 #include "GameObjectFactory.h"
 #include "Logging.h"
 #include "Sprites.h"

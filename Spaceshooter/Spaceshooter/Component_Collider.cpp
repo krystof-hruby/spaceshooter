@@ -4,8 +4,8 @@
 
 #include "Component_Collider.h"
 
-#include "GameObject.h"
 #include "Component_Transform.h"
+#include "GameObject.h"
 
 void Component_Collider::HandleCollision(std::shared_ptr<Component_Collider> other) {
 	ObjectUUID other_id = other->GetGameObject()->GetID();

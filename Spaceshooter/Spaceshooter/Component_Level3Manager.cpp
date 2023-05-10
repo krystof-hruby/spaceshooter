@@ -4,7 +4,9 @@
 
 #include "Component_Level3Manager.h"
 
+#include "AudioClips.h"
 #include "Component_BossController.h"
+#include "Component_PlayerController.h"
 #include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "Scene_Level1.h"
@@ -18,6 +20,7 @@ void Component_Level3Manager::Update() {
 
 		// Despawn commander frame.
 		if (!this->level_failed_commander_frame_despawned && this->level_failed_time > this->level_failed_despawn_commander_frame_time) {
+			AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BLEEP, 85);
 			this->commander_frame_transform.lock()->scale -= (float)Time::delta_time * 15;
 
 			if (this->commander_frame_transform.lock()->scale <= 0) {
@@ -55,6 +58,7 @@ void Component_Level3Manager::Update() {
 
 		// Despawn commander frame.
 		if (!this->commander_frame_despawned && this->level_finished_time > this->level_finished_despawn_commander_frame_time) {
+			AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BLEEP, 85);
 			this->commander_frame_transform.lock()->scale -= (float)Time::delta_time * 15;
 
 			if (this->commander_frame_transform.lock()->scale <= 0) {
@@ -88,6 +92,7 @@ void Component_Level3Manager::Update() {
 
 	// Spawn commander frame.
 	if (!this->commander_frame_spawned && this->level_time > this->spawn_commander_frame_time) {
+		AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BLEEP, 85);
 		this->commander_frame_transform.lock()->scale += (float)Time::delta_time * 15;
 
 		if (this->commander_frame_transform.lock()->scale >= 0.4f) {

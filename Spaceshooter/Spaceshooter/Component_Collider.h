@@ -6,7 +6,6 @@
 
 #include <unordered_set>
 #include "Component.h"
-#include "Debugging.h"
 #include "Shapes.h"
 
 // Enables collision with other collidable objects.

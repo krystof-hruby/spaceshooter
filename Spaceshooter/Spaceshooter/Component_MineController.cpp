@@ -7,7 +7,6 @@
 #include "AudioClips.h"
 #include "Component_Animator.h"
 #include "Component_MineCollider.h"
-#include "Component_SpriteRenderer.h"
 #include "Component_Transform.h"
 #include "GameObject.h"
 

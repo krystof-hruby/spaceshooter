@@ -4,23 +4,15 @@
 
 #include "GameObjectFactory.h"
 
-#include "AudioClips.h"
-#include "Component_Animator.h"
 #include "Component_AsteroidCollider.h"
 #include "Component_AsteroidController.h"
 #include "Component_AsteroidsManager.h"
 #include "Component_BossCollider.h"
-#include "Component_BossController.h"
-#include "Component_CircleCollider.h"
 #include "Component_EnemyShipCollider.h"
 #include "Component_EnemyShipController.h"
 #include "Component_EnemyShipsManager.h"
 #include "Component_HomingMissileCollider.h"
 #include "Component_HomingMissileController.h"
-#include "Component_InputReader.h"
-#include "Component_Level1Manager.h"
-#include "Component_Level2Manager.h"
-#include "Component_Level3Manager.h"
 #include "Component_MineCollider.h"
 #include "Component_MineController.h"
 #include "Component_PlayerBulletCollider.h"
@@ -28,12 +20,7 @@
 #include "Component_PlayerCollider.h"
 #include "Component_PlayerController.h"
 #include "Component_PlayerInput.h"
-#include "Component_RectangleCollider.h"
-#include "Component_ScriptedEvent_CommanderTalk.h"
-#include "Component_SpriteRenderer.h"
-#include "Component_Transform.h"
 #include "Constants.h"
-#include "Debugging.h"
 #include "Sprites.h"
 
 GameObjectFactory& GameObjectFactory::GetInstance() {
@@ -62,9 +49,9 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level1Manager(st
 	level1manager->cutscene3_time = 110;
 	level1manager->outro_time = 120;
 	level1manager->despawn_player_time = 134;
-	level1manager->despawn_commander_frame_time = 138;
-	level1manager->fade_out_time = 138;
-	level1manager->level_length = 140;
+	level1manager->despawn_commander_frame_time = 137;
+	level1manager->fade_out_time = 137;
+	level1manager->level_length = 142;
 	level1manager->level_failed_despawn_commander_frame_time = 18;
 	level1manager->level_failed_fade_out_time = 18;
 	level1manager->level_failed_length = 20;
@@ -90,7 +77,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level2Manager(st
 	level2manager->despawn_player_time = 90;
 	level2manager->despawn_commander_frame_time = 93;
 	level2manager->fade_out_time = 93;
-	level2manager->level_length = 95;
+	level2manager->level_length = 98;
 	level2manager->level_failed_despawn_commander_frame_time = 18;
 	level2manager->level_failed_fade_out_time = 18;
 	level2manager->level_failed_length = 20;
@@ -109,9 +96,9 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level3Manager(st
 	level3manager->spawn_player_time = 3;
 	level3manager->spawn_boss_time = 20;
 	level3manager->level_finished_despawn_player_time = 10;
-	level3manager->level_finished_despawn_commander_frame_time = 15;
-	level3manager->level_finished_fade_out_time = 20;
-	level3manager->level_finished_length = 22;
+	level3manager->level_finished_despawn_commander_frame_time = 17;
+	level3manager->level_finished_fade_out_time = 17;
+	level3manager->level_finished_length = 20;
 	level3manager->level_failed_despawn_commander_frame_time = 18;
 	level3manager->level_failed_fade_out_time = 18;
 	level3manager->level_failed_length = 20;
@@ -154,7 +141,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Player(std::shar
 	game_object->tag = "Player";
 
 	auto transform = game_object->AddComponent<Component_Transform>();
-	transform->scale = 0.2f;
+	transform->scale = 0.3f;
 
 	auto collider = game_object->AddComponent<Component_PlayerCollider>();
 	collider->radius = 45;

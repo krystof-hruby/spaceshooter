@@ -4,7 +4,6 @@
 
 #include "Component_AsteroidCollider.h"
 
-#include <string>
 #include "Component_AsteroidController.h"
 #include "GameObject.h"
 

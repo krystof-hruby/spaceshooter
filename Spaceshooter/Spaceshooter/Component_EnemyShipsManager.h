@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <vector>
 #include "Component_Transform.h"
 
 class Component_EnemyShipsManager final : public Component {

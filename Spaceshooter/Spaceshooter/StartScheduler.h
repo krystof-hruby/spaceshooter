@@ -5,7 +5,6 @@
 #pragma once
 
 #include <queue>
-
 #include "Component.h"
 
 // Manages Start methods of components.

@@ -15,7 +15,7 @@ public:
 
 	#if VISUALIZE_HITBOXES
 		// Displays a non-angled rectangle because apparently only non-angled rectangle can be filled with colour.
-		// The actual hitboxes is angled according to transform rotation.
+		// The actual hitboxes are angled according to transform rotation.
 		void VisualizeHitbox();
 	#endif
 

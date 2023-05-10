@@ -8,8 +8,6 @@
 #include "AudioClips.h"
 #include "Component_Animator.h"
 #include "Component_HomingMissileCollider.h"
-#include "Component_SpriteRenderer.h"
-#include "Component_Transform.h"
 #include "GameObject.h"
 #include "Time.h"
 

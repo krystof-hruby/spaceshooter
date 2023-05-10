@@ -6,18 +6,10 @@
 
 #include "ActiveBounds.h"
 #include "AudioClips.h"
-#include "Component_Animator.h"
 #include "Component_PlayerBulletController.h"
 #include "Component_PlayerCollider.h"
-#include "Component_PlayerInput.h"
-#include "Component_SpriteRenderer.h"
-#include "Component_Transform.h"
-#include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "Scene_Level2.h"
-#include "SceneManager.h"
-#include "Sprites.h"
-#include "Time.h"
 
 void Component_PlayerController::Start() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false;

@@ -4,10 +4,7 @@
 
 #include "Scene_Level3.h"
 
-#include "AudioClips.h"
-#include "Component_BossController.h"
 #include "Component_PlayerController.h"
-#include "Component_Level3Manager.h"
 #include "GameObjectFactory.h"
 #include "Logging.h"
 #include "Sprites.h"

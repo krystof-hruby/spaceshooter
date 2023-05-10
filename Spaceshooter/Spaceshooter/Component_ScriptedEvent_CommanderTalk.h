@@ -4,9 +4,8 @@
 
 #pragma once
 
-#include <string>
-#include "Component_Animator.h"
 #include "AudioPlayer.h"
+#include "Component_Animator.h"
 
 class Component_ScriptedEvent_CommanderTalk;
 

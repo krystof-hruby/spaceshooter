@@ -17,8 +17,11 @@ const Sprite SPRITE_BACKGROUND_BROWN = L"assets/sprites/backgrounds/background_b
 const Sprite SPRITE_BACKGROUND_PURPLE = L"assets/sprites/backgrounds/background_purple.png";
 
 const Sprite SPRITE_SPACESHIP_GREEN = L"assets/sprites/spaceships/spaceship_green.png";
+const Sprite SPRITE_SPACESHIP_GREEN_THRUSTERS = L"assets/sprites/spaceships/spaceship_green_thrusters.png";
 const Sprite SPRITE_SPACESHIP_GREEN_LEFT = L"assets/sprites/spaceships/spaceship_green_left.png";
+const Sprite SPRITE_SPACESHIP_GREEN_LEFT_THRUSTERS = L"assets/sprites/spaceships/spaceship_green_left_thrusters.png";
 const Sprite SPRITE_SPACESHIP_GREEN_RIGHT = L"assets/sprites/spaceships/spaceship_green_right.png";
+const Sprite SPRITE_SPACESHIP_GREEN_RIGHT_THRUSTERS = L"assets/sprites/spaceships/spaceship_green_right_thrusters.png";
 
 const Sprite SPRITE_PROJECTILE_PINK = L"assets/sprites/projectiles/projectile_pink.png";
 

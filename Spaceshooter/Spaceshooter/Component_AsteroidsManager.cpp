@@ -4,12 +4,6 @@
 
 #include "Component_AsteroidsManager.h"
 
-#include "AudioClips.h"
-#include "Component_AsteroidCollider.h"
-#include "Component_AsteroidController.h"
-#include "Component_SpriteRenderer.h"
-#include "Component_Transform.h"
-#include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "Scene.h"
 #include "Time.h"

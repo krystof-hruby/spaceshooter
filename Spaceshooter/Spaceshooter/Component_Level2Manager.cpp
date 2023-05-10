@@ -4,6 +4,7 @@
 
 #include "Component_Level2Manager.h"
 
+#include "AudioClips.h"
 #include "Component_EnemyShipsManager.h"
 #include "Component_PlayerController.h"
 #include "GameObjectFactory.h"
@@ -19,6 +20,7 @@ void Component_Level2Manager::Update() {
 
 		// Despawn commander frame.
 		if (!this->level_failed_commander_frame_despawned && this->level_failed_time > this->level_failed_despawn_commander_frame_time) {
+			AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BLEEP, 85);
 			this->commander_frame_transform.lock()->scale -= (float)Time::delta_time * 15;
 
 			if (this->commander_frame_transform.lock()->scale <= 0) {
@@ -57,6 +59,7 @@ void Component_Level2Manager::Update() {
 
 	// Spawn commander frame.
 	if (!this->commander_frame_spawned && this->level_time > this->spawn_commander_frame_time) {
+		AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BLEEP, 85);
 		this->commander_frame_transform.lock()->scale += (float)Time::delta_time * 15;
 
 		if (this->commander_frame_transform.lock()->scale >= 0.4f) {
@@ -121,6 +124,7 @@ void Component_Level2Manager::Update() {
 
 	// Despawn commander frame.
 	if (!this->commander_frame_despawned && this->level_time > this->despawn_commander_frame_time) {
+		AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BLEEP, 85);
 		this->commander_frame_transform.lock()->scale -= (float)Time::delta_time * 15;
 
 		if (this->commander_frame_transform.lock()->scale <= 0) {

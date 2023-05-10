@@ -6,8 +6,6 @@
 
 #include "Component_PlayerInput.h"
 #include "Component_PlayerController.h"
-#include "Component_SpriteRenderer.h"
-#include "Component_Transform.h"
 #include "GameObject.h"
 #include "Sprites.h"
 #include "Time.h"
@@ -28,12 +26,21 @@ void PlayerState_Flying::Play(std::shared_ptr<Component_PlayerController> player
 	transform->position += player_controller->movement_speed * player_input->GetInput_Movement() * direction_vector * (float)Time::delta_time;
 
 	// Update sprite.
-	if (player_input->GetInput_Rotation() > 0)
-		sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN_RIGHT);
-	else if (player_input->GetInput_Rotation() < 0)
-		sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN_LEFT);
-	else // No rotation.
-		sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN);
+	if (player_input->GetInput_Movement() != 0) {
+		if (player_input->GetInput_Rotation() > 0)
+			sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN_RIGHT_THRUSTERS);
+		else if (player_input->GetInput_Rotation() < 0)
+			sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN_LEFT_THRUSTERS);
+		else // No rotation.
+			sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN_THRUSTERS);
+	} else {
+		if (player_input->GetInput_Rotation() > 0)
+			sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN_RIGHT);
+		else if (player_input->GetInput_Rotation() < 0)
+			sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN_LEFT);
+		else // No rotation.
+			sprite_renderer->SetSprite(SPRITE_SPACESHIP_GREEN);
+	}
 
 	// Firing enabled if reloaded.
 	if (player_input->GetInput_Shooting() && this->reload_time > player_controller->reload_period) {
@@ -43,10 +50,4 @@ void PlayerState_Flying::Play(std::shared_ptr<Component_PlayerController> player
 		this->reload_time = 0;
 	}
 	this->reload_time += (float)Time::delta_time;
-
-	/*if (player_controller->score_manager.lock()->ReachedGoal())
-		this->free_roaming_time += (float)Time::delta_time;
-
-	if (this->free_roaming_time > player_controller->free_roaming_period)
-		player_controller->Despawn();*/
 }

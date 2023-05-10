@@ -5,7 +5,6 @@
 #pragma once
 
 #include "Scene.h"
-#include "Component_PlayerController.h"
 
 // Scene for level 1 of the game.
 class Scene_Level1 final : public Scene {

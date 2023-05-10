@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Component_Level1Manager.h"
+#include "Component.h"
 #include "vector2D.h"
 
 const int CLOCKWISE = 1;

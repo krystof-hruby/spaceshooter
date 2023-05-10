@@ -21,3 +21,5 @@ const AudioClip AUDIO_MINES_SPAWN = L"assets/audio_clips/spawns/mines_spawn.wav"
 const AudioClip AUDIO_MINE_EXPLOSION = L"assets/audio_clips/explosions/mine_explosion.wav";
 
 const AudioClip AUDIO_COMMANDER_TALK = L"assets/audio_clips/ui/character_talk.wav";
+const AudioClip AUDIO_WHITE_NOISE = L"assets/audio_clips/ui/white_noise.wav";
+const AudioClip AUDIO_BLEEP = L"assets/audio_clips/ui/bleep.wav";

@@ -5,7 +5,6 @@
 #pragma once
 
 #include <unordered_map>
-#include <vector>
 #include "BossState_Exploding.h"
 #include "BossState_Floating.h"
 #include "BossState_MovingToFloatingSpot.h"

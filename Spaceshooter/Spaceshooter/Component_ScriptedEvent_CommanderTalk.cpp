@@ -5,7 +5,6 @@
 #include "Component_ScriptedEvent_CommanderTalk.h"
 
 #include "AudioClips.h"
-#include "Time.h"
 
 void Component_ScriptedEvent_CommanderTalk::Start() {
 	this->current_phase = this->phase_deactivated;
@@ -35,10 +34,12 @@ void Component_ScriptedEvent_CommanderTalk::Deactivate() {
 	this->current_phase = this->phase_deactivated;
 	this->commander_ui_animator.lock()->StopAnimation();
 	this->text_ui_animator.lock()->StopAnimation();
+	AudioPlayer::GetInstance().StopAudioClip(this->commander_talk_sound_index);
 }
 
 void CommanderTalkPhase_SpawnCommander::Play(std::shared_ptr<Component_ScriptedEvent_CommanderTalk> commander_talk) {
 	commander_talk->commander_ui_animator.lock()->PlayAnimation("commander spawn");
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_WHITE_NOISE, 94);
 	commander_talk->ChangePhase(commander_talk->phase_start_talk);
 }
 
@@ -47,7 +48,7 @@ void CommanderTalkPhase_StartTalk::Play(std::shared_ptr<Component_ScriptedEvent_
 	if (commander_talk->commander_ui_animator.lock()->AnimationFinished("commander spawn")) {
 		commander_talk->commander_ui_animator.lock()->PlayAnimation("commander talk");
 		commander_talk->text_ui_animator.lock()->PlayAnimation(commander_talk->text_animation);
-		commander_talk->commander_talk_sound_index = AudioPlayer::GetInstance().PlayAudioClip(AUDIO_COMMANDER_TALK, 85, true);
+		commander_talk->commander_talk_sound_index = AudioPlayer::GetInstance().PlayAudioClip(AUDIO_COMMANDER_TALK, 87, true);
 		commander_talk->ChangePhase(commander_talk->phase_talking);
 	}
 }
@@ -57,6 +58,7 @@ void CommanderTalkPhase_Talking::Play(std::shared_ptr<Component_ScriptedEvent_Co
 	if (commander_talk->text_ui_animator.lock()->AnimationFinished(commander_talk->text_animation)) {
 		AudioPlayer::GetInstance().StopAudioClip(commander_talk->commander_talk_sound_index);
 		commander_talk->commander_ui_animator.lock()->PlayAnimation("commander despawn");
+		AudioPlayer::GetInstance().PlayAudioClip(AUDIO_WHITE_NOISE, 94);
 		commander_talk->ChangePhase(commander_talk->phase_despawning_commander);
 	}
 }

@@ -4,9 +4,6 @@
 
 #include "ImageRenderer.h"
 
-#include "GameObject.h"
-#include "mydrawengine.h"
-
 ImageRenderer::ImageRenderer() {
 	// Add layer 0.
 	this->scheduled_images.push_back(std::vector<Image>());

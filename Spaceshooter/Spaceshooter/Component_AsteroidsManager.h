@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <vector>
 #include "Component.h"
 
 // Provides field and method for spawning and managing asteroids.

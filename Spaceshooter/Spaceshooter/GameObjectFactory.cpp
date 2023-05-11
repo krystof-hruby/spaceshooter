@@ -288,7 +288,7 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Boss(std::shared
 	sprite_renderer->layer = 7;
 
 	auto animator = game_object->AddComponent<Component_Animator>();
-	animator->LoadAnimation(std::make_shared<Animation>("boss explosion", ANIMATION_PURPLE_SHIP_EXPLOSION, 7, false, 15));
+	animator->LoadAnimation(std::make_shared<Animation>("boss explosion", ANIMATION_BLUE_SHIP_EXPLOSION, 7, false, 15));
 	animator->LoadAnimation(std::make_shared<Animation>("boss hurt", ANIMATION_BOSS_HURT, 7, false, 10));
 
 	auto collider = game_object->AddComponent<Component_BossCollider>();

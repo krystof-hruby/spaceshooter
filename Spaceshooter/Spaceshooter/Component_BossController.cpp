@@ -82,6 +82,7 @@ void Component_BossController::Explode() {
 	this->GetGameObject()->GetComponent<Component_SpriteRenderer>()->is_active = false; // Hide sprite.
 	this->GetGameObject()->GetComponent<Component_BossCollider>()->is_active = false; // Disable collision.
 	this->GetGameObject()->GetComponent<Component_Animator>()->PlayAnimation("boss explosion");
+	AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BOSS_EXPLOSION);
 	this->DespawnHomingMissiles();
 	this->DespawnMines();
 

@@ -17,6 +17,7 @@ const AudioClip AUDIO_ASTEROID_EXPLOSION = L"assets/audio_clips/explosions/aster
 const AudioClip AUDIO_ENEMY_SHIP_EXPLOSION = L"assets/audio_clips/explosions/enemy_ship_explosion.wav";
 
 const AudioClip AUDIO_BOSS_HURT = L"assets/audio_clips/explosions/boss_hurt.wav";
+const AudioClip AUDIO_BOSS_EXPLOSION = L"assets/audio_clips/explosions/boss_explosion.wav";
 const AudioClip AUDIO_HOMING_MISSILE_SHOOT = L"assets/audio_clips/projectiles/homing_missile_shoot.wav";
 const AudioClip AUDIO_HOMING_MISSILE_EXPLOSION = L"assets/audio_clips/explosions/homing_missile_explosion.wav";
 const AudioClip AUDIO_MINES_SPAWN = L"assets/audio_clips/spawns/mines_spawn.wav";

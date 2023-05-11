@@ -95,10 +95,10 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level3Manager(st
 	level3manager->intro_time = 4;
 	level3manager->spawn_player_time = 3;
 	level3manager->spawn_boss_time = 20;
-	level3manager->level_finished_despawn_player_time = 10;
-	level3manager->level_finished_despawn_commander_frame_time = 17;
-	level3manager->level_finished_fade_out_time = 17;
-	level3manager->level_finished_length = 20;
+	level3manager->level_finished_despawn_player_time = 15;
+	level3manager->level_finished_despawn_commander_frame_time = 20;
+	level3manager->level_finished_fade_out_time = 20;
+	level3manager->level_finished_length = 25;
 	level3manager->level_failed_despawn_commander_frame_time = 18;
 	level3manager->level_failed_fade_out_time = 18;
 	level3manager->level_failed_length = 20;

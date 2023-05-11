@@ -24,24 +24,10 @@
 // a few separate classes, but this keeps it simple.
 class Game
 {
-private:
-	enum GameState{MENU, PAUSED, RUNNING, GAMEOVER};
-	GameState m_currentState;      // Current state of the game 
-                                  // Menu = start menu
-                                  // Paused = paused
-                                  // Running = the main game loop
-                                  // GAMEOVER = setting this state causes the program to close
-                                  //            after tidying up
-	void ChangeState(GameState newState);  // Use to change the state of the game to one of the states above
-	int m_menuOption;              // Tracks the currently selected menu option, during main or pause menu
-	Game();                        // Constructor
-	~Game();                       // Destructor
-	Game(Game& other);             // Copy constructor disabled
-
-	GameTimer gt;
-
-
 public:
+	enum GameState{MENU, PAUSED, RUNNING, GAMEOVER};
+	void ChangeState(GameState newState);  // Use to change the state of the game to one of the states above
+	
 	static Game instance;          // Singleton instance
 
    // Starts the game engines - Draw Engine, Sound Engine, Input Engine - singletons
@@ -80,6 +66,20 @@ public:
    // but could be done by the gameplay programmer in other situations
    // This will be used by the gameplay programmer to clean up
 	ErrorType EndOfGame();
+private:
+	GameState m_currentState;      // Current state of the game 
+                                  // Menu = start menu
+                                  // Paused = paused
+                                  // Running = the main game loop
+                                  // GAMEOVER = setting this state causes the program to close
+                                  //            after tidying up
+	int m_menuOption;              // Tracks the currently selected menu option, during main or pause menu
+	Game();                        // Constructor
+	~Game();                       // Destructor
+	Game(Game& other);             // Copy constructor disabled
+
+	GameTimer gt;
+
 };
 
 

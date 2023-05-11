@@ -7,6 +7,7 @@
 #include "AudioClips.h"
 #include "Component_BossController.h"
 #include "Component_PlayerController.h"
+#include "gamecode.h"
 #include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "Scene_Level1.h"
@@ -75,6 +76,11 @@ void Component_Level3Manager::Update() {
 				this->fader_sprite_renderer.lock()->transparency = 0;
 				this->faded_out = true;
 			}
+		}
+
+		// End game.
+		if (this->level_finished_time > this->level_finished_length) {
+			Game::instance.ChangeState(Game::GameState::MENU);
 		}
 
 		return;

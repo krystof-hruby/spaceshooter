@@ -13,6 +13,6 @@ void Component_PlayerCollider::OnCollisionEnter(std::shared_ptr<GameObject> othe
 		return;
 	#endif
 	
-	if (other->tag == "Asteroid" || other->tag == "Enemy Ship" || other->tag == "Boss" || other->tag == "Homing Missile" || other->tag == "Laser" || other->tag == "Mine")
+	if (other->tag == "Asteroid" || other->tag == "Enemy Ship" || other->tag == "Boss" || other->tag == "Homing Missile" || other->tag == "Mine")
 		this->GetGameObject()->GetComponent<Component_PlayerController>()->Explode();
 }

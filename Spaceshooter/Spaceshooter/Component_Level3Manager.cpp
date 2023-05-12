@@ -69,7 +69,7 @@ void Component_Level3Manager::Update() {
 		}
 
 		// Fade out.
-		if (!this->faded_out && this->level_finished_time > this->level_failed_fade_out_time) {
+		if (!this->faded_out && this->level_finished_time > this->level_finished_fade_out_time) {
 			this->fader_sprite_renderer.lock()->transparency -= (float)Time::delta_time;
 
 			if (this->fader_sprite_renderer.lock()->transparency <= 0) {

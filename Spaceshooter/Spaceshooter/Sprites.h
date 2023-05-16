@@ -1,6 +1,8 @@
 // Sprites.h
 // Krystof Hruby
 // 2023
+// Sprites are free to use from https://gvituri.itch.io/space-shooter
+// Font is GPL from https://www.1001freefonts.com/hardpixel.font
 
 #pragma once
 

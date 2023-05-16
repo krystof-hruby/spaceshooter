@@ -1,6 +1,7 @@
 // AudioClips.h
 // Krystof Hruby
 // 2023
+// Audio clips are Creative Commons 0 from https://freesound.org/
 
 #pragma once
 

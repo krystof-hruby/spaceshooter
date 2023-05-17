@@ -29,6 +29,8 @@ public:
 	float level_finished_despawn_commander_frame_time = 1;
 	float level_finished_fade_out_time = 1;
 
+	SoundIndex music_index;
+	float music_volume = 1;
 	std::weak_ptr<Component_SpriteRenderer> fader_sprite_renderer;
 	std::weak_ptr<Component_ScriptedEvent_CommanderTalk> scripted_event_commander_talk;
 	std::weak_ptr<Component_Transform> commander_frame_transform;

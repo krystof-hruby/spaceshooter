@@ -68,6 +68,12 @@ void Component_Level3Manager::Update() {
 			}
 		}
 
+		// Fade out music
+		if (this->level_time > this->level_finished_despawn_commander_frame_time) {
+			this->music_volume -= (float)Time::delta_time * 10;
+			AudioPlayer::GetInstance().SetVolume(this->music_index, this->music_volume);
+		}
+
 		// Fade out.
 		if (!this->faded_out && this->level_finished_time > this->level_finished_fade_out_time) {
 			this->fader_sprite_renderer.lock()->transparency -= (float)Time::delta_time;
@@ -131,6 +137,8 @@ void Component_Level3Manager::Update() {
 
 		this->boss_controller = boss->GetComponent<Component_BossController>();
 		this->boss_spawned = true;
+
+		this->music_index = AudioPlayer::GetInstance().PlayAudioClip(AUDIO_LEVEL3, this->music_volume, true);
 	}
 
 	// Play cutscenes and outro.

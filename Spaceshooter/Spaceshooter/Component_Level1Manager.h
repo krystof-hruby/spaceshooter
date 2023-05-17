@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "AudioPlayer.h"
 #include "Component_ScriptedEvent_CommanderTalk.h"
 #include "Component_Transform.h"
 
@@ -13,7 +14,7 @@ class Component_PlayerController;
 class Component_Level1Manager : public Component, public std::enable_shared_from_this<Component_Level1Manager> {
 public:
 	using Component::Component;
-	inline bool Startable() const override { return false; }
+	void Start() override;
 	void Update() override;
 
 	float level_length = 1;
@@ -33,6 +34,8 @@ public:
 	float level_failed_despawn_commander_frame_time = 1;
 	float level_failed_fade_out_time = 1;
 
+	SoundIndex music_index;
+	float music_volume = 1;
 	std::weak_ptr<Component_SpriteRenderer> fader_sprite_renderer;
 	std::weak_ptr<Component_ScriptedEvent_CommanderTalk> scripted_event_commander_talk;
 	std::weak_ptr<Component_Transform> commander_frame_transform;

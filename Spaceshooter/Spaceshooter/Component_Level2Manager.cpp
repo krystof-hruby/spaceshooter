@@ -13,6 +13,10 @@
 #include "SceneManager.h"
 #include "Time.h"
 
+void Component_Level2Manager::Start() {
+	this->music_index = AudioPlayer::GetInstance().PlayAudioClip(AUDIO_LEVEL2, this->music_volume, true);
+}
+
 void Component_Level2Manager::Update() {
 	// If level failed despawn commander frame and fade out.
 	if (this->level_failed) {
@@ -131,6 +135,12 @@ void Component_Level2Manager::Update() {
 			this->commander_frame_transform.lock()->scale = 0;
 			this->commander_frame_despawned = true;
 		}
+	}
+
+	// Fade out music
+	if (this->level_time > this->despawn_commander_frame_time) {
+		this->music_volume -= (float)Time::delta_time * 10;
+		AudioPlayer::GetInstance().SetVolume(this->music_index, this->music_volume);
 	}
 
 	// Fade out.

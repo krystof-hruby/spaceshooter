@@ -2,6 +2,7 @@
 // Krystof Hruby
 // 2023
 // Audio clips are Creative Commons 0 from https://freesound.org/
+// Music was made by Adam Hruby
 
 #pragma once
 
@@ -27,3 +28,7 @@ const AudioClip AUDIO_MINE_EXPLOSION = L"assets/audio_clips/explosions/mine_expl
 const AudioClip AUDIO_COMMANDER_TALK = L"assets/audio_clips/ui/character_talk.wav";
 const AudioClip AUDIO_WHITE_NOISE = L"assets/audio_clips/ui/white_noise.wav";
 const AudioClip AUDIO_BLEEP = L"assets/audio_clips/ui/bleep.wav";
+
+const AudioClip AUDIO_LEVEL1 = L"assets/audio_clips/music/level1.wav";
+const AudioClip AUDIO_LEVEL2 = L"assets/audio_clips/music/level2.wav";
+const AudioClip AUDIO_LEVEL3 = L"assets/audio_clips/music/level3.wav";

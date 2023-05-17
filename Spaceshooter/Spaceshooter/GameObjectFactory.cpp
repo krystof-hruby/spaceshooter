@@ -44,17 +44,19 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level1Manager(st
 	level1manager->intro_time = 5;
 	level1manager->spawn_player_time = 30;
 	level1manager->start_spawning_asteroids_time = 66;
-	level1manager->cutscene1_time = 90;
-	level1manager->cutscene2_time = 100;
-	level1manager->cutscene3_time = 110;
-	level1manager->outro_time = 120;
-	level1manager->despawn_player_time = 134;
-	level1manager->despawn_commander_frame_time = 137;
-	level1manager->fade_out_time = 137;
-	level1manager->level_length = 142;
+	level1manager->cutscene1_time = 95;
+	level1manager->cutscene2_time = 110;
+	level1manager->cutscene3_time = 125;
+	level1manager->outro_time = 135;
+	level1manager->despawn_player_time = 149;
+	level1manager->despawn_commander_frame_time = 152;
+	level1manager->fade_out_time = 152;
+	level1manager->level_length = 156;
 	level1manager->level_failed_despawn_commander_frame_time = 18;
 	level1manager->level_failed_fade_out_time = 18;
 	level1manager->level_failed_length = 20;
+	
+	level1manager->music_volume = 65;
 
 	return game_object;
 }
@@ -70,17 +72,19 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level2Manager(st
 	level2manager->spawn_player_time = 3;
 	level2manager->start_spawning_asteroids_time = 32;
 	level2manager->start_spawning_enemy_ships_time = 32;
-	level2manager->cutscene1_time = 50;
-	level2manager->cutscene2_time = 60;
-	level2manager->cutscene3_time = 70;
-	level2manager->outro_time = 80;
-	level2manager->despawn_player_time = 90;
-	level2manager->despawn_commander_frame_time = 93;
-	level2manager->fade_out_time = 93;
-	level2manager->level_length = 98;
+	level2manager->cutscene1_time = 55;
+	level2manager->cutscene2_time = 70;
+	level2manager->cutscene3_time = 85;
+	level2manager->outro_time = 95;
+	level2manager->despawn_player_time = 105;
+	level2manager->despawn_commander_frame_time = 108;
+	level2manager->fade_out_time = 108;
+	level2manager->level_length = 113;
 	level2manager->level_failed_despawn_commander_frame_time = 18;
 	level2manager->level_failed_fade_out_time = 18;
 	level2manager->level_failed_length = 20;
+	
+	level2manager->music_volume = 65;
 
 	return game_object;
 }
@@ -102,6 +106,8 @@ std::shared_ptr<GameObject> GameObjectFactory::CreateGameObject_Level3Manager(st
 	level3manager->level_failed_despawn_commander_frame_time = 18;
 	level3manager->level_failed_fade_out_time = 18;
 	level3manager->level_failed_length = 20;
+	
+	level3manager->music_volume = 65;
 
 	return game_object;
 }

@@ -12,6 +12,10 @@
 #include "SceneManager.h"
 #include "Time.h"
 
+void Component_Level1Manager::Start() {
+	this->music_index = AudioPlayer::GetInstance().PlayAudioClip(AUDIO_LEVEL1, this->music_volume, true);
+}
+
 // This could have also been done with a state machine.
 // But state machines take so much unecessary time to write and so much space.
 // And this is still quite understandable and readable.
@@ -61,7 +65,6 @@ void Component_Level1Manager::Update() {
 	
 	// Spawn commander frame.
 	if (!this->commander_frame_spawned && this->level_time > this->spawn_commander_frame_time) {
-		AudioPlayer::GetInstance().PlayAudioClip(AUDIO_BLEEP, 85);
 		this->commander_frame_transform.lock()->scale += (float)Time::delta_time * 15;
 
 		if (this->commander_frame_transform.lock()->scale >= 0.4f) {
@@ -124,6 +127,12 @@ void Component_Level1Manager::Update() {
 			this->commander_frame_transform.lock()->scale = 0;
 			this->commander_frame_despawned = true;
 		}
+	}
+
+	// Fade out music
+	if (this->level_time > this->despawn_commander_frame_time) {
+		this->music_volume -= (float)Time::delta_time * 10;
+		AudioPlayer::GetInstance().SetVolume(this->music_index, this->music_volume);
 	}
 
 	// Fade out.

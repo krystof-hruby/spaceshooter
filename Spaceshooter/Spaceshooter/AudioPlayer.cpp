@@ -20,6 +20,11 @@ SoundIndex AudioPlayer::PlayAudioClip(AudioClip audio_clip, float volume, bool l
 	return sound;
 }
 
+void AudioPlayer::SetVolume(SoundIndex index, float volume) {
+	// MySoundEngine volume goes from -10000 to 0
+	MySoundEngine::GetInstance()->SetVolume(index, (int)((volume * 100) - 10000));
+}
+
 void AudioPlayer::StopAudioClip(SoundIndex index) {
 	MySoundEngine::GetInstance()->Stop(index);
 }

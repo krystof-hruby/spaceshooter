@@ -79,8 +79,8 @@
     <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\heart\Documents\DOCUMENTS\programming\spaceshooter\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\heart\Documents\DOCUMENTS\programming\spaceshooter\Spaceshooter\Shell\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>C:\Users\heart\Documents\DOCUMENTS\University\Y3\S2\Software Architecture\GAME\Spaceshooter\Shell\Include;$(IncludePath)</IncludePath>

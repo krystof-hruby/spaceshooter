@@ -7,6 +7,8 @@ The game engine uses an Entity Component System (ECS) architecture, a modern gam
 
 The game and the engine were writen in C++
 
+## Screenshots
+
 ---
 
 **Krystof Hruby 2023**
